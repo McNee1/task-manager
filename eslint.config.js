@@ -9,6 +9,7 @@ import eslintConfigPrettier from 'eslint-config-prettier';
 import eslintPluginPrettier from 'eslint-plugin-prettier';
 import perfectionist from 'eslint-plugin-perfectionist';
 import unusedImports from 'eslint-plugin-unused-imports';
+import tailwind from 'eslint-plugin-tailwindcss';
 
 export default tseslint.config(
   { ignores: ['dist'] },
@@ -18,6 +19,7 @@ export default tseslint.config(
       tseslint.configs.strictTypeChecked,
       ...tseslint.configs.stylisticTypeChecked,
       importPlugin.flatConfigs.recommended,
+      ...tailwind.configs['flat/recommended'],
       eslintConfigPrettier,
     ],
     files: ['**/*.{ts,tsx}'],
@@ -34,6 +36,7 @@ export default tseslint.config(
         },
       },
     },
+
     languageOptions: {
       globals: globals.browser,
       ecmaVersion: 'latest',
@@ -53,6 +56,7 @@ export default tseslint.config(
       prettier: eslintPluginPrettier,
     },
     rules: {
+      'react/prop-types': 'off',
       ...react.configs.recommended.rules,
       ...react.configs['jsx-runtime'].rules,
       ...reactHooks.configs.recommended.rules,
@@ -63,12 +67,7 @@ export default tseslint.config(
       'import/first': 'error',
       'import/newline-after-import': 'error',
       'import/no-duplicates': 'error',
-      'import/no-internal-modules': [
-        'error',
-        {
-          allow: ['react-dom/client', '**/*.svg', '@/shared/*', '@/shared/assets/**'],
-        },
-      ],
+
       //
       'unused-imports/no-unused-imports': 'error',
       'unused-imports/no-unused-vars': [
