@@ -134,7 +134,6 @@ export default tseslint.config(
           order: 'asc',
         },
       ],
-
       'perfectionist/sort-named-imports': [
         'error',
         {
@@ -150,7 +149,7 @@ export default tseslint.config(
         },
       ],
       //
-      'prettier/prettier': 'error',
+
       'react-refresh/only-export-components': ['warn', { allowConstantExport: true }],
       'import/no-unresolved': [
         'error',
