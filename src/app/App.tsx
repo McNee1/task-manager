@@ -2,6 +2,7 @@ import { AppLayout } from './layout';
 import './style/App.css';
 
 function App() {
+  console.log('object');
   return (
     <AppLayout>
       <div className='flex flex-1 flex-col gap-4 p-4 pt-0'>
