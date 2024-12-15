@@ -1,4 +1,4 @@
-import type { LucideIcon } from 'lucide-react';
+import { Link } from '@tanstack/react-router';
 
 import {
   SidebarHeader,
@@ -7,12 +7,10 @@ import {
   SidebarMenuItem,
 } from '@/components/ui/sidebar';
 
+import { MenuItem } from '../../model';
+
 interface NavHeaderProps {
-  item: {
-    title: string;
-    icon: LucideIcon;
-    url: string;
-  };
+  item: MenuItem;
 }
 
 export const NavHeader = ({ item }: NavHeaderProps) => {
@@ -24,14 +22,14 @@ export const NavHeader = ({ item }: NavHeaderProps) => {
             size='lg'
             asChild
           >
-            <a href={item.url}>
+            <Link href={item.to}>
               <div className='flex aspect-square size-8 items-center justify-center rounded-lg bg-sidebar-primary text-sidebar-primary-foreground'>
                 <item.icon className='size-4' />
               </div>
               <div className='grid flex-1 text-left text-base leading-tight'>
                 <span className='truncate font-medium'>{item.title}</span>
               </div>
-            </a>
+            </Link>
           </SidebarMenuButton>
         </SidebarMenuItem>
       </SidebarMenu>

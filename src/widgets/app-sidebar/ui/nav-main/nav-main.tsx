@@ -1,4 +1,4 @@
-import type { LucideIcon } from 'lucide-react';
+import { Link } from '@tanstack/react-router';
 
 import {
   SidebarGroup,
@@ -8,13 +8,10 @@ import {
   SidebarMenuItem,
 } from '@/components/ui/sidebar';
 
+import { MenuItem } from '../../model';
+
 interface NavMainProps {
-  items: {
-    title: string;
-    url: string;
-    icon: LucideIcon;
-    isActive?: boolean;
-  }[];
+  items: MenuItem[];
 }
 
 export const NavMain = ({ items }: NavMainProps) => {
@@ -28,10 +25,10 @@ export const NavMain = ({ items }: NavMainProps) => {
                 className='gap-4 py-5 [&>svg]:size-5'
                 asChild
               >
-                <a href={item.url}>
+                <Link to={item.to}>
                   <item.icon />
                   <span>{item.title}</span>
-                </a>
+                </Link>
               </SidebarMenuButton>
             </SidebarMenuItem>
           ))}
