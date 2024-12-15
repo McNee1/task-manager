@@ -1,5 +1,5 @@
 import { Link } from '@tanstack/react-router';
-import { Plus } from 'lucide-react';
+import { Plus, SquareChartGantt } from 'lucide-react';
 
 import { Button } from '@/components/ui/button';
 import {
@@ -9,24 +9,27 @@ import {
   SidebarMenuButton,
   SidebarMenuItem,
 } from '@/components/ui/sidebar';
-
-import { SpaceMenu } from '../../model';
+import { SpaceSchema } from '@/entities';
 
 interface NavSpacesProps {
-  spaces: SpaceMenu;
+  setOpenModal: () => void;
+  spaces: SpaceSchema;
 }
 
-export const NavSpaces = ({ spaces }: NavSpacesProps) => {
+export const NavSpaces = ({ spaces, setOpenModal }: NavSpacesProps) => {
   return (
     <SidebarGroup className='group-data-[collapsible=icon]:hidden'>
-      <SidebarGroupLabel>{spaces.title}</SidebarGroupLabel>
+      <SidebarGroupLabel>Моё пространство</SidebarGroupLabel>
 
-      <Button className='mb-3 justify-start gap-3'>
+      <Button
+        className='mb-3 justify-start gap-3'
+        onClick={setOpenModal}
+      >
         <Plus /> Добавить пространство
       </Button>
       <SidebarMenu>
         <div className='custom-scrollbar max-h-[200px] overflow-y-auto'>
-          {spaces.items.map((item) => (
+          {spaces.items?.map((item) => (
             <SidebarMenuItem key={item.spaceName}>
               <SidebarMenuButton asChild>
                 <Link
@@ -37,7 +40,7 @@ export const NavSpaces = ({ spaces }: NavSpacesProps) => {
                   className='py-5 [&>svg]:size-5'
                   to={'/space/$spaceId'}
                 >
-                  <spaces.icon />
+                  <SquareChartGantt />
                   <span>{item.spaceName}</span>
                 </Link>
               </SidebarMenuButton>

@@ -1,1 +1,1 @@
-export { SidebarTrigger } from './ui';
+export { SidebarTrigger } from './sidebar-trigger';

@@ -7,22 +7,7 @@ export interface MenuItem {
   to: LinkProps['to'];
 }
 
-interface MenuSpaceItem {
-  dataBaseId: string;
-  date: string;
-  id: number;
-
-  spaceName: string;
-}
-
-export interface SpaceMenu {
-  icon: LucideIcon;
-  items: MenuSpaceItem[];
-  title: string;
-}
-
 export interface MenuSchema {
   header: MenuItem;
   navMain: MenuItem[];
-  navSpaces: SpaceMenu;
 }
