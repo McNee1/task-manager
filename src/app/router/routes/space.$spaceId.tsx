@@ -4,7 +4,7 @@ export const Route = createFileRoute('/space/$spaceId')({
   component: RouteComponent,
 
   notFoundComponent: () => {
-    return <p>Post not found</p>;
+    return <p> not found</p>;
   },
 });
 

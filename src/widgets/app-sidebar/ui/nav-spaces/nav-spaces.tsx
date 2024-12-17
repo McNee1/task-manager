@@ -1,35 +1,54 @@
 import { Link } from '@tanstack/react-router';
-import { Plus, SquareChartGantt } from 'lucide-react';
+import { SquareChartGantt } from 'lucide-react';
+import { ReactNode } from 'react';
 
-import { Button } from '@/components/ui/button';
 import {
   SidebarGroup,
   SidebarGroupLabel,
   SidebarMenu,
   SidebarMenuButton,
   SidebarMenuItem,
+  SidebarMenuSkeleton,
 } from '@/components/ui/sidebar';
-import { SpaceSchema } from '@/entities';
+import { ErrorText } from '@/components/ui/typography';
+import { SpaceItem } from '@/entities';
 
 interface NavSpacesProps {
-  setOpenModal: () => void;
-  spaces: SpaceSchema;
+  children: ReactNode;
+  error?: Error | null;
+  loading: boolean;
+  spaces?: SpaceItem[];
 }
 
-export const NavSpaces = ({ spaces, setOpenModal }: NavSpacesProps) => {
+const LoadingSkeletons = () => (
+  <SidebarMenu className='mt-5'>
+    {Array.from({ length: 5 }).map((_, index) => (
+      <SidebarMenuItem key={index}>
+        <SidebarMenuSkeleton
+          title='Загрузка...'
+          color='red'
+          showIcon
+        />
+      </SidebarMenuItem>
+    ))}
+  </SidebarMenu>
+);
+
+export const NavSpaces = ({ spaces, children, loading, error }: NavSpacesProps) => {
+  if (loading) {
+    return <LoadingSkeletons />;
+  }
+  if (error) {
+    return <ErrorText className='mt-5 text-center'>{error.message}</ErrorText>;
+  }
   return (
     <SidebarGroup className='group-data-[collapsible=icon]:hidden'>
       <SidebarGroupLabel>Моё пространство</SidebarGroupLabel>
 
-      <Button
-        className='mb-3 justify-start gap-3'
-        onClick={setOpenModal}
-      >
-        <Plus /> Добавить пространство
-      </Button>
+      {children}
       <SidebarMenu>
         <div className='custom-scrollbar max-h-[200px] overflow-y-auto'>
-          {spaces.items?.map((item) => (
+          {spaces?.map((item) => (
             <SidebarMenuItem key={item.spaceName}>
               <SidebarMenuButton asChild>
                 <Link

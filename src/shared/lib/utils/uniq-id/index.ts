@@ -1,2 +1,1 @@
-export { cn } from './cn';
 export { iniqId } from './uniq-id';

@@ -1,38 +1,33 @@
 import { useState } from 'react';
 
 import { Sidebar, SidebarContent, SidebarGroup } from '@/components/ui/sidebar';
-import { spaceData, SpaceSchema } from '@/entities';
+import { SpaceItem, useQueryGetSpaces } from '@/entities';
+import { iniqId } from '@/shared/lib';
 
 import { menuItems } from '../../model';
-import { AddSpace } from '../add-space';
+import { AddSpaceModal } from '../add-space-modal';
 import { NavHeader } from '../nav-header';
 import { NavMain } from '../nav-main';
 import { NavSpaces } from '../nav-spaces';
 
-// Menu items.
-
 export function AppSidebar() {
-  const [space, setSpace] = useState<SpaceSchema>(spaceData);
-  const [spaceName, setSpaceName] = useState('');
-  const [isOpen, setIssOpen] = useState(false);
+  const [space, setSpace] = useState<SpaceItem[]>([]);
 
-  const handleToggleModal = () => {
-    setIssOpen(!isOpen);
-  };
+  const { data: spaces, isLoading, error } = useQueryGetSpaces();
 
-  const handleAddSpace = () => {
+  const handleAddSpace = (spaceName: string) => {
     if (!spaceName) {
       console.error('Space name cannot be empty');
       return;
     }
 
-    setSpace((prev) => ({
-      ...prev,
-      items: [
-        ...(prev.items ?? []),
-        { spaceName, dataBaseId: 'ds', date: '2112', id: (prev.items?.length ?? 0) + 1 },
-      ],
-    }));
+    const mewSpace: SpaceItem = {
+      spaceName,
+      spaceId: iniqId(),
+      date: '2112',
+      id: space.length + 1,
+    };
+    setSpace((prev) => [...prev, mewSpace]);
 
     console.log(space);
   };
@@ -45,16 +40,13 @@ export function AppSidebar() {
           <NavMain items={menuItems.navMain} />
         </SidebarContent>
         <NavSpaces
-          setOpenModal={handleToggleModal}
-          spaces={space}
-        />
+          loading={isLoading}
+          spaces={spaces}
+          error={error}
+        >
+          <AddSpaceModal onAddSpace={handleAddSpace} />
+        </NavSpaces>
       </SidebarGroup>
-      <AddSpace
-        onChangeValue={setSpaceName}
-        onAddSpace={handleAddSpace}
-        onOpenChange={setIssOpen}
-        isOpen={isOpen}
-      />
     </Sidebar>
   );
 }

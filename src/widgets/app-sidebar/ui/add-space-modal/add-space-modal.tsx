@@ -1,5 +1,6 @@
 import { Dialog } from '@radix-ui/react-dialog';
-import { Dispatch, SetStateAction } from 'react';
+import { Plus } from 'lucide-react';
+import { useState } from 'react';
 
 import { Button } from '@/components/ui/button';
 import {
@@ -8,28 +9,29 @@ import {
   DialogFooter,
   DialogHeader,
   DialogTitle,
+  DialogTrigger,
 } from '@/components/ui/dialog';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 
 interface AddSpaceProps {
-  isOpen: boolean;
-  onAddSpace: () => void;
-  onChangeValue: Dispatch<SetStateAction<string>>;
-  onOpenChange: Dispatch<SetStateAction<boolean>>;
+  onAddSpace: (spaceName: string) => void;
 }
 
-export const AddSpace = ({
-  isOpen,
-  onOpenChange,
-  onChangeValue,
-  onAddSpace,
-}: AddSpaceProps) => {
+export const AddSpaceModal = ({ onAddSpace }: AddSpaceProps) => {
+  const [spaceName, setSpaceName] = useState('');
+
+  const onAddSpaceHandler = () => {
+    onAddSpace(spaceName);
+  };
+
   return (
-    <Dialog
-      onOpenChange={onOpenChange}
-      open={isOpen}
-    >
+    <Dialog>
+      <DialogTrigger asChild>
+        <Button className='mb-3 justify-start gap-3'>
+          <Plus /> Добавить пространство
+        </Button>
+      </DialogTrigger>
       <DialogContent className='p-7 sm:max-w-md lg:max-w-xl'>
         <DialogHeader>
           <DialogTitle className='text-xl font-medium'>Добавите пространство</DialogTitle>
@@ -47,7 +49,7 @@ export const AddSpace = ({
             </Label>
             <Input
               onChange={(e) => {
-                onChangeValue(e.target.value);
+                setSpaceName(e.target.value);
               }}
               id='link'
             />
@@ -55,7 +57,7 @@ export const AddSpace = ({
         </div>
         <DialogFooter className='sm:justify-start'>
           <Button
-            onClick={onAddSpace}
+            onClick={onAddSpaceHandler}
             className='w-full'
             variant='default'
             type='button'

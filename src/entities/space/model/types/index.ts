@@ -1,1 +1,1 @@
-export type { MenuSpaceItem, SpaceSchema } from './space-schema';
+export type { SpaceItem, SpaceSchema } from './space-schema';
