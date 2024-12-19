@@ -1,36 +1,47 @@
-import { useState } from 'react';
+import { Plus } from 'lucide-react';
 
+import { Button } from '@/components/ui/button';
 import { Sidebar, SidebarContent, SidebarGroup } from '@/components/ui/sidebar';
-import { SpaceItem, useQueryGetSpaces } from '@/entities';
-import { iniqId } from '@/shared/lib';
 
-import { menuItems } from '../../model';
+import { menuItems, useSpaces } from '../../model';
 import { AddSpaceModal } from '../add-space-modal';
 import { NavHeader } from '../nav-header';
 import { NavMain } from '../nav-main';
 import { NavSpaces } from '../nav-spaces';
 
 export function AppSidebar() {
-  const [space, setSpace] = useState<SpaceItem[]>([]);
+  const {
+    handelToggleModal,
+    handleAddSpace,
+    error,
+    isLoading,
+    isOpen,
+    isPending,
+    spaces,
+  } = useSpaces();
 
-  const { data: spaces, isLoading, error } = useQueryGetSpaces();
+  const buttonAddSpace = (space: string) => (
+    <Button
+      onClick={() => {
+        handleAddSpace(space);
+      }}
+      disabled={isPending}
+      className='w-full'
+      variant='default'
+      type='button'
+    >
+      Добавить
+    </Button>
+  );
 
-  const handleAddSpace = (spaceName: string) => {
-    if (!spaceName) {
-      console.error('Space name cannot be empty');
-      return;
-    }
-
-    const mewSpace: SpaceItem = {
-      spaceName,
-      spaceId: iniqId(),
-      date: '2112',
-      id: space.length + 1,
-    };
-    setSpace((prev) => [...prev, mewSpace]);
-
-    console.log(space);
-  };
+  const buttonOpenModal = (
+    <Button
+      className='mb-3 justify-start gap-3'
+      disabled={isPending}
+    >
+      <Plus /> Добавить пространство
+    </Button>
+  );
 
   return (
     <Sidebar>
@@ -44,7 +55,13 @@ export function AppSidebar() {
           spaces={spaces}
           error={error}
         >
-          <AddSpaceModal onAddSpace={handleAddSpace} />
+          <AddSpaceModal
+            renderAddSpace={(space) => buttonAddSpace(space)}
+            renderOpenModal={() => buttonOpenModal}
+            onOpenChange={handelToggleModal}
+            onEnterDown={handleAddSpace}
+            isOpen={isOpen}
+          />
         </NavSpaces>
       </SidebarGroup>
     </Sidebar>

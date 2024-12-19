@@ -10,6 +10,7 @@ import { createRouter } from './router';
 function App() {
   const router = createRouter();
   const queryClient = new QueryClient();
+
   return (
     <QueryClientProvider client={queryClient}>
       <RouterProvider router={router} />

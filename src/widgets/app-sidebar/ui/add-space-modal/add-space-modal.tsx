@@ -1,8 +1,6 @@
 import { Dialog } from '@radix-ui/react-dialog';
-import { Plus } from 'lucide-react';
-import { useState } from 'react';
+import { ReactNode, useState } from 'react';
 
-import { Button } from '@/components/ui/button';
 import {
   DialogContent,
   DialogDescription,
@@ -13,25 +11,41 @@ import {
 } from '@/components/ui/dialog';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
+import { useEnterDown } from '@/shared/lib';
 
 interface AddSpaceProps {
-  onAddSpace: (spaceName: string) => void;
+  isOpen?: boolean;
+  onEnterDown: (value: string) => void;
+  onOpenChange: () => void;
+  renderAddSpace: (spaceName: string) => ReactNode;
+  renderOpenModal: () => ReactNode;
 }
 
-export const AddSpaceModal = ({ onAddSpace }: AddSpaceProps) => {
+export const AddSpaceModal = ({
+  isOpen,
+  onOpenChange,
+  renderAddSpace,
+  renderOpenModal,
+  onEnterDown,
+}: AddSpaceProps) => {
   const [spaceName, setSpaceName] = useState('');
 
-  const onAddSpaceHandler = () => {
-    onAddSpace(spaceName);
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setSpaceName(e.target.value);
   };
 
+  useEnterDown(() => {
+    if (isOpen) {
+      onEnterDown(spaceName);
+    }
+  });
+
   return (
-    <Dialog>
-      <DialogTrigger asChild>
-        <Button className='mb-3 justify-start gap-3'>
-          <Plus /> Добавить пространство
-        </Button>
-      </DialogTrigger>
+    <Dialog
+      onOpenChange={onOpenChange}
+      open={isOpen}
+    >
+      <DialogTrigger asChild>{renderOpenModal()}</DialogTrigger>
       <DialogContent className='p-7 sm:max-w-md lg:max-w-xl'>
         <DialogHeader>
           <DialogTitle className='text-xl font-medium'>Добавите пространство</DialogTitle>
@@ -48,22 +62,13 @@ export const AddSpaceModal = ({ onAddSpace }: AddSpaceProps) => {
               Название:
             </Label>
             <Input
-              onChange={(e) => {
-                setSpaceName(e.target.value);
-              }}
+              onChange={handleInputChange}
               id='link'
             />
           </div>
         </div>
         <DialogFooter className='sm:justify-start'>
-          <Button
-            onClick={onAddSpaceHandler}
-            className='w-full'
-            variant='default'
-            type='button'
-          >
-            Добавить
-          </Button>
+          {renderAddSpace(spaceName)}
         </DialogFooter>
       </DialogContent>
     </Dialog>

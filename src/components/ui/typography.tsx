@@ -87,7 +87,11 @@ const Muted = ({ className, children }: Props) => {
 };
 
 const ErrorText = ({ className, children }: Props) => {
-  return <p className={cn('font-medium text-red-600', className)}>{children}</p>;
+  return (
+    <p className={cn('overflow-hidden text-ellipsis text-red-600', className)}>
+      {children}
+    </p>
+  );
 };
 
 export { Blockquote, ErrorText, H1, H2, H3, H4, InlineCode, Large, Lead, Muted, P };

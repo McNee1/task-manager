@@ -41,32 +41,36 @@ export const NavSpaces = ({ spaces, children, loading, error }: NavSpacesProps) 
   if (error) {
     return <ErrorText className='mt-5 text-center'>{error.message}</ErrorText>;
   }
+
   return (
     <SidebarGroup className='group-data-[collapsible=icon]:hidden'>
       <SidebarGroupLabel>Моё пространство</SidebarGroupLabel>
 
       {children}
-      <SidebarMenu>
-        <div className='custom-scrollbar max-h-[200px] overflow-y-auto'>
-          {spaces?.map((item) => (
-            <SidebarMenuItem key={item.spaceName}>
-              <SidebarMenuButton asChild>
-                <Link
-                  params={{
-                    spaceId: String(item.id),
-                  }}
-                  activeProps={{ className: 'bg-slate-700 text-white' }}
-                  className='py-5 [&>svg]:size-5'
-                  to={'/space/$spaceId'}
-                >
-                  <SquareChartGantt />
-                  <span>{item.spaceName}</span>
-                </Link>
-              </SidebarMenuButton>
-            </SidebarMenuItem>
-          ))}
-        </div>
-      </SidebarMenu>
+
+      {!!spaces?.length && (
+        <SidebarMenu>
+          <div className='custom-scrollbar max-h-[200px] overflow-y-auto'>
+            {spaces.map((item) => (
+              <SidebarMenuItem key={item.spaceId}>
+                <SidebarMenuButton asChild>
+                  <Link
+                    params={{
+                      spaceId: String(item.id),
+                    }}
+                    activeProps={{ className: 'bg-slate-700 text-white' }}
+                    className='py-5 [&>svg]:size-5'
+                    to={'/space/$spaceId'}
+                  >
+                    <SquareChartGantt />
+                    <span>{item.spaceName}</span>
+                  </Link>
+                </SidebarMenuButton>
+              </SidebarMenuItem>
+            ))}
+          </div>
+        </SidebarMenu>
+      )}
     </SidebarGroup>
   );
 };

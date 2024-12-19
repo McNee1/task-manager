@@ -13,6 +13,7 @@ export const Route = createRootRouteWithContext<{
       <AppLayout>
         <Outlet />
       </AppLayout>
+
       <TanStackRouterDevtools />
     </>
   ),
