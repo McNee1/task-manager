@@ -7,7 +7,6 @@ import {
   DialogFooter,
   DialogHeader,
   DialogTitle,
-  DialogTrigger,
 } from '@/components/ui/dialog';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
@@ -18,20 +17,23 @@ interface AddSpaceProps {
   onEnterDown: (value: string) => void;
   onOpenChange: () => void;
   renderAddSpace: (spaceName: string) => ReactNode;
-  renderOpenModal: () => ReactNode;
 }
 
 export const AddSpaceModal = ({
   isOpen,
   onOpenChange,
   renderAddSpace,
-  renderOpenModal,
   onEnterDown,
 }: AddSpaceProps) => {
   const [spaceName, setSpaceName] = useState('');
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setSpaceName(e.target.value);
+  };
+
+  const handleChangeModal = () => {
+    onOpenChange();
+    setSpaceName('');
   };
 
   useEnterDown(() => {
@@ -42,10 +44,9 @@ export const AddSpaceModal = ({
 
   return (
     <Dialog
-      onOpenChange={onOpenChange}
+      onOpenChange={handleChangeModal}
       open={isOpen}
     >
-      <DialogTrigger asChild>{renderOpenModal()}</DialogTrigger>
       <DialogContent className='p-7 sm:max-w-md lg:max-w-xl'>
         <DialogHeader>
           <DialogTitle className='text-xl font-medium'>Добавите пространство</DialogTitle>

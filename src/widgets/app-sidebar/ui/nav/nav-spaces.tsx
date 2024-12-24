@@ -1,17 +1,16 @@
-import { Link } from '@tanstack/react-router';
-import { SquareChartGantt } from 'lucide-react';
 import { ReactNode } from 'react';
 
 import {
   SidebarGroup,
   SidebarGroupLabel,
   SidebarMenu,
-  SidebarMenuButton,
   SidebarMenuItem,
   SidebarMenuSkeleton,
 } from '@/components/ui/sidebar';
-import { ErrorText } from '@/components/ui/typography';
+import { ErrorText, Muted } from '@/components/ui/typography';
 import { SpaceItem } from '@/entities';
+
+import { NavSpacesList } from './nav-spaces-list';
 
 interface NavSpacesProps {
   children: ReactNode;
@@ -48,28 +47,16 @@ export const NavSpaces = ({ spaces, children, loading, error }: NavSpacesProps) 
 
       {children}
 
-      {!!spaces?.length && (
+      {spaces?.length ? (
         <SidebarMenu>
           <div className='custom-scrollbar max-h-[200px] overflow-y-auto'>
-            {spaces.map((item) => (
-              <SidebarMenuItem key={item.spaceId}>
-                <SidebarMenuButton asChild>
-                  <Link
-                    params={{
-                      spaceId: String(item.id),
-                    }}
-                    activeProps={{ className: 'bg-slate-700 text-white' }}
-                    className='py-5 [&>svg]:size-5'
-                    to={'/space/$spaceId'}
-                  >
-                    <SquareChartGantt />
-                    <span>{item.spaceName}</span>
-                  </Link>
-                </SidebarMenuButton>
-              </SidebarMenuItem>
-            ))}
+            <NavSpacesList spaces={spaces} />
           </div>
         </SidebarMenu>
+      ) : (
+        <Muted className='text-center'>
+          Ваше пространство пустое. Добавьте новое пространство.
+        </Muted>
       )}
     </SidebarGroup>
   );

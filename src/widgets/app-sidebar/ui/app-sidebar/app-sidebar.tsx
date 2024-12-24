@@ -5,9 +5,7 @@ import { Sidebar, SidebarContent, SidebarGroup } from '@/components/ui/sidebar';
 
 import { menuItems, useSpaces } from '../../model';
 import { AddSpaceModal } from '../add-space-modal';
-import { NavHeader } from '../nav-header';
-import { NavMain } from '../nav-main';
-import { NavSpaces } from '../nav-spaces';
+import { NavHeader, NavMain, NavSpaces } from '../nav';
 
 export function AppSidebar() {
   const {
@@ -34,15 +32,6 @@ export function AppSidebar() {
     </Button>
   );
 
-  const buttonOpenModal = (
-    <Button
-      className='mb-3 justify-start gap-3'
-      disabled={isPending}
-    >
-      <Plus /> Добавить пространство
-    </Button>
-  );
-
   return (
     <Sidebar>
       <SidebarGroup>
@@ -55,9 +44,15 @@ export function AppSidebar() {
           spaces={spaces}
           error={error}
         >
+          <Button
+            className='mb-3 justify-start gap-3'
+            onClick={handelToggleModal}
+            disabled={isPending}
+          >
+            <Plus /> Добавить пространство
+          </Button>
           <AddSpaceModal
             renderAddSpace={(space) => buttonAddSpace(space)}
-            renderOpenModal={() => buttonOpenModal}
             onOpenChange={handelToggleModal}
             onEnterDown={handleAddSpace}
             isOpen={isOpen}

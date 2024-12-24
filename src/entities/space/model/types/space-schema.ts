@@ -1,6 +1,6 @@
 export interface SpaceItem {
   date: string;
-  id: number;
+  id: string;
   spaceId: string;
   spaceName: string;
 }
