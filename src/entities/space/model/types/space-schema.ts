@@ -1,10 +1,10 @@
-export interface SpaceItem {
-  date: string;
-  id: string;
-  spaceId: string;
-  spaceName: string;
-}
+import { GroupSchema } from '@/entities/group';
 
 export interface SpaceSchema {
-  items?: SpaceItem[];
+  createdAt: string;
+  groups: GroupSchema[];
+  id: string;
+  spaceId: string;
+
+  spaceName: string;
 }

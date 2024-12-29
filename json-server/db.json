@@ -1,3 +1,18 @@
 {
-  "workspaces": []
+  "workspaces": [
+    {
+      "id": "1",
+      "spaceName": "21",
+      "spaceId": "8f3631f0-be3f-4ef1-8cfb-a08ce45478d5",
+      "createdAt": "2024-12-29T15:24:05.713Z"
+    }
+  ],
+  "groups": [
+    {
+      "id": "3ee893bd-37ed-4bb0-9445-1ca4736dd648",
+      "workspaceId": "1",
+      "groupName": "Активные проекты",
+      "createdAt": "2024-12-29T15:24:06.732Z"
+    }
+  ]
 }

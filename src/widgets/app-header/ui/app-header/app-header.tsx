@@ -89,6 +89,7 @@ export const AppHeader = () => {
           </Button>
         )}
         onOpenChange={handelToggleModal}
+        onEnterDown={handleEditSpace}
         curSpaceName={curSpaceName}
         modal={modal}
       />

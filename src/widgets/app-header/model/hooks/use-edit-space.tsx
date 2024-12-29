@@ -14,13 +14,13 @@ export const useEditSpace = (spaceId: string | undefined, onSuccess: VoidFunctio
     },
   });
 
-  const handleEditSpace = (spaceName: string) => {
+  const handleEditSpace = (spaceName: string | undefined) => {
     if (!spaceId) {
       toast.error('Отсутствует идентификатор пространства');
       return;
     }
 
-    if (!spaceName.trim()) {
+    if (!spaceName?.trim()) {
       toast.error('Имя пространства не может быть пустым');
       return;
     }

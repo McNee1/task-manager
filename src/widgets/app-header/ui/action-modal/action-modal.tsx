@@ -1,23 +1,16 @@
-import { Dialog } from '@radix-ui/react-dialog';
 import { ReactNode, useEffect, useState } from 'react';
 
 import { Button } from '@/components/ui/button';
-import {
-  DialogContent,
-  DialogDescription,
-  DialogHeader,
-  DialogTitle,
-} from '@/components/ui/dialog';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
-import { cn } from '@/shared/lib';
+import { AppModal } from '@/shared/ui';
 
 import { ModalType } from '../../model';
 
 interface AddSpaceProps {
   curSpaceName: string;
   modal: ModalType;
-
+  onEnterDown: (value?: string) => void;
   onOpenChange: (type?: 'delete' | 'edit') => void;
   renderDeleteSpace: () => ReactNode;
   renderEditSpace: (nesSpaceName: string) => ReactNode;
@@ -29,6 +22,7 @@ export const ActionModal = ({
   onOpenChange,
   renderEditSpace,
   renderDeleteSpace,
+  onEnterDown,
 }: AddSpaceProps) => {
   const [spaceName, setSpaceName] = useState(curSpaceName);
 
@@ -42,6 +36,13 @@ export const ActionModal = ({
     setSpaceName(e.target.value);
   };
 
+  const handleOpenChange = () => {
+    if (!modal.isOpen) {
+      onOpenChange(modal.type);
+    }
+    onOpenChange();
+  };
+
   const editContent = (
     <div className='grid flex-1 gap-2'>
       <Label
@@ -53,6 +54,7 @@ export const ActionModal = ({
       <Input
         onChange={handleInputChange}
         value={spaceName}
+        className='mb-1'
         id='link'
       />
 
@@ -76,31 +78,19 @@ export const ActionModal = ({
   );
 
   return (
-    <Dialog
-      onOpenChange={() => {
-        onOpenChange();
+    <AppModal
+      subTitle={
+        modal.type === 'delete'
+          ? 'Вы уверены, что хотите удалить пространство?'
+          : 'Введите названия нового пространство.'
+      }
+      onEnterDown={() => {
+        onEnterDown(spaceName);
       }}
-      open={modal.isOpen}
-    >
-      <DialogContent
-        className={cn(
-          'gap-5 p-5',
-          modal.type === 'delete' ? 'sm:max-w-sm lg:max-w-sm' : 'sm:max-w-md lg:max-w-md'
-        )}
-      >
-        <DialogHeader>
-          <DialogTitle className='text-xl font-medium'>
-            {modal.type === 'delete' ? 'Удалить' : 'Редактировать'}
-          </DialogTitle>
-          <DialogDescription>
-            {modal.type === 'delete'
-              ? 'Вы уверены, что хотите удалить пространство?'
-              : 'Введите названия нового пространство.'}
-          </DialogDescription>
-        </DialogHeader>
-
-        {modal.type === 'edit' ? editContent : deleteContent}
-      </DialogContent>
-    </Dialog>
+      renderContent={() => (modal.type === 'edit' ? editContent : deleteContent)}
+      title={modal.type === 'delete' ? 'Удалить' : 'Редактировать'}
+      onOpenChange={handleOpenChange}
+      isOpen={modal.isOpen}
+    />
   );
 };

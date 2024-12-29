@@ -1,8 +1,8 @@
-import { SpaceItem } from '@/entities';
+import { SpaceSchema } from '@/entities';
 
 export const getSpaceNameById = (
   spaceId: string | undefined,
-  spaces: SpaceItem[] | undefined
+  spaces: SpaceSchema[] | undefined
 ) => {
   if (!spaceId || !spaces) {
     return 'Unknown Space';

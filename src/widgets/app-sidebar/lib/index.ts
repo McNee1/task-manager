@@ -1,1 +1,1 @@
-export { createNewSpace } from './create-new-space';
+export { getId } from './get-id';

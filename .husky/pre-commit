@@ -1,4 +1,22 @@
 #!/bin/sh
 . "$(dirname "$0")/_/husky.sh"
 
+# Path to the db.json file
+DB_FILE="json-server/db.json"
+
+# Desired JSON structure to preserve
+JSON_CONTENT='{
+  "workspaces": [],
+  "groups": []
+}'
+
+# Check if db.json exists
+if [ -f "$DB_FILE" ]; then
+    # Write the desired JSON structure to db.json
+    echo "$JSON_CONTENT" > "$DB_FILE"
+    echo "Reset $DB_FILE to initial structure."
+else
+    echo "$DB_FILE does not exist."
+fi
+
 npx lint-staged

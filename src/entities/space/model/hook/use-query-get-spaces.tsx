@@ -2,10 +2,10 @@ import { useQuery } from '@tanstack/react-query';
 
 import { getSpaces } from '@/shared/services';
 
-import { SpaceItem } from '../types';
+import { SpaceSchema } from '../types';
 
 export const useQueryGetSpaces = () =>
-  useQuery<SpaceItem[]>({
+  useQuery<SpaceSchema[]>({
     queryKey: ['spaces'],
     queryFn: getSpaces,
   });

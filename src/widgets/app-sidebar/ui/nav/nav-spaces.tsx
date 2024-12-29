@@ -8,7 +8,7 @@ import {
   SidebarMenuSkeleton,
 } from '@/components/ui/sidebar';
 import { ErrorText, Muted } from '@/components/ui/typography';
-import { SpaceItem } from '@/entities';
+import { SpaceSchema } from '@/entities';
 
 import { NavSpacesList } from './nav-spaces-list';
 
@@ -16,7 +16,7 @@ interface NavSpacesProps {
   children: ReactNode;
   error?: Error | null;
   loading: boolean;
-  spaces?: SpaceItem[];
+  spaces?: SpaceSchema[];
 }
 
 const LoadingSkeletons = () => (
