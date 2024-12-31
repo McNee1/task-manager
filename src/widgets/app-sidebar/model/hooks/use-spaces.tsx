@@ -2,7 +2,7 @@ import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { toast } from 'sonner';
 
 import { useQueryGetSpaces } from '@/entities';
-import { useModal } from '@/shared/lib/hooks/use-modal';
+import { useModal } from '@/shared/lib';
 import { postSpace } from '@/shared/services';
 
 import { getId } from '../../lib/get-id';

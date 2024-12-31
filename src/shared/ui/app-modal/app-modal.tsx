@@ -1,7 +1,7 @@
-import { Dialog } from '@radix-ui/react-dialog';
 import { ReactNode } from 'react';
 
 import {
+  Dialog,
   DialogContent,
   DialogDescription,
   DialogHeader,
@@ -9,7 +9,7 @@ import {
 } from '@/components/ui/dialog';
 import { useEnterDown } from '@/shared/lib';
 
-interface AppModalProps {
+export interface AppModalProps {
   isOpen: boolean;
   onEnterDown?: () => void;
   onOpenChange: () => void;

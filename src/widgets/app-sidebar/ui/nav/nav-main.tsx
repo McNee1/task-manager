@@ -22,7 +22,7 @@ export const NavMain = ({ items }: NavMainProps) => {
           {items.map((item) => (
             <SidebarMenuItem key={item.title}>
               <SidebarMenuButton
-                className='gap-4 py-5 [&>svg]:size-5 [&_svg]:fill-svg-muted'
+                className='gap-4 py-5 [&>svg]:size-5 [&_svg]:text-svg-muted'
                 asChild
               >
                 <Link to={item.to}>

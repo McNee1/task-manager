@@ -2,17 +2,77 @@
   "workspaces": [
     {
       "id": "1",
-      "spaceName": "21",
-      "spaceId": "8f3631f0-be3f-4ef1-8cfb-a08ce45478d5",
-      "createdAt": "2024-12-29T15:24:05.713Z"
+      "spaceName": "test 1",
+      "spaceId": "e0dc7609-9971-4749-ac67-fedafaa88486",
+      "createdAt": "2024-12-30T11:16:32.087Z"
+    },
+    {
+      "id": "2",
+      "spaceName": "test 2",
+      "spaceId": "198c2257-f2be-43bc-b17a-e8dd826112f2",
+      "createdAt": "2024-12-30T11:16:41.936Z"
     }
   ],
   "groups": [
     {
-      "id": "3ee893bd-37ed-4bb0-9445-1ca4736dd648",
+      "id": "5093997b-bf49-46b2-964a-ff523cb208aa",
       "workspaceId": "1",
       "groupName": "Активные проекты",
-      "createdAt": "2024-12-29T15:24:06.732Z"
+      "createdAt": "2024-12-30T11:16:33.108Z"
+    },
+    {
+      "id": "e7d52588-ba8e-4f4c-8ed9-ecd06f1b348c",
+      "workspaceId": "2",
+      "groupName": "Активные проекты",
+      "createdAt": "2024-12-30T11:16:42.952Z"
+    },
+    {
+      "id": "66bfbad4-c74c-4c01-8109-3c71748e05df",
+      "groupName": "test 1",
+      "workspaceId": "2",
+      "createdAt": "2024-12-30T20:10:03.158Z"
+    },
+    {
+      "id": "307b4e92-b817-410c-b73d-b92ccdfc2561",
+      "groupName": "test 2",
+      "workspaceId": "2",
+      "createdAt": "2024-12-30T20:10:52.380Z"
+    },
+    {
+      "id": "e5005e9b-caa3-4e12-bdda-2b1794ac6eab",
+      "groupName": "test 3",
+      "workspaceId": "2",
+      "createdAt": "2024-12-30T20:22:07.025Z"
+    },
+    {
+      "id": "3762da20-3563-4b0e-a2be-6ceab4b120be",
+      "groupName": "1212",
+      "workspaceId": "2",
+      "createdAt": "2024-12-30T20:26:37.771Z"
+    },
+    {
+      "id": "031d8641-cdd5-4116-86b6-0bceab729a6a",
+      "groupName": "1212",
+      "workspaceId": "2",
+      "createdAt": "2024-12-30T20:26:39.923Z"
+    },
+    {
+      "id": "bc87e67a-89df-45e1-aa15-a93400178c88",
+      "groupName": "1212fsf",
+      "workspaceId": "2",
+      "createdAt": "2024-12-30T20:26:52.077Z"
+    },
+    {
+      "id": "8d2622d7-aa8d-40f7-8630-be5b66c3ea8e",
+      "groupName": "fd",
+      "workspaceId": "2",
+      "createdAt": "2024-12-30T20:27:14.455Z"
+    },
+    {
+      "id": "a4f6bd58-a93e-4d11-8566-4fb89edd1a09",
+      "groupName": "gfvb",
+      "workspaceId": "1",
+      "createdAt": "2024-12-30T20:34:07.052Z"
     }
   ]
 }

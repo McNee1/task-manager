@@ -7,7 +7,7 @@ import { SidebarTrigger } from '@/shared/ui';
 
 import { getSpaceNameById } from '../../lib';
 import { PopoverItems, useDeleteSpace, useEditSpace, useHeaderModal } from '../../model';
-import { ActionModal } from '../action-modal/action-modal';
+import { ActionModal } from '../action-modal';
 import { MenuPopover } from '../menu-popover';
 
 export const AppHeader = () => {

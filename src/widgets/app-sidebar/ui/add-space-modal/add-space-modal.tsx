@@ -35,7 +35,7 @@ export const AddSpaceModal = ({
     }
   }, [isOpen]);
 
-  const renderContent = (
+  const renderContent = () => (
     <div className='grid flex-1 gap-2'>
       <Label
         className='font-normal'
@@ -60,8 +60,8 @@ export const AddSpaceModal = ({
         onEnterDown(spaceName);
       }}
       subTitle='Введите названия пространство которое хотите добавить.'
-      renderContent={() => renderContent}
       onOpenChange={handleChangeModal}
+      renderContent={renderContent}
       title='Добавите пространство'
       isOpen={isOpen}
     />

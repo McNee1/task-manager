@@ -12,7 +12,7 @@ export function AppLayout({ children }: { children: ReactNode }) {
         <AppSidebar />
         <SidebarInset>
           <AppHeader />
-          <div className='px-8'>{children}</div>
+          <div className='h-full px-8'>{children}</div>
         </SidebarInset>
       </SidebarProvider>
       <Toaster
