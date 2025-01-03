@@ -6,9 +6,9 @@ import { toast } from 'sonner';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
-import { Popover, PopoverContent, PopoverTrigger } from '@/components/ui/popover';
 import { usePopover } from '@/shared/lib';
 import { postGroup } from '@/shared/services';
+import { AppPopover } from '@/shared/ui';
 
 export const AddGroup = ({ spaceId }: { spaceId: string | undefined }) => {
   const [group, setGroup] = useState('');
@@ -27,7 +27,11 @@ export const AddGroup = ({ spaceId }: { spaceId: string | undefined }) => {
 
   const handleAddGroup = (key: KeyboardEvent<HTMLInputElement>) => {
     if (key.code !== 'Enter' || !spaceId || isPending) return;
-    console.log('object');
+
+    if (!group.trim()) {
+      toast.error('Имя пространства не может быть пустым');
+      return;
+    }
 
     mutate(
       { groupName: group, workspaceId: spaceId },
@@ -37,7 +41,7 @@ export const AddGroup = ({ spaceId }: { spaceId: string | undefined }) => {
           setGroup('');
 
           toast.success('Группа успешно создана', {
-            description: `Имя пространство: ${group}`,
+            description: `Имя группы: ${group}`,
             duration: 5000,
           });
         },
@@ -50,37 +54,45 @@ export const AddGroup = ({ spaceId }: { spaceId: string | undefined }) => {
       }
     );
   };
-  return (
-    <Popover
-      onOpenChange={handleTogglePopover}
-      open={isOpen}
+
+  const renderContent = () => (
+    <>
+      <Label
+        className='mb-2 block text-xs font-normal text-gray-900'
+        htmlFor='newGroup'
+      >
+        Введите название новой группы
+      </Label>
+      <Input
+        onChange={(e) => {
+          setGroup(e.target.value);
+        }}
+        onKeyDown={handleAddGroup}
+        disabled={isPending}
+        value={group}
+        id='newGroup'
+      />
+    </>
+  );
+
+  const renderTrigger = () => (
+    <Button
+      className='ml-auto px-3 py-1.5 font-normal'
+      onClick={handleTogglePopover}
+      variant={'success-ghost'}
+      size='sm'
     >
-      <PopoverTrigger asChild>
-        <Button
-          className='ml-auto px-3 py-1.5 font-normal'
-          variant={'success-ghost'}
-          size='sm'
-        >
-          <Plus />
-          Добавить группу
-        </Button>
-      </PopoverTrigger>
-      <PopoverContent className='bg-gray-50'>
-        <Label
-          className='mb-2 block text-xs font-normal text-gray-900'
-          htmlFor='newGroup'
-        >
-          Введите название новой группы
-        </Label>
-        <Input
-          onChange={(e) => {
-            setGroup(e.target.value);
-          }}
-          onKeyDown={handleAddGroup}
-          value={group}
-          id='newGroup'
-        />
-      </PopoverContent>
-    </Popover>
+      <Plus />
+      Добавить группу
+    </Button>
+  );
+  return (
+    <AppPopover
+      onOpenChange={handleTogglePopover}
+      className='w-64 bg-neutral-50'
+      renderContent={renderContent}
+      renderTrigger={renderTrigger}
+      isOpen={isOpen}
+    />
   );
 };

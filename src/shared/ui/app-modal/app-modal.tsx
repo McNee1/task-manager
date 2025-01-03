@@ -18,7 +18,7 @@ export interface AppModalProps {
   title: string;
 }
 
-export const AppModal = ({
+const AppModal = ({
   isOpen,
   onOpenChange,
   renderContent,
@@ -46,3 +46,5 @@ export const AppModal = ({
     </Dialog>
   );
 };
+
+export default AppModal;

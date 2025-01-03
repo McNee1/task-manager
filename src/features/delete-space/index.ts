@@ -1,1 +1,0 @@
-export { DeleteSpace } from './ui';

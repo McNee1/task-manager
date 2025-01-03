@@ -1,1 +1,1 @@
-export { AppModal } from './app-modal';
+export { AppModalSuspense as AppModal } from './app-modal.async';

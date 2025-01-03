@@ -1,7 +1,8 @@
 import { SquareChartGantt, Triangle } from 'lucide-react';
 
 import { Button } from '@/components/ui/button';
-import { Popover, PopoverContent, PopoverTrigger } from '@/components/ui/popover';
+import { usePopover } from '@/shared/lib';
+import { AppPopover } from '@/shared/ui';
 
 import { PopoverItems } from '../../model';
 
@@ -12,34 +13,48 @@ interface MenuPopoverProps {
 }
 
 export const MenuPopover = ({ triggerName, popoverActions }: MenuPopoverProps) => {
+  const { isOpen, handleTogglePopover } = usePopover();
+
+  const renderContent = () => (
+    <div className='flex flex-col gap-y-1'>
+      {popoverActions.map((item) => (
+        <Button
+          className='h-8 justify-start gap-4 font-normal focus-visible:ring-0 focus-visible:ring-offset-0'
+          onClick={item.onClick}
+          variant={item.type}
+          key={item.label}
+        >
+          {item.icon && <item.icon className='size-4' />}
+          {item.label}
+        </Button>
+      ))}
+    </div>
+  );
+
+  const renderTrigger = () => (
+    <div
+      className='flex cursor-pointer items-center gap-3 text-sm font-medium text-slate-500 hover:text-green-800 [&>svg#space]:hover:fill-none [&>svg]:hover:fill-green-800'
+      onClick={handleTogglePopover}
+    >
+      <SquareChartGantt
+        id='space'
+        size={19}
+      />
+      <span>{triggerName}</span>
+      <Triangle
+        className='rotate-180 fill-slate-500'
+        size='10px'
+      />
+    </div>
+  );
+
   return (
-    <Popover>
-      <PopoverTrigger className='flex items-center gap-3 text-sm font-medium text-slate-500 hover:text-green-800 [&>svg#space]:hover:fill-none [&>svg]:hover:fill-green-800'>
-        <SquareChartGantt
-          id='space'
-          size={19}
-        />
-        <span>{triggerName}</span>
-        <Triangle
-          className='rotate-180 fill-slate-500'
-          size='10px'
-        />
-      </PopoverTrigger>
-      <PopoverContent className='w-48 p-2'>
-        <div className='flex flex-col'>
-          {popoverActions.map((item) => (
-            <Button
-              className={'h-8 justify-start gap-4 font-normal'}
-              onClick={item.onClick}
-              variant={item.type}
-              key={item.label}
-            >
-              {item.icon && <item.icon className='size-4' />}
-              {item.label}
-            </Button>
-          ))}
-        </div>
-      </PopoverContent>
-    </Popover>
+    <AppPopover
+      onOpenChange={handleTogglePopover}
+      renderTrigger={renderTrigger}
+      renderContent={renderContent}
+      className='w-48 p-2'
+      isOpen={isOpen}
+    />
   );
 };

@@ -19,7 +19,7 @@ export const SpacePage = () => {
     [data, spaceId]
   );
 
-  const { activeTab, setActiveTab } = useActiveTab(getSpaceGroupById);
+  const { activeTab, handleChangeTab } = useActiveTab(getSpaceGroupById, spaceId);
 
   if (isLoading) {
     return (
@@ -32,8 +32,8 @@ export const SpacePage = () => {
   return (
     <div className='flex justify-center'>
       <Tabs
+        onValueChange={handleChangeTab}
         className='w-full max-w-4xl'
-        onValueChange={setActiveTab}
         value={activeTab}
       >
         <TabGroups

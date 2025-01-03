@@ -31,3 +31,6 @@
 
   will-change: transform, opacity;
 }
+.PopoverArrow {
+  fill: #f9fafb;
+}
