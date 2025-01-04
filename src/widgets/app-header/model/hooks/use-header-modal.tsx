@@ -2,7 +2,7 @@ import { useState } from 'react';
 
 export interface ModalType {
   isOpen: boolean;
-  type: 'delete' | 'edit';
+  type?: 'delete' | 'edit';
 }
 
 export const useHeaderModal = () => {
@@ -15,5 +15,5 @@ export const useHeaderModal = () => {
     setModal((prev) => ({ isOpen: !prev.isOpen, type: type ?? prev.type }));
   };
 
-  return { handelToggleModal, modal };
+  return { handelToggleModal, modal, setModal };
 };

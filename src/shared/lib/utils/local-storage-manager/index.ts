@@ -1,1 +1,1 @@
-export { localStorageManager as LC } from './local-storage-manager';
+export { localStorageManager as LS } from './local-storage-manager';

@@ -1,11 +1,11 @@
-import { useParams } from '@tanstack/react-router';
+import { useNavigate, useParams } from '@tanstack/react-router';
 import { Pencil, Trash2 } from 'lucide-react';
 
 import { Button } from '@/components/ui/button';
 import { useQueryGetSpaces } from '@/entities';
 import { SidebarTrigger } from '@/shared/ui';
 
-import { getSpaceNameById } from '../../lib';
+import { getSpaceNameById, updateLsGroups } from '../../lib';
 import { PopoverItems, useDeleteSpace, useEditSpace, useHeaderModal } from '../../model';
 import { ActionModal } from '../action-modal';
 import { MenuPopover } from '../menu-popover';
@@ -13,22 +13,26 @@ import { MenuPopover } from '../menu-popover';
 export const AppHeader = () => {
   const { data: spaces } = useQueryGetSpaces();
 
+  const navigate = useNavigate({ from: '/space/$spaceId' });
+
   const { spaceId } = useParams({ strict: false });
 
   const curSpaceName = getSpaceNameById(spaceId, spaces);
 
-  const { handelToggleModal, modal } = useHeaderModal();
+  const { handelToggleModal, modal, setModal } = useHeaderModal();
 
   const { handleDeleteSpace, isPending: isDeleting } = useDeleteSpace(
     spaceId,
     curSpaceName,
     () => {
-      handelToggleModal();
+      setModal({ isOpen: false });
+      updateLsGroups(spaceId);
+      void navigate({ to: '/home' });
     }
   );
 
   const { handleEditSpace, isPending: isEditing } = useEditSpace(spaceId, () => {
-    handelToggleModal();
+    setModal({ isOpen: false });
   });
 
   const popoverActions: PopoverItems[] = [

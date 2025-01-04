@@ -27,6 +27,7 @@ export const useDeleteSpace = (
     mutate(spaceId, {
       onSuccess: () => {
         onSuccess();
+
         toast.success('Пространство успешно удаленно', {
           description: `Имя пространство: ${curSpaceName}`,
           duration: 5000,

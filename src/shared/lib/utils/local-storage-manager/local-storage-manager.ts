@@ -1,9 +1,19 @@
+interface LocalStorageTypes {
+  selectedGroup: {
+    spaceId: string;
+    tabId: string;
+  }[];
+}
+
 export const localStorageManager = {
-  get: <T>(key: string, defaultValue: T | null = null): T | null => {
+  get: <T extends keyof LocalStorageTypes>(
+    key: T,
+    defaultValue: LocalStorageTypes[T] | null = null
+  ): LocalStorageTypes[T] | null => {
     const item = localStorage.getItem(key);
     if (typeof item === 'string') {
       try {
-        return JSON.parse(item) as T;
+        return JSON.parse(item) as LocalStorageTypes[T];
       } catch (error) {
         console.error(`Error parsing JSON from localStorage for key "${key}":`, error);
         return null;
@@ -12,11 +22,11 @@ export const localStorageManager = {
     return defaultValue;
   },
 
-  set: (key: string, value: unknown) => {
+  set: <T extends keyof LocalStorageTypes>(key: T, value: LocalStorageTypes[T]) => {
     localStorage.setItem(key, JSON.stringify(value));
   },
 
-  remove: (key: string) => {
+  remove: (key: keyof LocalStorageTypes) => {
     localStorage.removeItem(key);
   },
 };

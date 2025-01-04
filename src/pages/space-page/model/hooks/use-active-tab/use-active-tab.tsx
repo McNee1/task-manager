@@ -1,25 +1,31 @@
 import { useEffect, useState } from 'react';
 
 import { GroupSchema } from '@/entities';
-import { LC } from '@/shared/lib';
+import { LS } from '@/shared/lib';
 
-const SELECTED_GROUP = 'selectedGroup';
+import { updateLocalStorage } from '../../../lib';
 
 export const useActiveTab = (groups: GroupSchema[], spaceId: string | undefined) => {
   const [activeTab, setActiveTab] = useState('');
 
   const handleChangeTab = (value: string) => {
-    LC.set(SELECTED_GROUP, { spaceId: spaceId, tabId: value });
+    if (spaceId === undefined) {
+      console.error('spaceId is undefined');
+      return;
+    }
+
+    updateLocalStorage(value, spaceId);
 
     setActiveTab(value);
   };
 
   useEffect(() => {
-    const storedTab = LC.get<{ spaceId: string; tabId: string }>(SELECTED_GROUP);
+    const selectedGroup = LS.get('selectedGroup') ?? [];
 
-    if (storedTab && storedTab.spaceId === spaceId) {
-      console.log('object');
-      setActiveTab(storedTab.tabId);
+    const activeGroup = selectedGroup.find((group) => group.spaceId === spaceId);
+
+    if (activeGroup && activeGroup.spaceId === spaceId) {
+      setActiveTab(activeGroup.tabId);
     } else {
       const firstTabId = groups[0]?.id;
       setActiveTab(firstTabId);

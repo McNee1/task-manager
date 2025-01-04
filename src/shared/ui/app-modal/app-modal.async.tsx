@@ -10,7 +10,7 @@ export const AppModalSuspense = (props: AppModalProps) => {
   }
 
   return (
-    <Suspense fallback={<div>Loading...</div>}>
+    <Suspense fallback={null}>
       <LazyAppModal {...props} />
     </Suspense>
   );
