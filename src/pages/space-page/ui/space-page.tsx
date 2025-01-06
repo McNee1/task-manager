@@ -2,6 +2,7 @@ import { useParams } from '@tanstack/react-router';
 import { useMemo } from 'react';
 
 import { Tabs } from '@/components/ui/tabs';
+import { ErrorText } from '@/components/ui/typography';
 import { useQueryGetSpaces } from '@/entities';
 
 import { useActiveTab } from '../model';
@@ -21,11 +22,21 @@ export const SpacePage = () => {
 
   const { activeTab, handleChangeTab } = useActiveTab(getSpaceGroupById, spaceId);
 
+  console.log(data);
+
   if (isLoading) {
     return (
       <div className='flex h-full items-center justify-center'>
         <div className='size-32 animate-spin rounded-full border-y-2 border-gray-900'></div>
       </div>
+    );
+  }
+
+  if (!data?.length) {
+    return (
+      <ErrorText className='text-center text-xl lg:text-2xl'>
+        Пространство не найдено
+      </ErrorText>
     );
   }
 

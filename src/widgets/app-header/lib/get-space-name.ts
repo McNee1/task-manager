@@ -5,9 +5,9 @@ export const getSpaceNameById = (
   spaces: SpaceSchema[] | undefined
 ) => {
   if (!spaceId || !spaces) {
-    return 'Unknown Space';
+    return null;
   }
 
   const space = spaces.find((space) => space.id === spaceId);
-  return space?.spaceName ?? 'Unknown Space';
+  return space?.spaceName ?? null;
 };

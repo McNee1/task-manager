@@ -1,10 +1,11 @@
-import type { LinkProps } from '@tanstack/react-router';
 import type { LucideIcon } from 'lucide-react';
+
+import { ValidRoutes } from '@/shared/types';
 
 export interface MenuItem {
   icon: LucideIcon;
   title: string;
-  to: LinkProps['to'];
+  to: ValidRoutes;
 }
 
 export interface MenuSchema {

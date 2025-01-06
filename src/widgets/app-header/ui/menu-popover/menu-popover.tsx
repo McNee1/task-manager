@@ -8,7 +8,6 @@ import { PopoverItems } from '../../model';
 
 interface MenuPopoverProps {
   popoverActions: PopoverItems[];
-
   triggerName: string;
 }
 
@@ -33,7 +32,7 @@ export const MenuPopover = ({ triggerName, popoverActions }: MenuPopoverProps) =
 
   const renderTrigger = () => (
     <div
-      className='flex cursor-pointer items-center gap-3 text-sm font-medium text-slate-500 hover:text-green-800 [&>svg#space]:hover:fill-none [&>svg]:hover:fill-green-800'
+      className='flex cursor-pointer items-center gap-x-3 hover:text-green-800 [&>svg#space]:hover:fill-none [&>svg]:hover:fill-green-800'
       onClick={handleTogglePopover}
     >
       <SquareChartGantt
