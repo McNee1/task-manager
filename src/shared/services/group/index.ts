@@ -15,3 +15,17 @@ export const postGroup = async (group: { workspaceId: string; groupName: string 
     return apiInstance.post('groups', { json: newGroup }).json<GroupSchema>();
   });
 };
+
+export const deleteGroup = async (id: string) => {
+  return withErrorRequest(() => {
+    return apiInstance.delete(`groups/${id}`).json<GroupSchema>();
+  });
+};
+
+export const editGroup = async (opt: Pick<GroupSchema, 'id' | 'groupName'>) => {
+  return withErrorRequest(() => {
+    return apiInstance
+      .patch(`groups/${opt.id}`, { json: { groupName: opt.groupName } })
+      .json<GroupSchema>();
+  });
+};

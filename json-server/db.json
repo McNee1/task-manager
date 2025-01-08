@@ -1,36 +1,4 @@
 {
-  "workspaces": [
-    {
-      "id": "1",
-      "spaceName": "1212",
-      "spaceId": "faa15d98-ab1c-44f8-9610-b97ade5d7cc6",
-      "createdAt": "2025-01-06T13:47:11.812Z"
-    }
-  ],
-  "groups": [
-    {
-      "id": "7a2fc6ce-b14c-4a63-a85a-848caf83d34f",
-      "workspaceId": null,
-      "groupName": "Активные проекты",
-      "createdAt": "2025-01-05T14:40:34.826Z"
-    },
-    {
-      "id": "caf5db7a-de65-4675-b1c3-ce623d774a2b",
-      "workspaceId": null,
-      "groupName": "Активные проекты",
-      "createdAt": "2025-01-06T13:05:34.066Z"
-    },
-    {
-      "id": "8476552c-f1bd-4258-957e-bd3fcd3afeaa",
-      "workspaceId": null,
-      "groupName": "Активные проекты",
-      "createdAt": "2025-01-06T13:23:43.249Z"
-    },
-    {
-      "id": "03df906f-8dfa-4f30-9fce-2543cc812139",
-      "workspaceId": "1",
-      "groupName": "Активные проекты",
-      "createdAt": "2025-01-06T13:47:12.829Z"
-    }
-  ]
+  "workspaces": [],
+  "groups": []
 }

@@ -6,6 +6,7 @@ import { toast } from 'sonner';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
+import { SpaceSchema } from '@/entities';
 import { usePopover } from '@/shared/lib';
 import { postGroup } from '@/shared/services';
 import { AppPopover } from '@/shared/ui';
@@ -19,7 +20,33 @@ export const AddGroup = ({ spaceId }: { spaceId: string | undefined }) => {
 
   const { mutate, isPending } = useMutation({
     mutationFn: postGroup,
+    onMutate: async (newSpace) => {
+      await queryClient.cancelQueries({ queryKey: ['spaces'] });
 
+      const previousSpaces = queryClient.getQueryData<SpaceSchema[]>(['spaces']);
+
+      queryClient.setQueryData<SpaceSchema[]>(['spaces'], (oldSpaces) => {
+        if (!oldSpaces) return;
+
+        const index = oldSpaces.findIndex((el) => el.id === spaceId);
+
+        if (index !== -1) {
+          const updatedSpaces = [...oldSpaces];
+          updatedSpaces[index] = {
+            ...updatedSpaces[index],
+            groups: [...updatedSpaces[index].groups, newSpace],
+          } as SpaceSchema;
+          return updatedSpaces;
+        }
+
+        return oldSpaces;
+      });
+
+      return { previousSpaces, newSpace };
+    },
+    onError: (_, __, context) => {
+      queryClient.setQueryData(['spaces'], context?.previousSpaces);
+    },
     onSettled: async () => {
       await queryClient.invalidateQueries({ queryKey: ['spaces'] });
     },
@@ -47,7 +74,7 @@ export const AddGroup = ({ spaceId }: { spaceId: string | undefined }) => {
         },
         onError: (error) => {
           toast.error('Произошла ошибка! Попробуйте позже.', {
-            description: `${error}`,
+            description: error.message,
             duration: 5000,
           });
         },

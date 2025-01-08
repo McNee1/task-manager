@@ -22,8 +22,6 @@ export const SpacePage = () => {
 
   const { activeTab, handleChangeTab } = useActiveTab(getSpaceGroupById, spaceId);
 
-  console.log(data);
-
   if (isLoading) {
     return (
       <div className='flex h-full items-center justify-center'>
@@ -52,7 +50,10 @@ export const SpacePage = () => {
           groups={getSpaceGroupById}
         />
 
-        <TabContents groups={getSpaceGroupById} />
+        <TabContents
+          groups={getSpaceGroupById}
+          spaceId={spaceId}
+        />
       </Tabs>
     </div>
   );

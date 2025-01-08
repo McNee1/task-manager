@@ -12,7 +12,7 @@ import {
   useSpaceLocation,
 } from '../../model';
 import { ActionModal } from '../action-modal';
-import { Breadcrumb } from '../breadcrumb/Breadcrumb';
+import { HeaderBreadcrumb } from '../breadcrumb';
 
 export const AppHeader = () => {
   const { data: spaces, isPending } = useQueryGetSpaces();
@@ -29,7 +29,7 @@ export const AppHeader = () => {
 
   const { handleDeleteSpace, isPending: isDeleting } = useDeleteSpace(
     spaceId,
-    curSpaceName,
+    curSpaceName ?? '',
     () => {
       setModal({ isOpen: false });
       updateLsGroups(spaceId);
@@ -49,7 +49,7 @@ export const AppHeader = () => {
     <header className='flex h-16 shrink-0 items-center gap-5 px-3'>
       <SidebarTrigger />
 
-      <Breadcrumb
+      <HeaderBreadcrumb
         onToggleModal={handelToggleModal}
         curSpaceName={curSpaceName}
       />

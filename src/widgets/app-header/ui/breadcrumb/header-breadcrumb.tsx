@@ -1,8 +1,9 @@
 import { Pencil, Trash2 } from 'lucide-react';
 
 import { getRouteInfo } from '@/shared/lib';
+import { PopoverItems } from '@/shared/types';
 
-import { ModalType, PopoverItems, useSpaceLocation } from '../../model';
+import { ModalType, useSpaceLocation } from '../../model';
 import { MenuPopover } from '../menu-popover';
 
 interface BreadcrumbProps {
@@ -11,7 +12,7 @@ interface BreadcrumbProps {
   onToggleModal: (value: ModalType['type']) => void;
 }
 
-export const Breadcrumb = ({ onToggleModal, curSpaceName }: BreadcrumbProps) => {
+export const HeaderBreadcrumb = ({ onToggleModal, curSpaceName }: BreadcrumbProps) => {
   const { isSpaceLocation, pathname } = useSpaceLocation();
 
   const { icon: IconPath, name } = getRouteInfo(pathname);

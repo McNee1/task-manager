@@ -5,7 +5,7 @@ import { deleteSpace } from '@/shared/services';
 
 export const useDeleteSpace = (
   spaceId: string | undefined,
-  curSpaceName: string | null,
+  curSpaceName: string,
   onSuccess: VoidFunction
 ) => {
   const queryClient = useQueryClient();
@@ -29,7 +29,7 @@ export const useDeleteSpace = (
         onSuccess();
 
         toast.success('Пространство успешно удаленно', {
-          description: `Имя пространство: ${curSpaceName ?? 'uncrown name'}`,
+          description: `Имя пространство: ${curSpaceName}`,
           duration: 5000,
         });
       },

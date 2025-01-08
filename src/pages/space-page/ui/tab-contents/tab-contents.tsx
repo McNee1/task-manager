@@ -1,9 +1,14 @@
 import { TabsContent } from '@/components/ui/tabs';
 import { GroupSchema } from '@/entities';
 
-import { TabGroupCard } from './tab-group-card';
+import { CardGroup } from './card';
 
-export const TabContents = ({ groups }: { groups: GroupSchema[] }) => {
+interface TabContentsProps {
+  groups: GroupSchema[];
+  spaceId: string | undefined;
+}
+
+export const TabContents = ({ groups, spaceId }: TabContentsProps) => {
   return (
     <>
       {groups.map((tab) => (
@@ -12,7 +17,10 @@ export const TabContents = ({ groups }: { groups: GroupSchema[] }) => {
           value={tab.id}
           key={tab.id}
         >
-          <TabGroupCard group={tab} />
+          <CardGroup
+            spaceId={spaceId}
+            group={tab}
+          />
         </TabsContent>
       ))}
     </>

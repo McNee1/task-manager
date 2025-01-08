@@ -4,7 +4,7 @@ import ky from 'ky';
 
 const url = 'http://localhost:3000';
 
-type Endpoint = 'workspaces' | `workspaces/${string}` | 'groups';
+type Endpoint = 'workspaces' | `workspaces/${string}` | 'groups' | `groups/${string}`;
 
 interface ApiMethods {
   delete: <T>(url: Endpoint, options?: Options) => ResponsePromise<T>;

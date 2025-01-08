@@ -19,4 +19,4 @@ else
     echo "$DB_FILE does not exist."
 fi
 
-npx lint-staged
+npx lint-staged --no-stash
