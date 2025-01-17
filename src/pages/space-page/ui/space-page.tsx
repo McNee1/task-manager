@@ -1,60 +1,38 @@
 import { useParams } from '@tanstack/react-router';
-import { useMemo } from 'react';
 
-import { Tabs } from '@/components/ui/tabs';
-import { ErrorText } from '@/components/ui/typography';
-import { useQueryGetSpaces } from '@/entities';
+import { Group, ProjectList } from '@/entities';
+import { AddGroup, useActionModal } from '@/features';
 
-import { useActiveTab } from '../model';
-import { AddGroup } from './add-group';
-import { TabContents } from './tab-contents';
-import { TabGroups } from './tab-groups';
+import { ActionModalSpace } from './container';
 
 export const SpacePage = () => {
   const { spaceId } = useParams({ strict: false });
 
-  const { data, isLoading } = useQueryGetSpaces();
-
-  const getSpaceGroupById = useMemo(
-    () => data?.find((item) => item.id === spaceId)?.groups ?? [],
-    [data, spaceId]
-  );
-
-  const { activeTab, handleChangeTab } = useActiveTab(getSpaceGroupById, spaceId);
-
-  if (isLoading) {
-    return (
-      <div className='flex h-full items-center justify-center'>
-        <div className='size-32 animate-spin rounded-full border-y-2 border-gray-900'></div>
-      </div>
-    );
-  }
-
-  if (!data?.length) {
-    return (
-      <ErrorText className='text-center text-xl lg:text-2xl'>
-        Пространство не найдено
-      </ErrorText>
-    );
-  }
+  const { handleToggleModal, modal } = useActionModal();
 
   return (
-    <div className='flex justify-center'>
-      <Tabs
-        onValueChange={handleChangeTab}
-        className='w-full max-w-4xl'
-        value={activeTab}
+    <>
+      <Group
+        renderModal={(groupId, groupName) => (
+          <ActionModalSpace
+            onToggleModal={handleToggleModal}
+            groupName={groupName}
+            groupId={groupId}
+            spaceId={spaceId}
+            modal={modal}
+          />
+        )}
+        actionGroup={<AddGroup spaceId={spaceId} />}
+        onToggleModal={handleToggleModal}
+        spaceId={spaceId}
       >
-        <TabGroups
-          renderAddGroup={() => <AddGroup spaceId={spaceId} />}
-          groups={getSpaceGroupById}
-        />
-
-        <TabContents
-          groups={getSpaceGroupById}
-          spaceId={spaceId}
-        />
-      </Tabs>
-    </div>
+        {(activeTab) => (
+          <ProjectList
+            activeTab={activeTab}
+            spaceId={spaceId}
+          />
+        )}
+      </Group>
+    </>
   );
 };

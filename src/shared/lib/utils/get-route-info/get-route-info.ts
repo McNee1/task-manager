@@ -1,12 +1,12 @@
-import { routeInfo } from '@/shared/constants';
+import { ROUTE_INFO } from '@/shared/constants';
 import { ValidRoutes } from '@/shared/types';
 
 export const getRouteInfo = (route: ValidRoutes) => {
   if (route.startsWith('/space/')) {
-    return routeInfo['/space/$spaceId'];
+    return ROUTE_INFO['/space/$spaceId'];
   }
 
-  return routeInfo[route];
+  return ROUTE_INFO[route];
 };
 export const getRouteName = (route: ValidRoutes) => getRouteInfo(route).name;
 export const getRouteIcon = (route: ValidRoutes) => getRouteInfo(route).icon;

@@ -5,25 +5,18 @@ import { useQueryGetSpaces } from '@/entities';
 import { SidebarTrigger } from '@/shared/ui';
 
 import { getSpaceNameById, updateLsGroups } from '../../lib';
-import {
-  useDeleteSpace,
-  useEditSpace,
-  useHeaderModal,
-  useSpaceLocation,
-} from '../../model';
+import { useDeleteSpace, useEditSpace, useHeaderModal } from '../../model';
 import { ActionModal } from '../action-modal';
 import { HeaderBreadcrumb } from '../breadcrumb';
 
 export const AppHeader = () => {
-  const { data: spaces, isPending } = useQueryGetSpaces();
+  const { data: spaces } = useQueryGetSpaces();
 
   const { spaceId } = useParams({ strict: false });
 
   const navigate = useNavigate({ from: '/space/$spaceId' });
 
   const { handelToggleModal, modal, setModal } = useHeaderModal();
-
-  const { isSpaceLocation } = useSpaceLocation();
 
   const curSpaceName = getSpaceNameById(spaceId, spaces);
 
@@ -40,10 +33,6 @@ export const AppHeader = () => {
   const { handleEditSpace, isPending: isEditing } = useEditSpace(spaceId, () => {
     setModal({ isOpen: false });
   });
-
-  if (isSpaceLocation() && isPending) {
-    return;
-  }
 
   return (
     <header className='flex h-16 shrink-0 items-center gap-5 px-3'>

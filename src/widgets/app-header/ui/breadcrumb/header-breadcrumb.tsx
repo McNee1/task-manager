@@ -1,5 +1,6 @@
 import { Pencil, Trash2 } from 'lucide-react';
 
+import { Skeleton } from '@/components/ui/skeleton';
 import { getRouteInfo } from '@/shared/lib';
 import { PopoverItems } from '@/shared/types';
 
@@ -39,7 +40,7 @@ export const HeaderBreadcrumb = ({ onToggleModal, curSpaceName }: BreadcrumbProp
   const isShowOnSpacePage = isSpaceLocation() && curSpaceName === null;
 
   if (isShowOnSpacePage) {
-    return null;
+    return <Skeleton className='h-5 w-20' />;
   }
 
   return (

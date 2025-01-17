@@ -13,6 +13,7 @@ export default {
         background: 'hsl(var(--background))',
         foreground: 'hsl(var(--foreground))',
         'svg-muted': 'hsl(var(--svg-secondary))',
+        'light-sky': 'hsl(var(--light-sky))',
         card: {
           DEFAULT: 'hsl(var(--card))',
           foreground: 'hsl(var(--card-foreground))',

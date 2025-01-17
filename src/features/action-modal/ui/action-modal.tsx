@@ -87,10 +87,11 @@ export const ActionModal = ({
       onEnterDown={() => {
         onEnterDown?.(spaceName);
       }}
-      renderContent={() => (modal.type === 'edit' ? editContent : deleteContent)}
       title={modal.type === 'delete' ? 'Удалить' : 'Редактировать'}
       onOpenChange={handleOpenChange}
       isOpen={modal.isOpen}
-    />
+    >
+      {modal.type === 'edit' ? editContent : deleteContent}
+    </AppModal>
   );
 };

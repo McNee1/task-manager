@@ -31,7 +31,7 @@ export const MenuPopover = ({ triggerName, popoverActions }: MenuPopoverProps) =
 
   const renderTrigger = () => (
     <div
-      className='flex cursor-pointer items-center gap-x-3 hover:text-green-800 [&>svg#space]:hover:fill-none [&>svg]:hover:fill-green-800'
+      className='flex cursor-pointer items-center gap-x-3 hover:text-light-sky [&>svg#space]:hover:fill-none [&>svg]:hover:fill-light-sky'
       onClick={handleTogglePopover}
     >
       <SquareChartGantt

@@ -11,9 +11,9 @@ export const useActionModal = () => {
     type: 'delete',
   });
 
-  const handelToggleModal = (type?: 'delete' | 'edit') => {
+  const handleToggleModal = (type?: 'delete' | 'edit') => {
     setModal((prev) => ({ isOpen: !prev.isOpen, type: type ?? prev.type }));
   };
 
-  return { handelToggleModal, modal, setModal };
+  return { handleToggleModal, modal, setModal };
 };

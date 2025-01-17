@@ -10,10 +10,10 @@ import {
 import { useEnterDown } from '@/shared/lib';
 
 export interface AppModalProps {
+  children: ReactNode;
   isOpen: boolean;
   onEnterDown?: () => void;
   onOpenChange: () => void;
-  renderContent: () => ReactNode;
   subTitle: string;
   title: string;
 }
@@ -21,7 +21,7 @@ export interface AppModalProps {
 const AppModal = ({
   isOpen,
   onOpenChange,
-  renderContent,
+  children,
   title,
   subTitle,
   onEnterDown,
@@ -41,7 +41,7 @@ const AppModal = ({
           <DialogTitle className='text-xl font-medium'>{title}</DialogTitle>
           <DialogDescription>{subTitle}</DialogDescription>
         </DialogHeader>
-        {renderContent()}
+        {children}
       </DialogContent>
     </Dialog>
   );
