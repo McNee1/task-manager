@@ -1,7 +1,7 @@
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { toast } from 'sonner';
 
-import { editSpace } from '@/shared/services';
+import { editSpace } from '@/shared';
 
 export const useEditSpace = (spaceId: string | undefined, onSuccess: VoidFunction) => {
   const queryClient = useQueryClient();

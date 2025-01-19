@@ -1,7 +1,7 @@
-import { SpaceSchema } from '@/entities';
-import { iniqId, withErrorRequest } from '@/shared/lib';
+import type { SpaceSchema } from '@/entities';
 
-import { postGroup } from '../group';
+import { withErrorRequest } from '@/shared';
+
 import { apiInstance } from '../instance';
 
 export const getSpaces = () =>
@@ -11,28 +11,16 @@ export const getSpaces = () =>
       .json<SpaceSchema[]>();
   });
 
-export const postSpace = (data: {
-  space: { spaceName: string; id: string };
-  group: { groupName: string };
-}) => {
+export const postSpace = (spaceName: string) => {
   const currentDate = new Date().toISOString();
 
   const newWorkspace = {
-    ...data.space,
-    spaceId: iniqId(),
+    spaceName,
     createdAt: currentDate,
   };
-  return withErrorRequest(async () => {
-    const workspaceResponse = await apiInstance
-      .post('workspaces', { json: newWorkspace })
-      .json<SpaceSchema>();
-
-    const groupResponse = await postGroup({
-      workspaceId: data.space.id,
-      groupName: data.group.groupName,
-    });
-    return { workspaceResponse, groupResponse };
-  });
+  return withErrorRequest(() =>
+    apiInstance.post('workspaces', { json: newWorkspace }).json<SpaceSchema>()
+  );
 };
 
 export const deleteSpace = (id: SpaceSchema['id']) =>

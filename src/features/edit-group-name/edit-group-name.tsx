@@ -3,8 +3,7 @@ import { toast } from 'sonner';
 
 import { Button } from '@/components/ui/button';
 import { SpaceSchema } from '@/entities';
-import { useEnterDown } from '@/shared/lib';
-import { editGroup } from '@/shared/services';
+import { editGroup, useEnterDown } from '@/shared';
 
 interface EditGroupNameProps {
   groupId: string;
@@ -21,6 +20,11 @@ export const EditGroupName = ({
 }: EditGroupNameProps) => {
   const queryClient = useQueryClient();
 
+  const changeGroupName = (spaces: SpaceSchema, id: string, groupName: string) =>
+    spaces.groups.map((groups) =>
+      groups.id === id ? { ...groups, groupName: groupName } : groups
+    );
+
   const { mutate, isPending } = useMutation({
     mutationFn: editGroup,
     onMutate: async (option) => {
@@ -34,9 +38,7 @@ export const EditGroupName = ({
 
           return {
             ...spaces,
-            groups: spaces.groups.map((groups) =>
-              groups.id === groupId ? { ...groups, groupName: option.groupName } : groups
-            ),
+            groups: changeGroupName(spaces, option.id, option.groupName),
           };
         });
       });

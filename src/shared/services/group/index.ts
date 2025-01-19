@@ -1,5 +1,6 @@
-import { GroupSchema } from '@/entities';
-import { iniqId, withErrorRequest } from '@/shared/lib';
+import type { GroupSchema } from '@/entities';
+
+import { withErrorRequest } from '@/shared';
 
 import { apiInstance } from '../instance';
 
@@ -8,7 +9,6 @@ export const postGroup = async (group: { workspaceId: string; groupName: string 
 
   const newGroup = {
     ...group,
-    id: iniqId(),
     createdAt: currentDate,
   };
   return withErrorRequest(() => {

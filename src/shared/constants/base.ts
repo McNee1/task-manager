@@ -2,7 +2,7 @@ import type { LucideIcon } from 'lucide-react';
 
 import { Bell, Command, Home, Search, SquareChartGantt } from 'lucide-react';
 
-import { ValidRoutes } from '../types';
+import type { ValidRoutes } from '../types';
 
 export const ROUTE_INFO: Record<ValidRoutes, { icon: LucideIcon; name: string }> = {
   '/': { name: 'Профиль', icon: Command },

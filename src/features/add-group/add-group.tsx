@@ -7,9 +7,7 @@ import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { SpaceSchema } from '@/entities';
-import { usePopover } from '@/shared/lib';
-import { postGroup } from '@/shared/services';
-import { AppPopover } from '@/shared/ui';
+import { AppPopover, postGroup, usePopover } from '@/shared';
 
 export const AddGroup = ({ spaceId }: { spaceId: string | undefined }) => {
   const [group, setGroup] = useState('');

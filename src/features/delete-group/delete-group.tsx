@@ -3,7 +3,7 @@ import { toast } from 'sonner';
 
 import { Button } from '@/components/ui/button';
 import { SpaceSchema } from '@/entities';
-import { deleteGroup } from '@/shared/services';
+import { deleteGroup } from '@/shared';
 
 interface DeleteGroupProps {
   groupId: string;

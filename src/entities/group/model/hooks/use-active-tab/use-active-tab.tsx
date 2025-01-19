@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 
-import { LS } from '@/shared/lib';
+import { LS } from '@/shared';
 
 import { updateLocalStorage } from '../../../lib';
 import { GroupSchema } from '../../types';

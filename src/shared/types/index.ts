@@ -1,1 +1,1 @@
-export * from './base';
+export type { PopoverItems, ValidRoutes } from './base';

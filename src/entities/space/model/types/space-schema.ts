@@ -1,4 +1,4 @@
-import { GroupSchema } from '@/entities/group';
+import { GroupSchema } from '@/entities';
 
 export interface SpaceSchema {
   createdAt: string;

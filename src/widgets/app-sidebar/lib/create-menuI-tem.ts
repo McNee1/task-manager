@@ -1,5 +1,4 @@
-import { getRouteInfo } from '@/shared/lib';
-import { ValidRoutes } from '@/shared/types';
+import { getRouteInfo, ValidRoutes } from '@/shared';
 
 export const createMenuItem = (route: ValidRoutes) => {
   const { icon, name } = getRouteInfo(route);

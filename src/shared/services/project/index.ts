@@ -1,5 +1,6 @@
-import { ProjectSchema } from '@/entities';
-import { withErrorRequest } from '@/shared/lib';
+import type { ProjectSchema } from '@/entities';
+
+import { withErrorRequest } from '@/shared';
 
 import { apiInstance } from '../instance';
 

@@ -7,7 +7,7 @@ import {
   DialogHeader,
   DialogTitle,
 } from '@/components/ui/dialog';
-import { useEnterDown } from '@/shared/lib';
+import { useEnterDown } from '@/shared';
 
 export interface AppModalProps {
   children: ReactNode;

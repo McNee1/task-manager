@@ -1,8 +1,7 @@
 import { Pencil, Trash2 } from 'lucide-react';
 
 import { Skeleton } from '@/components/ui/skeleton';
-import { getRouteInfo } from '@/shared/lib';
-import { PopoverItems } from '@/shared/types';
+import { getRouteInfo, PopoverItems } from '@/shared';
 
 import { ModalType, useSpaceLocation } from '../../model';
 import { MenuPopover } from '../menu-popover';

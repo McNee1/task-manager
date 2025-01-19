@@ -1,7 +1,7 @@
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { toast } from 'sonner';
 
-import { deleteSpace } from '@/shared/services';
+import { deleteSpace } from '@/shared';
 
 export const useDeleteSpace = (
   spaceId: string | undefined,

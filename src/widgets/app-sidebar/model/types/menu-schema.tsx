@@ -1,6 +1,6 @@
 import type { LucideIcon } from 'lucide-react';
 
-import { ValidRoutes } from '@/shared/types';
+import { ValidRoutes } from '@/shared';
 
 export interface MenuItem {
   icon: LucideIcon;

@@ -1,9 +1,7 @@
 import { SquareChartGantt, Triangle } from 'lucide-react';
 
 import { Button } from '@/components/ui/button';
-import { usePopover } from '@/shared/lib';
-import { PopoverItems } from '@/shared/types';
-import { AppPopover } from '@/shared/ui';
+import { AppPopover, PopoverItems, usePopover } from '@/shared';
 
 interface MenuPopoverProps {
   popoverActions: PopoverItems[];

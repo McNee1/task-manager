@@ -2,7 +2,7 @@ import { useNavigate, useParams } from '@tanstack/react-router';
 
 import { Button } from '@/components/ui/button';
 import { useQueryGetSpaces } from '@/entities';
-import { SidebarTrigger } from '@/shared/ui';
+import { SidebarTrigger } from '@/shared';
 
 import { getSpaceNameById, updateLsGroups } from '../../lib';
 import { useDeleteSpace, useEditSpace, useHeaderModal } from '../../model';

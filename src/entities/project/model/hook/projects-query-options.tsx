@@ -1,7 +1,6 @@
 import { useQuery } from '@tanstack/react-query';
 
-import { MINUTE } from '@/shared/constants';
-import { getProjects } from '@/shared/services';
+import { getProjects, MINUTE } from '@/shared';
 
 import { ProjectSchema } from '../types';
 
@@ -11,7 +10,7 @@ const getExistingGroup = (array: Record<string, ProjectSchema[]>[], curSpaceId: 
 export const useQueryGetProjects = () =>
   useQuery({
     queryKey: ['projects'],
-    staleTime: 5 * MINUTE, // Данные будут считаться свежими в течение 10 секунд
+    staleTime: 5 * MINUTE,
     gcTime: 5 * MINUTE,
     queryFn: getProjects,
     select(data) {

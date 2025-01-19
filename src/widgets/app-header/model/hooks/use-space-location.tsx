@@ -1,6 +1,6 @@
 import { useLocation } from '@tanstack/react-router';
 
-import { ValidRoutes } from '@/shared/types';
+import { ValidRoutes } from '@/shared';
 
 export const useSpaceLocation = () => {
   const pathname = useLocation({

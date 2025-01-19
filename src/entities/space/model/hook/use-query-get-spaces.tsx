@@ -1,6 +1,6 @@
 import { useQuery } from '@tanstack/react-query';
 
-import { getSpaces } from '@/shared/services';
+import { getSpaces } from '@/shared';
 
 import { SpaceSchema } from '../types';
 

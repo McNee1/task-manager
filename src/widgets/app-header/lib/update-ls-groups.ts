@@ -1,4 +1,4 @@
-import { LS } from '@/shared/lib';
+import { LS } from '@/shared';
 
 export const updateLsGroups = (spaceId: string | undefined) => {
   const updatedGroup =

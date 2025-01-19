@@ -6,7 +6,7 @@ import {
   PopoverContent,
   PopoverTrigger,
 } from '@/components/ui/popover';
-import { cn } from '@/shared/lib';
+import { cn } from '@/shared';
 
 export interface AppPopoverProps {
   className?: string;

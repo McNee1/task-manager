@@ -2,7 +2,7 @@ import { PanelRightCloseIcon } from 'lucide-react';
 
 import { Button } from '@/components/ui/button';
 import { useSidebar } from '@/components/ui/sidebar';
-import { cn } from '@/shared/lib';
+import { cn } from '@/shared';
 
 interface SidebarTriggerProps {
   className?: string;

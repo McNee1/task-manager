@@ -1,4 +1,4 @@
-import { LS } from '@/shared/lib';
+import { LS } from '@/shared';
 
 export const updateLocalStorage = (value: string, spaceId: string) => {
   const selectedGroup = LS.get('selectedGroup') ?? [];
