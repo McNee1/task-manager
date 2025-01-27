@@ -3,17 +3,16 @@ import { Plus } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Sidebar, SidebarContent, SidebarGroup } from '@/components/ui/sidebar';
 import { useQueryGetSpaces } from '@/entities';
-import { AddSpace } from '@/features';
+import { AddSpaceModal } from '@/features';
 import { useModal } from '@/shared';
 
 import { menuItems } from '../../model';
-import { AddSpaceModal } from '../add-space-modal';
 import { NavHeader, NavMain, NavSpaces } from '../nav';
 
 export function AppSidebar() {
   const { data: spaces, isLoading, error } = useQueryGetSpaces();
 
-  const { handelToggleModal, isOpen, setIsOpen } = useModal();
+  const { handelToggleModal, isOpen } = useModal();
 
   return (
     <Sidebar>
@@ -34,14 +33,6 @@ export function AppSidebar() {
             <Plus /> Добавить пространство
           </Button>
           <AddSpaceModal
-            renderAddSpace={(space) => (
-              <AddSpace
-                onSuccess={() => {
-                  setIsOpen(false);
-                }}
-                spaceName={space}
-              />
-            )}
             onOpenChange={handelToggleModal}
             isOpen={isOpen}
           />

@@ -1,7 +1,6 @@
 import type { SpaceSchema } from '@/entities';
 
-import { withErrorRequest } from '@/shared';
-
+import { withErrorRequest } from '../../lib';
 import { apiInstance } from '../instance';
 
 export const getSpaces = () =>

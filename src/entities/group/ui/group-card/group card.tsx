@@ -1,8 +1,6 @@
 import { AlignEndVertical, Pencil, Plus, Trash2 } from 'lucide-react';
 import { ReactNode } from 'react';
 
-import type { ModalType } from '@/features';
-
 import { Button } from '@/components/ui/button';
 import {
   Card,
@@ -12,7 +10,7 @@ import {
   CardTitle,
 } from '@/components/ui/card';
 import { GroupSchema } from '@/entities';
-import { AppPopover, cn, PopoverItems, usePopover } from '@/shared';
+import { AppPopover, cn, ModalType, PopoverItems, usePopover } from '@/shared';
 
 export interface TabGroupCardProps {
   activeTab: string;
@@ -50,20 +48,19 @@ export const CardGroup = ({
     },
   ];
 
-  const renderPopoverList = () =>
-    popoverItems.map((item) => (
-      <Button
-        className='h-8 w-full justify-start gap-4 font-normal focus-visible:ring-0 focus-visible:ring-offset-0'
-        onClick={item.onClick}
-        variant={item.type}
-        key={item.label}
-      >
-        {item.icon && <item.icon className='size-4' />}
-        {item.label}
-      </Button>
-    ));
+  const renderPopoverList = popoverItems.map((item) => (
+    <Button
+      className='h-8 w-full justify-start gap-4 font-normal focus-visible:ring-0 focus-visible:ring-offset-0'
+      onClick={item.onClick}
+      variant={item.type}
+      key={item.label}
+    >
+      {item.icon && <item.icon className='size-4' />}
+      {item.label}
+    </Button>
+  ));
 
-  const renderTriggerPopover = () => (
+  const triggerPopover = (
     <Button
       className='mt-0.5 size-fit p-2 opacity-0 transition-opacity'
       onClick={handleTogglePopover}
@@ -102,17 +99,21 @@ export const CardGroup = ({
             </div>
 
             <AppPopover
-              renderTrigger={renderTriggerPopover}
               onOpenChange={handleTogglePopover}
-              renderContent={renderPopoverList}
+              trigger={triggerPopover}
               className='w-48 p-2'
               isOpen={isOpen}
-            />
+            >
+              {renderPopoverList}
+            </AppPopover>
           </CardTitle>
         </CardHeader>
         <CardContent>{children(activeTab)}</CardContent>
         <CardFooter className='pb-3'>
           <Button
+            onClick={() => {
+              onToggleModal('add');
+            }}
             className='w-full'
             variant='success'
             size='sm'

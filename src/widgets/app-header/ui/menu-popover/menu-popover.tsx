@@ -11,23 +11,7 @@ interface MenuPopoverProps {
 export const MenuPopover = ({ triggerName, popoverActions }: MenuPopoverProps) => {
   const { isOpen, handleTogglePopover } = usePopover();
 
-  const renderContent = () => (
-    <div className='flex flex-col gap-y-1'>
-      {popoverActions.map((item) => (
-        <Button
-          className='h-8 justify-start gap-4 font-normal focus-visible:ring-0 focus-visible:ring-offset-0'
-          onClick={item.onClick}
-          variant={item.type}
-          key={item.label}
-        >
-          {item.icon && <item.icon className='size-4' />}
-          {item.label}
-        </Button>
-      ))}
-    </div>
-  );
-
-  const renderTrigger = () => (
+  const trigger = (
     <div
       className='flex cursor-pointer items-center gap-x-3 hover:text-light-sky [&>svg#space]:hover:fill-none [&>svg]:hover:fill-light-sky'
       onClick={handleTogglePopover}
@@ -47,10 +31,23 @@ export const MenuPopover = ({ triggerName, popoverActions }: MenuPopoverProps) =
   return (
     <AppPopover
       onOpenChange={handleTogglePopover}
-      renderTrigger={renderTrigger}
-      renderContent={renderContent}
       className='w-48 p-2'
+      trigger={trigger}
       isOpen={isOpen}
-    />
+    >
+      <div className='flex flex-col gap-y-1'>
+        {popoverActions.map((item) => (
+          <Button
+            className='h-8 justify-start gap-4 font-normal focus-visible:ring-0 focus-visible:ring-offset-0'
+            onClick={item.onClick}
+            variant={item.type}
+            key={item.label}
+          >
+            {item.icon && <item.icon className='size-4' />}
+            {item.label}
+          </Button>
+        ))}
+      </div>
+    </AppPopover>
   );
 };

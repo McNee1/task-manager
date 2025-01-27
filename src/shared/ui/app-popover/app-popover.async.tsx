@@ -5,24 +5,21 @@ import { AppPopoverProps } from './app-popover';
 const LazyAppPopover = lazy(() => import('./app-popover'));
 
 interface AppPopoverPropsSuspense extends Omit<AppPopoverProps, 'trigger'> {
-  renderTrigger: () => ReactNode;
+  trigger: ReactNode;
 }
 
-export const AppPopoverSuspense = ({
-  renderTrigger,
-  ...props
-}: AppPopoverPropsSuspense) => {
+export const AppPopoverSuspense = ({ trigger, ...props }: AppPopoverPropsSuspense) => {
   return (
     <>
       {props.isOpen && (
-        <Suspense fallback={renderTrigger()}>
+        <Suspense fallback={trigger}>
           <LazyAppPopover
             {...props}
-            trigger={renderTrigger()}
+            trigger={trigger}
           />
         </Suspense>
       )}
-      {!props.isOpen && renderTrigger()}
+      {!props.isOpen && trigger}
     </>
   );
 };

@@ -1,11 +1,12 @@
-import { ActionModal, DeleteGroup, EditGroupName, ModalType } from '@/features';
+import { AddProjectModal, DeleteGroupModal, EditGroupName } from '@/features';
+import { ModalType, SpaceId } from '@/shared';
 
 interface ActionModalSpaceProps {
   groupId: string;
   groupName: string;
   modal: ModalType;
   onToggleModal: VoidFunction;
-  spaceId: string | undefined;
+  spaceId: SpaceId;
 }
 
 export const ActionModalSpace = ({
@@ -15,31 +16,39 @@ export const ActionModalSpace = ({
   onToggleModal,
   spaceId,
 }: ActionModalSpaceProps) => {
-  return (
-    <ActionModal
-      renderEditSpace={(newSpaceName) => (
+  switch (modal.type) {
+    case 'add':
+      return (
+        <AddProjectModal
+          onOpenChange={onToggleModal}
+          isOpen={modal.isOpen}
+          groupId={groupId}
+          spaceId={spaceId}
+        />
+      );
+    case 'edit':
+      return (
         <EditGroupName
-          onSuccess={() => {
-            onToggleModal();
-          }}
-          newName={newSpaceName}
+          onOpenChange={onToggleModal}
+          isOpen={modal.isOpen}
           groupId={groupId}
           spaceId={spaceId}
+          value={groupName}
         />
-      )}
-      renderDeleteSpace={() => (
-        <DeleteGroup
-          onSuccess={() => {
-            onToggleModal();
-          }}
+      );
+
+    case 'delete':
+      return (
+        <DeleteGroupModal
+          onOpenChange={onToggleModal}
           groupName={groupName}
-          groupId={groupId}
+          isOpen={modal.isOpen}
           spaceId={spaceId}
+          groupId={groupId}
         />
-      )}
-      onOpenChange={onToggleModal}
-      curSpaceName={groupName}
-      modal={modal}
-    />
-  );
+      );
+
+    default:
+      break;
+  }
 };

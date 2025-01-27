@@ -1,12 +1,11 @@
 import { useNavigate, useParams } from '@tanstack/react-router';
 
-import { Button } from '@/components/ui/button';
 import { useQueryGetSpaces } from '@/entities';
+import { DeleteSpaceModal, EditSpaceName } from '@/features';
 import { SidebarTrigger } from '@/shared';
 
 import { getSpaceNameById, updateLsGroups } from '../../lib';
-import { useDeleteSpace, useEditSpace, useHeaderModal } from '../../model';
-import { ActionModal } from '../action-modal';
+import { useHeaderModal } from '../../model';
 import { HeaderBreadcrumb } from '../breadcrumb';
 
 export const AppHeader = () => {
@@ -20,20 +19,6 @@ export const AppHeader = () => {
 
   const curSpaceName = getSpaceNameById(spaceId, spaces);
 
-  const { handleDeleteSpace, isPending: isDeleting } = useDeleteSpace(
-    spaceId,
-    curSpaceName ?? '',
-    () => {
-      setModal({ isOpen: false });
-      updateLsGroups(spaceId);
-      void navigate({ to: '/home' });
-    }
-  );
-
-  const { handleEditSpace, isPending: isEditing } = useEditSpace(spaceId, () => {
-    setModal({ isOpen: false });
-  });
-
   return (
     <header className='flex h-16 shrink-0 items-center gap-5 px-3'>
       <SidebarTrigger />
@@ -43,32 +28,26 @@ export const AppHeader = () => {
         curSpaceName={curSpaceName}
       />
 
-      <ActionModal
-        renderEditSpace={(newSpaceName) => (
-          <Button
-            onClick={() => {
-              handleEditSpace(newSpaceName);
-            }}
-            disabled={isEditing}
-            variant='success'
-          >
-            Применить
-          </Button>
-        )}
-        renderDeleteSpace={() => (
-          <Button
-            onClick={handleDeleteSpace}
-            variant='destructive'
-            disabled={isDeleting}
-          >
-            Удалить
-          </Button>
-        )}
-        curSpaceName={curSpaceName ?? ''}
-        onOpenChange={handelToggleModal}
-        onEnterDown={handleEditSpace}
-        modal={modal}
-      />
+      {modal.type === 'edit' ? (
+        <EditSpaceName
+          onOpenChange={handelToggleModal}
+          value={curSpaceName ?? ''}
+          isOpen={modal.isOpen}
+          spaceId={spaceId}
+        />
+      ) : (
+        <DeleteSpaceModal
+          onSuccess={() => {
+            setModal({ isOpen: false });
+            updateLsGroups(spaceId);
+            void navigate({ to: '/home' });
+          }}
+          onOpenChange={handelToggleModal}
+          spaceName={curSpaceName ?? ''}
+          isOpen={modal.isOpen}
+          spaceId={spaceId}
+        />
+      )}
     </header>
   );
 };

@@ -5,12 +5,12 @@ import { TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { GroupSchema } from '@/entities';
 
 interface TabsGroupListProps {
-  actionGroup: ReactNode;
+  addGroup: ReactNode;
   groups: GroupSchema[];
   isLoading: boolean;
 }
 
-export const TabsGroupList = ({ groups, actionGroup, isLoading }: TabsGroupListProps) => {
+export const TabsGroupList = ({ groups, addGroup, isLoading }: TabsGroupListProps) => {
   return (
     <div className='inline-flex w-full'>
       {isLoading ? (
@@ -32,7 +32,7 @@ export const TabsGroupList = ({ groups, actionGroup, isLoading }: TabsGroupListP
             ))}
           </TabsList>
 
-          {actionGroup}
+          {addGroup}
         </>
       )}
     </div>

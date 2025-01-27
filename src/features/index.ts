@@ -1,6 +1,7 @@
-export { ActionModal, useActionModal } from './action-modal';
-export type { ModalType } from './action-modal';
 export { AddGroup } from './add-group';
-export { DeleteGroup } from './delete-group';
+export { DeleteGroupModal } from './delete-group-modal';
 export { EditGroupName } from './edit-group-name';
-export { AddSpace } from './add-space';
+export { AddSpaceModal } from './add-space-modal';
+export { AddProjectModal } from './add-project-modal';
+export { EditSpaceName } from './edit-space-name';
+export { DeleteSpaceModal } from './delete-space-modal';

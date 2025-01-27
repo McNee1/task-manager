@@ -1,1 +1,1 @@
-export { EditGroupName } from './edit-group-name';
+export { EditGroupName } from './ui';

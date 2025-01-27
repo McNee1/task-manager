@@ -9,19 +9,23 @@ import {
 import { cn } from '@/shared';
 
 export interface AppPopoverProps {
+  children: ReactNode;
   className?: string;
+  contentSide?: 'top' | 'right' | 'bottom' | 'left';
   isOpen: boolean;
   onOpenChange: VoidFunction;
-  renderContent: () => ReactNode;
+  portalContainer?: HTMLElement | null;
   trigger: ReactNode;
 }
 
 const AppPopover = ({
-  renderContent,
+  children,
   isOpen,
   onOpenChange,
   trigger,
   className,
+  contentSide,
+  portalContainer,
 }: AppPopoverProps) => {
   return (
     <Popover
@@ -29,8 +33,12 @@ const AppPopover = ({
       open={isOpen}
     >
       <PopoverTrigger asChild>{trigger}</PopoverTrigger>
-      <PopoverContent className={cn('PopoverContent', className)}>
-        {renderContent()}
+      <PopoverContent
+        className={cn('PopoverContent', className)}
+        portalContainer={portalContainer}
+        contentSide={contentSide}
+      >
+        {children}
         <PopoverArrow className='PopoverArrow' />
       </PopoverContent>
     </Popover>

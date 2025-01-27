@@ -1,6 +1,6 @@
-import { LS } from '@/shared';
+import { LS, SpaceId } from '@/shared';
 
-export const updateLsGroups = (spaceId: string | undefined) => {
+export const updateLsGroups = (spaceId: SpaceId) => {
   const updatedGroup =
     LS.get('selectedGroup')?.filter((el) => el.spaceId !== spaceId) ?? [];
   LS.set('selectedGroup', updatedGroup);

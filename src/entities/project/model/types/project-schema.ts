@@ -1,10 +1,11 @@
 export interface ProjectSchema {
   allTaskCount: number;
-  color?: string;
+  color?: { hex: string; name: string } | null;
   createdAt: string;
   groupId: string;
   id: string;
   name: string;
+  order: number;
   overdueTasksCount?: number;
   postponingTaskDayCount?: number;
   spaceId: string;

@@ -19,11 +19,11 @@ export const ProjectCard = ({ project }: ProjectCardProps) => {
 
   return (
     <>
-      <div className='relative mb-4 cursor-pointer rounded-md py-4 transition-all hover:shadow-[0_-0.5px_3px_0px_rgba(0,0,0,0.2)] [&_button]:hover:opacity-100 [&_svg]:hover:opacity-100'>
+      <div className='relative mb-3 cursor-pointer rounded-md py-4 shadow-sm transition-all hover:shadow-[0_-0.5px_3px_0px_rgba(0,0,0,0.2)] [&_button]:hover:opacity-100 [&_svg]:hover:opacity-100'>
         <div className='flex items-center justify-between'>
           <div className='inline-flex items-center gap-x-5 px-4'>
             <FolderClosed
-              stroke={project.color ?? DEFAULT_COLOR}
+              stroke={project.color?.hex ?? DEFAULT_COLOR}
               strokeWidth={0.9}
               size={23}
             />
@@ -39,7 +39,7 @@ export const ProjectCard = ({ project }: ProjectCardProps) => {
 
         <div
           style={{
-            borderColor: project.color ?? DEFAULT_COLOR,
+            borderColor: project.color?.hex ?? DEFAULT_COLOR,
             width: completionPercentage,
           }}
           className='absolute bottom-0 left-0 border-b'

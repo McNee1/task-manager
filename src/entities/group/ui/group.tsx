@@ -1,21 +1,23 @@
-import { Tabs } from '@radix-ui/react-tabs';
 import { ReactNode, useMemo } from 'react';
 
+import { Tabs } from '@/components/ui/tabs';
 import { ErrorText } from '@/components/ui/typography';
-import { useQueryGetSpaces } from '@/entities';
+import { useActiveTab, useQueryGetSpaces } from '@/entities';
+import { ModalType, SpaceId } from '@/shared';
 
-import { useActiveTab } from '../model';
-import { TabGroupCardProps } from './group-card';
 import { TabsContentList } from './tabs-content-list';
 import { TabsGroupList } from './tabs-group-list';
 
-interface GroupProps extends Omit<TabGroupCardProps, 'group' | 'activeTab'> {
-  actionGroup: ReactNode;
-  spaceId: string | undefined;
+export interface GroupProps {
+  addGroup: (onSuccess: (newGroupId: string) => void) => ReactNode;
+  children: (activeTab: string) => ReactNode;
+  onToggleModal: (type: ModalType['type']) => void;
+  renderModal: (id: string, name: string) => ReactNode;
+  spaceId: SpaceId;
 }
 
 export const Group = (props: GroupProps) => {
-  const { spaceId, actionGroup, ...rest } = props;
+  const { spaceId, addGroup, ...rest } = props;
 
   const { data, isLoading } = useQueryGetSpaces();
 
@@ -23,9 +25,17 @@ export const Group = (props: GroupProps) => {
     () => data?.find((item) => item.id === spaceId)?.groups ?? [],
     [data, spaceId]
   );
-  const { activeTab, handleChangeTab } = useActiveTab(groupInSpace, spaceId);
 
-  if (!data?.length && !isLoading) {
+  const { activeTab, handleChangeTab, handleAddTab } = useActiveTab(
+    groupInSpace,
+    spaceId
+  );
+
+  const handleAddGroupSuccess = (newGroupId: string) => {
+    handleAddTab(newGroupId);
+  };
+
+  if (!groupInSpace.length && !isLoading) {
     return (
       <ErrorText className='text-center text-xl lg:text-2xl'>
         Пространство не найдено
@@ -40,7 +50,7 @@ export const Group = (props: GroupProps) => {
       value={activeTab}
     >
       <TabsGroupList
-        actionGroup={actionGroup}
+        addGroup={addGroup(handleAddGroupSuccess)}
         isLoading={isLoading}
         groups={groupInSpace}
       />

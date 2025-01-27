@@ -3,14 +3,12 @@ import { SquareChartGantt } from 'lucide-react';
 
 import { SidebarMenuButton, SidebarMenuItem } from '@/components/ui/sidebar';
 import { SpaceSchema } from '@/entities';
-import { ActionModal } from '@/features';
 
 export const NavSpacesList = ({ spaces }: { spaces: SpaceSchema[] }) => {
-  console.log(ActionModal);
   return (
     <>
       {spaces.map((item) => (
-        <SidebarMenuItem key={item.spaceId}>
+        <SidebarMenuItem key={item.id}>
           <SidebarMenuButton
             className='[&_svg]:text-svg-muted'
             asChild

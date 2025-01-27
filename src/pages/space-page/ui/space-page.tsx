@@ -1,7 +1,8 @@
 import { useParams } from '@tanstack/react-router';
 
 import { Group, ProjectList } from '@/entities';
-import { AddGroup, useActionModal } from '@/features';
+import { AddGroup } from '@/features';
+import { useActionModal } from '@/shared';
 
 import { ActionModalSpace } from './container';
 
@@ -10,20 +11,29 @@ export const SpacePage = () => {
 
   const { handleToggleModal, modal } = useActionModal();
 
+  const renderAddGroup = (onSuccess: (newGroupId: string) => void) => (
+    <AddGroup
+      onSuccess={onSuccess}
+      spaceId={spaceId}
+    />
+  );
+
+  const renderModal = (groupId: string, groupName: string) => (
+    <ActionModalSpace
+      onToggleModal={handleToggleModal}
+      groupName={groupName}
+      spaceId={spaceId}
+      groupId={groupId}
+      modal={modal}
+    />
+  );
+
   return (
     <>
       <Group
-        renderModal={(groupId, groupName) => (
-          <ActionModalSpace
-            onToggleModal={handleToggleModal}
-            groupName={groupName}
-            groupId={groupId}
-            spaceId={spaceId}
-            modal={modal}
-          />
-        )}
-        actionGroup={<AddGroup spaceId={spaceId} />}
         onToggleModal={handleToggleModal}
+        renderModal={renderModal}
+        addGroup={renderAddGroup}
         spaceId={spaceId}
       >
         {(activeTab) => (

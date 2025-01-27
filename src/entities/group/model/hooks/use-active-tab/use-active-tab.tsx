@@ -1,36 +1,51 @@
-import { useEffect, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 
-import { LS } from '@/shared';
+import { LS, SpaceId } from '@/shared';
 
 import { updateLocalStorage } from '../../../lib';
 import { GroupSchema } from '../../types';
 
-export const useActiveTab = (groups: GroupSchema[], spaceId: string | undefined) => {
+export const useActiveTab = (groups: GroupSchema[], spaceId: SpaceId) => {
   const [activeTab, setActiveTab] = useState('');
 
-  const handleChangeTab = (value: string) => {
-    if (spaceId === undefined) {
-      console.error('spaceId is undefined');
-      return;
-    }
+  const handleChangeTab = useCallback(
+    (value: string) => {
+      if (!spaceId) {
+        console.error('spaceId is undefined');
+        return;
+      }
 
-    updateLocalStorage(value, spaceId);
+      updateLocalStorage(value, spaceId);
 
-    setActiveTab(value);
-  };
+      setActiveTab(value);
+    },
+    [spaceId]
+  );
+
+  const handleAddTab = useCallback(
+    (newTabId: string) => {
+      handleChangeTab(newTabId);
+    },
+    [handleChangeTab]
+  );
 
   useEffect(() => {
+    if (!spaceId || groups.length === 0) return;
+
     const selectedGroup = LS.get('selectedGroup') ?? [];
 
     const activeGroup = selectedGroup.find((group) => group.spaceId === spaceId);
 
-    if (activeGroup && activeGroup.spaceId === spaceId) {
-      setActiveTab(activeGroup.tabId);
+    let newActiveTab: string;
+
+    if (activeGroup && groups.some((group) => group.id === activeGroup.tabId)) {
+      newActiveTab = activeGroup.tabId;
     } else {
-      const firstTabId = groups[0]?.id;
-      setActiveTab(firstTabId);
+      newActiveTab = groups[0]?.id;
+      updateLocalStorage(newActiveTab, spaceId);
     }
+    setActiveTab(newActiveTab);
   }, [groups, spaceId]);
 
-  return { activeTab, setActiveTab, handleChangeTab };
+  return { activeTab, setActiveTab, handleChangeTab, handleAddTab };
 };

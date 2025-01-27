@@ -1,4 +1,5 @@
-import { ROUTE_INFO, ValidRoutes } from '@/shared';
+import { ROUTE_INFO } from '../../../constants';
+import { ValidRoutes } from '../../../types';
 
 export const getRouteInfo = (route: ValidRoutes) => {
   if (route.startsWith('/space/')) {

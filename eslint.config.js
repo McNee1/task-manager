@@ -12,6 +12,7 @@ import unusedImports from 'eslint-plugin-unused-imports';
 import tailwind from 'eslint-plugin-tailwindcss';
 import pluginQuery from '@tanstack/eslint-plugin-query';
 import boundaries from 'eslint-plugin-boundaries';
+import pluginRouter from '@tanstack/eslint-plugin-router';
 
 export default tseslint.config(
   { ignores: ['dist'] },
@@ -23,6 +24,7 @@ export default tseslint.config(
       importPlugin.flatConfigs.recommended,
       ...tailwind.configs['flat/recommended'],
       ...pluginQuery.configs['flat/recommended'],
+      ...pluginRouter.configs['flat/recommended'],
       eslintConfigPrettier,
     ],
     files: ['**/*.{ts,tsx}'],
@@ -52,9 +54,9 @@ export default tseslint.config(
           pattern: 'src/core/**/*',
         },
         {
-          type: 'page',
+          type: 'pages',
           mode: 'full',
-          pattern: 'src/page/**/*',
+          pattern: 'src/pages/**/*',
         },
         {
           type: 'widgets',
@@ -112,12 +114,11 @@ export default tseslint.config(
             {
               from: ['shared'],
               allow: ['shared'],
-              importKind: 'value',
             },
 
             {
               from: ['entities'],
-              allow: ['entities', 'shared'],
+              allow: ['entities', 'shared', 'widgets'],
             },
             {
               from: ['features'],
@@ -128,8 +129,8 @@ export default tseslint.config(
               allow: ['widgets', 'entities', 'features', 'shared'],
             },
             {
-              from: ['page'],
-              allow: ['widgets', 'entities', 'features', 'shared'],
+              from: ['pages'],
+              allow: ['pages', 'widgets', 'entities', 'features', 'shared'],
             },
 
             {
