@@ -3,15 +3,13 @@ import type { GroupSchema } from '@/entities';
 import { withErrorRequest } from '../../lib';
 import { apiInstance } from '../instance';
 
-export const postGroup = async (group: { workspaceId: string; groupName: string }) => {
-  const currentDate = new Date().toISOString();
-
-  const newGroup = {
-    ...group,
-    createdAt: currentDate,
-  };
+export const postGroup = async (group: {
+  workspaceId: string;
+  groupName: string;
+  createdAt: string;
+}) => {
   return withErrorRequest(() => {
-    return apiInstance.post('groups', { json: newGroup }).json<GroupSchema>();
+    return apiInstance.post('groups', { json: group }).json<GroupSchema>();
   });
 };
 

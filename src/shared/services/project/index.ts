@@ -13,3 +13,17 @@ export const postProject = (project: Omit<ProjectSchema, 'id'>) => {
     return apiInstance.post('projects', { json: project }).json<ProjectSchema>();
   });
 };
+
+export const editProject = (param: Pick<ProjectSchema, 'id' | 'name' | 'color'>) => {
+  return withErrorRequest(() => {
+    return apiInstance
+      .patch(`projects/${param.id}`, { json: param })
+      .json<ProjectSchema>();
+  });
+};
+
+export const deleteProject = (id: ProjectSchema['id']) => {
+  return withErrorRequest(() => {
+    return apiInstance.delete(`projects/${id}`).json();
+  });
+};

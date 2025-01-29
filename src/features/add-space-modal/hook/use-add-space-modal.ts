@@ -17,7 +17,13 @@ export const useAddSpaceModal = (onSuccess: VoidFunction) => {
         duration: 5000,
       });
 
-      await postGroup({ groupName: 'Активные проекты', workspaceId: data.id });
+      const newGroup = {
+        groupName: 'Активные проекты',
+        workspaceId: data.id,
+        createdAt: new Date().toISOString(),
+      };
+
+      await postGroup(newGroup);
 
       await queryClient.invalidateQueries({ queryKey: ['spaces'] });
     },
@@ -35,7 +41,6 @@ export const useAddSpaceModal = (onSuccess: VoidFunction) => {
       toast.error('Имя пространства не может быть пустым');
       return;
     }
-    console.log(spaceName);
     mutate(spaceName);
   };
 

@@ -2,14 +2,16 @@ import { useParams } from '@tanstack/react-router';
 
 import { Group, ProjectList } from '@/entities';
 import { AddGroup } from '@/features';
-import { useActionModal } from '@/shared';
 
-import { ActionModalSpace } from './container';
+import { useGroupModel, useProjectModel } from '../hook';
+import { ActionModalGroup, ActionModalProject } from './container';
 
 export const SpacePage = () => {
   const { spaceId } = useParams({ strict: false });
 
-  const { handleToggleModal, modal } = useActionModal();
+  const { fnProject, stateProject } = useProjectModel();
+
+  const { fnGroup, stateGroup } = useGroupModel();
 
   const renderAddGroup = (onSuccess: (newGroupId: string) => void) => (
     <AddGroup
@@ -18,31 +20,34 @@ export const SpacePage = () => {
     />
   );
 
-  const renderModal = (groupId: string, groupName: string) => (
-    <ActionModalSpace
-      onToggleModal={handleToggleModal}
-      groupName={groupName}
-      spaceId={spaceId}
-      groupId={groupId}
-      modal={modal}
-    />
-  );
-
   return (
     <>
       <Group
-        onToggleModal={handleToggleModal}
-        renderModal={renderModal}
+        onGroupAction={fnGroup.handleGroupAction}
         addGroup={renderAddGroup}
         spaceId={spaceId}
       >
         {(activeTab) => (
           <ProjectList
+            onProjectAction={fnProject.handleProjectAction}
             activeTab={activeTab}
             spaceId={spaceId}
           />
         )}
       </Group>
+      <>
+        <ActionModalGroup
+          onToggleGroupModal={fnGroup.toggleGroupModal}
+          group={stateGroup.selectedGroup}
+          modal={stateGroup.groupModal}
+          spaceId={spaceId}
+        />
+        <ActionModalProject
+          onToggleProjectModal={fnProject.toggleProjectModal}
+          project={stateProject.selectedProject}
+          modal={stateProject.projectModal}
+        />
+      </>
     </>
   );
 };

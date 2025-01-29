@@ -2,7 +2,7 @@ import { ReactNode, useMemo } from 'react';
 
 import { Tabs } from '@/components/ui/tabs';
 import { ErrorText } from '@/components/ui/typography';
-import { useActiveTab, useQueryGetSpaces } from '@/entities';
+import { GroupSchema, useActiveTab, useQueryGetSpaces } from '@/entities';
 import { ModalType, SpaceId } from '@/shared';
 
 import { TabsContentList } from './tabs-content-list';
@@ -11,8 +11,7 @@ import { TabsGroupList } from './tabs-group-list';
 export interface GroupProps {
   addGroup: (onSuccess: (newGroupId: string) => void) => ReactNode;
   children: (activeTab: string) => ReactNode;
-  onToggleModal: (type: ModalType['type']) => void;
-  renderModal: (id: string, name: string) => ReactNode;
+  onGroupAction: (type: ModalType['type'], group: GroupSchema) => void;
   spaceId: SpaceId;
 }
 

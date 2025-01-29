@@ -7,7 +7,8 @@ DB_FILE="json-server/db.json"
 # Desired JSON structure to preserve
 JSON_CONTENT='{
   "workspaces": [],
-  "groups": []
+  "groups": [],
+  "projects": []
 }'
 
 # Check if db.json exists

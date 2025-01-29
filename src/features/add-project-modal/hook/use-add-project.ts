@@ -57,7 +57,12 @@ export const useAddProject = (
   });
 
   const handleAddProject = () => {
-    if (!spaceId) return;
+    if (!spaceId) {
+      toast.error('Произошла ошибка! Попробуйте позже.', {
+        duration: 5000,
+      });
+      return;
+    }
 
     if (!projectName.trim()) {
       toast.error('Имя проекта не может быть пустым');

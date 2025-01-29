@@ -1,50 +1,54 @@
+import { GroupSchema } from '@/entities';
 import { AddProjectModal, DeleteGroupModal, EditGroupName } from '@/features';
 import { ModalType, SpaceId } from '@/shared';
 
-interface ActionModalSpaceProps {
-  groupId: string;
-  groupName: string;
+interface ActionModalGroupProps {
+  group: GroupSchema | undefined;
   modal: ModalType;
-  onToggleModal: VoidFunction;
+  onToggleGroupModal: VoidFunction;
   spaceId: SpaceId;
 }
 
-export const ActionModalSpace = ({
-  groupId,
-  groupName,
+export const ActionModalGroup = ({
+  group,
   modal,
-  onToggleModal,
+  onToggleGroupModal,
   spaceId,
-}: ActionModalSpaceProps) => {
+}: ActionModalGroupProps) => {
+  console.log(group);
+  if (!modal.isOpen || !group) return null;
+
+  const { groupName, id } = group;
+
   switch (modal.type) {
     case 'add':
       return (
         <AddProjectModal
-          onOpenChange={onToggleModal}
+          onOpenChange={onToggleGroupModal}
           isOpen={modal.isOpen}
-          groupId={groupId}
           spaceId={spaceId}
+          groupId={id}
         />
       );
     case 'edit':
       return (
         <EditGroupName
-          onOpenChange={onToggleModal}
+          onOpenChange={onToggleGroupModal}
           isOpen={modal.isOpen}
-          groupId={groupId}
-          spaceId={spaceId}
           value={groupName}
+          spaceId={spaceId}
+          groupId={id}
         />
       );
 
     case 'delete':
       return (
         <DeleteGroupModal
-          onOpenChange={onToggleModal}
+          onOpenChange={onToggleGroupModal}
           groupName={groupName}
           isOpen={modal.isOpen}
           spaceId={spaceId}
-          groupId={groupId}
+          groupId={id}
         />
       );
 

@@ -5,7 +5,7 @@ import { SpaceId } from '@/shared';
 import { useQueryGetProjects } from './use-query-get-projects';
 
 export const useProjectData = (activeTab: string, spaceId: SpaceId) => {
-  const { data = [], isLoading } = useQueryGetProjects();
+  const { data = [], isLoading, error } = useQueryGetProjects();
 
   const spaceProjects = useMemo(() => {
     if (!spaceId) return [];
@@ -23,5 +23,6 @@ export const useProjectData = (activeTab: string, spaceId: SpaceId) => {
     isLoading,
     projects: filteredProjects,
     orderLastItem,
+    error,
   };
 };

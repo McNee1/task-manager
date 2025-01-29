@@ -16,14 +16,12 @@ export interface TabGroupCardProps {
   activeTab: string;
   children: (activeTab: string) => ReactNode;
   group: GroupSchema;
-  onToggleModal: (type: ModalType['type']) => void;
-  renderModal: (id: string, name: string) => ReactNode;
+  onGroupAction: (type: ModalType['type'], group: GroupSchema) => void;
 }
 
 export const CardGroup = ({
   group,
-  renderModal,
-  onToggleModal,
+  onGroupAction,
   children,
   activeTab,
 }: TabGroupCardProps) => {
@@ -34,7 +32,7 @@ export const CardGroup = ({
       label: 'Редактировать',
       icon: Pencil,
       onClick: () => {
-        onToggleModal('edit');
+        onGroupAction('edit', group);
       },
       type: 'success-ghost',
     },
@@ -42,7 +40,7 @@ export const CardGroup = ({
       label: 'Удалить',
       icon: Trash2,
       onClick: () => {
-        onToggleModal('delete');
+        onGroupAction('delete', group);
       },
       type: 'danger-ghost',
     },
@@ -90,7 +88,7 @@ export const CardGroup = ({
 
               <Pencil
                 onClick={() => {
-                  onToggleModal('edit');
+                  onGroupAction('edit', group);
                 }}
                 className='mt-1 opacity-0 transition-opacity hover:stroke-green-700'
                 strokeWidth={1.5}
@@ -112,7 +110,7 @@ export const CardGroup = ({
         <CardFooter className='pb-3'>
           <Button
             onClick={() => {
-              onToggleModal('add');
+              onGroupAction('add', group);
             }}
             className='w-full'
             variant='success'
@@ -123,8 +121,6 @@ export const CardGroup = ({
           </Button>
         </CardFooter>
       </Card>
-
-      {renderModal(group.id, group.groupName)}
     </>
   );
 };

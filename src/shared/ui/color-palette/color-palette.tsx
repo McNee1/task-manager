@@ -6,7 +6,7 @@ import { Button } from '@/components/ui/button';
 const COLORS = [
   { hex: '#FF9999', name: 'Светло-красный' },
   { hex: '#FFCC66', name: 'Светло-оранжевый' },
-  { hex: '#FFFF99', name: 'Светло-желтый' },
+  { hex: '#ADD8E6', name: 'Светло-голубой' },
   { hex: '#B3FF99', name: 'Светло-зеленый' },
   { hex: '#99FF99', name: 'Светло-зеленый' },
   { hex: '#99FFFF', name: 'Светло-бирюзовый' },

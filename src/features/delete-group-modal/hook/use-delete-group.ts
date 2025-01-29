@@ -47,7 +47,7 @@ export const useDeleteGroup = (
     onError: (error, __, context) => {
       queryClient.setQueryData(['spaces'], context?.previousSpaces);
 
-      toast.error('Произошла ошибка', {
+      toast.error('Произошла ошибка! Попробуйте позже.', {
         description: error.message,
         duration: 5000,
       });

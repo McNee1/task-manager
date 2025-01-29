@@ -1,1 +1,2 @@
-export { ActionModalSpace } from './action-modal-space';
+export { ActionModalGroup } from './action-modal-group';
+export { ActionModalProject } from './action-modal-project';

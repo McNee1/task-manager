@@ -9,7 +9,7 @@ import { useHeaderModal } from '../../model';
 import { HeaderBreadcrumb } from '../breadcrumb';
 
 export const AppHeader = () => {
-  const { data: spaces } = useQueryGetSpaces();
+  const { data: spaces, isPending } = useQueryGetSpaces();
 
   const { spaceId } = useParams({ strict: false });
 
@@ -26,6 +26,7 @@ export const AppHeader = () => {
       <HeaderBreadcrumb
         onToggleModal={handelToggleModal}
         curSpaceName={curSpaceName}
+        isPending={isPending}
       />
 
       {modal.type === 'edit' ? (

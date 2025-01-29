@@ -9,7 +9,8 @@ type Endpoint =
   | `workspaces/${string}`
   | 'groups'
   | `groups/${string}`
-  | 'projects';
+  | 'projects'
+  | `projects/${string}`;
 
 interface ApiMethods {
   delete: <T>(url: Endpoint, options?: Options) => ResponsePromise<T>;

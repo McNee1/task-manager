@@ -8,11 +8,15 @@ import { MenuPopover } from '../menu-popover';
 
 interface BreadcrumbProps {
   curSpaceName: string | null;
-
+  isPending: boolean;
   onToggleModal: (value: ModalType['type']) => void;
 }
 
-export const HeaderBreadcrumb = ({ onToggleModal, curSpaceName }: BreadcrumbProps) => {
+export const HeaderBreadcrumb = ({
+  onToggleModal,
+  curSpaceName,
+  isPending,
+}: BreadcrumbProps) => {
   const { isSpaceLocation, pathname } = useSpaceLocation();
 
   const { icon: IconPath, name } = getRouteInfo(pathname);
@@ -36,10 +40,12 @@ export const HeaderBreadcrumb = ({ onToggleModal, curSpaceName }: BreadcrumbProp
     },
   ];
 
-  const isShowOnSpacePage = isSpaceLocation() && curSpaceName === null;
-
-  if (isShowOnSpacePage) {
+  if (isSpaceLocation() && isPending) {
     return <Skeleton className='h-5 w-20' />;
+  }
+
+  if (isSpaceLocation() && curSpaceName === null) {
+    return null;
   }
 
   return (
