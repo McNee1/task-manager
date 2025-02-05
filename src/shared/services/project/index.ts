@@ -14,10 +14,13 @@ export const postProject = (project: Omit<ProjectSchema, 'id'>) => {
   });
 };
 
-export const editProject = (param: Pick<ProjectSchema, 'id' | 'name' | 'color'>) => {
+export const editProject = (params: {
+  id: ProjectSchema['id'];
+  data: Partial<ProjectSchema>;
+}) => {
   return withErrorRequest(() => {
     return apiInstance
-      .patch(`projects/${param.id}`, { json: param })
+      .patch(`projects/${params.id}`, { json: params.data })
       .json<ProjectSchema>();
   });
 };

@@ -23,10 +23,10 @@ export const useEditProject = (
 
           return {
             ...project,
-            color: option.color,
+            color: option.data.color,
             updatedAt: new Date().toISOString(),
-            name: option.name,
-          };
+            name: option.data.name,
+          } as ProjectSchema;
         });
       });
 
@@ -65,7 +65,7 @@ export const useEditProject = (
       return;
     }
 
-    mutate({ id: projectId, name: newName, color: color });
+    mutate({ id: projectId, data: { name: newName, color: color } });
   };
   return {
     handleEditName,

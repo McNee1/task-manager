@@ -1,1 +1,1 @@
-export { MINUTE, ROUTE_INFO } from './base';
+export { DEFAULT_ORDER, MINUTE, ROUTE_INFO } from './base';

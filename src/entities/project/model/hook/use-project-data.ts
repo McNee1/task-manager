@@ -13,16 +13,21 @@ export const useProjectData = (activeTab: string, spaceId: SpaceId) => {
     return data.find((project) => spaceId in project)?.[spaceId] ?? [];
   }, [data, spaceId]);
 
-  const filteredProjects = useMemo(() => {
+  const filteredProjectsByTab = useMemo(() => {
     return spaceProjects.filter((project) => project.groupId === activeTab);
   }, [spaceProjects, activeTab]);
 
-  const orderLastItem = filteredProjects.at(-1)?.order;
+  const sortedProjects = useMemo(() => {
+    return filteredProjectsByTab.sort((a, b) => a.order - b.order);
+  }, [filteredProjectsByTab]);
+
+  const orderLastItem = filteredProjectsByTab.at(-1)?.order;
 
   return {
     isLoading,
-    projects: filteredProjects,
+    projects: sortedProjects,
     orderLastItem,
+
     error,
   };
 };

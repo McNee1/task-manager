@@ -1,7 +1,7 @@
 import { useParams } from '@tanstack/react-router';
 
-import { Group, ProjectList } from '@/entities';
-import { AddGroup } from '@/features';
+import { Group } from '@/entities';
+import { AddGroup, SortableProjectList } from '@/features';
 
 import { useGroupModel, useProjectModel } from '../hook';
 import { ActionModalGroup, ActionModalProject } from './container';
@@ -28,7 +28,7 @@ export const SpacePage = () => {
         spaceId={spaceId}
       >
         {(activeTab) => (
-          <ProjectList
+          <SortableProjectList
             onProjectAction={fnProject.handleProjectAction}
             activeTab={activeTab}
             spaceId={spaceId}

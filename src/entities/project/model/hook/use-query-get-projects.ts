@@ -10,6 +10,7 @@ const getExistingGroup = (array: Record<string, ProjectSchema[]>[], curSpaceId: 
 export const useQueryGetProjects = () =>
   useQuery({
     queryKey: ['projects'],
+
     staleTime: 5 * MINUTE,
     gcTime: 5 * MINUTE,
     queryFn: getProjects,

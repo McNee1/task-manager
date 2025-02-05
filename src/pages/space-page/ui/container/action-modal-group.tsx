@@ -15,7 +15,6 @@ export const ActionModalGroup = ({
   onToggleGroupModal,
   spaceId,
 }: ActionModalGroupProps) => {
-  console.log(group);
   if (!modal.isOpen || !group) return null;
 
   const { groupName, id } = group;

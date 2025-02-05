@@ -2,9 +2,7 @@ import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { toast } from 'sonner';
 
 import { ProjectSchema, useProjectData } from '@/entities';
-import { ColorField, postProject, SpaceId } from '@/shared';
-
-const DEFAULT_ORDER = 10000;
+import { ColorField, DEFAULT_ORDER, postProject, SpaceId } from '@/shared';
 
 export const useAddProject = (
   spaceId: SpaceId,

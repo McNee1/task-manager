@@ -13,3 +13,4 @@ export const ROUTE_INFO: Record<ValidRoutes, { icon: LucideIcon; name: string }>
 } as const;
 
 export const MINUTE = 1000 * 60;
+export const DEFAULT_ORDER = 10000;

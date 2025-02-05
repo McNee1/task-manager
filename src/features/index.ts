@@ -7,3 +7,4 @@ export { EditSpaceName } from './edit-space-name';
 export { DeleteSpaceModal } from './delete-space-modal';
 export { EditProject } from './edit-project';
 export { DeleteProjectModal } from './delete-project-modal';
+export { SortableProjectList } from './sortable-project';
