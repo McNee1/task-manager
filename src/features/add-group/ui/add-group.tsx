@@ -82,7 +82,11 @@ export const AddGroup = ({
       return;
     }
 
-    mutate({ groupName: group, workspaceId: spaceId }, {});
+    mutate({
+      groupName: group,
+      workspaceId: spaceId,
+      createdAt: new Date().toISOString(),
+    });
   };
 
   const trigger = (

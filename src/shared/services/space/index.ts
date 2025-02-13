@@ -11,6 +11,7 @@ export const getSpaces = () =>
   });
 
 export const postSpace = (spaceName: string) => {
+  // TODO
   const currentDate = new Date().toISOString();
 
   const newWorkspace = {

@@ -44,7 +44,7 @@ export const Group = (props: GroupProps) => {
 
   return (
     <Tabs
-      className='mx-auto flex max-w-4xl flex-col gap-y-3'
+      className='mx-auto flex w-full max-w-4xl flex-col gap-y-3'
       onValueChange={handleChangeTab}
       value={activeTab}
     >

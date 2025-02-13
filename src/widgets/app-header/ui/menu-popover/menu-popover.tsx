@@ -5,7 +5,7 @@ import { AppPopover, PopoverItems, usePopover } from '@/shared';
 
 interface MenuPopoverProps {
   popoverActions: PopoverItems[];
-  triggerName: string;
+  triggerName: string | null;
 }
 
 export const MenuPopover = ({ triggerName, popoverActions }: MenuPopoverProps) => {

@@ -1,3 +1,4 @@
 export { useHeaderModal } from './use-header-modal';
 export type { ModalType } from './use-header-modal';
-export { useSpaceLocation } from './use-space-location';
+export { useHeaderLocation } from './use-header-location';
+export { useHeader } from './use-header';

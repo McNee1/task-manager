@@ -10,7 +10,9 @@ type Endpoint =
   | 'groups'
   | `groups/${string}`
   | 'projects'
-  | `projects/${string}`;
+  | `projects/${string}`
+  | 'projectColumns'
+  | `projectColumns/${string}`;
 
 interface ApiMethods {
   delete: <T>(url: Endpoint, options?: Options) => ResponsePromise<T>;

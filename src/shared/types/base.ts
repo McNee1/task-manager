@@ -13,3 +13,8 @@ export interface PopoverItems {
   onClick: () => void;
   type: 'success-ghost' | 'danger-ghost';
 }
+
+export interface RouteInfo {
+  icon: LucideIcon;
+  name: string;
+}

@@ -1,25 +1,37 @@
 import { Pencil, Trash2 } from 'lucide-react';
+import { Fragment, ReactNode } from 'react';
 
 import { Skeleton } from '@/components/ui/skeleton';
-import { getRouteInfo, PopoverItems } from '@/shared';
+import { getRouteIcon, getRouteName, PopoverItems } from '@/shared';
 
-import { ModalType, useSpaceLocation } from '../../model';
+import { renderBreadcrumbItem } from '../../lib';
+import { ModalType, useHeaderLocation } from '../../model';
 import { MenuPopover } from '../menu-popover';
 
 interface BreadcrumbProps {
+  curProjectName: string | null;
   curSpaceName: string | null;
   isPending: boolean;
   onToggleModal: (value: ModalType['type']) => void;
+}
+
+interface BreadcrumbItem {
+  condition: () => boolean;
+  content: () => ReactNode;
 }
 
 export const HeaderBreadcrumb = ({
   onToggleModal,
   curSpaceName,
   isPending,
+  curProjectName,
 }: BreadcrumbProps) => {
-  const { isSpaceLocation, pathname } = useSpaceLocation();
+  const { isSpaceLocation, pathname, isProjectLocation } = useHeaderLocation();
 
-  const { icon: IconPath, name } = getRouteInfo(pathname);
+  const IconPath = getRouteIcon(pathname);
+
+  const IconSpace = getRouteIcon('/space/$spaceId');
+  const IconProject = getRouteIcon('/space/$spaceId/project/$projectId');
 
   const popoverActions: PopoverItems[] = [
     {
@@ -40,12 +52,49 @@ export const HeaderBreadcrumb = ({
     },
   ];
 
-  if (isSpaceLocation() && isPending) {
-    return <Skeleton className='h-5 w-20' />;
-  }
+  const breadcrumbItems: BreadcrumbItem[] = [
+    {
+      condition: () => isSpaceLocation,
+      content: () => (
+        <li className='inline-flex items-center text-sm font-medium text-slate-500'>
+          <MenuPopover
+            popoverActions={popoverActions}
+            triggerName={curSpaceName}
+          />
+        </li>
+      ),
+    },
+    {
+      condition: () => !isSpaceLocation && !isProjectLocation,
+      content: () =>
+        renderBreadcrumbItem({ name: getRouteName(pathname), icon: IconPath }),
+    },
+    {
+      condition: () => isProjectLocation,
 
-  if (isSpaceLocation() && curSpaceName === null) {
-    return null;
+      content: () => (
+        <>
+          <div className='flex items-center gap-5'>
+            {renderBreadcrumbItem({
+              name: curSpaceName,
+              icon: IconSpace,
+              isLink: true,
+              extraClass: 'hover:text-light-sky',
+              to: '/space/$spaceId',
+            })}
+
+            {renderBreadcrumbItem({
+              name: curProjectName,
+              icon: IconProject,
+            })}
+          </div>
+        </>
+      ),
+    },
+  ];
+
+  if ((isSpaceLocation || isProjectLocation) && isPending) {
+    return <Skeleton className='h-5 w-20' />;
   }
 
   return (
@@ -54,19 +103,9 @@ export const HeaderBreadcrumb = ({
       className='flex'
     >
       <ol className='inline-flex items-center space-x-1 md:space-x-3'>
-        <li className='inline-flex items-center text-sm font-medium text-slate-500'>
-          {curSpaceName ? (
-            <MenuPopover
-              popoverActions={popoverActions}
-              triggerName={curSpaceName}
-            />
-          ) : (
-            <div className='inline-flex gap-x-3'>
-              <IconPath size={19} />
-              {name}
-            </div>
-          )}
-        </li>
+        {breadcrumbItems.map((item, id) => (
+          <Fragment key={id}>{item.condition() && item.content()}</Fragment>
+        ))}
       </ol>
     </nav>
   );

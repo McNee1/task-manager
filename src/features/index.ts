@@ -8,3 +8,4 @@ export { DeleteSpaceModal } from './delete-space-modal';
 export { EditProject } from './edit-project';
 export { DeleteProjectModal } from './delete-project-modal';
 export { SortableProjectList } from './sortable-project';
+export { AddColumn } from './add-column';

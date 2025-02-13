@@ -1,12 +1,23 @@
 import { ROUTE_INFO } from '../../../constants';
-import { ValidRoutes } from '../../../types';
+import { RouteInfo, ValidRoutes } from '../../../types';
+import { CheckLocation } from '../check-location';
 
-export const getRouteInfo = (route: ValidRoutes) => {
-  if (route.startsWith('/space/')) {
+const getDynamicRoute = (route: ValidRoutes) => {
+  if (CheckLocation.isSpace(route)) {
     return ROUTE_INFO['/space/$spaceId'];
   }
-
-  return ROUTE_INFO[route];
+  if (CheckLocation.isProject(route)) {
+    return ROUTE_INFO['/space/$spaceId/project/$projectId'];
+  }
 };
-export const getRouteName = (route: ValidRoutes) => getRouteInfo(route).name;
-export const getRouteIcon = (route: ValidRoutes) => getRouteInfo(route).icon;
+
+export const getRouteInfo = (route: ValidRoutes) => {
+  return ROUTE_INFO[route] ?? getDynamicRoute(route);
+};
+
+const getRouteProperty = <K extends keyof RouteInfo>(route: ValidRoutes, property: K) =>
+  getRouteInfo(route)?.[property] ?? null;
+
+export const getRouteName = (route: ValidRoutes) => getRouteProperty(route, 'name');
+
+export const getRouteIcon = (route: ValidRoutes) => getRouteProperty(route, 'icon');

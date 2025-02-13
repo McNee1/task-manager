@@ -1,3 +1,4 @@
+import { Link } from '@tanstack/react-router';
 import { Pencil, Settings2, Trash2 } from 'lucide-react';
 import { memo } from 'react';
 
@@ -45,8 +46,11 @@ export const ProjectCard = memo(({ project, onProjectAction }: ProjectCardProps)
 
   const renderPopoverList = popoverItems.map((item) => (
     <Button
+      onClick={(e) => {
+        e.preventDefault();
+        item.onClick();
+      }}
       className='h-8 w-full justify-start gap-4 font-normal focus-visible:ring-0 focus-visible:ring-offset-0'
-      onClick={item.onClick}
       variant={item.type}
       key={item.label}
     >
@@ -56,7 +60,10 @@ export const ProjectCard = memo(({ project, onProjectAction }: ProjectCardProps)
   ));
 
   return (
-    <>
+    <Link
+      params={{ projectId: project.id, spaceId: project.spaceId }}
+      to='/space/$spaceId/project/$projectId'
+    >
       <div
         className={cn(
           'relative mb-3 cursor-pointer rounded-md bg-white py-4 shadow-sm transition-all hover:shadow-[0_-0.5px_3px_0px_rgba(0,0,0,0.2)] [&_button]:hover:opacity-100 [&_svg]:hover:opacity-100',
@@ -72,8 +79,11 @@ export const ProjectCard = memo(({ project, onProjectAction }: ProjectCardProps)
           <AppPopover
             trigger={
               <Button
+                onClick={(e) => {
+                  e.preventDefault();
+                  handleTogglePopover();
+                }}
                 className='me-3 size-fit p-2 opacity-0 transition-all focus:outline-none'
-                onClick={handleTogglePopover}
                 variant='ghost'
               >
                 <Settings2 size={20} />
@@ -95,7 +105,7 @@ export const ProjectCard = memo(({ project, onProjectAction }: ProjectCardProps)
           className='absolute bottom-0 left-0 border-b'
         />
       </div>
-    </>
+    </Link>
   );
 });
 

@@ -1,14 +1,21 @@
-import type { ProjectSchema } from '@/entities';
+import type { ProjectSchema, ProjectWithColumns } from '@/entities';
 
 import { withErrorRequest } from '../../lib';
 import { apiInstance } from '../instance';
+
+export const getProjectById = (id: string) =>
+  withErrorRequest(() => {
+    return apiInstance
+      .get(`projects/${id}`, { searchParams: { _embed: 'projectColumns' } })
+      .json<ProjectWithColumns>();
+  });
 
 export const getProjects = () =>
   withErrorRequest(() => {
     return apiInstance.get('projects').json<ProjectSchema[]>();
   });
 
-export const postProject = (project: Omit<ProjectSchema, 'id'>) => {
+export const postProject = (project: Omit<ProjectSchema, 'id' | 'columns'>) => {
   return withErrorRequest(() => {
     return apiInstance.post('projects', { json: project }).json<ProjectSchema>();
   });

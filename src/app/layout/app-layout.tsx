@@ -10,9 +10,9 @@ export function AppLayout({ children }: { children: ReactNode }) {
     <>
       <SidebarProvider>
         <AppSidebar />
-        <SidebarInset>
+        <SidebarInset className='overflow-x-auto px-6'>
           <AppHeader />
-          <div className='px-8'>{children}</div>
+          {children}
         </SidebarInset>
       </SidebarProvider>
       <Toaster

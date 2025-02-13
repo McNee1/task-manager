@@ -1,16 +1,16 @@
 import { useQuery } from '@tanstack/react-query';
 
-import { getProjects, MINUTE } from '@/shared';
+import { getProjects, MINUTE, SpaceId } from '@/shared';
 
 import { ProjectSchema } from '../types';
 
 const getExistingGroup = (array: Record<string, ProjectSchema[]>[], curSpaceId: string) =>
   array.find((group) => curSpaceId in group);
 
-export const useQueryGetProjects = () =>
+export const useQueryGetProjects = (spaceId: SpaceId) =>
   useQuery({
     queryKey: ['projects'],
-
+    enabled: !!spaceId,
     staleTime: 5 * MINUTE,
     gcTime: 5 * MINUTE,
     queryFn: getProjects,

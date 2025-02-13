@@ -1,11 +1,13 @@
 import { getRouteInfo, ValidRoutes } from '@/shared';
 
+import { MenuItem } from '../model';
+
 export const createMenuItem = (route: ValidRoutes) => {
-  const { icon, name } = getRouteInfo(route);
+  const info = getRouteInfo(route);
 
   return {
-    title: name,
+    title: info?.name,
     to: route,
-    icon: icon,
-  };
+    icon: info?.icon,
+  } as MenuItem;
 };

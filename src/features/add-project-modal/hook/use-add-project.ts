@@ -2,7 +2,7 @@ import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { toast } from 'sonner';
 
 import { ProjectSchema, useProjectData } from '@/entities';
-import { ColorField, DEFAULT_ORDER, postProject, SpaceId } from '@/shared';
+import { ColorField, DEFAULT_ORDER, postColumns, postProject, SpaceId } from '@/shared';
 
 export const useAddProject = (
   spaceId: SpaceId,
@@ -45,11 +45,22 @@ export const useAddProject = (
       });
     },
 
-    onSuccess: () => {
+    onSuccess: async (data) => {
       onSuccess();
       toast.success('Пространство успешно создано', {
         description: `Имя пространство: ${projectName}`,
         duration: 5000,
+      });
+
+      const projectId = data.id;
+
+      await postColumns({
+        projectId,
+        columns: [
+          { id: 1, name: 'Ожидают', order: DEFAULT_ORDER },
+          { id: 2, name: 'В работе', order: DEFAULT_ORDER * 2 },
+          { id: 3, name: 'Завершено', order: DEFAULT_ORDER * 3 },
+        ],
       });
     },
   });
