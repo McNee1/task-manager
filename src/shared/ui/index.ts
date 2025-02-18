@@ -1,5 +1,5 @@
 export { SidebarTrigger } from './sidebar-trigger';
-export { AppModal, DeleteModalContent, FormModalContent } from './app-modal';
+export { AppModal } from './app-modal';
 export { AppPopover } from './app-popover';
 export { type ColorField, ColorPalette } from './color-palette';
 

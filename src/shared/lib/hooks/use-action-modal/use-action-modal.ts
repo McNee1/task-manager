@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useCallback, useState } from 'react';
 
 type TypeModal = 'delete' | 'edit' | 'add';
 
@@ -13,9 +13,9 @@ export const useActionModal = () => {
     type: 'delete',
   });
 
-  const handleToggleModal = (type?: TypeModal) => {
+  const handleToggleModal = useCallback((type?: TypeModal) => {
     setModal((prev) => ({ isOpen: !prev.isOpen, type: type ?? prev.type }));
-  };
+  }, []);
 
   return { handleToggleModal, modal, setModal };
 };

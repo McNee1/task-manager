@@ -23,7 +23,7 @@ const AppModal = ({ isOpen, onOpenChange, children, title, subTitle }: AppModalP
       onOpenChange={onOpenChange}
       open={isOpen}
     >
-      <DialogContent className='gap-5 p-6 sm:max-w-md lg:max-w-xl'>
+      <DialogContent className='gap-6 p-6 sm:max-w-md lg:max-w-xl'>
         <DialogHeader>
           <DialogTitle className='text-xl font-medium'>{title}</DialogTitle>
           <DialogDescription aria-describedby={subTitle}>{subTitle}</DialogDescription>

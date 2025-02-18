@@ -1,18 +1,22 @@
 import { useParams } from '@tanstack/react-router';
 
+import { ErrorText } from '@/components/ui/typography';
 import { ColumnCard, useQueryGetProjectById } from '@/entities';
 import { AddColumn } from '@/features';
 
 export const ProjectPage = () => {
   const { projectId } = useParams({ strict: false });
 
-  const { data, isPending } = useQueryGetProjectById(projectId);
+  const { data, isPending, error } = useQueryGetProjectById(projectId);
 
   if (isPending) {
     return 'loading';
   }
 
-  if (!data) return;
+  if (error || !data) {
+    const errorMessage = error ? error.message : 'Данные проекта не найдены.';
+    return <ErrorText>{errorMessage}</ErrorText>;
+  }
 
   const { id, columns } = data.projectColumns[0];
 

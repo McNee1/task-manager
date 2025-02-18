@@ -1,11 +1,11 @@
-import { useState } from 'react';
+import { useCallback, useState } from 'react';
 
 export const usePopover = () => {
   const [isOpen, setIsOpen] = useState(false);
 
-  const handleTogglePopover = () => {
+  const handleTogglePopover = useCallback(() => {
     setIsOpen(!isOpen);
-  };
+  }, [isOpen]);
 
   return { isOpen, handleTogglePopover, setIsOpen };
 };

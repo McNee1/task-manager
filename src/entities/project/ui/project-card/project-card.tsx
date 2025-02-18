@@ -1,6 +1,6 @@
 import { Link } from '@tanstack/react-router';
 import { Pencil, Settings2, Trash2 } from 'lucide-react';
-import { memo } from 'react';
+import { memo, useMemo } from 'react';
 
 import { Button } from '@/components/ui/button';
 import { AppPopover, cn, type ModalType, type PopoverItems, usePopover } from '@/shared';
@@ -20,44 +20,74 @@ const DEFAULT_COLOR = '#1A1A3D';
 export const ProjectCard = memo(({ project, onProjectAction }: ProjectCardProps) => {
   const { handleTogglePopover, isOpen } = usePopover();
 
-  const completionPercentage = getCompletionPercentage(
-    project.allTaskCount,
-    project.taskCount
+  const completionPercentage = useMemo(() => {
+    return getCompletionPercentage(project.allTaskCount, project.taskCount);
+  }, [project.allTaskCount, project.taskCount]);
+
+  const popoverItems = useMemo<PopoverItems[]>(
+    () => [
+      {
+        label: 'Редактировать',
+        icon: Pencil,
+        onClick: () => {
+          onProjectAction?.('edit', project);
+        },
+        type: 'success-ghost',
+      },
+      {
+        label: 'Удалить',
+        icon: Trash2,
+        onClick: () => {
+          onProjectAction?.('delete', project);
+        },
+        type: 'danger-ghost',
+      },
+    ],
+    [onProjectAction, project]
   );
 
-  const popoverItems: PopoverItems[] = [
-    {
-      label: 'Редактировать',
-      icon: Pencil,
-      onClick: () => {
-        onProjectAction?.('edit', project);
-      },
-      type: 'success-ghost',
-    },
-    {
-      label: 'Удалить',
-      icon: Trash2,
-      onClick: () => {
-        onProjectAction?.('delete', project);
-      },
-      type: 'danger-ghost',
-    },
-  ];
+  const renderPopoverList = useMemo(
+    () =>
+      popoverItems.map((item) => (
+        <Button
+          onClick={(e) => {
+            e.preventDefault();
+            item.onClick();
+          }}
+          className='h-8 w-full justify-start gap-4 font-normal focus-visible:ring-0 focus-visible:ring-offset-0'
+          variant={item.type}
+          key={item.label}
+        >
+          {item.icon && <item.icon className='size-4' />}
+          {item.label}
+        </Button>
+      )),
+    [popoverItems]
+  );
 
-  const renderPopoverList = popoverItems.map((item) => (
-    <Button
-      onClick={(e) => {
-        e.preventDefault();
-        item.onClick();
-      }}
-      className='h-8 w-full justify-start gap-4 font-normal focus-visible:ring-0 focus-visible:ring-offset-0'
-      variant={item.type}
-      key={item.label}
-    >
-      {item.icon && <item.icon className='size-4' />}
-      {item.label}
-    </Button>
-  ));
+  const progressBarStyle = useMemo(
+    () => ({
+      borderColor: project.color?.hex ?? DEFAULT_COLOR,
+      width: completionPercentage,
+    }),
+    [project.color?.hex, completionPercentage]
+  );
+
+  const popoverTrigger = useMemo(
+    () => (
+      <Button
+        onClick={(e) => {
+          e.preventDefault();
+          handleTogglePopover();
+        }}
+        className='me-3 size-fit p-2 opacity-0 transition-all focus:outline-none'
+        variant='ghost'
+      >
+        <Settings2 size={20} />
+      </Button>
+    ),
+    [handleTogglePopover]
+  );
 
   return (
     <Link
@@ -77,19 +107,8 @@ export const ProjectCard = memo(({ project, onProjectAction }: ProjectCardProps)
           />
 
           <AppPopover
-            trigger={
-              <Button
-                onClick={(e) => {
-                  e.preventDefault();
-                  handleTogglePopover();
-                }}
-                className='me-3 size-fit p-2 opacity-0 transition-all focus:outline-none'
-                variant='ghost'
-              >
-                <Settings2 size={20} />
-              </Button>
-            }
             onOpenChange={handleTogglePopover}
+            trigger={popoverTrigger}
             className='w-48 p-2'
             isOpen={isOpen}
           >
@@ -98,11 +117,8 @@ export const ProjectCard = memo(({ project, onProjectAction }: ProjectCardProps)
         </div>
 
         <div
-          style={{
-            borderColor: project.color?.hex ?? DEFAULT_COLOR,
-            width: completionPercentage,
-          }}
           className='absolute bottom-0 left-0 border-b'
+          style={progressBarStyle}
         />
       </div>
     </Link>

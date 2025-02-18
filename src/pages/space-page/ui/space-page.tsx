@@ -1,4 +1,5 @@
 import { useParams } from '@tanstack/react-router';
+import { useCallback } from 'react';
 
 import { Group } from '@/entities';
 import { AddGroup, SortableProjectList } from '@/features';
@@ -13,12 +14,23 @@ export const SpacePage = () => {
 
   const { fnGroup, stateGroup } = useGroupModel();
 
-  const renderAddGroup = (onSuccess: (newGroupId: string) => void) => (
-    <AddGroup
-      onSuccess={onSuccess}
-      spaceId={spaceId}
-    />
+  const renderAddGroup = useCallback(
+    (onSuccess: (newGroupId: string) => void) => (
+      <AddGroup
+        onSuccess={onSuccess}
+        spaceId={spaceId}
+      />
+    ),
+    [spaceId]
   );
+
+  const handleGroupSuccess = useCallback(() => {
+    fnGroup.setGroupModal({ isOpen: false });
+  }, [fnGroup]);
+
+  const handleProjectSuccess = useCallback(() => {
+    fnProject.setProjectModal({ isOpen: false });
+  }, [fnProject]);
 
   return (
     <>
@@ -37,15 +49,20 @@ export const SpacePage = () => {
       </Group>
       <>
         <ActionModalGroup
+          groupName={stateGroup.selectedGroup?.groupName}
           onToggleGroupModal={fnGroup.toggleGroupModal}
-          group={stateGroup.selectedGroup}
-          modal={stateGroup.groupModal}
+          groupId={stateGroup.selectedGroup?.id}
+          isOpen={stateGroup.groupModal.isOpen}
+          type={stateGroup.groupModal.type}
+          onSuccess={handleGroupSuccess}
           spaceId={spaceId}
         />
         <ActionModalProject
           onToggleProjectModal={fnProject.toggleProjectModal}
+          isOpen={stateProject.projectModal.isOpen}
           project={stateProject.selectedProject}
-          modal={stateProject.projectModal}
+          type={stateProject.projectModal.type}
+          onSuccess={handleProjectSuccess}
         />
       </>
     </>

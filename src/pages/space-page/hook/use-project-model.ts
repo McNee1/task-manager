@@ -1,17 +1,20 @@
-import { useState } from 'react';
+import { useCallback, useState } from 'react';
 
 import { ProjectSchema } from '@/entities';
 import { ModalType, useActionModal } from '@/shared';
 
 export const useProjectModel = () => {
-  const { handleToggleModal, modal } = useActionModal();
+  const { handleToggleModal, modal, setModal } = useActionModal();
 
   const [selectedProject, setSelectedProject] = useState<ProjectSchema>();
 
-  const handleProjectAction = (action: ModalType['type'], project: ProjectSchema) => {
-    setSelectedProject(project);
-    handleToggleModal(action);
-  };
+  const handleProjectAction = useCallback(
+    (action: ModalType['type'], project: ProjectSchema) => {
+      setSelectedProject(project);
+      handleToggleModal(action);
+    },
+    [handleToggleModal]
+  );
 
   return {
     stateProject: {
@@ -20,6 +23,7 @@ export const useProjectModel = () => {
     },
     fnProject: {
       handleProjectAction,
+      setProjectModal: setModal,
       toggleProjectModal: handleToggleModal,
     },
   };

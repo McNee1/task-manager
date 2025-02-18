@@ -1,0 +1,32 @@
+import { useState } from 'react';
+
+import { ColorField, useInputForm } from '@/shared';
+
+export const useModalWithColorPicker = (
+  initName?: string,
+  initColor: ColorField = null
+) => {
+  const {
+    name: projectName,
+    handleChange: handleNameChange,
+    setName: setProjectName,
+  } = useInputForm(initName);
+
+  const [projectColor, setProjectColor] = useState<ColorField>(initColor);
+
+  const handleChangeColor = (color: ColorField) => {
+    setProjectColor(color);
+  };
+
+  return {
+    state: {
+      projectName,
+      projectColor,
+    },
+    fn: {
+      handleNameChange,
+      handleChangeColor,
+      setProjectName,
+    },
+  };
+};

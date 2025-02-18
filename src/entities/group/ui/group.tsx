@@ -1,4 +1,4 @@
-import { ReactNode, useMemo } from 'react';
+import { ReactNode, useCallback, useMemo } from 'react';
 
 import { Tabs } from '@/components/ui/tabs';
 import { ErrorText } from '@/components/ui/typography';
@@ -30,9 +30,19 @@ export const Group = (props: GroupProps) => {
     spaceId
   );
 
-  const handleAddGroupSuccess = (newGroupId: string) => {
-    handleAddTab(newGroupId);
-  };
+  const handleAddGroupSuccess = useCallback(
+    (newGroupId: string) => {
+      handleAddTab(newGroupId);
+    },
+    [handleAddTab]
+  );
+
+  const memoizedAddGroup = useMemo(
+    () => addGroup(handleAddGroupSuccess),
+    [addGroup, handleAddGroupSuccess]
+  );
+
+  const memoizedRest = useMemo(() => rest, [rest]);
 
   if (!groupInSpace.length && !isLoading) {
     return (
@@ -49,13 +59,13 @@ export const Group = (props: GroupProps) => {
       value={activeTab}
     >
       <TabsGroupList
-        addGroup={addGroup(handleAddGroupSuccess)}
+        addGroup={memoizedAddGroup}
         isLoading={isLoading}
         groups={groupInSpace}
       />
 
       <TabsContentList
-        {...rest}
+        {...memoizedRest}
         activeTab={activeTab}
         isLoading={isLoading}
         groups={groupInSpace}

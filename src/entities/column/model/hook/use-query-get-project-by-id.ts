@@ -8,6 +8,7 @@ export const useQueryGetProjectById = (projectId: string | undefined) =>
     enabled: !!projectId,
     // staleTime: 5 * MINUTE,
     // gcTime: 5 * MINUTE,
+    retry: 2,
     queryFn: ({ queryKey }) => {
       if (queryKey[1]) return getProjectById(queryKey[1]);
     },

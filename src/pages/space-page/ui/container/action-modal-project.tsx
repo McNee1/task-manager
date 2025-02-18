@@ -1,37 +1,58 @@
 import { ProjectSchema } from '@/entities';
-import { DeleteProjectModal, EditProject } from '@/features';
+import { DeleteWithModal, ModalWithColorPicker } from '@/features';
 import { ModalType } from '@/shared';
 
+import { useDeleteProject, useEditProject } from '../../hook';
+
 interface ActionModalProjectProps {
-  modal: ModalType;
+  isOpen: ModalType['isOpen'];
+  onSuccess: VoidFunction;
   onToggleProjectModal: VoidFunction;
   project: ProjectSchema | undefined;
+  type: ModalType['type'];
 }
 
 export const ActionModalProject = ({
-  modal,
   project,
+  isOpen,
+  type,
   onToggleProjectModal,
+  onSuccess,
 }: ActionModalProjectProps) => {
-  if (!modal.isOpen || !project) return null;
+  const { handleDeleteProject, isPending: isDeletePending } = useDeleteProject(
+    project?.id,
+    onSuccess
+  );
 
-  switch (modal.type) {
+  const { handleEditProject, isPending: isEditPending } = useEditProject(
+    project?.id,
+    onSuccess
+  );
+
+  if (!isOpen) return null;
+
+  switch (type) {
     case 'edit':
       return (
-        <EditProject
+        <ModalWithColorPicker
           onOpenChange={onToggleProjectModal}
-          isOpen={modal.isOpen}
-          project={project}
+          onSave={handleEditProject}
+          initColor={project?.color}
+          isPending={isEditPending}
+          initName={project?.name}
+          title='Изменить проект'
+          actionName='Сохранить'
+          isOpen={isOpen}
         />
       );
 
     case 'delete':
       return (
-        <DeleteProjectModal
+        <DeleteWithModal
           onOpenChange={onToggleProjectModal}
-          projectName={project.name}
-          projectId={project.id}
-          isOpen={modal.isOpen}
+          onDelete={handleDeleteProject}
+          isPending={isDeletePending}
+          isOpen={isOpen}
         />
       );
 

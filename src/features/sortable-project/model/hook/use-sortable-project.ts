@@ -1,7 +1,7 @@
 import type { Active, DragOverEvent, DragStartEvent } from '@dnd-kit/core';
 
 import { arrayMove } from '@dnd-kit/sortable';
-import { useMemo, useState } from 'react';
+import { useCallback, useMemo, useState } from 'react';
 
 import { ProjectSchema } from '@/entities';
 
@@ -13,35 +13,38 @@ export const useSortableProject = (projects: ProjectSchema[]) => {
     [active, projects]
   );
 
-  const handleDragOver = (
-    event: DragOverEvent,
+  const handleDragOver = useCallback(
+    (
+      event: DragOverEvent,
 
-    onChangeOrder: (
-      projects: ProjectSchema[],
-      activeIndex: number,
-      overIndex: number
-    ) => void
-  ) => {
-    const { active, over } = event;
+      onChangeOrder: (
+        projects: ProjectSchema[],
+        activeIndex: number,
+        overIndex: number
+      ) => void
+    ) => {
+      const { active, over } = event;
 
-    if (over && active.id !== over.id) {
-      const activeIndex = projects.findIndex(({ id }) => id === active.id);
-      const overIndex = projects.findIndex(({ id }) => id === over.id);
+      if (over && active.id !== over.id) {
+        const activeIndex = projects.findIndex(({ id }) => id === active.id);
+        const overIndex = projects.findIndex(({ id }) => id === over.id);
 
-      const updatedProjects = arrayMove(projects, activeIndex, overIndex);
+        const updatedProjects = arrayMove(projects, activeIndex, overIndex);
 
-      onChangeOrder(updatedProjects, activeIndex, overIndex);
-    }
-    setActive(null);
-  };
+        onChangeOrder(updatedProjects, activeIndex, overIndex);
+      }
+      setActive(null);
+    },
+    [projects]
+  );
 
-  const handleDragStart = ({ active }: DragStartEvent) => {
+  const handleDragStart = useCallback(({ active }: DragStartEvent) => {
     setActive(active);
-  };
+  }, []);
 
-  const handleDragCancel = () => {
+  const handleDragCancel = useCallback(() => {
     setActive(null);
-  };
+  }, []);
   return {
     fn: {
       handleDragStart,

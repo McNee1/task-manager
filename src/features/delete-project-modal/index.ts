@@ -1,1 +1,0 @@
-export { DeleteProjectModal } from './ui';

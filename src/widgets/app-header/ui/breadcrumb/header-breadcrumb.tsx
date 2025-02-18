@@ -2,10 +2,10 @@ import { Pencil, Trash2 } from 'lucide-react';
 import { Fragment, ReactNode } from 'react';
 
 import { Skeleton } from '@/components/ui/skeleton';
-import { getRouteIcon, getRouteName, PopoverItems } from '@/shared';
+import { getRouteIcon, getRouteName, ModalType, PopoverItems } from '@/shared';
 
 import { renderBreadcrumbItem } from '../../lib';
-import { ModalType, useHeaderLocation } from '../../model';
+import { useHeaderLocation } from '../../model';
 import { MenuPopover } from '../menu-popover';
 
 interface BreadcrumbProps {

@@ -1,1 +1,0 @@
-export { DeleteGroupModal } from './ui';

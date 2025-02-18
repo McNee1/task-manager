@@ -1,53 +1,79 @@
 import { GroupSchema } from '@/entities';
-import { AddProjectModal, DeleteGroupModal, EditGroupName } from '@/features';
+import { DeleteWithModal, EditWithModal, ModalWithColorPicker } from '@/features';
 import { ModalType, SpaceId } from '@/shared';
 
+import { useAddProject, useDeleteGroup, useEditGroupName } from '../../hook';
+
 interface ActionModalGroupProps {
-  group: GroupSchema | undefined;
-  modal: ModalType;
+  groupId: GroupSchema['id'] | undefined;
+  groupName: GroupSchema['groupName'] | undefined;
+  isOpen: ModalType['isOpen'];
+  onSuccess: VoidFunction;
   onToggleGroupModal: VoidFunction;
   spaceId: SpaceId;
+  type: ModalType['type'];
 }
 
 export const ActionModalGroup = ({
-  group,
-  modal,
+  groupName,
+  groupId,
+  isOpen,
+  type,
   onToggleGroupModal,
   spaceId,
+  onSuccess,
 }: ActionModalGroupProps) => {
-  if (!modal.isOpen || !group) return null;
+  const { handleEditName, isPending: isEditPending } = useEditGroupName(
+    groupId,
+    spaceId,
+    onSuccess
+  );
+  const { handleDeleteGroup, isPending: isDeletePending } = useDeleteGroup(
+    spaceId,
+    groupId,
+    onSuccess
+  );
 
-  const { groupName, id } = group;
+  const { handleAddProject, isPending: isAddPending } = useAddProject(
+    spaceId,
+    groupId,
+    onSuccess
+  );
 
-  switch (modal.type) {
+  if (!isOpen) return null;
+
+  switch (type) {
     case 'add':
       return (
-        <AddProjectModal
+        <ModalWithColorPicker
           onOpenChange={onToggleGroupModal}
-          isOpen={modal.isOpen}
-          spaceId={spaceId}
-          groupId={id}
+          actionName='Добавить проект'
+          onSave={handleAddProject}
+          isPending={isAddPending}
+          title='Новый проект'
+          isOpen={isOpen}
         />
       );
     case 'edit':
       return (
-        <EditGroupName
+        <EditWithModal
+          subTitle='Введите новое названия группы.'
           onOpenChange={onToggleGroupModal}
-          isOpen={modal.isOpen}
-          value={groupName}
-          spaceId={spaceId}
-          groupId={id}
+          isPending={isEditPending}
+          onEdit={handleEditName}
+          initValue={groupName}
+          isOpen={isOpen}
         />
       );
 
     case 'delete':
       return (
-        <DeleteGroupModal
+        <DeleteWithModal
+          subTitle={`Вы уверены что хотите удалить  "${groupName ?? ''}"`}
           onOpenChange={onToggleGroupModal}
-          groupName={groupName}
-          isOpen={modal.isOpen}
-          spaceId={spaceId}
-          groupId={id}
+          onDelete={handleDeleteGroup}
+          isPending={isDeletePending}
+          isOpen={isOpen}
         />
       );
 

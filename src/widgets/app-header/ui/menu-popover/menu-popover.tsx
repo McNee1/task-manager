@@ -1,4 +1,5 @@
 import { SquareChartGantt, Triangle } from 'lucide-react';
+import { useMemo } from 'react';
 
 import { Button } from '@/components/ui/button';
 import { AppPopover, PopoverItems, usePopover } from '@/shared';
@@ -11,21 +12,24 @@ interface MenuPopoverProps {
 export const MenuPopover = ({ triggerName, popoverActions }: MenuPopoverProps) => {
   const { isOpen, handleTogglePopover } = usePopover();
 
-  const trigger = (
-    <div
-      className='flex cursor-pointer items-center gap-x-3 hover:text-light-sky [&>svg#space]:hover:fill-none [&>svg]:hover:fill-light-sky'
-      onClick={handleTogglePopover}
-    >
-      <SquareChartGantt
-        id='space'
-        size={19}
-      />
-      <span>{triggerName}</span>
-      <Triangle
-        className='rotate-180 fill-slate-500'
-        size='10px'
-      />
-    </div>
+  const trigger = useMemo(
+    () => (
+      <div
+        className='flex cursor-pointer items-center gap-x-3 hover:text-light-sky [&>svg#space]:hover:fill-none [&>svg]:hover:fill-light-sky'
+        onClick={handleTogglePopover}
+      >
+        <SquareChartGantt
+          id='space'
+          size={19}
+        />
+        <span>{triggerName}</span>
+        <Triangle
+          className='rotate-180 fill-slate-500'
+          size='10px'
+        />
+      </div>
+    ),
+    [handleTogglePopover, triggerName]
   );
 
   return (

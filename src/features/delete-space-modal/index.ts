@@ -1,1 +1,0 @@
-export { DeleteSpaceModal } from './ui';

@@ -25,7 +25,7 @@ export const postSpace = (spaceName: string) => {
 
 export const deleteSpace = (id: SpaceSchema['id']) =>
   withErrorRequest(() => {
-    return apiInstance.delete(`workspaces/${id}`).json();
+    return apiInstance.delete(`workspaces/${id}`).json<SpaceSchema>();
   });
 
 export const editSpace = (opt: Pick<SpaceSchema, 'id' | 'spaceName'>) =>

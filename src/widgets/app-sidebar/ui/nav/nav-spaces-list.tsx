@@ -1,10 +1,11 @@
 import { Link } from '@tanstack/react-router';
 import { SquareChartGantt } from 'lucide-react';
+import { memo } from 'react';
 
 import { SidebarMenuButton, SidebarMenuItem } from '@/components/ui/sidebar';
 import { SpaceSchema } from '@/entities';
 
-export const NavSpacesList = ({ spaces }: { spaces: SpaceSchema[] }) => {
+export const NavSpacesList = memo(({ spaces }: { spaces: SpaceSchema[] }) => {
   return (
     <>
       {spaces.map((item) => (
@@ -32,4 +33,6 @@ export const NavSpacesList = ({ spaces }: { spaces: SpaceSchema[] }) => {
       ))}
     </>
   );
-};
+});
+
+NavSpacesList.displayName = 'NavSpacesList';

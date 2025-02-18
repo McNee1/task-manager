@@ -1,43 +1,60 @@
 import { Plus } from 'lucide-react';
+import { useCallback } from 'react';
 
 import { Button } from '@/components/ui/button';
 import { Sidebar, SidebarContent, SidebarGroup } from '@/components/ui/sidebar';
 import { useQueryGetSpaces } from '@/entities';
-import { AddSpaceModal } from '@/features';
-import { useModal } from '@/shared';
+import { AddWithModal } from '@/features';
+import { useActionModal } from '@/shared';
 
-import { menuItems } from '../../model';
+import { menuItems, useAddSpace } from '../../model';
 import { NavHeader, NavMain, NavSpaces } from '../nav';
 
-export function AppSidebar() {
+export const AppSidebar = () => {
   const { data: spaces, isLoading, error } = useQueryGetSpaces();
 
-  const { handelToggleModal, isOpen } = useModal();
+  const { handleToggleModal, modal, setModal } = useActionModal();
+
+  const onSuccess = useCallback(() => {
+    setModal({ isOpen: false });
+  }, [setModal]);
+
+  const { handleAddSpace, isPending } = useAddSpace(onSuccess);
 
   return (
-    <Sidebar>
-      <SidebarGroup>
-        <NavHeader item={menuItems.header} />
-        <SidebarContent>
-          <NavMain items={menuItems.navMain} />
-        </SidebarContent>
-        <NavSpaces
-          loading={isLoading}
-          spaces={spaces}
-          error={error}
-        >
-          <Button
-            className='mb-3 justify-start gap-3'
-            onClick={handelToggleModal}
+    <>
+      <Sidebar>
+        <SidebarGroup>
+          <NavHeader item={menuItems.header} />
+          <SidebarContent>
+            <NavMain items={menuItems.navMain} />
+          </SidebarContent>
+          <NavSpaces
+            loading={isLoading}
+            spaces={spaces}
+            error={error}
           >
-            <Plus /> Добавить пространство
-          </Button>
-          <AddSpaceModal
-            onOpenChange={handelToggleModal}
-            isOpen={isOpen}
-          />
-        </NavSpaces>
-      </SidebarGroup>
-    </Sidebar>
+            <Button
+              onClick={() => {
+                handleToggleModal();
+              }}
+              className='mb-3 justify-start gap-3'
+            >
+              <Plus /> Добавить пространство
+            </Button>
+          </NavSpaces>
+        </SidebarGroup>
+      </Sidebar>
+
+      <AddWithModal
+        subTitle='Введите названия пространство которое хотите добавить.'
+        inputLabel='Название пространства'
+        onOpenChange={handleToggleModal}
+        title='Добавите пространство'
+        onSave={handleAddSpace}
+        isPending={isPending}
+        isOpen={modal.isOpen}
+      />
+    </>
   );
-}
+};

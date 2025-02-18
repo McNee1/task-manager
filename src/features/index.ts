@@ -1,11 +1,7 @@
 export { AddGroup } from './add-group';
-export { DeleteGroupModal } from './delete-group-modal';
-export { EditGroupName } from './edit-group-name';
-export { AddSpaceModal } from './add-space-modal';
-export { AddProjectModal } from './add-project-modal';
-export { EditSpaceName } from './edit-space-name';
-export { DeleteSpaceModal } from './delete-space-modal';
-export { EditProject } from './edit-project';
-export { DeleteProjectModal } from './delete-project-modal';
 export { SortableProjectList } from './sortable-project';
 export { AddColumn } from './add-column';
+export { AddWithModal } from './add-with-modal';
+export { DeleteWithModal } from './delete-with-modal';
+export { EditWithModal } from './edit-with-modal';
+export { ModalWithColorPicker } from './modal-with-color-picker';

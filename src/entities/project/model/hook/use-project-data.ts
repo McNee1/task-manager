@@ -4,7 +4,7 @@ import { SpaceId } from '@/shared';
 
 import { useQueryGetProjects } from './use-query-get-projects';
 
-export const useProjectData = (activeTab: string, spaceId: SpaceId) => {
+export const useProjectData = (activeTab: string | undefined, spaceId: SpaceId) => {
   const { data = [], isLoading, error } = useQueryGetProjects(spaceId);
 
   const spaceProjects = useMemo(() => {

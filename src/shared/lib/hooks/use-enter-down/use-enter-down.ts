@@ -1,6 +1,6 @@
 import { useCallback, useEffect } from 'react';
 
-export const useEnterDown = (fn: () => void) => {
+export const useEnterDown = (fn: () => void, deep: boolean[]) => {
   const handleKeyDown = useCallback(
     (e: KeyboardEvent) => {
       if (e.key === 'Enter') {
@@ -9,11 +9,14 @@ export const useEnterDown = (fn: () => void) => {
     },
     [fn]
   );
+
   useEffect(() => {
+    if (!deep.every(Boolean)) return;
+
     window.addEventListener('keydown', handleKeyDown);
 
     return () => {
       window.removeEventListener('keydown', handleKeyDown);
     };
-  }, [handleKeyDown]);
+  }, [handleKeyDown, deep]);
 };

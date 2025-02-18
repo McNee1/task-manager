@@ -1,3 +1,5 @@
+import { memo } from 'react';
+
 import { Skeleton } from '@/components/ui/skeleton';
 import { TabsContent } from '@/components/ui/tabs';
 import { GroupSchema } from '@/entities';
@@ -10,7 +12,7 @@ interface TabsContentListProps extends Omit<TabGroupCardProps, 'group'> {
   isLoading: boolean;
 }
 
-export const TabsContentList = (props: TabsContentListProps) => {
+export const TabsContentList = memo((props: TabsContentListProps) => {
   const { groups, isLoading, ...rest } = props;
 
   if (isLoading) {
@@ -33,4 +35,5 @@ export const TabsContentList = (props: TabsContentListProps) => {
       ))}
     </>
   );
-};
+});
+TabsContentList.displayName = 'TabsContentList';

@@ -1,0 +1,1 @@
+export { DeleteWithModal } from './ui';

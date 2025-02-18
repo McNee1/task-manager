@@ -34,6 +34,6 @@ export const editProject = (params: {
 
 export const deleteProject = (id: ProjectSchema['id']) => {
   return withErrorRequest(() => {
-    return apiInstance.delete(`projects/${id}`).json();
+    return apiInstance.delete(`projects/${id}`).json<ProjectSchema>();
   });
 };
