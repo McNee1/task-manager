@@ -7,9 +7,9 @@ export const useModalWithColorPicker = (
   initColor: ColorField = null
 ) => {
   const {
-    name: projectName,
+    value: projectName,
     handleChange: handleNameChange,
-    setName: setProjectName,
+    setValue: setProjectName,
   } = useInputForm(initName);
 
   const [projectColor, setProjectColor] = useState<ColorField>(initColor);

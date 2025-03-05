@@ -1,15 +1,15 @@
 import { ChangeEvent, useCallback, useState } from 'react';
 
 export const useInputForm = (initValue = '') => {
-  const [name, setName] = useState(initValue);
+  const [value, setValue] = useState(initValue);
 
   const handleChange = useCallback((e: ChangeEvent<HTMLInputElement>) => {
-    setName(e.target.value);
+    setValue(e.target.value);
   }, []);
 
   return {
-    name,
+    value,
     handleChange,
-    setName,
+    setValue,
   };
 };

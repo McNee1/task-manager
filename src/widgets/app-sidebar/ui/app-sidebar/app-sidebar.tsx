@@ -4,7 +4,7 @@ import { useCallback } from 'react';
 import { Button } from '@/components/ui/button';
 import { Sidebar, SidebarContent, SidebarGroup } from '@/components/ui/sidebar';
 import { useQueryGetSpaces } from '@/entities';
-import { AddWithModal } from '@/features';
+import { InputWithModal } from '@/features';
 import { useActionModal } from '@/shared';
 
 import { menuItems, useAddSpace } from '../../model';
@@ -46,11 +46,11 @@ export const AppSidebar = () => {
         </SidebarGroup>
       </Sidebar>
 
-      <AddWithModal
+      <InputWithModal
         subTitle='Введите названия пространство которое хотите добавить.'
         inputLabel='Название пространства'
         onOpenChange={handleToggleModal}
-        title='Добавите пространство'
+        title='Добавьте пространство'
         onSave={handleAddSpace}
         isPending={isPending}
         isOpen={modal.isOpen}

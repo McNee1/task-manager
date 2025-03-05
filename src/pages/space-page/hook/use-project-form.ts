@@ -4,9 +4,9 @@ import { ColorField, useInputForm } from '@/shared';
 
 export const useProjectForm = () => {
   const {
-    name: projectName,
+    value: projectName,
     handleChange: handleNameChange,
-    setName: setProjectName,
+    setValue: setProjectName,
   } = useInputForm();
 
   const [projectColor, setProjectColor] = useState<ColorField>(null);

@@ -6,7 +6,7 @@ import { SidebarTrigger } from '@/shared';
 import { updateLsGroups } from '../lib';
 import { useHeader } from '../model';
 import { HeaderBreadcrumb } from './breadcrumb';
-import { ModalAction } from './container';
+import { ModalAction } from './modals';
 
 export const AppHeader = () => {
   const { spaceId, projectId } = useParams({ strict: false });

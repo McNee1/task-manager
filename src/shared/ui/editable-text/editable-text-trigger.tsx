@@ -6,5 +6,12 @@ interface EditableTextTriggerProps {
 }
 
 export function EditableTextTrigger({ onClick, children }: EditableTextTriggerProps) {
-  return <div onClick={onClick}>{children}</div>;
+  return (
+    <div
+      className='w-full cursor-pointer'
+      onClick={onClick}
+    >
+      {children}
+    </div>
+  );
 }

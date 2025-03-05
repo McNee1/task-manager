@@ -2,7 +2,13 @@ import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { toast } from 'sonner';
 
 import { ProjectSchema, useProjectData } from '@/entities';
-import { ColorField, DEFAULT_ORDER, postColumns, postProject, SpaceId } from '@/shared';
+import {
+  ColorField,
+  DEFAULT_ORDER,
+  postInitColumns,
+  postProject,
+  SpaceId,
+} from '@/shared';
 
 export const useAddProject = (
   spaceId: SpaceId,
@@ -52,7 +58,7 @@ export const useAddProject = (
 
       const projectId = data.id;
 
-      await postColumns({
+      await postInitColumns({
         projectId,
         columns: [
           { id: 1, name: 'Ожидают', order: DEFAULT_ORDER },

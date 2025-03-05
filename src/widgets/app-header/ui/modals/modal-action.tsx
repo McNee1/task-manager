@@ -1,4 +1,4 @@
-import { DeleteWithModal, EditWithModal } from '@/features';
+import { DeleteWithModal, InputWithModal } from '@/features';
 import { ModalType, SpaceId } from '@/shared';
 
 import { useDeleteSpace, useEditSpace } from '../../model';
@@ -32,13 +32,11 @@ export const ModalAction = ({
 
   if (actionType.type === 'edit') {
     return (
-      <EditWithModal
-        subTitle='Введите новое названия пространства'
+      <InputWithModal
         onOpenChange={onToggleModal}
-        inputLabel='Новое название'
         isOpen={actionType.isOpen}
         isPending={isEditPending}
-        onEdit={handleEditSpace}
+        onSave={handleEditSpace}
         initValue={spaceName}
       />
     );

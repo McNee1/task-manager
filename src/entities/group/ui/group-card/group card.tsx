@@ -46,18 +46,6 @@ export const CardGroup = ({
     },
   ];
 
-  const renderPopoverList = popoverItems.map((item) => (
-    <Button
-      className='h-8 w-full justify-start gap-4 font-normal focus-visible:ring-0 focus-visible:ring-offset-0'
-      onClick={item.onClick}
-      variant={item.type}
-      key={item.label}
-    >
-      {item.icon && <item.icon className='size-4' />}
-      {item.label}
-    </Button>
-  ));
-
   const triggerPopover = (
     <Button
       className='mt-0.5 size-fit p-2 opacity-0 transition-opacity'
@@ -100,10 +88,9 @@ export const CardGroup = ({
               onOpenChange={handleTogglePopover}
               trigger={triggerPopover}
               className='w-48 p-2'
+              items={popoverItems}
               isOpen={isOpen}
-            >
-              {renderPopoverList}
-            </AppPopover>
+            />
           </CardTitle>
         </CardHeader>
         <CardContent>{children(activeTab)}</CardContent>

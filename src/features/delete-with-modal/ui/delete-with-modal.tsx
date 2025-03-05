@@ -14,7 +14,7 @@ interface DeleteModalProps {
 export const DeleteWithModal = ({
   isOpen,
   onOpenChange,
-  subTitle,
+  subTitle = 'Вы уверены что хотите удалить?',
   title = 'Удалить',
   onCancel,
   onDelete,

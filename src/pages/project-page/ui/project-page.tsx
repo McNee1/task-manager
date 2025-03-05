@@ -1,42 +1,61 @@
-import { useParams } from '@tanstack/react-router';
+import { verticalListSortingStrategy } from '@dnd-kit/sortable';
 
-import { ErrorText } from '@/components/ui/typography';
-import { ColumnCard, useQueryGetProjectById } from '@/entities';
-import { AddColumn } from '@/features';
+import { ColumnCard } from '@/entities';
+import { AddColumn, SortableList } from '@/features';
+
+import { useColumnHandlers, useColumnModal, useProjectData } from '../model';
+import { ActionModalColumn } from './modals';
 
 export const ProjectPage = () => {
-  const { projectId } = useParams({ strict: false });
+  const { columns, id, projectId } = useProjectData();
 
-  const { data, isPending, error } = useQueryGetProjectById(projectId);
+  const { columnFn, columnState } = useColumnModal();
 
-  if (isPending) {
-    return 'loading';
-  }
-
-  if (error || !data) {
-    const errorMessage = error ? error.message : 'Данные проекта не найдены.';
-    return <ErrorText>{errorMessage}</ErrorText>;
-  }
-
-  const { id, columns } = data.projectColumns[0];
+  const { handleEditColumn, handleUpdateOrderColumn } = useColumnHandlers(projectId);
 
   return (
     <div className='flex flex-col'>
       <div>other content</div>
       <div className='inline-flex gap-x-3'>
-        {columns.map((col) => (
-          <ColumnCard
-            className='shrink-0'
-            title={col.name}
-            key={col.id}
-          />
-        ))}
+        <SortableList
+          renderSortItem={(col) => (
+            <ColumnCard
+              onEditColName={(name, id) => {
+                handleEditColumn(id, { name });
+              }}
+              onAddNewTask={(b) => {
+                console.log(b);
+              }}
+              onSortTasks={(s) => {
+                console.log(s);
+              }}
+              onActionPopoverModal={columnFn.handleAction}
+              className='shrink-0'
+              column={col}
+              key={col.id}
+            />
+          )}
+          renderHandle={() => <div className='absolute h-5 w-full cursor-grab' />}
+          sortingStrategy={verticalListSortingStrategy}
+          onUpdateOrder={handleUpdateOrderColumn}
+          sortableItems={columns}
+        />
+
         <AddColumn
           projectId={projectId}
           columns={columns}
           columnId={id}
         />
       </div>
+
+      <ActionModalColumn
+        onToggleModal={columnFn.handleToggleModal}
+        column={columnState.selectedColumn}
+        modalType={columnState.modal.type}
+        onSuccess={columnFn.handleSuccess}
+        isOpen={columnState.modal.isOpen}
+        projectId={projectId}
+      />
     </div>
   );
 };

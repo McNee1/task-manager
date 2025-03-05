@@ -6,13 +6,16 @@ import {
   PopoverContent,
   PopoverTrigger,
 } from '@/components/ui/popover';
-import { cn } from '@/shared';
+import { cn, PopoverItems } from '@/shared';
+
+import { PopoverContentList } from './app-popover-content-list';
 
 export interface AppPopoverProps {
-  children: ReactNode;
+  children?: ReactNode;
   className?: string;
   contentSide?: 'top' | 'right' | 'bottom' | 'left';
   isOpen: boolean;
+  items?: PopoverItems[];
   onOpenChange: VoidFunction;
   portalContainer?: HTMLElement | null;
   trigger: ReactNode;
@@ -26,6 +29,7 @@ const AppPopover = ({
   className,
   contentSide,
   portalContainer,
+  items,
 }: AppPopoverProps) => {
   return (
     <Popover
@@ -34,11 +38,11 @@ const AppPopover = ({
     >
       <PopoverTrigger asChild>{trigger}</PopoverTrigger>
       <PopoverContent
-        className={cn('PopoverContent', className)}
+        className={cn('PopoverContent', 'w-min p-2', className)}
         portalContainer={portalContainer}
         contentSide={contentSide}
       >
-        {children}
+        {children ? children : items && <PopoverContentList items={items} />}
         <PopoverArrow className='PopoverArrow' />
       </PopoverContent>
     </Popover>

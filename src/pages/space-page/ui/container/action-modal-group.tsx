@@ -1,5 +1,5 @@
 import { GroupSchema } from '@/entities';
-import { DeleteWithModal, EditWithModal, ModalWithColorPicker } from '@/features';
+import { DeleteWithModal, InputWithModal, ModalWithColorPicker } from '@/features';
 import { ModalType, SpaceId } from '@/shared';
 
 import { useAddProject, useDeleteGroup, useEditGroupName } from '../../hook';
@@ -56,11 +56,10 @@ export const ActionModalGroup = ({
       );
     case 'edit':
       return (
-        <EditWithModal
-          subTitle='Введите новое названия группы.'
+        <InputWithModal
           onOpenChange={onToggleGroupModal}
           isPending={isEditPending}
-          onEdit={handleEditName}
+          onSave={handleEditName}
           initValue={groupName}
           isOpen={isOpen}
         />

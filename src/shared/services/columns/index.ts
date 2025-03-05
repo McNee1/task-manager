@@ -1,14 +1,21 @@
-import type { Column, ColumnSchema } from '@/entities';
+import type { Column, ColumnSchema, ProjectWithColumns } from '@/entities';
 
 import { withErrorRequest } from '../../lib';
 import { apiInstance } from '../instance';
 
-// export const getProjects = () =>
-//   withErrorRequest(() => {
-//     return apiInstance.get('columns').json<ProjectSchema[]>();
-//   });
+export const editColumn = (params: {
+  id: ColumnSchema['id'];
+  data: Omit<Partial<Column>, 'id'> & { id: Column['id'] };
+}) =>
+  withErrorRequest(() => {
+    return apiInstance
+      .patch(`projectColumns/${params.id}`, {
+        json: { columns: params.data },
+      })
+      .json<ProjectWithColumns>();
+  });
 
-export const postColumns = (columns: Omit<ColumnSchema, 'id'>) => {
+export const postInitColumns = (columns: Omit<ColumnSchema, 'id'>) => {
   return withErrorRequest(() => {
     return apiInstance.post('projectColumns', { json: columns }).json();
   });

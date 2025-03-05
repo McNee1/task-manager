@@ -10,6 +10,7 @@ export const useProjectModel = () => {
 
   const handleProjectAction = useCallback(
     (action: ModalType['type'], project: ProjectSchema) => {
+      console.log(action, project);
       setSelectedProject(project);
       handleToggleModal(action);
     },

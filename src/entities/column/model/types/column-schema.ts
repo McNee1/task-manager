@@ -1,8 +1,10 @@
 import { ProjectSchema } from '@/entities';
+import { ColorField } from '@/shared';
 
 export interface Column {
-  color?: string;
+  color?: ColorField;
   id: number;
+  limit?: number | null;
   name: string;
   order: number;
 }

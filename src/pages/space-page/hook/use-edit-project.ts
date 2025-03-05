@@ -18,7 +18,6 @@ export const useEditProject = (
       const previousSpaces = queryClient.getQueryData<ProjectSchema[]>(['projects']);
 
       queryClient.setQueryData<ProjectSchema[]>(['projects'], (oldProjects) => {
-        console.log(oldProjects, projectId);
         return oldProjects?.map((project) => {
           if (project.id !== projectId) return project;
 

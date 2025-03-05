@@ -17,7 +17,7 @@ import {
 import { useModalWithColorPicker } from '../hook';
 
 interface AddProjectModalProps {
-  actionName: string;
+  actionName?: string;
   initColor?: ColorField;
   initName?: string;
   isOpen: boolean;
@@ -35,7 +35,7 @@ export const ModalWithColorPicker = ({
   isPending,
   initColor,
   initName,
-  actionName,
+  actionName = 'Применить',
   title,
   label = 'Название проекта',
 }: AddProjectModalProps) => {

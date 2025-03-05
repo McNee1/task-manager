@@ -7,7 +7,7 @@ import { EditableTextTrigger } from './editable-text-trigger';
 interface EditableTextProps {
   children?: ReactNode;
   defaultValue?: string;
-  onValueChange: (value: string) => void;
+  onValueChange?: (value: string) => void;
 
   renderInput?: (props: RenderInputProps) => ReactNode;
 }
@@ -34,7 +34,7 @@ export const EditableText = ({
     (e: KeyboardEvent<HTMLInputElement>) => {
       if (e.key === 'Enter') {
         handleEditEnd();
-        onValueChange(value);
+        onValueChange?.(value);
       }
     },
     [handleEditEnd, onValueChange, value]

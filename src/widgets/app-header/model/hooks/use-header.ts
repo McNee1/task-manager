@@ -1,4 +1,6 @@
-import { useQueryGetProjectById, useQueryGetSpaces } from '@/entities';
+import { useQuery } from '@tanstack/react-query';
+
+import { projectQueryOptions, useQueryGetSpaces } from '@/entities';
 import { SpaceId, useActionModal } from '@/shared';
 
 import { getById } from '../../lib';
@@ -6,8 +8,9 @@ import { getById } from '../../lib';
 export const useHeader = (spaceId: SpaceId, projectId: string | undefined) => {
   const { data: spaces = [], isLoading: isSpacesLoading } = useQueryGetSpaces();
 
-  const { data: project, isLoading: isProjectLoading } =
-    useQueryGetProjectById(projectId);
+  const { data: project, isLoading: isProjectLoading } = useQuery(
+    projectQueryOptions(projectId)
+  );
 
   const { handleToggleModal, modal, setModal } = useActionModal();
 

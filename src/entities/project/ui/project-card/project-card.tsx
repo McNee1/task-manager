@@ -46,25 +46,6 @@ export const ProjectCard = memo(({ project, onProjectAction }: ProjectCardProps)
     [onProjectAction, project]
   );
 
-  const renderPopoverList = useMemo(
-    () =>
-      popoverItems.map((item) => (
-        <Button
-          onClick={(e) => {
-            e.preventDefault();
-            item.onClick();
-          }}
-          className='h-8 w-full justify-start gap-4 font-normal focus-visible:ring-0 focus-visible:ring-offset-0'
-          variant={item.type}
-          key={item.label}
-        >
-          {item.icon && <item.icon className='size-4' />}
-          {item.label}
-        </Button>
-      )),
-    [popoverItems]
-  );
-
   const progressBarStyle = useMemo(
     () => ({
       borderColor: project.color?.hex ?? DEFAULT_COLOR,
@@ -110,10 +91,9 @@ export const ProjectCard = memo(({ project, onProjectAction }: ProjectCardProps)
             onOpenChange={handleTogglePopover}
             trigger={popoverTrigger}
             className='w-48 p-2'
+            items={popoverItems}
             isOpen={isOpen}
-          >
-            {renderPopoverList}
-          </AppPopover>
+          />
         </div>
 
         <div
