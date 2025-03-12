@@ -1,1 +1,1 @@
-export type { ProjectSchema } from './project-schema';
+export type { ProjectRecord, ProjectSchema } from './project-schema';

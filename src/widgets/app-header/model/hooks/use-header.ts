@@ -1,11 +1,17 @@
 import { useQuery } from '@tanstack/react-query';
+import { useNavigate, useParams } from '@tanstack/react-router';
+import { useCallback } from 'react';
 
 import { projectQueryOptions, useQueryGetSpaces } from '@/entities';
-import { SpaceId, useActionModal } from '@/shared';
+import { useActionModal } from '@/shared';
 
-import { getById } from '../../lib';
+import { getById, updateLsGroups } from '../../lib';
 
-export const useHeader = (spaceId: SpaceId, projectId: string | undefined) => {
+export const useHeader = () => {
+  const { spaceId, projectId } = useParams({ strict: false });
+
+  const navigate = useNavigate({ from: '/space/$spaceId' });
+
   const { data: spaces = [], isLoading: isSpacesLoading } = useQueryGetSpaces();
 
   const { data: project, isLoading: isProjectLoading } = useQuery(
@@ -17,6 +23,16 @@ export const useHeader = (spaceId: SpaceId, projectId: string | undefined) => {
   const curProjectName = project?.name ?? null;
   const curSpaceName = getById(spaceId, spaces)?.spaceName ?? null;
 
+  const handleDeleteSuccess = useCallback(() => {
+    setModal({ isOpen: false });
+    updateLsGroups(spaceId);
+    void navigate({ to: '/home' });
+  }, [navigate, setModal, spaceId]);
+
+  const handleEditSuccess = useCallback(() => {
+    setModal({ isOpen: false });
+  }, [setModal]);
+
   return {
     state: {
       spaces,
@@ -24,10 +40,12 @@ export const useHeader = (spaceId: SpaceId, projectId: string | undefined) => {
       curProjectName,
       curSpaceName,
       modal,
+      spaceId,
     },
     fn: {
       handleToggleModal,
-      setModal,
+      handleDeleteSuccess,
+      handleEditSuccess,
     },
   };
 };

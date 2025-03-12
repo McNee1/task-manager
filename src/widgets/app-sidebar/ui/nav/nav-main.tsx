@@ -1,5 +1,5 @@
 import { Link } from '@tanstack/react-router';
-import React, { memo } from 'react';
+import { memo } from 'react';
 
 import {
   SidebarGroup,

@@ -1,6 +1,5 @@
 import { memo } from 'react';
 
-import { Skeleton } from '@/components/ui/skeleton';
 import { TabsContent } from '@/components/ui/tabs';
 import { GroupSchema } from '@/entities';
 
@@ -9,15 +8,10 @@ import { TabGroupCardProps } from '../group-card/group card';
 
 interface TabsContentListProps extends Omit<TabGroupCardProps, 'group'> {
   groups: GroupSchema[];
-  isLoading: boolean;
 }
 
 export const TabsContentList = memo((props: TabsContentListProps) => {
-  const { groups, isLoading, ...rest } = props;
-
-  if (isLoading) {
-    return <Skeleton className='h-80 w-full' />;
-  }
+  const { groups, ...rest } = props;
 
   return (
     <>

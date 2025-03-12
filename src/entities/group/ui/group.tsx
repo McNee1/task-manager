@@ -1,8 +1,7 @@
-import { ReactNode, useCallback, useMemo } from 'react';
+import { memo, ReactNode, useCallback, useMemo } from 'react';
 
 import { Tabs } from '@/components/ui/tabs';
-import { ErrorText } from '@/components/ui/typography';
-import { GroupSchema, useActiveTab, useQueryGetSpaces } from '@/entities';
+import { GroupSchema, useActiveTab } from '@/entities';
 import { ModalType, SpaceId } from '@/shared';
 
 import { TabsContentList } from './tabs-content-list';
@@ -11,17 +10,16 @@ import { TabsGroupList } from './tabs-group-list';
 export interface GroupProps {
   addGroup: (onSuccess: (newGroupId: string) => void) => ReactNode;
   children: (activeTab: string) => ReactNode;
+  data: GroupSchema[];
   onGroupAction: (type: ModalType['type'], group: GroupSchema) => void;
   spaceId: SpaceId;
 }
 
-export const Group = (props: GroupProps) => {
-  const { spaceId, addGroup, ...rest } = props;
-
-  const { data, isLoading } = useQueryGetSpaces();
+export const Group = memo((props: GroupProps) => {
+  const { spaceId, data, onGroupAction, addGroup, ...rest } = props;
 
   const groupInSpace = useMemo(
-    () => data?.find((item) => item.id === spaceId)?.groups ?? [],
+    () => data.filter((item) => item.workspaceId === spaceId),
     [data, spaceId]
   );
 
@@ -37,20 +35,10 @@ export const Group = (props: GroupProps) => {
     [handleAddTab]
   );
 
-  const memoizedAddGroup = useMemo(
+  const addGroupComponent = useMemo(
     () => addGroup(handleAddGroupSuccess),
     [addGroup, handleAddGroupSuccess]
   );
-
-  const memoizedRest = useMemo(() => rest, [rest]);
-
-  if (!groupInSpace.length && !isLoading) {
-    return (
-      <ErrorText className='text-center text-xl lg:text-2xl'>
-        Пространство не найдено
-      </ErrorText>
-    );
-  }
 
   return (
     <Tabs
@@ -58,18 +46,18 @@ export const Group = (props: GroupProps) => {
       onValueChange={handleChangeTab}
       value={activeTab}
     >
-      <TabsGroupList
-        addGroup={memoizedAddGroup}
-        isLoading={isLoading}
-        groups={groupInSpace}
-      />
+      <div className='inline-flex w-full'>
+        <TabsGroupList groups={groupInSpace} />
 
+        {addGroupComponent}
+      </div>
       <TabsContentList
-        {...memoizedRest}
+        {...rest}
+        onGroupAction={onGroupAction}
         activeTab={activeTab}
-        isLoading={isLoading}
         groups={groupInSpace}
       />
     </Tabs>
   );
-};
+});
+Group.displayName = 'Group';

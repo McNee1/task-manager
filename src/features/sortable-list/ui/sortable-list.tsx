@@ -8,12 +8,8 @@ import {
   useSensor,
   useSensors,
 } from '@dnd-kit/core';
-import {
-  SortableContext,
-  sortableKeyboardCoordinates,
-  type SortingStrategy,
-} from '@dnd-kit/sortable';
-import { ReactNode } from 'react';
+import { SortableContext, sortableKeyboardCoordinates } from '@dnd-kit/sortable';
+import { ReactNode, useMemo } from 'react';
 
 import {
   type SortableItem as SortableItemType,
@@ -23,19 +19,19 @@ import {
 import { SortableItem } from './sortable-item';
 
 interface SortableItemsProps<T extends SortableItemType> {
+  fallbackContent?: ReactNode;
   onUpdateOrder: UpdateOrderFn<T>;
   renderHandle?: (item: T) => ReactNode;
   renderSortItem: (item: T) => ReactNode;
   sortableItems: T[] | undefined;
-  sortingStrategy: SortingStrategy;
 }
 
 export const SortableList = <T extends SortableItemType>({
   sortableItems,
   renderSortItem,
   onUpdateOrder,
-
   renderHandle,
+  fallbackContent,
 }: SortableItemsProps<T>) => {
   const sensors = useSensors(
     useSensor(KeyboardSensor, {
@@ -51,16 +47,8 @@ export const SortableList = <T extends SortableItemType>({
   );
   const { fn, state } = useSortableData(sortableItems);
 
-  return (
-    <DndContext
-      onDragEnd={(event) => {
-        fn.handleDragOver(event, onUpdateOrder);
-      }}
-      collisionDetection={closestCenter}
-      onDragCancel={fn.handleDragCancel}
-      onDragStart={fn.handleDragStart}
-      sensors={sensors}
-    >
+  const memoizedSortableContext = useMemo(
+    () => (
       <SortableContext items={state.sortableItems}>
         {state.sortableItems.map((col) => (
           <SortableItem
@@ -72,10 +60,35 @@ export const SortableList = <T extends SortableItemType>({
           </SortableItem>
         ))}
       </SortableContext>
+    ),
+    [state.sortableItems, renderHandle, renderSortItem]
+  );
 
+  const memoizedDragOverlay = useMemo(
+    () => (
       <DragOverlay>
         {state.activeItem ? renderSortItem(state.activeItem) : null}
       </DragOverlay>
+    ),
+    [state.activeItem, renderSortItem]
+  );
+
+  if (fallbackContent && !state.sortableItems.length) {
+    return fallbackContent;
+  }
+
+  return (
+    <DndContext
+      onDragEnd={(event) => {
+        fn.handleDragOver(event, onUpdateOrder);
+      }}
+      collisionDetection={closestCenter}
+      onDragCancel={fn.handleDragCancel}
+      onDragStart={fn.handleDragStart}
+      sensors={sensors}
+    >
+      {memoizedSortableContext}
+      {memoizedDragOverlay}
     </DndContext>
   );
 };

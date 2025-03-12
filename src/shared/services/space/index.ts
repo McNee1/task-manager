@@ -5,21 +5,12 @@ import { apiInstance } from '../instance';
 
 export const getSpaces = () =>
   withErrorRequest(() => {
-    return apiInstance
-      .get('workspaces', { searchParams: { _embed: 'groups' } })
-      .json<SpaceSchema[]>();
+    return apiInstance.get('workspaces').json<SpaceSchema[]>();
   });
 
-export const postSpace = (spaceName: string) => {
-  // TODO
-  const currentDate = new Date().toISOString();
-
-  const newWorkspace = {
-    spaceName,
-    createdAt: currentDate,
-  };
+export const postSpace = (spaceInfo: Pick<SpaceSchema, 'createdAt' | 'spaceName'>) => {
   return withErrorRequest(() =>
-    apiInstance.post('workspaces', { json: newWorkspace }).json<SpaceSchema>()
+    apiInstance.post('workspaces', { json: spaceInfo }).json<SpaceSchema>()
   );
 };
 

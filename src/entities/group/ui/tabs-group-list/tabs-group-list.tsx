@@ -1,43 +1,27 @@
-import { memo, ReactNode } from 'react';
+import { memo } from 'react';
 
-import { Skeleton } from '@/components/ui/skeleton';
 import { TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { GroupSchema } from '@/entities';
 
 interface TabsGroupListProps {
-  addGroup: ReactNode;
   groups: GroupSchema[];
-  isLoading: boolean;
 }
 
-export const TabsGroupList = memo(
-  ({ groups, addGroup, isLoading }: TabsGroupListProps) => {
-    return (
-      <div className='inline-flex w-full'>
-        {isLoading ? (
-          <>
-            <Skeleton className='me-3 h-10 w-4/5' />
-            <Skeleton className='h-10 w-1/5' />
-          </>
-        ) : (
-          <>
-            <TabsList className='flex h-fit flex-wrap justify-start gap-y-1 border-b border-gray-200 bg-transparent p-0'>
-              {groups.map((tab) => (
-                <TabsTrigger
-                  className='rounded-t-lg border-b-2 border-transparent p-2.5 hover:border-gray-300 data-[state=active]:border-sky-600 data-[state=active]:text-sky-600'
-                  value={tab.id}
-                  key={tab.id}
-                >
-                  {tab.groupName}
-                </TabsTrigger>
-              ))}
-            </TabsList>
-
-            {addGroup}
-          </>
-        )}
-      </div>
-    );
-  }
-);
+export const TabsGroupList = memo(({ groups }: TabsGroupListProps) => {
+  return (
+    <div className='inline-flex w-full'>
+      <TabsList className='flex h-fit flex-wrap justify-start gap-y-1 bg-transparent p-0'>
+        {groups.map((tab) => (
+          <TabsTrigger
+            className='rounded-t-lg border-b-2 border-b-transparent hover:border-gray-300 data-[state=active]:border-b-2 data-[state=active]:border-sky-600 data-[state=active]:text-sky-600'
+            value={tab.id}
+            key={tab.id}
+          >
+            {tab.groupName}
+          </TabsTrigger>
+        ))}
+      </TabsList>
+    </div>
+  );
+});
 TabsGroupList.displayName = 'TabsGroupList';

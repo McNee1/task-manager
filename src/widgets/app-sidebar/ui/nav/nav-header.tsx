@@ -1,5 +1,4 @@
 import { Link } from '@tanstack/react-router';
-import { memo } from 'react';
 
 import {
   SidebarHeader,
@@ -14,7 +13,7 @@ interface NavHeaderProps {
   item: MenuItem;
 }
 
-export const NavHeader = memo(({ item }: NavHeaderProps) => {
+export const NavHeader = ({ item }: NavHeaderProps) => {
   return (
     <SidebarHeader>
       <SidebarMenu>
@@ -36,6 +35,4 @@ export const NavHeader = memo(({ item }: NavHeaderProps) => {
       </SidebarMenu>
     </SidebarHeader>
   );
-});
-
-NavHeader.displayName = 'NavHeader';
+};

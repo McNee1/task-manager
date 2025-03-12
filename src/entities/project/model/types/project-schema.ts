@@ -12,3 +12,5 @@ export interface ProjectSchema {
   taskCount: number;
   updatedAt?: string;
 }
+
+export type ProjectRecord = Record<string, ProjectSchema[]>;

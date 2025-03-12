@@ -7,7 +7,7 @@ import { AppModal, useEnterDown, useInputForm } from '@/shared';
 
 interface InputWithModalProps {
   buttonText?: string;
-  initValue?: string | undefined;
+  initValue?: string | undefined | null;
   inputLabel?: string;
   inputPlaceholder?: string;
   inputType?: HTMLInputTypeAttribute;
@@ -34,7 +34,7 @@ export const InputWithModal = ({
   initValue,
   buttonText = 'Применить',
 }: InputWithModalProps) => {
-  const { handleChange, value, setValue } = useInputForm(initValue);
+  const { handleChange, value, setValue } = useInputForm(initValue ?? '');
 
   useEffect(() => {
     if (initValue) setValue(initValue);

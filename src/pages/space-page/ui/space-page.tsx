@@ -1,70 +1,23 @@
-import { useParams } from '@tanstack/react-router';
-import { useCallback } from 'react';
-
-import { Group } from '@/entities';
-import { AddGroup, SortableProjectList } from '@/features';
-
-import { useGroupModel, useProjectModel } from '../hook';
-import { ActionModalGroup, ActionModalProject } from './container';
+import { useSpace } from '../model';
+import { GroupContainer, SortableProjects } from './container';
 
 export const SpacePage = () => {
-  const { spaceId } = useParams({ strict: false });
-
-  const { fnProject, stateProject } = useProjectModel();
-
-  const { fnGroup, stateGroup } = useGroupModel();
-
-  const renderAddGroup = useCallback(
-    (onSuccess: (newGroupId: string) => void) => (
-      <AddGroup
-        onSuccess={onSuccess}
-        spaceId={spaceId}
-      />
-    ),
-    [spaceId]
-  );
-
-  const handleGroupSuccess = useCallback(() => {
-    fnGroup.setGroupModal({ isOpen: false });
-  }, [fnGroup]);
-
-  const handleProjectSuccess = useCallback(() => {
-    fnProject.setProjectModal({ isOpen: false });
-  }, [fnProject]);
+  const { groups, projects, spaceId } = useSpace();
 
   return (
     <>
-      <Group
-        onGroupAction={fnGroup.handleGroupAction}
-        addGroup={renderAddGroup}
+      <GroupContainer
         spaceId={spaceId}
+        groups={groups}
       >
         {(activeTab) => (
-          <SortableProjectList
-            onProjectAction={fnProject.handleProjectAction}
+          <SortableProjects
             activeTab={activeTab}
             spaceId={spaceId}
+            data={projects}
           />
         )}
-      </Group>
-      <>
-        <ActionModalGroup
-          groupName={stateGroup.selectedGroup?.groupName}
-          onToggleGroupModal={fnGroup.toggleGroupModal}
-          groupId={stateGroup.selectedGroup?.id}
-          isOpen={stateGroup.groupModal.isOpen}
-          type={stateGroup.groupModal.type}
-          onSuccess={handleGroupSuccess}
-          spaceId={spaceId}
-        />
-        <ActionModalProject
-          onToggleProjectModal={fnProject.toggleProjectModal}
-          isOpen={stateProject.projectModal.isOpen}
-          project={stateProject.selectedProject}
-          type={stateProject.projectModal.type}
-          onSuccess={handleProjectSuccess}
-        />
-      </>
+      </GroupContainer>
     </>
   );
 };

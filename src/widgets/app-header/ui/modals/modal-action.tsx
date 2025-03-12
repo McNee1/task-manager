@@ -9,7 +9,7 @@ interface ModalActionProps {
   onEditSuccess: VoidFunction;
   onToggleModal: VoidFunction;
   spaceId: SpaceId;
-  spaceName: string;
+  spaceName: string | null;
 }
 
 export const ModalAction = ({

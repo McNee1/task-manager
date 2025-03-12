@@ -1,4 +1,4 @@
-import { ChangeEvent, KeyboardEvent, ReactNode, useCallback } from 'react';
+import { ChangeEvent, KeyboardEvent, memo, ReactNode, useCallback } from 'react';
 
 import { Input } from '@/components/ui/input';
 
@@ -14,36 +14,39 @@ interface EditableTextInputProps extends RenderInputProps {
   renderInput?: (props: RenderInputProps) => ReactNode;
 }
 
-export function EditableTextInput({
-  isEditing,
-  value,
-  onChange,
-  onBlur,
-  onKeyDown,
-  renderInput,
-}: EditableTextInputProps) {
-  const defaultRenderInput = useCallback(
-    (props: RenderInputProps) => (
-      <Input
-        autoFocus
-        {...props}
-      />
-    ),
-    []
-  );
+export const EditableTextInput = memo(
+  ({
+    isEditing,
+    value,
+    onChange,
+    onBlur,
+    onKeyDown,
+    renderInput,
+  }: EditableTextInputProps) => {
+    const defaultRenderInput = useCallback(
+      (props: RenderInputProps) => (
+        <Input
+          autoFocus
+          {...props}
+        />
+      ),
+      []
+    );
 
-  const actualRenderInput = renderInput ?? defaultRenderInput;
+    const actualRenderInput = renderInput ?? defaultRenderInput;
 
-  if (!isEditing) return null;
+    if (!isEditing) return null;
 
-  return (
-    <>
-      {actualRenderInput({
-        value,
-        onChange,
-        onBlur,
-        onKeyDown,
-      })}
-    </>
-  );
-}
+    return (
+      <>
+        {actualRenderInput({
+          value,
+          onChange,
+          onBlur,
+          onKeyDown,
+        })}
+      </>
+    );
+  }
+);
+EditableTextInput.displayName = 'EditableTextInput';

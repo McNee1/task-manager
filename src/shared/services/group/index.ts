@@ -3,6 +3,12 @@ import type { GroupSchema } from '@/entities';
 import { withErrorRequest } from '../../lib';
 import { apiInstance } from '../instance';
 
+export const getGroups = async () => {
+  return withErrorRequest(() => {
+    return apiInstance.get(`groups`).json<GroupSchema[]>();
+  });
+};
+
 export const postGroup = async (group: {
   workspaceId: string;
   groupName: string;

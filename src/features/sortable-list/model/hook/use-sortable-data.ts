@@ -31,6 +31,8 @@ export const useSortableData = <K extends SortableItem>(initialData: K[] | undef
       const activeIndex = sortableItems.findIndex(({ id }) => id === active.id);
       const overIndex = sortableItems.findIndex(({ id }) => id === over.id);
 
+      if (activeIndex === -1 || overIndex === -1) return;
+
       const movedArray = arrayMove(sortableItems, activeIndex, overIndex);
 
       const reorderedArray = updateOrder(movedArray, activeIndex, overIndex);

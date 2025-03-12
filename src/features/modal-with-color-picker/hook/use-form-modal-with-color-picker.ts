@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useCallback, useState } from 'react';
 
 import { ColorField, useInputForm } from '@/shared';
 
@@ -14,9 +14,9 @@ export const useModalWithColorPicker = (
 
   const [projectColor, setProjectColor] = useState<ColorField>(initColor);
 
-  const handleChangeColor = (color: ColorField) => {
+  const handleChangeColor = useCallback((color: ColorField) => {
     setProjectColor(color);
-  };
+  }, []);
 
   return {
     state: {

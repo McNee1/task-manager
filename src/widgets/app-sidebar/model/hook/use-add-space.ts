@@ -43,7 +43,12 @@ export const useAddSpace = (onSuccess: VoidFunction) => {
         toast.error('Имя пространства не может быть пустым');
         return;
       }
-      mutate(spaceName);
+      const newSpace = {
+        spaceName,
+        createdAt: new Date().toISOString(),
+      };
+
+      mutate(newSpace);
     },
     [mutate]
   );

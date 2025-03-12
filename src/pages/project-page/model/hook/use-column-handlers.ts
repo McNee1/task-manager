@@ -5,13 +5,13 @@ import { Column } from '@/entities';
 
 import { isValidColumn } from '../../lib';
 import { useColumnMutation } from './use-column-mutation';
-import { useProjectData } from './use-project-data';
+import { useProjectColumn } from './use-project-column';
 
 export const useColumnHandlers = (
   projectId: string | undefined,
   onSuccess?: VoidFunction
 ) => {
-  const { columns, id } = useProjectData();
+  const { columns, id } = useProjectColumn(projectId);
 
   const { mutate, isPending } = useColumnMutation(projectId, onSuccess);
 

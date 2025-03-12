@@ -1,2 +1,2 @@
-export { ActionModalGroup } from './action-modal-group';
-export { ActionModalProject } from './action-modal-project';
+export { SortableProjects } from './sortable-projects';
+export { GroupContainer } from './group-container';
