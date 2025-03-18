@@ -13,14 +13,22 @@ import { EditableTextTrigger } from './editable-text-trigger';
 
 interface EditableTextProps {
   children?: ReactNode;
+  className?: string;
   defaultValue?: string;
+  inputClass?: string;
   onValueChange?: (value: string) => void;
-
   renderInput?: (props: RenderInputProps) => ReactNode;
 }
 
 export const EditableText = memo(
-  ({ children, defaultValue = '', onValueChange, renderInput }: EditableTextProps) => {
+  ({
+    children,
+    defaultValue = '',
+    onValueChange,
+    renderInput,
+    inputClass,
+    className,
+  }: EditableTextProps) => {
     const [isEditing, setIsEditing] = useState(false);
     const [value, setValue] = useState(defaultValue);
 
@@ -31,6 +39,7 @@ export const EditableText = memo(
 
     const handleEditEnd = useCallback(() => {
       setIsEditing(false);
+      setValue('');
     }, []);
 
     const handleKeyDown = useCallback(
@@ -48,11 +57,12 @@ export const EditableText = memo(
     }, []);
 
     return (
-      <EditableTextRoot>
+      <EditableTextRoot className={className}>
         <EditableTextInput
           onChange={handleValueChange}
           onKeyDown={handleKeyDown}
           renderInput={renderInput}
+          inputClass={inputClass}
           onBlur={handleEditEnd}
           isEditing={isEditing}
           value={value}

@@ -1,1 +1,7 @@
-export type { PopoverItems, RouteInfo, SpaceId, ValidRoutes } from './base';
+export type {
+  KeyImportance,
+  PopoverItems,
+  RouteInfo,
+  SpaceId,
+  ValidRoutes,
+} from './base';

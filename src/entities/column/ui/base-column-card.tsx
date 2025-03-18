@@ -6,14 +6,15 @@ import { cn } from '@/shared';
 interface ColumnCardProps {
   children?: ReactNode;
   className?: string;
-  color?: string;
 }
 
-export const BaseColumnCard = ({ children, className, color }: ColumnCardProps) => {
+export const BaseColumnCard = ({ children, className }: ColumnCardProps) => {
   return (
     <Card
-      className={cn('flex min-h-48 w-64 shrink-0 flex-col', className)}
-      style={{ backgroundColor: color }}
+      className={cn(
+        'flex w-64 shrink-0 flex-col gap-2 border-0 bg-transparent shadow-none',
+        className
+      )}
     >
       {children}
     </Card>

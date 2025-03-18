@@ -1,3 +1,8 @@
-export { DEFAULT_ORDER, MINUTE } from './base';
+export {
+  BadgeVariantsMap,
+  DEFAULT_ORDER,
+  IMPORTANCE,
+  MINUTE,
+  PALETTE_COLORS,
+} from './base';
 export { ROUTE_INFO } from './router';
-export { PALETTE_COLORS } from './base';

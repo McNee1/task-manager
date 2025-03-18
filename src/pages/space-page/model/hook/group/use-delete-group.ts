@@ -2,9 +2,7 @@ import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
 import { toast } from 'sonner';
 
 import { GroupSchema } from '@/entities';
-import { deleteGroup, SpaceId } from '@/shared';
-
-import { groupsQueryOptions } from '../../utils';
+import { deleteGroup, groupsQueryOptions, SpaceId } from '@/shared';
 
 export const useDeleteGroup = (
   spaceId: SpaceId,

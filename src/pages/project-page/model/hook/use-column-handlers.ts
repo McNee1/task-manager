@@ -1,18 +1,17 @@
 import { useCallback } from 'react';
 import { toast } from 'sonner';
 
-import { Column } from '@/entities';
+import { Column, ColumnSchema } from '@/entities';
 
 import { isValidColumn } from '../../lib';
 import { useColumnMutation } from './use-column-mutation';
-import { useProjectColumn } from './use-project-column';
 
 export const useColumnHandlers = (
+  columns: Column[],
   projectId: string | undefined,
+  mainColumnId: ColumnSchema['id'],
   onSuccess?: VoidFunction
 ) => {
-  const { columns, id } = useProjectColumn(projectId);
-
   const { mutate, isPending } = useColumnMutation(projectId, onSuccess);
 
   const handleEditColumn = useCallback(
@@ -24,7 +23,7 @@ export const useColumnHandlers = (
       );
 
       mutate(
-        { id, data: updatedColumns },
+        { id: mainColumnId, data: updatedColumns },
         {
           onSuccess() {
             toast.success('Колонка успешно изменена');
@@ -32,17 +31,17 @@ export const useColumnHandlers = (
         }
       );
     },
-    [columns, id, mutate]
+    [columns, mainColumnId, mutate]
   );
 
   const handleDeleteColumn = useCallback(
-    (columnId: Column['id'] | undefined) => {
+    (columnId: Column['id'] | null) => {
       if (!isValidColumn(columns)) return;
 
       const flirtedColumns = columns.filter((col) => col.id !== columnId);
 
       mutate(
-        { id, data: flirtedColumns },
+        { id: mainColumnId, data: flirtedColumns },
         {
           onSuccess() {
             toast.success('Колонка успешно удаленна');
@@ -50,14 +49,14 @@ export const useColumnHandlers = (
         }
       );
     },
-    [columns, id, mutate]
+    [columns, mainColumnId, mutate]
   );
 
   const handleUpdateOrderColumn = (columns: Column[]) => {
     if (!isValidColumn(columns)) return;
 
     mutate(
-      { id: id, data: columns },
+      { id: mainColumnId, data: columns },
       {
         onSuccess() {
           toast.success('Колонка успешно перемещена');

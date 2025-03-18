@@ -6,7 +6,11 @@ export const projectQueryOptions = (projectId: string | undefined) =>
   queryOptions({
     enabled: !!projectId,
     queryKey: ['project', projectId],
-    queryFn: ({ queryKey }) => {
+    staleTime: Infinity,
+    gcTime: Infinity,
+    queryFn: async ({ queryKey }) => {
       if (queryKey[1]) return getProjectById(queryKey[1]);
+
+      return null;
     },
   });

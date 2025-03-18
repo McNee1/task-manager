@@ -1,31 +1,39 @@
 import { Button } from '@/components/ui/button';
-import { Column } from '@/entities';
+import { Column, ColumnSchema } from '@/entities';
 import { DeleteWithModal, InputWithModal, ModalWithColorPicker } from '@/features';
 import { ModalType } from '@/shared';
 
 import { useColumnHandlers } from '../../model';
 
 interface ActionModalColumnProps {
-  column: Column | null;
+  columns: Column[];
   isOpen: ModalType['isOpen'];
+  mainColumnId: ColumnSchema['id'];
   modalType: ModalType['type'];
   onSuccess: VoidFunction;
   onToggleModal: VoidFunction;
   projectId: string | undefined;
+  selectedColumnId: Column['id'] | null;
 }
 
 export const ActionModalColumn = ({
   modalType,
   isOpen,
   onToggleModal,
-  column,
   projectId,
+  columns,
+  mainColumnId,
   onSuccess,
+  selectedColumnId,
 }: ActionModalColumnProps) => {
   const { handleEditColumn, handleDeleteColumn, isPending } = useColumnHandlers(
+    columns,
     projectId,
+    mainColumnId,
     onSuccess
   );
+
+  const columnItem = columns.find((col) => col.id === selectedColumnId);
 
   if (!isOpen) {
     return null;
@@ -36,13 +44,13 @@ export const ActionModalColumn = ({
       return (
         <ModalWithColorPicker
           onSave={(name, color) => {
-            handleEditColumn(column?.id, { color, name });
+            handleEditColumn(columnItem?.id, { color, name });
           }}
           title='Редактировать колонку'
+          initColor={columnItem?.color}
           onOpenChange={onToggleModal}
-          initColor={column?.color}
+          initName={columnItem?.name}
           label='Название колонки'
-          initName={column?.name}
           isPending={isPending}
           isOpen={isOpen}
         />
@@ -52,9 +60,9 @@ export const ActionModalColumn = ({
       return (
         <DeleteWithModal
           onDelete={() => {
-            handleDeleteColumn(column?.id);
+            handleDeleteColumn(selectedColumnId);
           }}
-          subTitle={`Вы уверенны что хотите удалить колонку: "${column?.name ?? ''}" ?`}
+          subTitle={`Вы уверенны что хотите удалить колонку: "${columnItem?.name ?? ''}" ?`}
           onOpenChange={onToggleModal}
           isPending={isPending}
           isOpen={isOpen}
@@ -67,7 +75,10 @@ export const ActionModalColumn = ({
             <div className='mt-2 space-y-2'>
               <Button
                 onClick={() => {
-                  handleEditColumn(column?.id, { limit: +limit, name: column?.name });
+                  handleEditColumn(columnItem?.id, {
+                    limit: +limit,
+                    name: columnItem?.name,
+                  });
                 }}
                 className='mt-1 w-full'
                 variant='success'
@@ -77,7 +88,10 @@ export const ActionModalColumn = ({
               </Button>
               <Button
                 onClick={() => {
-                  handleEditColumn(column?.id, { limit: null, name: column?.name });
+                  handleEditColumn(columnItem?.id, {
+                    limit: null,
+                    name: columnItem?.name,
+                  });
                 }}
                 className='mt-1 w-full'
                 variant='primary'

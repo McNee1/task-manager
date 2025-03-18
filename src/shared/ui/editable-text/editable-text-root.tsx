@@ -1,5 +1,13 @@
 import { ReactNode } from 'react';
 
-export function EditableTextRoot({ children }: { children: ReactNode }) {
-  return <div className='relative'>{children}</div>;
+import { cn } from '@/shared/lib';
+
+export function EditableTextRoot({
+  children,
+  className,
+}: {
+  children: ReactNode;
+  className?: string;
+}) {
+  return <div className={cn('relative', className)}>{children}</div>;
 }

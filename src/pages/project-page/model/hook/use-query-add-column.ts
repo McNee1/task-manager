@@ -1,11 +1,11 @@
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { toast } from 'sonner';
 
-import { Column, ProjectWithColumns } from '@/entities';
+import { Column, ColumnSchema, ProjectWithColumns } from '@/entities';
 import { DEFAULT_ORDER, postColumnById } from '@/shared';
 
 export const useQueryAddColumn = (
-  columnId: string,
+  mainColumnId: ColumnSchema['id'],
   projectId: string | undefined,
   columns: Column[]
 ) => {
@@ -58,8 +58,8 @@ export const useQueryAddColumn = (
     },
   });
 
-  const validateColumnInputs = (columnId: string, columnName: string) => {
-    if (!columnId) {
+  const validateColumnInputs = (mainColumnId: string, columnName: string) => {
+    if (!mainColumnId) {
       toast.error('Произошла ошибка! Попробуйте позже.', {
         duration: 5000,
       });
@@ -82,10 +82,10 @@ export const useQueryAddColumn = (
   };
 
   const handleAddColumn = (columnName: string) => {
-    if (!validateColumnInputs(columnId, columnName)) return;
+    if (!validateColumnInputs(mainColumnId, columnName)) return;
 
     const newColumn = createNewColumn(columns, columnName);
-    mutate({ id: columnId, data: newColumn });
+    mutate({ id: mainColumnId, data: newColumn });
   };
 
   return {

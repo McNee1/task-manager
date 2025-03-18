@@ -1,19 +1,19 @@
 import { Plus } from 'lucide-react';
 
 import { Input } from '@/components/ui/input';
-import { Column, ColumnCardTitle } from '@/entities';
+import { Column, ColumnCardTitle, ColumnSchema } from '@/entities';
 import { EditableText, RenderInputProps } from '@/shared';
 
 import { useQueryAddColumn } from '../../model';
 
 interface AddColumnProps {
-  columnId: string;
   columns: Column[];
+  mainColumnId: ColumnSchema['id'];
   projectId: string | undefined;
 }
 
-export const AddColumn = ({ columnId, projectId, columns }: AddColumnProps) => {
-  const { handleAddColumn } = useQueryAddColumn(columnId, projectId, columns);
+export const AddColumn = ({ mainColumnId, projectId, columns }: AddColumnProps) => {
+  const { handleAddColumn } = useQueryAddColumn(mainColumnId, projectId, columns);
 
   const renderInput = (props: RenderInputProps) => (
     <ColumnCardTitle>
@@ -28,7 +28,7 @@ export const AddColumn = ({ columnId, projectId, columns }: AddColumnProps) => {
   );
 
   return (
-    <div className='h-fit w-64 shrink-0'>
+    <div className='h-fit w-64 shrink-0 rounded-md bg-white'>
       <EditableText
         onValueChange={handleAddColumn}
         renderInput={renderInput}

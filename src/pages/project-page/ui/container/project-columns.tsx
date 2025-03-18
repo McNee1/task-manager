@@ -1,18 +1,25 @@
-import { ColumnCard } from '@/entities';
+import { GripVertical } from 'lucide-react';
+import { ReactNode } from 'react';
+
+import { Column, ColumnCard } from '@/entities';
 import { SortableList } from '@/features';
 
-import { useColumnHandlers, useColumnModal, useProjectColumn } from '../../model';
+import { useColumnHandlers, useColumnModal, useProject } from '../../model';
 import { AddColumn } from '../add-column';
 import { ActionModalColumn } from '../modals';
 
 interface ProjectColumnProps {
-  projectId: string | undefined;
+  children?: (id: Column['id']) => ReactNode;
 }
 
-export const ProjectColumns = ({ projectId }: ProjectColumnProps) => {
-  const { handleEditColumn, handleUpdateOrderColumn } = useColumnHandlers(projectId);
+export const ProjectColumns = ({ children }: ProjectColumnProps) => {
+  const { columns, mainColumnId, projectId } = useProject();
 
-  const { columns, id } = useProjectColumn(projectId);
+  const { handleEditColumn, handleUpdateOrderColumn } = useColumnHandlers(
+    columns,
+    projectId,
+    mainColumnId
+  );
 
   const { columnFn, columnState } = useColumnModal();
 
@@ -21,8 +28,11 @@ export const ProjectColumns = ({ projectId }: ProjectColumnProps) => {
       <SortableList
         renderSortItem={(col) => (
           <ColumnCard
-            onEditColName={(name, id) => {
-              handleEditColumn(id, { name });
+            onActionPopoverModal={(modalType) => {
+              columnFn.handleAction(modalType, col.id);
+            }}
+            onEditColName={(name) => {
+              handleEditColumn(col.id, { name });
             }}
             onAddNewTask={(b) => {
               console.log(b);
@@ -30,30 +40,41 @@ export const ProjectColumns = ({ projectId }: ProjectColumnProps) => {
             onSortTasks={(s) => {
               console.log(s);
             }}
-            onActionPopoverModal={columnFn.handleAction}
             className='shrink-0'
             column={col}
             key={col.id}
-          />
+          >
+            {children?.(col.id)}
+          </ColumnCard>
         )}
-        renderHandle={() => <div className='absolute h-5 w-full cursor-grab' />}
+        renderHandle={() => (
+          <div className='absolute top-2.5 ms-1.5 size-fit cursor-grab'>
+            <GripVertical
+              className='stroke-svg-muted'
+              strokeWidth={1}
+              size={20}
+            />
+          </div>
+        )}
         onUpdateOrder={handleUpdateOrderColumn}
         sortableItems={columns}
       />
 
       <AddColumn
+        mainColumnId={mainColumnId}
         projectId={projectId}
         columns={columns}
-        columnId={id}
       />
 
       <ActionModalColumn
+        selectedColumnId={columnState.selectedColumnId}
         onToggleModal={columnFn.handleToggleModal}
-        column={columnState.selectedColumn}
         modalType={columnState.modal.type}
         onSuccess={columnFn.handleSuccess}
         isOpen={columnState.modal.isOpen}
+        mainColumnId={mainColumnId}
         projectId={projectId}
+        columns={columns}
       />
     </div>
   );

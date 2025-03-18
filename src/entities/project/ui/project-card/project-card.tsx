@@ -8,7 +8,7 @@ import { AppPopover, cn, type ModalType, type PopoverItems, usePopover } from '@
 import type { ProjectSchema } from '../../model';
 
 import { getCompletionPercentage } from '../../lib';
-import { BaseProjectCard } from './base-project-card';
+import { BaseProjectCard } from '../base-project-card';
 
 export interface ProjectCardProps {
   onProjectAction?: (type: ModalType['type'], project: ProjectSchema) => void;

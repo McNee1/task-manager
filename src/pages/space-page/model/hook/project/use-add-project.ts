@@ -1,7 +1,7 @@
-import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
+import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { toast } from 'sonner';
 
-import { ProjectSchema, useProjectData } from '@/entities';
+import { ProjectSchema } from '@/entities';
 import {
   ColorField,
   DEFAULT_ORDER,
@@ -10,7 +10,8 @@ import {
   SpaceId,
 } from '@/shared';
 
-import { projectsQueryOptions } from '../../utils';
+import { useSpace } from '../use-space';
+import { useProjectData } from './use-project-data';
 
 export const useAddProject = (
   spaceId: SpaceId,
@@ -19,9 +20,9 @@ export const useAddProject = (
 ) => {
   const queryClient = useQueryClient();
 
-  const { data } = useQuery(projectsQueryOptions);
+  const { projects } = useSpace();
 
-  const { orderLastItem } = useProjectData(data, groupId, spaceId);
+  const { orderLastItem } = useProjectData(projects, groupId, spaceId);
 
   const newItemOrder = (orderLastItem ?? 0) + DEFAULT_ORDER;
 

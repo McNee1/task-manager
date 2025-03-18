@@ -1,7 +1,8 @@
 import { createFileRoute } from '@tanstack/react-router';
 
 import { Skeleton } from '@/components/ui/skeleton';
-import { groupsQueryOptions, projectsQueryOptions, SpacePage } from '@/pages';
+import { SpacePage } from '@/pages';
+import { groupsQueryOptions, projectsQueryOptions } from '@/shared';
 
 export const Route = createFileRoute('/space/$spaceId')({
   component: SpacePage,

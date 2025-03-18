@@ -1,18 +1,17 @@
 import { ReactNode, useCallback } from 'react';
 
-import { Group, GroupSchema } from '@/entities';
+import { Group } from '@/entities';
 
-import { useGroupModel } from '../../model';
+import { useGroupModel, useSpace } from '../../model';
 import { AddGroup } from '../add-group';
 import { ActionModalGroup } from '../modals';
 
 interface GroupContainerProps {
   children: (activeTab: string) => ReactNode;
-  groups: GroupSchema[];
-  spaceId: string | undefined;
 }
 
-export const GroupContainer = ({ groups, spaceId, children }: GroupContainerProps) => {
+export const GroupContainer = ({ children }: GroupContainerProps) => {
+  const { groups, spaceId } = useSpace();
   const { fnGroup, stateGroup } = useGroupModel();
 
   const handleGroupSuccess = useCallback(() => {

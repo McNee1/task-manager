@@ -1,6 +1,7 @@
 import { queryOptions } from '@tanstack/react-query';
 
-import { ProjectRecord } from '@/entities';
+import type { ProjectRecord } from '@/entities';
+
 import { getProjects } from '@/shared';
 
 const getExistingGroup = (array: ProjectRecord[], curSpaceId: string) =>

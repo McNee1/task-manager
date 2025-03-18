@@ -1,558 +1,169 @@
 {
   "workspaces": [
     {
-      "id": "b7f6",
-      "spaceName": "12",
-      "createdAt": "2025-03-05T08:21:00.930Z"
+      "id": "87b9",
+      "spaceName": "test",
+      "createdAt": "2025-03-12T09:37:05.656Z"
     },
     {
-      "id": "0a65",
-      "spaceName": "sd",
-      "createdAt": "2025-03-05T10:11:05.373Z"
-    },
-    {
-      "id": "75be",
+      "id": "bd86",
       "spaceName": "2",
-      "createdAt": "2025-03-10T13:18:56.547Z"
-    },
-    {
-      "id": "7025",
-      "spaceName": "3",
-      "createdAt": "2025-03-10T13:24:28.224Z"
-    },
-    {
-      "id": "00b5",
-      "spaceName": "4",
-      "createdAt": "2025-03-10T13:28:41.833Z"
+      "createdAt": "2025-03-15T12:18:40.294Z"
     }
   ],
   "groups": [
     {
-      "id": "91aa",
-      "groupName": "Активные проекты 1",
-      "workspaceId": "b7f6",
-      "createdAt": "2025-03-05T08:21:01.942Z"
+      "id": "d5fe",
+      "groupName": "Активные проекты",
+      "workspaceId": "87b9",
+      "createdAt": "2025-03-12T09:37:06.667Z"
     },
     {
-      "id": "3301",
-      "groupName": "12",
-      "workspaceId": "b7f6",
-      "createdAt": "2025-03-06T14:45:25.098Z"
+      "id": "ea25",
+      "groupName": "gr2",
+      "workspaceId": "87b9",
+      "createdAt": "2025-03-12T09:37:36.795Z"
     },
     {
-      "id": "2579",
-      "groupName": "12",
-      "workspaceId": "b7f6",
-      "createdAt": "2025-03-06T14:46:17.521Z"
-    },
-    {
-      "id": "3fca",
-      "groupName": "121",
-      "workspaceId": "b7f6",
-      "createdAt": "2025-03-06T15:00:41.612Z"
-    },
-    {
-      "id": "a6fa",
-      "groupName": "12",
-      "workspaceId": "0a65",
-      "createdAt": "2025-03-06T15:03:01.325Z"
-    },
-    {
-      "id": "0a72",
-      "groupName": "121",
-      "workspaceId": "0a65",
-      "createdAt": "2025-03-06T15:07:49.281Z"
-    },
-    {
-      "id": "be2c",
-      "groupName": "123",
-      "workspaceId": "0a65",
-      "createdAt": "2025-03-06T15:08:27.629Z"
-    },
-    {
-      "id": "22a5",
-      "groupName": "bar",
-      "workspaceId": "b7f6",
-      "createdAt": "2025-03-06T15:09:35.310Z"
-    },
-    {
-      "id": "64f8",
-      "groupName": "test",
-      "workspaceId": "b7f6",
-      "createdAt": "2025-03-06T15:10:43.271Z"
-    },
-    {
-      "id": "d868",
-      "groupName": "z",
-      "workspaceId": "b7f6",
-      "createdAt": "2025-03-06T15:11:45.254Z"
-    },
-    {
-      "id": "0033",
-      "groupName": "f",
-      "workspaceId": "b7f6",
-      "createdAt": "2025-03-06T15:12:18.290Z"
-    },
-    {
-      "id": "8a0a",
-      "groupName": "faaa",
-      "workspaceId": "b7f6",
-      "createdAt": "2025-03-07T07:56:35.483Z"
-    },
-    {
-      "id": "1ffb",
-      "groupName": "112",
-      "workspaceId": "b7f6",
-      "createdAt": "2025-03-07T07:57:11.704Z"
-    },
-    {
-      "id": "563e",
-      "groupName": "s",
-      "workspaceId": "b7f6",
-      "createdAt": "2025-03-07T08:04:26.774Z"
-    },
-    {
-      "id": "f682",
-      "groupName": "12",
-      "workspaceId": "b7f6",
-      "createdAt": "2025-03-07T08:04:33.926Z"
-    },
-    {
-      "id": "1d17",
-      "groupName": "qq",
-      "createdAt": "2025-03-07T08:44:55.563Z",
-      "workspaceId": "b7f6"
-    },
-    {
-      "id": "28d8",
-      "groupName": "qq",
-      "createdAt": "2025-03-07T08:45:08.179Z",
-      "workspaceId": "b7f6"
-    },
-    {
-      "id": "b6f4",
-      "groupName": "fafa",
-      "createdAt": "2025-03-07T08:46:21.333Z",
-      "workspaceId": "b7f6"
-    },
-    {
-      "id": "7001",
-      "groupName": "1",
-      "createdAt": "2025-03-07T08:48:36.197Z",
-      "workspaceId": "b7f6"
-    },
-    {
-      "id": "6ab7",
-      "groupName": "21",
-      "createdAt": "2025-03-07T08:54:25.729Z",
-      "workspaceId": "b7f6"
-    },
-    {
-      "id": "2dc8",
-      "groupName": "zz",
-      "createdAt": "2025-03-07T08:55:06.150Z",
-      "workspaceId": "b7f6"
-    },
-    {
-      "id": "fb5c",
-      "groupName": "1",
-      "createdAt": "2025-03-07T08:55:13.046Z",
-      "workspaceId": "b7f6"
-    },
-    {
-      "id": "0b4d",
-      "groupName": "12",
-      "createdAt": "2025-03-07T08:55:18.184Z",
-      "workspaceId": "b7f6"
-    },
-    {
-      "id": "4d0f",
+      "id": "159d",
       "groupName": "3",
-      "createdAt": "2025-03-07T08:56:31.369Z",
-      "workspaceId": "b7f6"
+      "workspaceId": "87b9",
+      "createdAt": "2025-03-15T12:04:53.638Z"
     },
     {
-      "id": "287e",
-      "groupName": "3c",
-      "createdAt": "2025-03-07T08:56:36.593Z",
-      "workspaceId": "b7f6"
-    },
-    {
-      "id": "dfc9",
-      "groupName": "k",
-      "createdAt": "2025-03-07T08:57:05.389Z",
-      "workspaceId": "b7f6"
-    },
-    {
-      "id": "d68d",
-      "groupName": "kp",
-      "createdAt": "2025-03-07T08:57:53.339Z",
-      "workspaceId": "b7f6"
-    },
-    {
-      "id": "d19c",
-      "groupName": "kph",
-      "createdAt": "2025-03-07T08:58:07.708Z",
-      "workspaceId": "b7f6"
-    },
-    {
-      "id": "932b",
-      "groupName": "kphn",
-      "createdAt": "2025-03-07T08:58:23.710Z",
-      "workspaceId": "b7f6"
-    },
-    {
-      "id": "eb8c",
-      "groupName": "2",
-      "createdAt": "2025-03-07T08:59:18.157Z",
-      "workspaceId": "b7f6"
-    },
-    {
-      "id": "5448",
-      "groupName": "k",
-      "createdAt": "2025-03-07T08:59:24.966Z",
-      "workspaceId": "b7f6"
-    },
-    {
-      "id": "33d0",
-      "groupName": "l",
-      "createdAt": "2025-03-07T08:59:46.769Z",
-      "workspaceId": "b7f6"
-    },
-    {
-      "id": "3174",
-      "groupName": "k",
-      "createdAt": "2025-03-07T09:00:49.568Z",
-      "workspaceId": "b7f6"
-    },
-    {
-      "id": "36b7",
-      "groupName": "12",
-      "createdAt": "2025-03-07T09:13:50.433Z",
-      "workspaceId": "b7f6"
-    },
-    {
-      "id": "1715",
-      "groupName": "1s",
-      "createdAt": "2025-03-07T09:17:13.522Z",
-      "workspaceId": "b7f6"
-    },
-    {
-      "id": "8504",
-      "groupName": "212",
-      "createdAt": "2025-03-07T09:17:46.302Z",
-      "workspaceId": "b7f6"
-    },
-    {
-      "id": "a37e",
-      "groupName": "12",
-      "createdAt": "2025-03-07T09:18:24.698Z",
-      "workspaceId": "b7f6"
-    },
-    {
-      "id": "5019",
-      "groupName": "z",
-      "createdAt": "2025-03-07T09:20:24.833Z",
-      "workspaceId": "b7f6"
-    },
-    {
-      "id": "5373",
-      "groupName": "t",
-      "createdAt": "2025-03-08T10:33:03.743Z",
-      "workspaceId": "b7f6"
-    },
-    {
-      "id": "3f3a",
-      "groupName": "12",
-      "workspaceId": "b7f6",
-      "createdAt": "2025-03-08T11:21:12.857Z"
-    },
-    {
-      "id": "6d47",
-      "groupName": "2",
-      "workspaceId": "b7f6",
-      "createdAt": "2025-03-08T11:26:11.399Z"
-    },
-    {
-      "id": "f200",
-      "groupName": "1",
-      "workspaceId": "b7f6",
-      "createdAt": "2025-03-08T11:27:27.496Z"
-    },
-    {
-      "id": "d455",
-      "groupName": "6",
-      "workspaceId": "b7f6",
-      "createdAt": "2025-03-08T11:27:35.025Z"
-    },
-    {
-      "id": "ba65",
-      "groupName": "s",
-      "createdAt": "2025-03-08T11:46:14.509Z",
-      "workspaceId": "b7f6"
-    },
-    {
-      "id": "7ecb",
-      "groupName": "c",
-      "createdAt": "2025-03-08T11:46:51.434Z",
-      "workspaceId": "b7f6"
-    },
-    {
-      "id": "a3aa",
-      "groupName": "x",
-      "workspaceId": "b7f6",
-      "createdAt": "2025-03-08T11:51:13.251Z"
-    },
-    {
-      "id": "ede1",
-      "groupName": "1",
-      "workspaceId": "b7f6",
-      "createdAt": "2025-03-08T11:51:21.580Z"
-    },
-    {
-      "id": "bbba",
-      "groupName": "12",
-      "workspaceId": "b7f6",
-      "createdAt": "2025-03-08T11:53:07.665Z"
-    },
-    {
-      "id": "b364",
-      "groupName": "3",
-      "workspaceId": "b7f6",
-      "createdAt": "2025-03-08T11:53:12.922Z"
-    },
-    {
-      "id": "6190",
-      "groupName": "2",
-      "createdAt": "2025-03-08T12:04:41.384Z",
-      "workspaceId": "b7f6"
-    },
-    {
-      "id": "d575",
-      "groupName": "1",
-      "createdAt": "2025-03-08T12:08:15.891Z",
-      "workspaceId": "b7f6"
-    },
-    {
-      "id": "725b",
-      "groupName": "1",
-      "createdAt": "2025-03-08T12:08:26.340Z",
-      "workspaceId": "b7f6"
-    },
-    {
-      "id": "a18a",
-      "groupName": "4",
-      "createdAt": "2025-03-08T12:08:50.119Z",
-      "workspaceId": "b7f6"
-    },
-    {
-      "id": "d09e",
-      "groupName": "d",
-      "createdAt": "2025-03-08T12:09:41.566Z",
-      "workspaceId": "b7f6"
-    },
-    {
-      "id": "217b",
-      "groupName": "dd",
-      "createdAt": "2025-03-08T12:11:56.118Z",
-      "workspaceId": "b7f6"
-    },
-    {
-      "id": "6d23",
-      "groupName": "dd1",
-      "createdAt": "2025-03-08T12:12:20.857Z",
-      "workspaceId": "b7f6"
-    },
-    {
-      "id": "1e8b",
-      "groupName": "y",
-      "createdAt": "2025-03-08T12:12:32.019Z",
-      "workspaceId": "b7f6"
-    },
-    {
-      "id": "59fc",
-      "groupName": "y1",
-      "createdAt": "2025-03-08T12:15:20.176Z",
-      "workspaceId": "b7f6"
-    },
-    {
-      "id": "6870",
-      "groupName": "а",
-      "workspaceId": "b7f6",
-      "createdAt": "2025-03-08T12:21:25.062Z"
-    },
-    {
-      "id": "1825",
+      "id": "6b26",
       "groupName": "Активные проекты",
-      "workspaceId": "75be",
-      "createdAt": "2025-03-10T13:18:57.574Z"
-    },
-    {
-      "id": "6738",
-      "groupName": "Активные проекты",
-      "workspaceId": "7025",
-      "createdAt": "2025-03-10T13:24:29.249Z"
-    },
-    {
-      "id": "7086",
-      "groupName": "Активные проекты",
-      "workspaceId": "00b5",
-      "createdAt": "2025-03-10T13:28:42.847Z"
+      "workspaceId": "bd86",
+      "createdAt": "2025-03-15T12:18:41.315Z"
     }
   ],
   "projects": [
     {
-      "id": "cdc8",
+      "id": "c3d9",
       "allTaskCount": 0,
-      "createdAt": "2025-03-05T08:21:10.221Z",
-      "groupId": "91aa",
-      "name": "123",
-      "order": -10000,
-      "spaceId": "b7f6",
+      "createdAt": "2025-03-12T09:37:25.682Z",
+      "groupId": "d5fe",
+      "name": "1",
+      "order": 10000,
+      "spaceId": "87b9",
       "taskCount": 0,
       "color": {
-        "hex": "#FF66B3",
-        "name": "Светло-розовый"
+        "hex": "#66B3FF",
+        "name": "Светло-синий"
       }
     },
     {
-      "id": "5bf3",
+      "id": "421b",
       "allTaskCount": 0,
-      "createdAt": "2025-03-05T09:20:11.894Z",
-      "groupId": "91aa",
-      "name": "s",
-      "order": -20000,
-      "spaceId": "b7f6",
-      "taskCount": 0,
-      "color": null
-    },
-    {
-      "id": "e3db",
-      "allTaskCount": 0,
-      "createdAt": "2025-03-05T10:11:27.791Z",
-      "groupId": null,
-      "name": "1",
-      "order": 10000,
-      "spaceId": "0a65",
-      "taskCount": 0,
-      "color": null
-    },
-    {
-      "id": "078f",
-      "allTaskCount": 0,
-      "createdAt": "2025-03-08T12:42:09.566Z",
-      "groupId": "3301",
-      "name": "1",
-      "order": 10000,
-      "spaceId": "b7f6",
-      "taskCount": 0,
-      "color": null
-    },
-    {
-      "id": "ac77",
-      "allTaskCount": 0,
-      "createdAt": "2025-03-08T12:42:32.860Z",
-      "groupId": "3301",
+      "createdAt": "2025-03-12T09:37:46.448Z",
+      "groupId": "d5fe",
       "name": "2",
       "order": 20000,
-      "spaceId": "b7f6",
+      "spaceId": "87b9",
       "taskCount": 0,
       "color": null
     },
     {
-      "id": "3f6d",
+      "id": "4218",
       "allTaskCount": 0,
-      "createdAt": "2025-03-08T12:42:56.850Z",
-      "groupId": "3301",
-      "name": "2",
+      "createdAt": "2025-03-15T12:03:15.899Z",
+      "groupId": "d5fe",
+      "name": "3",
       "order": 30000,
-      "spaceId": "b7f6",
+      "spaceId": "87b9",
+      "taskCount": 0,
+      "color": null
+    },
+    {
+      "id": "0caa",
+      "allTaskCount": 0,
+      "createdAt": "2025-03-15T12:03:33.621Z",
+      "groupId": "d5fe",
+      "name": "4",
+      "order": 40000,
+      "spaceId": "87b9",
       "taskCount": 0,
       "color": null
     }
   ],
   "projectColumns": [
     {
-      "id": "7e45",
-      "projectId": "cdc8",
-      "columns": [
-        {
-          "id": 2,
-          "name": "В работе",
-          "order": 0
-        },
-        {
-          "id": 1,
-          "name": "Ожидают2",
-          "order": 10000
-        },
-        {
-          "id": 3,
-          "name": "Завершено",
-          "order": 30000
-        }
-      ]
-    },
-    {
-      "id": "ffb5",
-      "projectId": null,
-      "columns": [
-        {
-          "id": 1,
-          "name": "Ожидают",
-          "order": 10000
-        },
-        {
-          "id": 2,
-          "name": "В работе",
-          "order": 20000
-        },
-        {
-          "id": 3,
-          "name": "Завершено",
-          "order": 30000
-        }
-      ]
-    },
-    {
-      "id": "4142",
-      "projectId": "5bf3",
+      "id": "5ec8",
+      "projectId": "c3d9",
       "columns": [
         {
           "id": 1,
           "name": "Ожидают",
           "order": 10000,
           "color": {
-            "hex": "#D1C6E7",
-            "name": "Светло-синий фиолетовый"
+            "hex": "#FF66B3",
+            "name": "Светло-розовый"
           }
         },
         {
           "id": 2,
           "name": "В работе",
-          "order": 20000
+          "order": 20000,
+          "color": {
+            "hex": "#9999FF",
+            "name": "Светло-синий"
+          }
         },
         {
           "id": 3,
           "name": "Завершено",
-          "order": 30000,
-          "limit": null
+          "order": 30000
         },
         {
           "id": 4,
-          "name": "s",
+          "name": "12",
           "order": 40000
         },
         {
           "id": 5,
-          "name": "s2",
+          "name": "5",
           "order": 50000
+        },
+        {
+          "id": 6,
+          "name": "6",
+          "order": 60000
         }
       ]
     },
     {
-      "id": "b1eb",
-      "projectId": "e3db",
+      "id": "9bd4",
+      "projectId": "421b",
+      "columns": [
+        {
+          "id": 2,
+          "name": "В работе1",
+          "order": 20000,
+          "color": {
+            "hex": "#FF66B3",
+            "name": "Светло-розовый"
+          }
+        },
+        {
+          "id": 1,
+          "name": "Ожидают2123",
+          "order": 25000
+        },
+        {
+          "id": 3,
+          "name": "Завершено",
+          "order": 30000
+        },
+        {
+          "id": 4,
+          "name": "121212",
+          "order": 40000
+        }
+      ]
+    },
+    {
+      "id": "f8fe",
+      "projectId": "4218",
       "columns": [
         {
           "id": 1,
@@ -572,8 +183,8 @@
       ]
     },
     {
-      "id": "e805",
-      "projectId": "078f",
+      "id": "c715",
+      "projectId": "0caa",
       "columns": [
         {
           "id": 1,
@@ -591,48 +202,95 @@
           "order": 30000
         }
       ]
+    }
+  ],
+  "projectTasks": [
+    {
+      "attentionMessage": "This task is urgent!",
+      "checklist": [
+        {
+          "item": "Check the requirements",
+          "isChecked": false
+        },
+        {
+          "item": "Implement the feature",
+          "isChecked": true
+        }
+      ],
+      "color": {
+        "hex": "#FF5733",
+        "name": "Red"
+      },
+      "createdAt": "2023-10-01T10:00:00Z",
+      "dateBegin": "2023-10-02T09:00:00Z",
+      "dateEnd": "2023-10-05T17:00:00Z",
+      "dateMove": null,
+      "dateStatusChanged": "2023-10-01T12:00:00Z",
+      "description": "This task involves implementing a new feature for the application.",
+      "hasDescription": true,
+      "hasMessages": false,
+      "id": "task-1",
+      "importance": 0,
+      "name": "Implement New Feature",
+      "projectId": "c3d9",
+      "columnsId": 1,
+      "estimatedTime": 7400
     },
     {
-      "id": "eb9c",
-      "projectId": "ac77",
-      "columns": [
-        {
-          "id": 1,
-          "name": "Ожидают",
-          "order": 10000
-        },
-        {
-          "id": 2,
-          "name": "В работе",
-          "order": 20000
-        },
-        {
-          "id": 3,
-          "name": "Завершено",
-          "order": 30000
-        }
-      ]
+      "attentionMessage": null,
+      "checklist": [],
+      "color": null,
+      "createdAt": "2023-10-03T11:00:00Z",
+      "dateBegin": null,
+      "dateEnd": null,
+      "dateMove": "2023-10-04T15:00:00Z",
+      "dateStatusChanged": "2023-10-03T11:30:00Z",
+      "description": null,
+      "hasDescription": false,
+      "hasMessages": true,
+      "id": "task-2",
+      "importance": 1,
+      "name": "Review Code",
+      "projectId": "c3d9",
+      "columnsId": 2,
+      "estimatedTime": 7200
     },
     {
-      "id": "7c00",
-      "projectId": "3f6d",
-      "columns": [
-        {
-          "id": 1,
-          "name": "Ожидают",
-          "order": 10000
-        },
-        {
-          "id": 2,
-          "name": "В работе",
-          "order": 20000
-        },
-        {
-          "id": 3,
-          "name": "Завершено",
-          "order": 30000
-        }
-      ]
+      "attentionMessage": null,
+      "checklist": [],
+      "color": null,
+      "createdAt": "2023-10-03T11:00:00Z",
+      "dateBegin": null,
+      "dateEnd": null,
+      "dateMove": "2023-10-04T15:00:00Z",
+      "dateStatusChanged": "2023-10-03T11:30:00Z",
+      "description": null,
+      "hasDescription": false,
+      "hasMessages": true,
+      "id": "task-3",
+      "importance": 2,
+      "name": "Faa",
+      "projectId": "c3d9",
+      "columnsId": 3
+    },
+    {
+      "attentionMessage": null,
+      "checklist": [],
+      "color": null,
+      "createdAt": "2023-10-03T11:00:00Z",
+      "dateBegin": null,
+      "dateEnd": null,
+      "dateMove": "2023-10-04T15:00:00Z",
+      "dateStatusChanged": "2023-10-03T11:30:00Z",
+      "description": null,
+      "hasDescription": false,
+      "hasMessages": true,
+      "id": "task-4",
+      "importance": 3,
+      "name": "Bar",
+      "projectId": "c3d9",
+      "columnsId": 2,
+      "estimatedTime": 2000
     }
   ]
 }

@@ -1,7 +1,7 @@
 import { SidebarTrigger } from '@/shared';
 
 import { useHeader } from '../model';
-import { HeaderBreadcrumb } from './breadcrumb';
+import { HeaderBreadcrumb } from './header-breadcrumb';
 import { ModalAction } from './modals';
 
 export const AppHeader = () => {
@@ -12,10 +12,8 @@ export const AppHeader = () => {
       <SidebarTrigger />
 
       <HeaderBreadcrumb
-        curProjectName={state.curProjectName}
         onToggleModal={fn.handleToggleModal}
         curSpaceName={state.curSpaceName}
-        isPending={state.isPending}
       />
 
       <ModalAction

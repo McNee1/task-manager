@@ -3,6 +3,7 @@ import { ChangeEvent, KeyboardEvent, memo, ReactNode, useCallback } from 'react'
 import { Input } from '@/components/ui/input';
 
 export interface RenderInputProps {
+  inputClass?: string;
   onBlur: () => void;
   onChange: (e: ChangeEvent<HTMLInputElement>) => void;
   onKeyDown: (e: KeyboardEvent<HTMLInputElement>) => void;
@@ -22,15 +23,17 @@ export const EditableTextInput = memo(
     onBlur,
     onKeyDown,
     renderInput,
+    inputClass,
   }: EditableTextInputProps) => {
     const defaultRenderInput = useCallback(
       (props: RenderInputProps) => (
         <Input
           autoFocus
           {...props}
+          className={inputClass}
         />
       ),
-      []
+      [inputClass]
     );
 
     const actualRenderInput = renderInput ?? defaultRenderInput;

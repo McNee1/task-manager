@@ -3,6 +3,8 @@ import type { LucideIcon } from 'lucide-react';
 
 import { routeTree } from '@/routeTree.gen';
 
+import { IMPORTANCE } from '../constants';
+
 export type ValidRoutes = ParseRoute<typeof routeTree>['fullPath'];
 
 export type SpaceId = string | undefined;
@@ -18,3 +20,4 @@ export interface RouteInfo {
   icon: LucideIcon;
   name: string;
 }
+export type KeyImportance = keyof typeof IMPORTANCE;

@@ -1,3 +1,8 @@
+import { ComponentProps } from 'react';
+
+import { KeyImportance } from '../types';
+import { Badge } from '../ui';
+
 export const MINUTE = 1000 * 60;
 export const DEFAULT_ORDER = 10000;
 
@@ -24,3 +29,20 @@ export const PALETTE_COLORS = [
   { hex: '#D2FFB2', name: 'Светло-зеленый лайм' },
   { hex: '#D1C6E7', name: 'Светло-синий фиолетовый' },
 ];
+
+export const IMPORTANCE = {
+  0: 'feeze',
+  1: 'low',
+  2: 'medium',
+  3: 'high',
+} as const;
+
+export const BadgeVariantsMap: Record<
+  KeyImportance,
+  ComponentProps<typeof Badge>['variant']
+> = {
+  0: 'primary',
+  1: 'success',
+  2: 'warning',
+  3: 'danger',
+};

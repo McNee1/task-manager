@@ -2,14 +2,18 @@ import { createFileRoute } from '@tanstack/react-router';
 
 import { Skeleton } from '@/components/ui/skeleton';
 import { ErrorText } from '@/components/ui/typography';
-import { projectQueryOptions } from '@/entities/column/lib/query-options/project-query-options';
 import { ProjectPage } from '@/pages';
+import { projectQueryOptions, tasksQueryOptions } from '@/shared';
 
 export const Route = createFileRoute('/space/$spaceId_/project/$projectId')({
   component: ProjectPage,
 
-  loader: ({ context, params: { projectId } }) =>
-    context.queryClient.ensureQueryData(projectQueryOptions(projectId)),
+  loader: async ({ context: { queryClient }, params: { projectId } }) => {
+    const tasksQuery = queryClient.ensureQueryData(tasksQueryOptions(projectId));
+    const projectQuery = queryClient.ensureQueryData(projectQueryOptions(projectId));
+
+    return await Promise.all([projectQuery, tasksQuery]);
+  },
 
   pendingComponent: () => {
     return (

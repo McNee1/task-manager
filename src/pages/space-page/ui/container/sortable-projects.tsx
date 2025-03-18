@@ -1,20 +1,25 @@
 import { useCallback } from 'react';
 
 import { P } from '@/components/ui/typography';
-import { ProjectCard, ProjectRecord, useProjectData } from '@/entities';
+import { ProjectCard } from '@/entities';
 import { SortableList } from '@/features';
 
-import { useProjectModel, useUpdateProjectOrder } from '../../model/hook';
+import {
+  useProjectData,
+  useProjectModel,
+  useSpace,
+  useUpdateProjectOrder,
+} from '../../model';
 import { ActionModalProject } from '../modals';
 
 interface SortableProjectsProps {
   activeTab: string;
-  data: ProjectRecord[];
-  spaceId: string | undefined;
 }
 
-export const SortableProjects = ({ activeTab, spaceId, data }: SortableProjectsProps) => {
-  const { projects } = useProjectData(data, activeTab, spaceId);
+export const SortableProjects = ({ activeTab }: SortableProjectsProps) => {
+  const { projects: projectsData, spaceId } = useSpace();
+
+  const { projects } = useProjectData(projectsData, activeTab, spaceId);
 
   const { handleChangeOrder } = useUpdateProjectOrder();
 

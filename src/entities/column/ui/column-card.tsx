@@ -1,8 +1,8 @@
-import { Ellipsis, Plus } from 'lucide-react';
+import { Ellipsis } from 'lucide-react';
 import { ReactNode, useMemo } from 'react';
 
-import { Button } from '@/components/ui/button';
-import { CardContent, CardFooter, CardHeader, CardTitle } from '@/components/ui/card';
+import { CardContent, CardHeader, CardTitle } from '@/components/ui/card';
+import { Muted } from '@/components/ui/typography';
 import {
   AppPopover,
   cn,
@@ -19,11 +19,10 @@ interface ColumnCardProps {
   children?: ReactNode;
   className?: string;
   column: Column;
-  onActionPopoverModal: (modalType: ModalType['type'], column: Column) => void;
+  onActionPopoverModal: (modalType: ModalType['type']) => void;
   onAddNewTask: (taskName: string) => void;
-  onEditColName: (colName: string, columnId: Column['id']) => void;
+  onEditColName: (colName: string) => void;
   onSortTasks: (colId: Column['id']) => void;
-  renderSortHandle?: () => ReactNode;
 }
 
 export const ColumnCard = ({
@@ -34,7 +33,6 @@ export const ColumnCard = ({
   onEditColName,
   onSortTasks,
   onActionPopoverModal,
-  renderSortHandle,
 }: ColumnCardProps) => {
   const { handleTogglePopover, isOpen } = usePopover();
 
@@ -49,21 +47,21 @@ export const ColumnCard = ({
     {
       label: 'Установить лимит задач',
       onClick: () => {
-        onActionPopoverModal('custom', column);
+        onActionPopoverModal('custom');
       },
       type: 'success-ghost',
     },
     {
       label: 'Редактировать',
       onClick: () => {
-        onActionPopoverModal('edit', column);
+        onActionPopoverModal('edit');
       },
       type: 'success-ghost',
     },
     {
       label: 'Удалить',
       onClick: () => {
-        onActionPopoverModal('delete', column);
+        onActionPopoverModal('delete');
       },
       type: 'danger-ghost',
     },
@@ -72,53 +70,55 @@ export const ColumnCard = ({
   const popoverTrigger = useMemo(() => {
     return (
       <Ellipsis
-        className='invisible cursor-pointer ps-2 opacity-0 transition-opacity'
+        className='cursor-pointer stroke-svg-muted hover:stroke-light-sky'
         onClick={handleTogglePopover}
+        size={19}
       />
     );
   }, [handleTogglePopover]);
 
+  const columnHeaderStyle = column.color
+    ? { borderTop: `3px solid ${column.color.hex}` }
+    : {};
+
+  const columnHeaderClassName = cn(
+    'inline-flex h-11 items-center rounded-md justify-between bg-white p-3 text-sm font-normal',
+    column.color && 'rounded-t-none'
+  );
+
   return (
-    <BaseColumnCard
-      className={cn(
-        className,
-        'justify-between [&_button]:hover:visible [&_button]:hover:opacity-100 [&_svg]:hover:visible [&_svg]:hover:opacity-100',
-        isOpen && '[&_svg]:visible [&_svg]:opacity-100'
-      )}
-      color={column.color?.hex}
-    >
-      <CardHeader className='flex-row'>
-        {renderSortHandle?.()}
-        <CardTitle className='flex-1 text-base'>
+    <BaseColumnCard className={cn('justify-between', className)}>
+      <CardHeader className='p-0'>
+        <CardTitle
+          className={columnHeaderClassName}
+          style={columnHeaderStyle}
+        >
           <EditableText
-            onValueChange={(value) => {
-              onEditColName(value, column.id);
-            }}
+            inputClass='py-0.5 px-2 h-fit'
+            onValueChange={onEditColName}
             defaultValue={column.name}
+            className='ms-7'
           >
             {column.name}
           </EditableText>
+
+          <AppPopover
+            onOpenChange={handleTogglePopover}
+            trigger={popoverTrigger}
+            items={popoverItems}
+            isOpen={isOpen}
+          />
         </CardTitle>
 
-        <AppPopover
-          onOpenChange={handleTogglePopover}
-          trigger={popoverTrigger}
-          items={popoverItems}
-          isOpen={isOpen}
-        />
-      </CardHeader>
-      <CardContent>{children}</CardContent>
-      <CardFooter className='items-center justify-center pb-3'>
-        <EditableText onValueChange={onAddNewTask}>
-          <Button
-            className='invisible opacity-0 transition-opacity'
-            variant='ghost'
-          >
-            <Plus />
-            Добавить задачу
-          </Button>
+        <EditableText
+          inputClass='py-0.5 px-2 h-8 bg-white'
+          className='rounded-md bg-white'
+          onValueChange={onAddNewTask}
+        >
+          <Muted className='h-8 px-3 py-2 text-xs'>Добавить задачу</Muted>
         </EditableText>
-      </CardFooter>
+      </CardHeader>
+      <CardContent className='space-y-2 p-0'>{children}</CardContent>
     </BaseColumnCard>
   );
 };
