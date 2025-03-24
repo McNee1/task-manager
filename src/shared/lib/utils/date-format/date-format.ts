@@ -1,3 +1,3 @@
-export const dateFormat = (date: Date, options: Intl.DateTimeFormatOptions) => {
+export const dateFormat = (date: Date | string, options: Intl.DateTimeFormatOptions) => {
   return new Intl.DateTimeFormat('ru-RU', options).format(new Date(date));
 };

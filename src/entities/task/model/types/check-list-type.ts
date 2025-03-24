@@ -1,6 +1,6 @@
 export interface CheckList {
   id: string;
-  isChecked: false;
+  isChecked: boolean;
   name: string;
   order: number;
   taskId: string;

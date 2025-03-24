@@ -9,7 +9,8 @@ JSON_CONTENT='{
   "workspaces": [],
   "groups": [],
   "projects": [],
-  "projectColumns": []
+  "projectColumns": [],
+  "projectTasks": []
 }'
 
 # Check if db.json exists

@@ -4,7 +4,7 @@ import { Input } from '@/components/ui/input';
 import { Column, ColumnCardTitle, ColumnSchema } from '@/entities';
 import { EditableText, RenderInputProps } from '@/shared';
 
-import { useQueryAddColumn } from '../../model';
+import { useAddColumn } from '../../model';
 
 interface AddColumnProps {
   columns: Column[];
@@ -13,7 +13,7 @@ interface AddColumnProps {
 }
 
 export const AddColumn = ({ mainColumnId, projectId, columns }: AddColumnProps) => {
-  const { handleAddColumn } = useQueryAddColumn(mainColumnId, projectId, columns);
+  const { handleAddColumn } = useAddColumn(mainColumnId, projectId, columns);
 
   const renderInput = (props: RenderInputProps) => (
     <ColumnCardTitle>

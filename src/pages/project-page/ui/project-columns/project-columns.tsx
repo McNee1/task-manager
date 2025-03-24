@@ -4,7 +4,7 @@ import { ReactNode } from 'react';
 import { Column, ColumnCard } from '@/entities';
 import { SortableList } from '@/features';
 
-import { useColumnHandlers, useColumnModal, useProject } from '../../model';
+import { useAddTask, useColumnHandlers, useColumnModal, useProject } from '../../model';
 import { AddColumn } from '../add-column';
 import { ActionModalColumn } from '../modals';
 
@@ -22,6 +22,7 @@ export const ProjectColumns = ({ children }: ProjectColumnProps) => {
   );
 
   const { columnFn, columnState } = useColumnModal();
+  const { handleAddTask } = useAddTask(projectId);
 
   return (
     <div className='inline-flex gap-x-3'>
@@ -31,11 +32,11 @@ export const ProjectColumns = ({ children }: ProjectColumnProps) => {
             onActionPopoverModal={(modalType) => {
               columnFn.handleAction(modalType, col.id);
             }}
+            onAddNewTask={(taskName) => {
+              handleAddTask(col.id, taskName);
+            }}
             onEditColName={(name) => {
               handleEditColumn(col.id, { name });
-            }}
-            onAddNewTask={(b) => {
-              console.log(b);
             }}
             onSortTasks={(s) => {
               console.log(s);

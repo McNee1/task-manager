@@ -4,10 +4,10 @@ import type { TasksRecord } from '@/entities';
 
 import { getTaskById } from '@/shared';
 
-export const tasksQueryOptions = (taskId: string | undefined) =>
+export const tasksQueryOptions = (projectId: string | undefined) =>
   queryOptions({
-    enabled: !!taskId,
-    queryKey: ['task', taskId],
+    enabled: !!projectId,
+    queryKey: ['tasks', projectId],
     staleTime: Infinity,
     gcTime: Infinity,
     queryFn: ({ queryKey }) => {
@@ -15,12 +15,12 @@ export const tasksQueryOptions = (taskId: string | undefined) =>
     },
     select: (data) => {
       return data?.reduce<TasksRecord>((accumulator, task) => {
-        const { columnsId } = task;
+        const { columnId } = task;
 
-        if (!(columnsId in accumulator)) {
-          accumulator[columnsId] = [];
+        if (!(columnId in accumulator)) {
+          accumulator[columnId] = [];
         }
-        accumulator[columnsId]?.push(task);
+        accumulator[columnId]?.push(task);
 
         return accumulator;
       }, {});

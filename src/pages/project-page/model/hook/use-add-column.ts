@@ -4,7 +4,7 @@ import { toast } from 'sonner';
 import { Column, ColumnSchema, ProjectWithColumns } from '@/entities';
 import { DEFAULT_ORDER, postColumnById } from '@/shared';
 
-export const useQueryAddColumn = (
+export const useAddColumn = (
   mainColumnId: ColumnSchema['id'],
   projectId: string | undefined,
   columns: Column[]
@@ -36,7 +36,7 @@ export const useQueryAddColumn = (
         }
       );
 
-      return { previousProjects, updatedColumns };
+      return { previousProjects };
     },
     onSettled: async () => {
       await queryClient.invalidateQueries({ queryKey: ['project', projectId] });

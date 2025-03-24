@@ -1,7 +1,8 @@
 import { TaskCard } from '@/entities';
 
-import { useProject } from '../model/hook/use-project';
-import { ProjectColumns } from './container';
+import { useProject } from '../model';
+import { ProjectColumns } from './project-columns';
+import { TaskChecklist } from './task-check-list';
 
 export const ProjectPage = () => {
   const { tasks } = useProject();
@@ -11,14 +12,16 @@ export const ProjectPage = () => {
       <div>other content</div>
 
       <ProjectColumns>
-        {(id) => {
-          return tasks[id]?.map((el) => (
+        {(id) =>
+          tasks[id]?.map((task) => (
             <TaskCard
-              key={el.id}
-              task={el}
-            />
-          ));
-        }}
+              key={task.id}
+              task={task}
+            >
+              <TaskChecklist checklist={task.checklist} />
+            </TaskCard>
+          ))
+        }
       </ProjectColumns>
     </div>
   );

@@ -1,113 +1,46 @@
 {
   "workspaces": [
     {
-      "id": "87b9",
-      "spaceName": "test",
-      "createdAt": "2025-03-12T09:37:05.656Z"
-    },
-    {
-      "id": "bd86",
-      "spaceName": "2",
-      "createdAt": "2025-03-15T12:18:40.294Z"
+      "id": "57bb",
+      "spaceName": "1",
+      "createdAt": "2025-03-18T08:38:52.774Z"
     }
   ],
   "groups": [
     {
-      "id": "d5fe",
+      "id": "bc4a",
       "groupName": "Активные проекты",
-      "workspaceId": "87b9",
-      "createdAt": "2025-03-12T09:37:06.667Z"
-    },
-    {
-      "id": "ea25",
-      "groupName": "gr2",
-      "workspaceId": "87b9",
-      "createdAt": "2025-03-12T09:37:36.795Z"
-    },
-    {
-      "id": "159d",
-      "groupName": "3",
-      "workspaceId": "87b9",
-      "createdAt": "2025-03-15T12:04:53.638Z"
-    },
-    {
-      "id": "6b26",
-      "groupName": "Активные проекты",
-      "workspaceId": "bd86",
-      "createdAt": "2025-03-15T12:18:41.315Z"
+      "workspaceId": "57bb",
+      "createdAt": "2025-03-18T08:38:53.797Z"
     }
   ],
   "projects": [
     {
-      "id": "c3d9",
+      "id": "2220",
       "allTaskCount": 0,
-      "createdAt": "2025-03-12T09:37:25.682Z",
-      "groupId": "d5fe",
-      "name": "1",
-      "order": 10000,
-      "spaceId": "87b9",
-      "taskCount": 0,
-      "color": {
-        "hex": "#66B3FF",
-        "name": "Светло-синий"
-      }
-    },
-    {
-      "id": "421b",
-      "allTaskCount": 0,
-      "createdAt": "2025-03-12T09:37:46.448Z",
-      "groupId": "d5fe",
+      "createdAt": "2025-03-18T08:39:01.095Z",
+      "groupId": "bc4a",
       "name": "2",
-      "order": 20000,
-      "spaceId": "87b9",
-      "taskCount": 0,
-      "color": null
-    },
-    {
-      "id": "4218",
-      "allTaskCount": 0,
-      "createdAt": "2025-03-15T12:03:15.899Z",
-      "groupId": "d5fe",
-      "name": "3",
-      "order": 30000,
-      "spaceId": "87b9",
-      "taskCount": 0,
-      "color": null
-    },
-    {
-      "id": "0caa",
-      "allTaskCount": 0,
-      "createdAt": "2025-03-15T12:03:33.621Z",
-      "groupId": "d5fe",
-      "name": "4",
-      "order": 40000,
-      "spaceId": "87b9",
+      "order": 10000,
+      "spaceId": "57bb",
       "taskCount": 0,
       "color": null
     }
   ],
   "projectColumns": [
     {
-      "id": "5ec8",
-      "projectId": "c3d9",
+      "id": "7c35",
+      "projectId": "2220",
       "columns": [
         {
           "id": 1,
-          "name": "Ожидают",
-          "order": 10000,
-          "color": {
-            "hex": "#FF66B3",
-            "name": "Светло-розовый"
-          }
+          "name": "Ожидают1",
+          "order": 10000
         },
         {
           "id": 2,
           "name": "В работе",
-          "order": 20000,
-          "color": {
-            "hex": "#9999FF",
-            "name": "Светло-синий"
-          }
+          "order": 20000
         },
         {
           "id": 3,
@@ -116,181 +49,171 @@
         },
         {
           "id": 4,
-          "name": "12",
+          "name": "1",
           "order": 40000
         },
         {
           "id": 5,
-          "name": "5",
+          "name": "7",
           "order": 50000
         },
         {
           "id": 6,
-          "name": "6",
+          "name": "8",
           "order": 60000
-        }
-      ]
-    },
-    {
-      "id": "9bd4",
-      "projectId": "421b",
-      "columns": [
-        {
-          "id": 2,
-          "name": "В работе1",
-          "order": 20000,
-          "color": {
-            "hex": "#FF66B3",
-            "name": "Светло-розовый"
-          }
-        },
-        {
-          "id": 1,
-          "name": "Ожидают2123",
-          "order": 25000
-        },
-        {
-          "id": 3,
-          "name": "Завершено",
-          "order": 30000
-        },
-        {
-          "id": 4,
-          "name": "121212",
-          "order": 40000
-        }
-      ]
-    },
-    {
-      "id": "f8fe",
-      "projectId": "4218",
-      "columns": [
-        {
-          "id": 1,
-          "name": "Ожидают",
-          "order": 10000
-        },
-        {
-          "id": 2,
-          "name": "В работе",
-          "order": 20000
-        },
-        {
-          "id": 3,
-          "name": "Завершено",
-          "order": 30000
-        }
-      ]
-    },
-    {
-      "id": "c715",
-      "projectId": "0caa",
-      "columns": [
-        {
-          "id": 1,
-          "name": "Ожидают",
-          "order": 10000
-        },
-        {
-          "id": 2,
-          "name": "В работе",
-          "order": 20000
-        },
-        {
-          "id": 3,
-          "name": "Завершено",
-          "order": 30000
         }
       ]
     }
   ],
   "projectTasks": [
     {
-      "attentionMessage": "This task is urgent!",
+      "id": "1",
+      "order": 10000,
+      "title": "1",
+      "columnId": 4,
+      "createdAt": "2025-03-18T10:04:03.066Z",
+      "dateBegin": null,
+      "dateEnd": null,
+      "dateMove": null,
+      "dateStatusChanged": null,
+      "description": null,
+      "hasDescription": false,
+      "hasMessages": false,
+      "importance": 0,
+      "projectId": "2220",
       "checklist": [
         {
-          "item": "Check the requirements",
-          "isChecked": false
+          "id": "cl-1",
+          "isChecked": true,
+          "name": "Проверить документацию 1 1 1  1dsd sd sd s sd  sdd",
+          "order": 1,
+          "taskId": "task-123"
         },
         {
-          "item": "Implement the feature",
-          "isChecked": true
+          "id": "cl-2",
+          "isChecked": false,
+          "name": "Написать тесты",
+          "order": 2,
+          "taskId": "task-123"
+        },
+        {
+          "id": "cl-3",
+          "isChecked": false,
+          "name": "Рефакторинг кода",
+          "order": 3,
+          "taskId": "task-456"
+        },
+        {
+          "id": "cl-4",
+          "isChecked": true,
+          "name": "Согласовать с командой",
+          "order": 4,
+          "taskId": "task-456"
+        },
+        {
+          "id": "cl-5",
+          "isChecked": false,
+          "name": "Подготовить презентацию",
+          "order": 5,
+          "taskId": "task-789"
         }
-      ],
-      "color": {
-        "hex": "#FF5733",
-        "name": "Red"
-      },
-      "createdAt": "2023-10-01T10:00:00Z",
-      "dateBegin": "2023-10-02T09:00:00Z",
-      "dateEnd": "2023-10-05T17:00:00Z",
+      ]
+    },
+    {
+      "id": "5707",
+      "order": 10000,
+      "title": "1",
+      "columnId": 1,
+      "createdAt": "2025-03-18T10:12:22.089Z",
+      "dateBegin": null,
+      "dateEnd": null,
       "dateMove": null,
-      "dateStatusChanged": "2023-10-01T12:00:00Z",
-      "description": "This task involves implementing a new feature for the application.",
-      "hasDescription": true,
+      "dateStatusChanged": null,
+      "description": null,
+      "hasDescription": false,
       "hasMessages": false,
-      "id": "task-1",
       "importance": 0,
-      "name": "Implement New Feature",
-      "projectId": "c3d9",
-      "columnsId": 1,
-      "estimatedTime": 7400
+      "projectId": "2220"
     },
     {
-      "attentionMessage": null,
-      "checklist": [],
-      "color": null,
-      "createdAt": "2023-10-03T11:00:00Z",
+      "id": "924a",
+      "order": 10000,
+      "title": "2",
+      "columnId": 2,
+      "createdAt": "2025-03-18T10:12:24.273Z",
       "dateBegin": null,
       "dateEnd": null,
-      "dateMove": "2023-10-04T15:00:00Z",
-      "dateStatusChanged": "2023-10-03T11:30:00Z",
+      "dateMove": null,
+      "dateStatusChanged": null,
       "description": null,
       "hasDescription": false,
-      "hasMessages": true,
-      "id": "task-2",
+      "hasMessages": false,
       "importance": 1,
-      "name": "Review Code",
-      "projectId": "c3d9",
-      "columnsId": 2,
-      "estimatedTime": 7200
+      "projectId": "2220"
     },
     {
-      "attentionMessage": null,
-      "checklist": [],
-      "color": null,
-      "createdAt": "2023-10-03T11:00:00Z",
+      "id": "c185",
+      "order": 10000,
+      "title": "3",
+      "columnId": 3,
+      "createdAt": "2025-03-18T10:12:26.073Z",
       "dateBegin": null,
       "dateEnd": null,
-      "dateMove": "2023-10-04T15:00:00Z",
-      "dateStatusChanged": "2023-10-03T11:30:00Z",
+      "dateMove": null,
+      "dateStatusChanged": null,
       "description": null,
       "hasDescription": false,
-      "hasMessages": true,
-      "id": "task-3",
+      "hasMessages": false,
       "importance": 2,
-      "name": "Faa",
-      "projectId": "c3d9",
-      "columnsId": 3
+      "projectId": "2220"
     },
     {
-      "attentionMessage": null,
-      "checklist": [],
-      "color": null,
-      "createdAt": "2023-10-03T11:00:00Z",
+      "id": "e60c",
+      "order": 10000,
+      "title": "2",
+      "columnId": 4,
+      "createdAt": "2025-03-18T10:12:54.197Z",
       "dateBegin": null,
       "dateEnd": null,
-      "dateMove": "2023-10-04T15:00:00Z",
-      "dateStatusChanged": "2023-10-03T11:30:00Z",
+      "dateMove": null,
+      "dateStatusChanged": null,
       "description": null,
       "hasDescription": false,
-      "hasMessages": true,
-      "id": "task-4",
-      "importance": 3,
-      "name": "Bar",
-      "projectId": "c3d9",
-      "columnsId": 2,
-      "estimatedTime": 2000
+      "hasMessages": false,
+      "importance": null,
+      "projectId": "2220"
+    },
+    {
+      "id": "3bd6",
+      "order": 10000,
+      "title": "121212",
+      "columnId": 5,
+      "createdAt": "2025-03-24T09:03:41.822Z",
+      "dateBegin": null,
+      "dateEnd": null,
+      "dateMove": null,
+      "dateStatusChanged": null,
+      "description": null,
+      "hasDescription": false,
+      "hasMessages": false,
+      "importance": null,
+      "projectId": "2220"
+    },
+    {
+      "id": "81e4",
+      "order": 10000,
+      "title": "1",
+      "columnId": 5,
+      "createdAt": "2025-03-24T09:05:07.977Z",
+      "dateBegin": null,
+      "dateEnd": null,
+      "dateMove": null,
+      "dateStatusChanged": null,
+      "description": null,
+      "hasDescription": false,
+      "hasMessages": false,
+      "importance": null,
+      "projectId": "2220"
     }
   ]
 }

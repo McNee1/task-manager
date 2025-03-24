@@ -55,6 +55,7 @@ export const useEditGroupName = (
       return;
     }
 
+    // TODO check if group name is valid may be use trim()
     if (!newName.length) {
       toast.error('Произошла ошибка', {
         description: 'Имя пространства не может быть пустым!',

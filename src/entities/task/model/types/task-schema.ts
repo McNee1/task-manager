@@ -4,8 +4,8 @@ export interface TaskSchema {
   attentionMessage?: string;
   checklist?: CheckList[];
   color?: { hex: string; name: string } | null;
-  columnsId: number;
-  createdAt: Date;
+  columnId: number;
+  createdAt: string;
   dateBegin: string | null;
   dateEnd: string | null;
   dateMove: string | null;
@@ -15,8 +15,9 @@ export interface TaskSchema {
   hasDescription: boolean;
   hasMessages: boolean;
   id: string;
-  importance: number;
-  projectColumnsId: string;
+  importance: number | null;
+  order: number;
+  projectId: string;
   title: string;
 }
 
