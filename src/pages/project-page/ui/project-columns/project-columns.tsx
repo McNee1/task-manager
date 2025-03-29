@@ -41,7 +41,6 @@ export const ProjectColumns = ({ children }: ProjectColumnProps) => {
             onSortTasks={(s) => {
               console.log(s);
             }}
-            className='shrink-0'
             column={col}
             key={col.id}
           >

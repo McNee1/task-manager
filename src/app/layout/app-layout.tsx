@@ -10,7 +10,10 @@ export function AppLayout({ children }: { children: ReactNode }) {
     <>
       <SidebarProvider>
         <AppSidebar />
-        <SidebarInset className='overflow-x-auto px-6'>
+        <SidebarInset
+          style={{ scrollbarWidth: 'thin' }}
+          className='overflow-x-auto px-6'
+        >
           <AppHeader />
           {children}
         </SidebarInset>

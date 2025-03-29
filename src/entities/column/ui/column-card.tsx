@@ -87,8 +87,8 @@ export const ColumnCard = ({
   );
 
   return (
-    <BaseColumnCard className={cn('justify-between', className)}>
-      <CardHeader className='p-0'>
+    <BaseColumnCard className={cn(className)}>
+      <CardHeader className='p-0 pr-1'>
         <CardTitle
           className={columnHeaderClassName}
           style={columnHeaderStyle}
@@ -118,7 +118,9 @@ export const ColumnCard = ({
           <Muted className='h-8 px-3 py-2 text-xs'>Добавить задачу</Muted>
         </EditableText>
       </CardHeader>
-      <CardContent className='space-y-2 p-0'>{children}</CardContent>
+      <CardContent className='h-[calc(100vh_-_11rem)] space-y-2 overflow-y-auto p-0 pr-1 [&::-webkit-scrollbar-thumb]:rounded-full [&::-webkit-scrollbar-thumb]:bg-gray-200 [&::-webkit-scrollbar-track]:bg-transparent [&::-webkit-scrollbar]:w-1'>
+        {children}
+      </CardContent>
     </BaseColumnCard>
   );
 };

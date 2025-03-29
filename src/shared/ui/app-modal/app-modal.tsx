@@ -11,7 +11,6 @@ import {
 export interface AppModalProps {
   children: ReactNode;
   isOpen: boolean;
-
   onOpenChange: () => void;
   subTitle?: string;
   title: string;

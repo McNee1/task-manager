@@ -1,7 +1,8 @@
 import { Plus } from 'lucide-react';
 
+import { Card } from '@/components/ui/card';
 import { Input } from '@/components/ui/input';
-import { Column, ColumnCardTitle, ColumnSchema } from '@/entities';
+import { Column, ColumnSchema } from '@/entities';
 import { EditableText, RenderInputProps } from '@/shared';
 
 import { useAddColumn } from '../../model';
@@ -16,7 +17,7 @@ export const AddColumn = ({ mainColumnId, projectId, columns }: AddColumnProps) 
   const { handleAddColumn } = useAddColumn(mainColumnId, projectId, columns);
 
   const renderInput = (props: RenderInputProps) => (
-    <ColumnCardTitle>
+    <Card className='p-3'>
       <Input
         {...props}
         autoFocus
@@ -24,7 +25,7 @@ export const AddColumn = ({ mainColumnId, projectId, columns }: AddColumnProps) 
       <div className='mt-2 w-full text-center text-sm font-normal text-muted-foreground'>
         Press Enter to save
       </div>
-    </ColumnCardTitle>
+    </Card>
   );
 
   return (

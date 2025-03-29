@@ -6,3 +6,4 @@ export { Badge } from './badge';
 export { EditableText, type RenderInputProps } from './editable-text';
 export { Progress } from './progress';
 export { Checkbox } from './custom-checkbox';
+export { ResizableToolbar } from './resizable-toolbar';

@@ -12,7 +12,7 @@ export const BaseColumnCard = ({ children, className }: ColumnCardProps) => {
   return (
     <Card
       className={cn(
-        'flex w-64 shrink-0 flex-col gap-2 border-0 bg-transparent shadow-none',
+        'flex h-full w-column shrink-0 flex-col gap-2 overflow-y-auto bg-transparent',
         className
       )}
     >

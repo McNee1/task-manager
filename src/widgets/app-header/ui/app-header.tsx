@@ -8,7 +8,7 @@ export const AppHeader = () => {
   const { state, fn } = useHeader();
 
   return (
-    <header className='flex h-16 shrink-0 items-center gap-5'>
+    <header className='flex h-16 items-center gap-5'>
       <SidebarTrigger />
 
       <HeaderBreadcrumb
