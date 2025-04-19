@@ -55,12 +55,6 @@ export const useAddProject = (
     },
 
     onSuccess: async (data) => {
-      onSuccess();
-      toast.success('Пространство успешно создано', {
-        description: `Имя пространство: ${data.name}`,
-        duration: 5000,
-      });
-
       const projectId = data.id;
 
       await postInitColumns({
@@ -70,6 +64,13 @@ export const useAddProject = (
           { id: 2, name: 'В работе', order: DEFAULT_ORDER * 2 },
           { id: 3, name: 'Завершено', order: DEFAULT_ORDER * 3 },
         ],
+      });
+
+      onSuccess();
+
+      toast.success('Пространство успешно создано', {
+        description: `Имя пространство: ${data.name}`,
+        duration: 5000,
       });
     },
   });

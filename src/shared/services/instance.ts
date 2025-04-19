@@ -13,7 +13,10 @@ type Endpoint =
   | `projects/${string}`
   | 'projectColumns'
   | `projectColumns/${string}`
-  | `projectTasks`;
+  | `projectTasks`
+  | `projectTasks/${string}`
+  | `timers/${string}`
+  | `timers`;
 
 interface ApiMethods {
   delete: <T>(url: Endpoint, options?: Options) => ResponsePromise<T>;

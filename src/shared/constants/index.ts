@@ -1,7 +1,8 @@
 export {
-  BadgeVariantsMap,
+  badgeVariantsMap,
   DEFAULT_ORDER,
-  IMPORTANCE,
+  IMPORTANCE_LIST,
+  IMPORTANCE_VALUES,
   MINUTE,
   PALETTE_COLORS,
 } from './base';

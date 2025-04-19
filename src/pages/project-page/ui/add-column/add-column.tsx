@@ -34,8 +34,8 @@ export const AddColumn = ({ mainColumnId, projectId, columns }: AddColumnProps) 
         onValueChange={handleAddColumn}
         renderInput={renderInput}
       >
-        <div className='inline-flex cursor-pointer items-center gap-x-3 py-3 pl-4 text-sm font-medium text-muted-foreground transition-colors hover:text-secondary-foreground'>
-          <Plus size={18} />
+        <div className='inline-flex cursor-pointer items-center gap-x-3 py-3 pl-4 text-sm text-muted-foreground transition-colors hover:text-secondary-foreground'>
+          <Plus className='size-4' />
           <span>Добавить колонку</span>
         </div>
       </EditableText>

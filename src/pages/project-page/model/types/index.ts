@@ -1,1 +1,1 @@
-export type { MutationInput } from './mutation-input';
+export type { ChangeTask } from './base';

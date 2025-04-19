@@ -21,9 +21,6 @@
   scrollbar-color: #888 transparent; /* Цвет ползунка и фона трека */
 }
 
-.custom-active {
-  background-color: red;
-}
 .PopoverContent {
   box-shadow:
     hsl(206 22% 7% / 35%) 0px 10px 38px -10px,

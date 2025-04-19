@@ -8,4 +8,6 @@ export const useQueryGetSpaces = () =>
   useQuery<SpaceSchema[]>({
     queryKey: ['spaces'],
     queryFn: getSpaces,
+    gcTime: Infinity,
+    staleTime: Infinity,
   });

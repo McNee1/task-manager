@@ -1,1 +1,1 @@
-export { ResizableToolbar } from './ui';
+export { ResizableToolbar } from './resizable-toolbar';

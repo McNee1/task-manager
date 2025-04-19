@@ -56,7 +56,6 @@ export const CardGroup = ({
       <AlignEndVertical
         onClick={handleTogglePopover}
         strokeWidth={2}
-        size={19}
       />
     </Button>
   );
@@ -80,7 +79,6 @@ export const CardGroup = ({
                 }}
                 className='mt-1 opacity-0 transition-opacity hover:stroke-green-700'
                 strokeWidth={1.5}
-                size={17}
               />
             </div>
 

@@ -3,3 +3,4 @@ export { ModalWithColorPicker } from './modal-with-color-picker';
 export { InputWithModal } from './input-with-modal';
 export { SortableList } from './sortable-list';
 export { ProgressCheckList } from './progress-check-list';
+export { PopoverWithCalendar } from './popover-with-calendar';

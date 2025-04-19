@@ -1,3 +1,5 @@
+import { KeyImportance } from '@/shared';
+
 import { CheckList } from './check-list-type';
 
 export interface TaskSchema {
@@ -5,20 +7,27 @@ export interface TaskSchema {
   checklist?: CheckList[];
   color?: { hex: string; name: string } | null;
   columnId: number;
+  completed: boolean;
   createdAt: string;
   dateBegin: string | null;
   dateEnd: string | null;
   dateMove: string | null;
   dateStatusChanged: string | null;
-  description: string | null;
-  estimatedTime?: number | null;
+  description?: string | null;
+  estimatedDate?: string | undefined;
+  estimatedTime?: EstimatedTime | null;
   hasDescription: boolean;
   hasMessages: boolean;
   id: string;
-  importance: number | null;
+  importance?: KeyImportance | null;
   order: number;
   projectId: string;
   title: string;
 }
 
 export type TasksRecord = Record<number, TaskSchema[] | undefined>;
+export type PartialTask = Partial<TaskSchema>;
+export interface EstimatedTime {
+  hours: string;
+  minutes: string;
+}

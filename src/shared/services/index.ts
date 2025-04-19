@@ -2,4 +2,5 @@ export * from './space/index';
 export * from './group/index';
 export * from './project/index';
 export * from './columns/index';
-export * from './task';
+export * from './task/index';
+export * from './timer/index';

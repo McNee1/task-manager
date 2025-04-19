@@ -24,9 +24,11 @@ export const useAddSpace = (onSuccess: VoidFunction) => {
         createdAt: new Date().toISOString(),
       };
 
+      // refactor combine mutate AddGroup
       await postGroup(newGroup);
 
       await queryClient.invalidateQueries({ queryKey: ['spaces'] });
+      await queryClient.invalidateQueries({ queryKey: ['groups'] });
     },
 
     onError: (error) => {

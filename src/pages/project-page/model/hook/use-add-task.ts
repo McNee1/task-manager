@@ -2,7 +2,7 @@ import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { toast } from 'sonner';
 
 import { Column, TaskSchema } from '@/entities';
-import { DEFAULT_ORDER, postTask } from '@/shared';
+import { DEFAULT_ORDER, postTask, postTimer } from '@/shared';
 
 export const useAddTask = (projectId: string | undefined) => {
   const queryClient = useQueryClient();
@@ -42,6 +42,8 @@ export const useAddTask = (projectId: string | undefined) => {
         description: `Имя задачи: ${data.title}`,
         duration: 5000,
       });
+
+      void postTimer({ id: data.id });
     },
   });
 
@@ -71,6 +73,7 @@ export const useAddTask = (projectId: string | undefined) => {
       hasMessages: false,
       importance: null,
       projectId: projectId,
+      completed: false,
     });
   };
 

@@ -12,7 +12,7 @@ export const SidebarTrigger = ({ className }: SidebarTriggerProps) => {
   const { toggleSidebar, open } = useSidebar();
   return (
     <Button
-      className={cn('h-7 w-7 p-4', className)}
+      className={cn('h-7 w-7 p-4 [&_svg]:size-5', className)}
       onClick={toggleSidebar}
       data-sidebar='trigger'
       variant='ghost'
@@ -23,7 +23,6 @@ export const SidebarTrigger = ({ className }: SidebarTriggerProps) => {
           open ? 'rotate-180' : 'rotate-0',
           'transition-transform duration-500'
         )}
-        style={{ width: '22px', height: '22px' }}
         strokeWidth={1.5}
       />
       <span className='sr-only'>Toggle Sidebar</span>

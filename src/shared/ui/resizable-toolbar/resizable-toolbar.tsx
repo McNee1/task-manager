@@ -4,6 +4,7 @@ import { cn } from '@/shared';
 
 interface ResizableToolbarProps {
   children: ReactNode;
+  className?: string;
   defaultWidth?: number;
   isCollapsed?: boolean;
   maxWidth?: number;
@@ -12,7 +13,14 @@ interface ResizableToolbarProps {
 
 export const ResizableToolbar = forwardRef<HTMLDivElement, ResizableToolbarProps>(
   (
-    { children, defaultWidth = 550, minWidth = 300, maxWidth = 800, isCollapsed = false },
+    {
+      children,
+      defaultWidth = 550,
+      minWidth = 300,
+      maxWidth = 800,
+      isCollapsed = false,
+      className,
+    },
     ref
   ) => {
     const [width, setWidth] = useState(defaultWidth);
@@ -108,7 +116,7 @@ export const ResizableToolbar = forwardRef<HTMLDivElement, ResizableToolbarProps
           <div className='m-auto h-9 w-1 rounded bg-gray-400' />
         </div>
 
-        <div className='size-full overflow-y-auto p-4'>{children}</div>
+        <div className={cn('size-full overflow-y-auto py-4', className)}>{children}</div>
       </div>
     );
   }

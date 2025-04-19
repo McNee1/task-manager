@@ -64,7 +64,7 @@ export const ProjectCard = memo(({ project, onProjectAction }: ProjectCardProps)
         className='me-3 size-fit p-2 opacity-0 transition-all focus:outline-none'
         variant='ghost'
       >
-        <Settings2 size={20} />
+        <Settings2 />
       </Button>
     ),
     [handleTogglePopover]

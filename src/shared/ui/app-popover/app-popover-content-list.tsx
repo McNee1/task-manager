@@ -18,7 +18,7 @@ export const PopoverContentList = ({ items }: PopoverContentListProps) => {
           variant={item.type}
           key={item.label}
         >
-          {item.icon && <item.icon className='size-4' />}
+          {item.icon && <item.icon />}
           {item.label}
         </Button>
       ))}

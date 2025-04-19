@@ -7,3 +7,6 @@ export { EditableText, type RenderInputProps } from './editable-text';
 export { Progress } from './progress';
 export { Checkbox } from './custom-checkbox';
 export { ResizableToolbar } from './resizable-toolbar';
+export { Textarea } from './textarea';
+export { FieldWithIcon } from './field-with-icon';
+export { TimeDisplay } from './time-display';

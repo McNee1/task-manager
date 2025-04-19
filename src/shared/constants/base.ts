@@ -30,14 +30,21 @@ export const PALETTE_COLORS = [
   { hex: '#D1C6E7', name: 'Светло-синий фиолетовый' },
 ];
 
-export const IMPORTANCE = {
-  0: 'feeze',
-  1: 'low',
-  2: 'medium',
-  3: 'high',
+export const IMPORTANCE_VALUES = {
+  0: { ru: 'Заморожено', en: 'feeze' },
+  1: { ru: 'Низкий', en: 'low' },
+  2: { ru: 'Средний', en: 'medium' },
+  3: { ru: 'Высокий', en: 'high' },
 } as const;
 
-export const BadgeVariantsMap: Record<
+export const IMPORTANCE_LIST = [
+  { importance: 0, name: IMPORTANCE_VALUES[0].en, ruName: IMPORTANCE_VALUES[0].ru },
+  { importance: 1, name: IMPORTANCE_VALUES[1].en, ruName: IMPORTANCE_VALUES[1].ru },
+  { importance: 2, name: IMPORTANCE_VALUES[2].en, ruName: IMPORTANCE_VALUES[2].ru },
+  { importance: 3, name: IMPORTANCE_VALUES[3].en, ruName: IMPORTANCE_VALUES[3].ru },
+] as const;
+
+export const badgeVariantsMap: Record<
   KeyImportance,
   ComponentProps<typeof Badge>['variant']
 > = {

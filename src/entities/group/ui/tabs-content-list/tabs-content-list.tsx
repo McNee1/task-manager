@@ -3,8 +3,7 @@ import { memo } from 'react';
 import { TabsContent } from '@/components/ui/tabs';
 import { GroupSchema } from '@/entities';
 
-import { CardGroup } from '../group-card';
-import { TabGroupCardProps } from '../group-card/group card';
+import { CardGroup, type TabGroupCardProps } from '../group-card';
 
 interface TabsContentListProps extends Omit<TabGroupCardProps, 'group'> {
   groups: GroupSchema[];

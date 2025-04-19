@@ -25,7 +25,7 @@ export const ProjectColumns = ({ children }: ProjectColumnProps) => {
   const { handleAddTask } = useAddTask(projectId);
 
   return (
-    <div className='inline-flex gap-x-3'>
+    <div className='inline-flex gap-x-2'>
       <SortableList
         renderSortItem={(col) => (
           <ColumnCard
@@ -41,6 +41,7 @@ export const ProjectColumns = ({ children }: ProjectColumnProps) => {
             onSortTasks={(s) => {
               console.log(s);
             }}
+            className='px-1'
             column={col}
             key={col.id}
           >

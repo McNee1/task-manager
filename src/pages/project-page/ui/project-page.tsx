@@ -1,35 +1,41 @@
-import { useCallback, useRef, useState } from 'react';
+import { useRef, useState } from 'react';
 
-import { TaskCard } from '@/entities';
-import { ResizableToolbar, useClickOutside } from '@/shared';
+import { TaskCard, TaskSchema } from '@/entities';
+import { useClickOutside } from '@/shared';
 
 import { useProject } from '../model';
 import { ProjectColumns } from './project-columns';
 import { TaskChecklist } from './task-check-list';
+import { Toolbar } from './toolbar/toolbar';
 
 export const ProjectPage = () => {
-  const { tasks } = useProject();
+  const { tasks, projectId } = useProject();
 
   const [isCollapsed, setIsCollapsed] = useState(true);
 
   const toolbarRef = useRef<HTMLDivElement | null>(null);
-  const taskCardsRef = useRef<HTMLDivElement[]>([]);
+
+  const [activeTask, setActiveTask] = useState<TaskSchema | null>(null);
 
   const handleOpenToolbar = () => {
     setIsCollapsed(false);
   };
 
-  const handleCloseToolbar = () => {
+  const handleCloseToolbar = (event?: MouseEvent | TouchEvent) => {
+    const target = event?.target as HTMLElement;
+
+    if (
+      target.closest('[role="dialog"]') ||
+      target.getAttribute('data-state') === 'open' ||
+      target.getAttribute('data-overlay') === 'overlay' ||
+      target.closest("[data-task='task']")
+    ) {
+      return;
+    }
+    setActiveTask(null);
     setIsCollapsed(true);
   };
-
-  const addTaskCardRef = useCallback((el: HTMLDivElement | null) => {
-    if (el && !taskCardsRef.current.includes(el)) {
-      taskCardsRef.current.push(el);
-    }
-  }, []);
-
-  useClickOutside(toolbarRef, handleCloseToolbar, taskCardsRef);
+  useClickOutside(toolbarRef, handleCloseToolbar);
 
   return (
     <div className='flex w-fit flex-1 flex-row'>
@@ -41,9 +47,9 @@ export const ProjectPage = () => {
             tasks[id]?.map((task) => (
               <TaskCard
                 onOpenToolbar={() => {
+                  setActiveTask(task);
                   handleOpenToolbar();
                 }}
-                ref={addTaskCardRef}
                 key={task.id}
                 task={task}
               >
@@ -53,12 +59,14 @@ export const ProjectPage = () => {
           }
         </ProjectColumns>
       </div>
-      <ResizableToolbar
+      <Toolbar
+        setEditedTask={setActiveTask}
+        onClose={handleCloseToolbar}
         isCollapsed={isCollapsed}
-        ref={toolbarRef}
-      >
-        <div>Toolbar Content</div>
-      </ResizableToolbar>
+        activeTask={activeTask}
+        toolbarRef={toolbarRef}
+        projectId={projectId}
+      />
     </div>
   );
 };

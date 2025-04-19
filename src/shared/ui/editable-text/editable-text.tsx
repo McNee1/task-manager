@@ -4,6 +4,7 @@ import {
   memo,
   ReactNode,
   useCallback,
+  useEffect,
   useState,
 } from 'react';
 
@@ -32,6 +33,14 @@ export const EditableText = memo(
     const [isEditing, setIsEditing] = useState(false);
     const [value, setValue] = useState(defaultValue);
 
+    useEffect(() => {
+      if (defaultValue) {
+        setValue(defaultValue);
+      } else {
+        setValue('');
+      }
+    }, [defaultValue]);
+
     const handleValueChange = useCallback((e: ChangeEvent<HTMLInputElement>) => {
       const newValue = e.target.value;
       setValue(newValue);
@@ -39,8 +48,11 @@ export const EditableText = memo(
 
     const handleEditEnd = useCallback(() => {
       setIsEditing(false);
-      setValue('');
-    }, []);
+
+      if (!defaultValue) {
+        setValue('');
+      }
+    }, [defaultValue]);
 
     const handleKeyDown = useCallback(
       (e: KeyboardEvent<HTMLInputElement>) => {

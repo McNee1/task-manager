@@ -13,6 +13,7 @@ export default {
         column: '272px',
       },
       colors: {
+        'slate-blue': 'hsl(var(--slate-blue))',
         background: 'hsl(var(--background))',
         foreground: 'hsl(var(--foreground))',
         'svg-muted': 'hsl(var(--svg-secondary))',

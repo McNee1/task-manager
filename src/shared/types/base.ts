@@ -3,7 +3,7 @@ import type { LucideIcon } from 'lucide-react';
 
 import { routeTree } from '@/routeTree.gen';
 
-import { IMPORTANCE } from '../constants';
+import { IMPORTANCE_VALUES } from '../constants/base';
 
 export type ValidRoutes = ParseRoute<typeof routeTree>['fullPath'];
 
@@ -13,11 +13,11 @@ export interface PopoverItems {
   icon?: LucideIcon;
   label: string;
   onClick: () => void;
-  type: 'success-ghost' | 'danger-ghost';
+  type: 'success-ghost' | 'danger-ghost' | 'ghost';
 }
 
 export interface RouteInfo {
   icon: LucideIcon;
   name: string;
 }
-export type KeyImportance = keyof typeof IMPORTANCE;
+export type KeyImportance = keyof typeof IMPORTANCE_VALUES;

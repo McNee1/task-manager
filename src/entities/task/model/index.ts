@@ -1,1 +1,7 @@
-export type { CheckList, TaskSchema, TasksRecord } from './types';
+export type {
+  CheckList,
+  EstimatedTime,
+  PartialTask,
+  TaskSchema,
+  TasksRecord,
+} from './types';

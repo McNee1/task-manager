@@ -3,30 +3,33 @@ import { RefObject, useEffect } from 'react';
 export const useClickOutside = <T extends HTMLElement = HTMLElement>(
   elementRef: RefObject<T> | null,
   handler: (event?: MouseEvent | TouchEvent) => void,
-  ignoresRef?: RefObject<T> | RefObject<T[]>
+  ignoresRef?: (HTMLElement | null)[] | HTMLElement | null
 ) => {
   useEffect(() => {
-    const handleClickOutside = (event: MouseEvent) => {
+    const listener = (event: MouseEvent) => {
       const target = event.target as Node;
 
       if (ignoresRef) {
-        if (Array.isArray(ignoresRef.current)) {
-          if (ignoresRef.current.some((el) => el.contains(target))) {
+        if (Array.isArray(ignoresRef)) {
+          if (ignoresRef.some((el) => el instanceof HTMLElement && el.contains(target))) {
             return;
           }
-        } else if (ignoresRef.current?.contains(target)) {
+        } else if (ignoresRef instanceof HTMLElement && ignoresRef.contains(target)) {
           return;
         }
       }
       if (elementRef?.current && !elementRef.current.contains(target)) {
         handler(event);
       }
-
-      return;
     };
-    document.addEventListener('mousedown', handleClickOutside);
+
+    const timeoutId = setTimeout(() => {
+      document.addEventListener('mousedown', listener);
+    }, 0);
+
     return () => {
-      document.removeEventListener('mousedown', handleClickOutside);
+      clearTimeout(timeoutId);
+      document.removeEventListener('mousedown', listener);
     };
   }, [ignoresRef, elementRef, handler]);
 };
