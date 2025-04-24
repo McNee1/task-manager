@@ -21,3 +21,9 @@ export interface RouteInfo {
   name: string;
 }
 export type KeyImportance = keyof typeof IMPORTANCE_VALUES;
+
+export interface EstimatedTime {
+  hours: string;
+  minutes: string;
+  // seconds?: string;
+}

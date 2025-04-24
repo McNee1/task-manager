@@ -19,6 +19,7 @@ import {
 import { SortableItem } from './sortable-item';
 
 interface SortableItemsProps<T extends SortableItemType> {
+  className?: string;
   fallbackContent?: ReactNode;
   onUpdateOrder: UpdateOrderFn<T>;
   renderHandle?: (item: T) => ReactNode;
@@ -32,6 +33,7 @@ export const SortableList = <T extends SortableItemType>({
   onUpdateOrder,
   renderHandle,
   fallbackContent,
+  className,
 }: SortableItemsProps<T>) => {
   const sensors = useSensors(
     useSensor(KeyboardSensor, {
@@ -53,6 +55,7 @@ export const SortableList = <T extends SortableItemType>({
         {state.sortableItems.map((col) => (
           <SortableItem
             dragHandle={renderHandle?.(col)}
+            className={className}
             key={col.id}
             id={col.id}
           >
@@ -61,7 +64,7 @@ export const SortableList = <T extends SortableItemType>({
         ))}
       </SortableContext>
     ),
-    [state.sortableItems, renderHandle, renderSortItem]
+    [state.sortableItems, renderHandle, renderSortItem, className]
   );
 
   const memoizedDragOverlay = useMemo(

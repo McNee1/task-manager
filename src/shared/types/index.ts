@@ -1,4 +1,5 @@
 export type {
+  EstimatedTime,
   KeyImportance,
   PopoverItems,
   RouteInfo,

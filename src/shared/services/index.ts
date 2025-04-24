@@ -1,6 +1,7 @@
 export * from './space/index';
 export * from './group/index';
 export * from './project/index';
-export * from './columns/index';
+export * from '../../entities/column/api/index';
 export * from './task/index';
-export * from './timer/index';
+
+export { apiInstance } from './instance';

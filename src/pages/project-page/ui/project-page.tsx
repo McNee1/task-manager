@@ -1,15 +1,14 @@
-import { useRef, useState } from 'react';
+import { useParams } from '@tanstack/react-router';
+import { useCallback, useRef, useState } from 'react';
 
-import { TaskCard, TaskSchema } from '@/entities';
+import { TaskSchema } from '@/entities';
+import { ColumnManagement, TaskManagement } from '@/features';
 import { useClickOutside } from '@/shared';
 
-import { useProject } from '../model';
-import { ProjectColumns } from './project-columns';
-import { TaskChecklist } from './task-check-list';
 import { Toolbar } from './toolbar/toolbar';
 
 export const ProjectPage = () => {
-  const { tasks, projectId } = useProject();
+  const { projectId } = useParams({ strict: false });
 
   const [isCollapsed, setIsCollapsed] = useState(true);
 
@@ -17,9 +16,11 @@ export const ProjectPage = () => {
 
   const [activeTask, setActiveTask] = useState<TaskSchema | null>(null);
 
-  const handleOpenToolbar = () => {
+  const handleOpenToolbar = useCallback((task: TaskSchema) => {
     setIsCollapsed(false);
-  };
+    setActiveTask(task);
+    console.log(task);
+  }, []);
 
   const handleCloseToolbar = (event?: MouseEvent | TouchEvent) => {
     const target = event?.target as HTMLElement;
@@ -42,22 +43,15 @@ export const ProjectPage = () => {
       <div className='flex flex-col'>
         {/* <div>other content</div> */}
 
-        <ProjectColumns>
-          {(id) =>
-            tasks[id]?.map((task) => (
-              <TaskCard
-                onOpenToolbar={() => {
-                  setActiveTask(task);
-                  handleOpenToolbar();
-                }}
-                key={task.id}
-                task={task}
-              >
-                <TaskChecklist checklist={task.checklist} />
-              </TaskCard>
-            ))
-          }
-        </ProjectColumns>
+        <ColumnManagement projectId={projectId}>
+          {(id) => (
+            <TaskManagement
+              onTaskClick={handleOpenToolbar}
+              projectId={projectId}
+              id={id}
+            />
+          )}
+        </ColumnManagement>
       </div>
       <Toolbar
         setEditedTask={setActiveTask}

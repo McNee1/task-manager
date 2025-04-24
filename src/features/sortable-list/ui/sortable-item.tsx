@@ -4,13 +4,16 @@ import { useSortable } from '@dnd-kit/sortable';
 import { CSS } from '@dnd-kit/utilities';
 import { ReactNode } from 'react';
 
+import { cn } from '@/shared';
+
 interface SortableItemProps {
   children: ReactNode;
+  className?: string;
   dragHandle?: ReactNode;
   id: UniqueIdentifier;
 }
 
-export function SortableItem({ children, id, dragHandle }: SortableItemProps) {
+export function SortableItem({ children, id, dragHandle, className }: SortableItemProps) {
   const { attributes, listeners, setNodeRef, transform, transition, isDragging } =
     useSortable({
       id: id,
@@ -25,7 +28,10 @@ export function SortableItem({ children, id, dragHandle }: SortableItemProps) {
   if (dragHandle) {
     return (
       <div
-        className='relative [&_svg]:hover:visible [&_svg]:hover:opacity-100'
+        className={cn(
+          'relative [&_svg]:hover:visible [&_svg]:hover:opacity-100',
+          className
+        )}
         ref={setNodeRef}
         style={style}
       >

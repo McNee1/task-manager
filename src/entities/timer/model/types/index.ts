@@ -1,1 +1,6 @@
-export type { TimerSchema } from './timer-schema';
+export interface TimerSchema {
+  id: string;
+  status?: 'running' | 'pause';
+  timeBegin?: number;
+  timeEnd?: number;
+}

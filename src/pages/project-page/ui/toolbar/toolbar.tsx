@@ -2,11 +2,11 @@ import { RefObject, useCallback } from 'react';
 
 import type { PartialTask, TaskSchema } from '@/entities';
 
+import { EditDescription } from '@/features';
 import { ResizableToolbar } from '@/shared';
 
 import { useTaskMutation } from '../../model';
 import { ToolbarActions } from './toolbar-actions';
-import { ToolbarDescription } from './toolbar-description';
 import { ToolbarFields } from './toolbar-fields';
 import { ToolbarHeader } from './toolbar-header';
 import { ToolbarSubtasks } from './toolbar-subtasks';
@@ -78,9 +78,8 @@ export const Toolbar = ({
 
           <div className='mx-auto my-6 h-px w-[calc(100%_-_64px)] bg-slate-300' />
 
-          <ToolbarDescription
-            description={activeTask.description ?? ''}
-            onChangeTask={handleChangeTask}
+          <EditDescription
+            id={activeTask.id}
             className='px-8'
           />
 

@@ -1,5 +1,5 @@
 import { Calendar } from 'lucide-react';
-import { ReactNode } from 'react';
+import { ComponentProps, ReactNode } from 'react';
 
 import {
   Card,
@@ -9,7 +9,7 @@ import {
   CardTitle,
 } from '@/components/ui/card';
 import { Muted } from '@/components/ui/typography';
-import { Badge, badgeVariantsMap, dateFormat, IMPORTANCE_VALUES } from '@/shared';
+import { Badge, badgeVariantsMap, cn, dateFormat, IMPORTANCE_VALUES } from '@/shared';
 
 import { TaskSchema } from '../model';
 
@@ -26,20 +26,27 @@ type TaskCardType = Pick<
   | 'importance'
 >;
 
-interface TaskCardProps {
+interface TaskCardProps extends ComponentProps<'div'> {
   children?: ReactNode;
-  onOpenToolbar: VoidFunction;
+  className?: string;
+  onCardClick?: () => void;
   task: TaskCardType;
 }
 
-export const TaskCard = ({ task, children, onOpenToolbar }: TaskCardProps) => {
+export const TaskCard = ({
+  task,
+  children,
+  onCardClick,
+  className,
+  ...props
+}: TaskCardProps) => {
   // const estimatedTime = secondsToHMS(task.estimatedTime);
 
   return (
     <Card
-      className='w-full cursor-pointer border-0 shadow-none transition-shadow hover:shadow-[0_0.5px_4px_rgba(0,0,0,0.15)]'
-      onClick={onOpenToolbar}
-      data-task='task'
+      className={cn(className)}
+      onClick={onCardClick}
+      {...props}
     >
       <CardHeader className='p-3'>
         <div className='inline-flex justify-between'>

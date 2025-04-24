@@ -1,19 +1,17 @@
 import { Pause, Play } from 'lucide-react';
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 
-import { TimeDisplay } from '@/shared';
+import { EstimatedTime, TimeDisplay } from '@/shared';
 import { cn } from '@/shared/lib';
 
 interface TimerProps {
   className?: string;
+  disabled?: boolean;
   end: number | undefined;
   onClick?: (time: number) => void;
   start: number | undefined;
   status: 'running' | 'pause' | undefined;
-  totalTime?: {
-    hours: string;
-    minutes: string;
-  } | null;
+  totalTime?: EstimatedTime | null;
 }
 
 export const Timer = ({
@@ -23,6 +21,7 @@ export const Timer = ({
   onClick,
   className,
   totalTime,
+  disabled,
 }: TimerProps) => {
   const [elapsedTime, setElapsedTime] = useState(0);
 
@@ -62,8 +61,9 @@ export const Timer = ({
   }, [calculateElapsed]);
 
   const handleClick = useCallback(() => {
+    if (disabled) return;
     onClick?.(elapsedTime);
-  }, [elapsedTime, onClick]);
+  }, [disabled, elapsedTime, onClick]);
 
   const Icon = () =>
     useMemo(() => {
@@ -83,6 +83,7 @@ export const Timer = ({
         status === 'running'
           ? 'border border-orange-400 bg-orange-100 text-orange-400'
           : 'bg-slate-100 hover:bg-slate-200/80',
+        disabled && 'cursor-not-allowed',
         className
       )}
       onClick={handleClick}

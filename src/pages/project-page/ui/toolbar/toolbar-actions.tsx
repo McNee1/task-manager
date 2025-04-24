@@ -4,10 +4,10 @@ import { useCallback } from 'react';
 import { Button } from '@/components/ui/button';
 import { H3 } from '@/components/ui/typography';
 import { TaskSchema } from '@/entities';
+import { TimerControl } from '@/features';
 import { cn, EditableText } from '@/shared';
 
 import { ChangeTask } from '../../model';
-import { ToolbarTimer } from './toolbar-timer';
 
 interface ToolbarActionsProps extends ChangeTask {
   className?: string;
@@ -61,7 +61,7 @@ export const ToolbarActions = ({
           {isCompleted ? 'Выполнено' : 'Выполнить'}
         </Button>
 
-        <ToolbarTimer
+        <TimerControl
           estimatedTime={estimatedTime}
           id={taskId}
         />

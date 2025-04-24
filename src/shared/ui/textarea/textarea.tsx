@@ -43,6 +43,10 @@ export const Textarea = ({
 
   const [value, setValue] = useState(initValue);
 
+  useEffect(() => {
+    setValue(initValue);
+  }, [initValue]);
+
   const textareaRef = useRef<HTMLTextAreaElement>(null);
 
   const handleKeyDown = (e: KeyboardEvent<HTMLTextAreaElement>) => {

@@ -1,4 +1,4 @@
-import { KeyImportance } from '@/shared';
+import { EstimatedTime, KeyImportance } from '@/shared';
 
 import { CheckList } from './check-list-type';
 
@@ -13,7 +13,6 @@ export interface TaskSchema {
   dateEnd: string | null;
   dateMove: string | null;
   dateStatusChanged: string | null;
-  description?: string | null;
   estimatedDate?: string | undefined;
   estimatedTime?: EstimatedTime | null;
   hasDescription: boolean;
@@ -27,7 +26,3 @@ export interface TaskSchema {
 
 export type TasksRecord = Record<number, TaskSchema[] | undefined>;
 export type PartialTask = Partial<TaskSchema>;
-export interface EstimatedTime {
-  hours: string;
-  minutes: string;
-}

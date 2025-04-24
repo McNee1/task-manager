@@ -7,7 +7,9 @@ import {
 } from 'lucide-react';
 import { useCallback, useEffect } from 'react';
 
-import { EstimatedTime, TaskSchema } from '@/entities';
+import type { EstimatedTime } from '@/shared';
+
+import { TaskSchema } from '@/entities';
 import { PopoverWithCalendar } from '@/features';
 import { cn, FieldWithIcon, TimeDisplay, useActionModal } from '@/shared';
 

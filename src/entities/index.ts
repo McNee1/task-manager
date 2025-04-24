@@ -4,3 +4,4 @@ export * from './project';
 export * from './column';
 export * from './task';
 export * from './timer';
+export * from './description';
