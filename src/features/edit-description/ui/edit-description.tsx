@@ -1,4 +1,4 @@
-import { ErrorText } from '@/components/ui/typography';
+import { ErrorText, Lead } from '@/components/ui/typography';
 import { DescriptionSchema } from '@/entities';
 import { Textarea } from '@/shared';
 
@@ -15,7 +15,7 @@ export const EditDescription = ({ className, id }: EditDescriptionProps) => {
   const { mutate } = useMutationDescription(id);
 
   if (isPending) {
-    return;
+    return <Lead className='px-8 text-sm'>Loading...</Lead>;
   }
 
   if (error) {

@@ -1,5 +1,5 @@
 import { Calendar } from 'lucide-react';
-import { ComponentProps, ReactNode } from 'react';
+import { ComponentProps, memo, ReactNode } from 'react';
 
 import {
   Card,
@@ -33,45 +33,40 @@ interface TaskCardProps extends ComponentProps<'div'> {
   task: TaskCardType;
 }
 
-export const TaskCard = ({
-  task,
-  children,
-  onCardClick,
-  className,
-  ...props
-}: TaskCardProps) => {
-  // const estimatedTime = secondsToHMS(task.estimatedTime);
+export const TaskCard = memo(
+  ({ task, children, onCardClick, className, ...props }: TaskCardProps) => {
+    // const estimatedTime = secondsToHMS(task.estimatedTime);
 
-  return (
-    <Card
-      className={cn(className)}
-      onClick={onCardClick}
-      {...props}
-    >
-      <CardHeader className='p-3'>
-        <div className='inline-flex justify-between'>
-          <Muted className='text-xs'>#1</Muted>
+    return (
+      <Card
+        className={cn(className)}
+        onClick={onCardClick}
+        {...props}
+      >
+        <CardHeader className='p-3'>
+          <div className='inline-flex justify-between'>
+            <Muted className='text-xs'>#1</Muted>
 
-          {task.importance !== undefined && task.importance !== null && (
-            <Badge
-              variant={badgeVariantsMap[task.importance]}
-              className='gap-2'
-            >
-              <span className='text-xs'>{IMPORTANCE_VALUES[task.importance].ru}</span>
-            </Badge>
-          )}
-        </div>
-        <CardTitle className='text-sm font-normal'>{task.title}</CardTitle>
-      </CardHeader>
-      <CardContent className='p-3 pb-2'>{children}</CardContent>
-      <CardFooter className='flex justify-between p-3 pt-0 text-xs text-gray-500'>
-        <div className='flex items-center'>
-          <div className='mr-3 flex items-center'>
-            <Calendar className='mr-1 size-3' />
-            {dateFormat(task.createdAt, { dateStyle: 'short' })}
+            {task.importance !== undefined && task.importance !== null && (
+              <Badge
+                variant={badgeVariantsMap[task.importance]}
+                className='gap-2'
+              >
+                <span className='text-xs'>{IMPORTANCE_VALUES[task.importance].ru}</span>
+              </Badge>
+            )}
           </div>
-        </div>
-        {/* <div>
+          <CardTitle className='text-sm font-normal'>{task.title}</CardTitle>
+        </CardHeader>
+        <CardContent className='p-3 pb-2'>{children}</CardContent>
+        <CardFooter className='flex justify-between p-3 pt-0 text-xs text-gray-500'>
+          <div className='flex items-center'>
+            <div className='mr-3 flex items-center'>
+              <Calendar className='mr-1 size-3' />
+              {dateFormat(task.createdAt, { dateStyle: 'short' })}
+            </div>
+          </div>
+          {/* <div>
             {task.estimatedTime && (
               <div className='flex items-center'>
                 <Clock className='mr-2 size-3' />
@@ -80,7 +75,9 @@ export const TaskCard = ({
               </div>
             )}
           </div> */}
-      </CardFooter>
-    </Card>
-  );
-};
+        </CardFooter>
+      </Card>
+    );
+  }
+);
+TaskCard.displayName = 'TaskCard';

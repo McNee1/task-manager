@@ -1,1 +1,2 @@
-export { TaskManagement } from './ui';
+export { TaskManagement, TaskToolbar } from './ui';
+export { TaskProvider } from './lib';

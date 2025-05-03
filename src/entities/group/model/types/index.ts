@@ -1,1 +1,6 @@
-export type { GroupSchema } from './group-schema';
+export interface GroupSchema {
+  createdAt: string;
+  groupName: string;
+  id: string;
+  workspaceId: string | null;
+}

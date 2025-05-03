@@ -4,7 +4,7 @@ import { useParams } from '@tanstack/react-router';
 import { Skeleton } from '@/components/ui/skeleton';
 import { getRouteIcon, projectQueryOptions } from '@/shared';
 
-import { renderBreadcrumbItem } from './render-breadcrumb-Item';
+import { BreadcrumbItem } from './breadcrumb-Item';
 
 interface ProjectBreadcrumbProps {
   curSpaceName: string | null;
@@ -23,18 +23,17 @@ export const ProjectBreadcrumb = ({ curSpaceName }: ProjectBreadcrumbProps) => {
 
   return (
     <div className='flex items-center gap-5'>
-      {renderBreadcrumbItem({
-        name: curSpaceName,
-        icon: IconSpace,
-        isLink: true,
-        extraClass: 'hover:text-light-sky',
-        to: '/space/$spaceId',
-      })}
-
-      {renderBreadcrumbItem({
-        name: data?.name ?? null,
-        icon: IconProject,
-      })}
+      <BreadcrumbItem
+        extraClass='hover:text-light-sky'
+        to='/space/$spaceId'
+        name={curSpaceName}
+        icon={IconSpace}
+        isLink
+      />
+      <BreadcrumbItem
+        name={data?.name ?? null}
+        icon={IconProject}
+      />
     </div>
   );
 };

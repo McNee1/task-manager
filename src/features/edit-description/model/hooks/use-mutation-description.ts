@@ -39,11 +39,5 @@ export const useMutationDescription = (id: string) => {
         queryKey: ['description', id],
       });
     },
-
-    onSuccess: () => {
-      toast.success('Описание успешно добавлено.', {
-        duration: 5000,
-      });
-    },
   });
 };

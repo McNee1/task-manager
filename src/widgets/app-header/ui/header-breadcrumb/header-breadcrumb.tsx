@@ -5,8 +5,8 @@ import { getRouteIcon, getRouteName, ModalType, PopoverItems } from '@/shared';
 
 import { useHeaderLocation } from '../../model';
 import { MenuPopover } from '../menu-popover';
+import { BreadcrumbItem } from './breadcrumb-Item';
 import { ProjectBreadcrumb } from './project-breadcrumb';
-import { renderBreadcrumbItem } from './render-breadcrumb-Item';
 
 interface BreadcrumbProps {
   curSpaceName: string | null;
@@ -56,9 +56,12 @@ export const HeaderBreadcrumb = ({ onToggleModal, curSpaceName }: BreadcrumbProp
           </li>
         )}
 
-        {!isSpaceLocation &&
-          !isProjectLocation &&
-          renderBreadcrumbItem({ name: getRouteName(pathname), icon: IconPath })}
+        {!isSpaceLocation && !isProjectLocation && (
+          <BreadcrumbItem
+            name={getRouteName(pathname)}
+            icon={IconPath}
+          />
+        )}
 
         {isProjectLocation && <ProjectBreadcrumb curSpaceName={curSpaceName} />}
       </ol>

@@ -1,1 +1,8 @@
-export { useAddTask } from './hooks';
+export {
+  useActiveTask,
+  useTask,
+  useTaskActions,
+  useTaskMetaData,
+  useToolbar,
+} from './hooks';
+export type { ChangeTask } from './types';

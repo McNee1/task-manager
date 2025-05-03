@@ -3,7 +3,7 @@ import { useCallback } from 'react';
 
 import { Button } from '@/components/ui/button';
 import { Sidebar, SidebarContent, SidebarGroup } from '@/components/ui/sidebar';
-import { useQueryGetSpaces } from '@/entities';
+import { useSpace } from '@/entities';
 import { InputWithModal } from '@/features';
 import { useActionModal } from '@/shared';
 
@@ -11,7 +11,7 @@ import { menuItems, useAddSpace } from '../../model';
 import { NavHeader, NavMain, NavSpaces } from '../nav';
 
 export const AppSidebar = () => {
-  const { data: spaces, isLoading, error } = useQueryGetSpaces();
+  const { spaces, isLoading, error } = useSpace();
 
   const { handleToggleModal, modal, setModal } = useActionModal();
 

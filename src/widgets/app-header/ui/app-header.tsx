@@ -5,7 +5,7 @@ import { HeaderBreadcrumb } from './header-breadcrumb';
 import { ModalAction } from './modals';
 
 export const AppHeader = () => {
-  const { state, fn } = useHeader();
+  const { fn, state } = useHeader();
 
   return (
     <header className='flex h-16 items-center gap-5'>

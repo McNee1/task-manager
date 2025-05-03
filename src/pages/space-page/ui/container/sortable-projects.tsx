@@ -15,7 +15,7 @@ import { ActionModalProject } from '../modals';
 interface SortableProjectsProps {
   activeTab: string;
 }
-
+// TODO REMOVE CONTAINER
 export const SortableProjects = ({ activeTab }: SortableProjectsProps) => {
   const { projects: projectsData, spaceId } = useSpace();
 

@@ -1,1 +1,2 @@
-export { useQueryGetSpaces } from './use-query-get-spaces';
+export { useSpaceMeta } from './use-space-meta';
+export { useSpace } from './use-space';

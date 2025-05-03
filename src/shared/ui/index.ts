@@ -10,3 +10,5 @@ export { ResizableToolbar } from './resizable-toolbar';
 export { Textarea } from './textarea';
 export { FieldWithIcon } from './field-with-icon';
 export { TimeDisplay } from './time-display';
+export { CollapsibleSection } from './collapsible-section';
+export { CheckListPanel } from './checkList-panel';

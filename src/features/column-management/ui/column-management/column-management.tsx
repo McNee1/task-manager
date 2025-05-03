@@ -1,12 +1,10 @@
-import { useSuspenseQuery } from '@tanstack/react-query';
 import { GripVertical } from 'lucide-react';
 import { ReactNode } from 'react';
 
 import { Column } from '@/entities';
 import { SortableList } from '@/features';
 
-import { useColumnHandlers, useColumnModal } from '../../model';
-import { projectQueryOptions } from '../../services';
+import { useColumnHandlers, useColumnModal, useColumns } from '../../model';
 import { AddColumn } from '../add-column';
 import { ColumnCard } from '../column-card';
 import { ActionModalColumn } from '../modals';
@@ -17,7 +15,7 @@ interface ColumnManagementProps {
 }
 
 export const ColumnManagement = ({ children, projectId }: ColumnManagementProps) => {
-  const { data } = useSuspenseQuery(projectQueryOptions(projectId));
+  const data = useColumns(projectId);
 
   const columns = data?.projectColumns[0]?.columns ?? [];
   const mainColumnId = data?.projectColumns[0].id ?? '';
