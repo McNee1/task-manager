@@ -18,7 +18,9 @@ type Endpoint =
   | `timers/${string}`
   | `timers`
   | `description`
-  | `description/${string}`;
+  | `description/${string}`
+  | `checklist`
+  | `checklist/${string}`;
 
 interface ApiMethods {
   delete: <T>(url: Endpoint, options?: Options) => ResponsePromise<T>;

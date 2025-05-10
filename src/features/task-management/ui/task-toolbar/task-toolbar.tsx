@@ -1,19 +1,21 @@
-import { ChevronRight } from 'lucide-react';
+import { ReactNode } from 'react';
 
-import { Button } from '@/components/ui/button';
+import { TaskSchema } from '@/entities';
 import { EditDescription } from '@/features';
-import { CheckListPanel, cn, ResizableToolbar, Textarea } from '@/shared';
+import { ResizableToolbar } from '@/shared';
 
-import { useTaskActions, useToolbar } from '../../model/hooks';
+import { useTaskActions, useToolbar } from '../../model';
 import { ToolbarActions } from './toolbar-actions';
 import { ToolbarFields } from './toolbar-fields';
 import { ToolbarHeader } from './toolbar-header';
 
-export const TaskToolbar = () => {
+interface TaskToolbarProps {
+  children?: (id: TaskSchema['id']) => ReactNode;
+}
+export const TaskToolbar = ({ children }: TaskToolbarProps) => {
   const { handleCloseToolbar, isCollapsed, toolbarRef, activeTask } = useToolbar();
 
-  const { handleChangeTask, handleAddCheckList, handleUpdateCheckList, status } =
-    useTaskActions();
+  const { handleChangeTask, status } = useTaskActions();
 
   return (
     <ResizableToolbar
@@ -26,7 +28,7 @@ export const TaskToolbar = () => {
           <ToolbarHeader
             createdTime={activeTask.createdAt}
             onClose={handleCloseToolbar}
-            className='px-8 pb-2'
+            className='z-10 px-8 py-3'
           />
           <ToolbarActions
             estimatedTime={activeTask.estimatedTime}
@@ -62,36 +64,7 @@ export const TaskToolbar = () => {
             <hr />
           </div>
 
-          <CheckListPanel
-            renderHeader={({ isCollapsed }) => (
-              <Button
-                className='size-fit p-1 pr-3 text-slate-blue hover:bg-slate-200/50'
-                variant='clear'
-              >
-                <ChevronRight
-                  className={cn(isCollapsed && 'rotate-90', 'transition-transform')}
-                />
-                Подзадачи
-              </Button>
-            )}
-            renderFooter={() => (
-              <Textarea
-                onEnter={(name) => {
-                  handleAddCheckList(name, activeTask.checklist);
-                }}
-                placeholder='Новая задача'
-                className='mt-2 p-1.5'
-                enterHint
-                isBorder
-                isHover
-                icon
-              />
-            )}
-            initialChecklists={activeTask.checklist}
-            onChange={handleUpdateCheckList}
-            className='px-5'
-            listClass='px-2'
-          />
+          {children?.(activeTask.id)}
         </>
       )}
     </ResizableToolbar>

@@ -31,3 +31,6 @@
 .PopoverArrow {
   fill: #f9fafb;
 }
+/* .AccordionTrigger[data-collapsed='true'] .AccordionChevron {
+  transform: rotate(90deg);
+} */

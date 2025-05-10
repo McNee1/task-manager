@@ -56,6 +56,7 @@ export const Textarea = ({
     if (e.key === 'Enter') {
       e.preventDefault();
       onEnter?.(value);
+      setValue('');
     }
   };
 
@@ -83,7 +84,7 @@ export const Textarea = ({
   return (
     <div
       className={cn(
-        'flex cursor-pointer flex-col gap-2 rounded-md border border-transparent p-1',
+        'flex flex-col gap-2 rounded-md border border-transparent p-1',
         isHover && !focus && 'hover:bg-slate-100',
         isBorder && focus && 'border-slate-400',
         className
@@ -121,7 +122,8 @@ export const Textarea = ({
             icon && 'ml-5'
           )}
         >
-          <kbd className='rounded-sm bg-slate-100 px-1 py-px'>Enter</kbd> чтобы сохранить
+          <span className='rounded-sm bg-slate-100 px-1 py-px'>Enter</span> чтобы
+          сохранить
         </div>
       )}
     </div>

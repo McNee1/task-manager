@@ -20,7 +20,6 @@ type TaskCardType = Pick<
   | 'dateEnd'
   | 'hasDescription'
   | 'hasMessages'
-  | 'checklist'
   | 'estimatedTime'
   | 'createdAt'
   | 'importance'

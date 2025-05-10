@@ -1,8 +1,8 @@
 import { useCallback } from 'react';
 import { toast } from 'sonner';
 
-import { CheckList, Column, PartialTask } from '@/entities';
-import { DEFAULT_ORDER, generateNextValue } from '@/shared';
+import { Column, PartialTask } from '@/entities';
+import { DEFAULT_ORDER } from '@/shared';
 
 import { useTaskContext } from '../../lib';
 import { useAddTaskMutation } from './use-add-task-mutation';
@@ -47,13 +47,6 @@ export const useTaskActions = () => {
     [addTaskMutate, projectId]
   );
 
-  const handleUpdateCheckList = useCallback(
-    (item: CheckList, checkList: CheckList[]) => {
-      mutate({ id: item.taskId, task: { checklist: checkList } });
-    },
-    [mutate]
-  );
-
   const handleChangeTask = useCallback(
     (data: PartialTask) => {
       if (!activeTaskId) return;
@@ -63,34 +56,9 @@ export const useTaskActions = () => {
     [activeTaskId, mutate]
   );
 
-  const handleAddCheckList = useCallback(
-    (name: string, checklist: CheckList[] | undefined) => {
-      if (!activeTaskId) return;
-
-      const taskCheckList = checklist ?? [];
-
-      const newId = generateNextValue(taskCheckList, 'id', 1);
-
-      const newSubtask: CheckList = {
-        id: newId,
-        isChecked: false,
-        name,
-        order: generateNextValue(taskCheckList, 'order', DEFAULT_ORDER),
-        taskId: activeTaskId,
-      };
-      mutate({
-        id: activeTaskId,
-        task: { checklist: [...taskCheckList, newSubtask] },
-      });
-    },
-    [activeTaskId, mutate]
-  );
-
   return {
     handleAddTask,
-    handleUpdateCheckList,
     handleChangeTask,
-    handleAddCheckList,
     status: {
       isPending,
       isSuccess,

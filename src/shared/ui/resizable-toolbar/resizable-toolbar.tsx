@@ -109,14 +109,14 @@ export const ResizableToolbar = forwardRef<HTMLDivElement, ResizableToolbarProps
       >
         <div
           className={cn(
-            'absolute left-0 top-0 flex h-full w-2 cursor-col-resize bg-gray-200 hover:bg-gray-300/80'
+            'absolute left-0 top-0 z-50 flex h-full w-2 cursor-col-resize bg-gray-200 hover:bg-gray-300/80'
           )}
           onMouseDown={handleMouseDown}
         >
           <div className='m-auto h-9 w-1 rounded bg-gray-400' />
         </div>
 
-        <div className={cn('size-full overflow-y-auto py-4', className)}>{children}</div>
+        <div className={cn('size-full overflow-y-auto', className)}>{children}</div>
       </div>
     );
   }

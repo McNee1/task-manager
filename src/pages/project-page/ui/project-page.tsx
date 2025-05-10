@@ -1,6 +1,12 @@
 import { useParams } from '@tanstack/react-router';
 
-import { ColumnManagement, TaskManagement, TaskProvider, TaskToolbar } from '@/features';
+import {
+  ChecklistManagement,
+  ColumnManagement,
+  TaskManagement,
+  TaskProvider,
+  TaskToolbar,
+} from '@/features';
 
 export const ProjectPage = () => {
   const { projectId } = useParams({ strict: false });
@@ -14,13 +20,29 @@ export const ProjectPage = () => {
           <ColumnManagement projectId={projectId}>
             {(id) => (
               <>
-                <TaskManagement columnId={id} />
+                <TaskManagement columnId={id}>
+                  {(taskId) => (
+                    <ChecklistManagement
+                      projectId={projectId}
+                      taskId={taskId}
+                      type='task'
+                    />
+                  )}
+                </TaskManagement>
               </>
             )}
           </ColumnManagement>
         </div>
       </div>
-      <TaskToolbar />
+      <TaskToolbar>
+        {(taskId) => (
+          <ChecklistManagement
+            projectId={projectId}
+            taskId={taskId}
+            type='toolbar'
+          />
+        )}
+      </TaskToolbar>
     </TaskProvider>
   );
 };

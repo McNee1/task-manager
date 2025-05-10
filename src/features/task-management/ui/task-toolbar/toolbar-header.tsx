@@ -16,7 +16,12 @@ export const ToolbarHeader = ({
   createdTime,
 }: ToolbarHeaderProps) => {
   return (
-    <div className={cn('flex items-center justify-between border-b', className)}>
+    <div
+      className={cn(
+        'sticky top-0 flex items-center justify-between border-b bg-white',
+        className
+      )}
+    >
       <div className='text-xs text-slate-blue'>
         {dateFormat(createdTime, { dateStyle: 'short', timeStyle: 'short' })}
       </div>

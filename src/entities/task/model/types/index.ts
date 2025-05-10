@@ -1,16 +1,7 @@
 import { EstimatedTime, KeyImportance } from '@/shared';
 
-export interface CheckList {
-  id: number;
-  isChecked: boolean;
-  name: string;
-  order: number;
-  taskId: string;
-}
-
 export interface TaskSchema {
   attentionMessage?: string;
-  checklist?: CheckList[];
   color?: { hex: string; name: string } | null;
   columnId: number;
   completed: boolean;

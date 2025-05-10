@@ -28,10 +28,7 @@ export function SortableItem({ children, id, dragHandle, className }: SortableIt
   if (dragHandle) {
     return (
       <div
-        className={cn(
-          'relative [&_svg]:hover:visible [&_svg]:hover:opacity-100',
-          className
-        )}
+        className={cn('relative', className)}
         ref={setNodeRef}
         style={style}
       >

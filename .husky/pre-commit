@@ -12,7 +12,8 @@ JSON_CONTENT='{
   "projectColumns": [],
   "projectTasks": [],
   "timers": [],
-  "description": []
+  "description": [],
+  "checklist": []
 }'
 
 # Check if db.json exists
