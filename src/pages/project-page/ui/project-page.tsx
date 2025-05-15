@@ -7,7 +7,7 @@ import {
   TaskProvider,
   TaskToolbar,
 } from '@/features';
-
+// TODO  CHECKLIST EDITOR BUG REFACTOR
 export const ProjectPage = () => {
   const { projectId } = useParams({ strict: false });
 

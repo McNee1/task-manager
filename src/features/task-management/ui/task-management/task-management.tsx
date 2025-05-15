@@ -9,7 +9,7 @@ import { useTask, useTaskActions } from '../../model';
 import { TaskList } from '../task-list';
 
 interface TaskManagementProps {
-  children?: (id: TaskSchema['id']) => ReactNode;
+  children?: (taskId: TaskSchema['id']) => ReactNode;
   columnId: Column['id'];
 }
 
@@ -30,17 +30,18 @@ export const TaskManagement = ({ columnId, children }: TaskManagementProps) => {
   );
 
   const renderTask = useCallback(
-    (task: TaskSchema) => (
+    (taskId: TaskSchema, id: number) => (
       <TaskCard
         onClick={() => {
-          handleTaskClick(task);
+          handleTaskClick(taskId);
         }}
-        className='cursor-pointer transition-shadow hover:shadow-md'
+        className='cursor-pointer'
         data-task='task'
-        key={task.id}
-        task={task}
+        key={taskId.id}
+        task={taskId}
+        id={id}
       >
-        {children?.(task.id)}
+        {children?.(taskId.id)}
       </TaskCard>
     ),
     [children, handleTaskClick]

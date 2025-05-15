@@ -35,8 +35,8 @@ export const AccordionContent = ({
   return (
     <div
       className={cn(
-        'transition-all duration-200',
-        isCollapsed && 'overflow-hidden',
+        'opacity-100 transition-all duration-200',
+        isCollapsed && 'overflow-hidden opacity-0',
         className
       )}
       ref={contentRef}

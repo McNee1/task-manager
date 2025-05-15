@@ -7,11 +7,12 @@ const badgeVariants = cva(
   {
     variants: {
       variant: {
-        default: 'bg-primary text-primary-foreground  hover:bg-primary/70',
-        success: 'bg-green-200 text-green-600 hover:bg-green-200/70',
-        danger: 'bg-red-100 text-red-500  hover:bg-red-100/70',
-        primary: 'bg-sky-200 text-sky-600 hover:bg-sky-200/70',
-        warning: 'bg-amber-100 text-amber-600 hover:bg-amber-100/70',
+        default: 'bg-primary text-primary-foreground',
+        success: 'bg-green-200 text-green-600',
+        danger: 'bg-red-100 text-red-400',
+        primary: 'bg-sky-200 text-sky-600',
+        warning: 'bg-amber-100 text-amber-600',
+        link: 'bg-gray-100 text-black hover:bg-gray-600',
         outline: 'text-foreground',
       },
     },

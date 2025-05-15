@@ -1,70 +1,64 @@
 {
   "workspaces": [
     {
-      "id": "4b77",
-      "spaceName": "asd",
-      "createdAt": "2025-05-03T18:20:42.177Z"
-    },
-    {
-      "id": "e4c9",
-      "spaceName": "21",
-      "createdAt": "2025-05-03T18:20:56.691Z"
+      "id": "939b",
+      "spaceName": "1",
+      "createdAt": "2025-05-12T17:05:54.648Z"
     }
   ],
   "groups": [
     {
-      "id": "cb2d",
+      "id": "1b24",
       "groupName": "Активные проекты",
-      "workspaceId": "4b77",
-      "createdAt": "2025-05-03T18:20:43.195Z"
+      "workspaceId": "939b",
+      "createdAt": "2025-05-12T17:05:55.676Z"
     },
     {
-      "id": "0eaf",
-      "groupName": "Активные проекты",
-      "workspaceId": "e4c9",
-      "createdAt": "2025-05-03T18:20:57.702Z"
-    },
-    {
-      "id": "77bb",
-      "groupName": "56",
-      "workspaceId": "4b77",
-      "createdAt": "2025-05-05T13:03:44.247Z"
-    },
-    {
-      "id": "9572",
-      "groupName": "1212",
-      "workspaceId": "4b77",
-      "createdAt": "2025-05-05T14:03:54.207Z"
+      "id": "1c95",
+      "groupName": "2",
+      "workspaceId": "939b",
+      "createdAt": "2025-05-12T17:06:07.601Z"
     }
   ],
   "projects": [
     {
-      "id": "cab1",
+      "id": "7629",
       "allTaskCount": 0,
-      "createdAt": "2025-05-05T10:12:14.381Z",
-      "groupId": "cb2d",
-      "name": "1",
+      "createdAt": "2025-05-12T17:06:14.290Z",
+      "groupId": "1c95",
+      "name": "sd",
       "order": 10000,
-      "spaceId": "4b77",
+      "spaceId": "939b",
       "taskCount": 0,
       "color": null
     },
     {
-      "id": "0ef6",
+      "id": "a983",
       "allTaskCount": 0,
-      "createdAt": "2025-05-05T14:04:28.907Z",
-      "groupId": "cb2d",
-      "name": "12",
+      "createdAt": "2025-05-12T17:06:20.725Z",
+      "groupId": "1c95",
+      "name": "2323",
       "order": 20000,
-      "spaceId": "4b77",
+      "spaceId": "939b",
+      "taskCount": 0,
+      "color": null
+    },
+    {
+      "id": "6087",
+      "allTaskCount": 0,
+      "createdAt": "2025-05-12T17:07:14.626Z",
+      "groupId": "1c95",
+      "name": "1",
+      "order": 30000,
+      "spaceId": "939b",
       "taskCount": 0,
       "color": null
     }
   ],
   "projectColumns": [
     {
-      "id": "e8c8",
-      "projectId": "cab1",
+      "id": "ea6c",
+      "projectId": "7629",
       "columns": [
         {
           "id": 1,
@@ -84,8 +78,29 @@
       ]
     },
     {
-      "id": "bdb4",
-      "projectId": "0ef6",
+      "id": "c6e9",
+      "projectId": "a983",
+      "columns": [
+        {
+          "id": 1,
+          "name": "Ожидают",
+          "order": 10000
+        },
+        {
+          "id": 2,
+          "name": "В работе",
+          "order": 20000
+        },
+        {
+          "id": 3,
+          "name": "Завершено",
+          "order": 30000
+        }
+      ]
+    },
+    {
+      "id": "7a07",
+      "projectId": "6087",
       "columns": [
         {
           "id": 1,
@@ -107,27 +122,62 @@
   ],
   "projectTasks": [
     {
-      "id": "4818",
+      "id": "458f",
       "order": 10000,
-      "title": "121212",
+      "title": "S",
       "columnId": 1,
-      "createdAt": "2025-05-05T10:12:27.167Z",
+      "createdAt": "2025-05-12T17:07:32.644Z",
       "dateBegin": null,
       "dateEnd": null,
       "dateMove": null,
       "dateStatusChanged": null,
       "hasDescription": false,
       "hasMessages": false,
-      "importance": null,
-      "projectId": "cab1",
-      "completed": false
+      "importance": 0,
+      "projectId": "6087",
+      "completed": false,
+      "estimatedDate": "2025-05-13T21:00:00.000Z"
     },
     {
-      "id": "651d",
+      "id": "b6f9",
       "order": 10000,
-      "title": "sd",
+      "title": "1s",
       "columnId": 1,
-      "createdAt": "2025-05-05T11:59:52.485Z",
+      "createdAt": "2025-05-12T17:07:45.437Z",
+      "dateBegin": null,
+      "dateEnd": null,
+      "dateMove": null,
+      "dateStatusChanged": null,
+      "hasDescription": false,
+      "hasMessages": false,
+      "importance": 2,
+      "projectId": "6087",
+      "completed": false,
+      "estimatedDate": "2026-05-19T21:00:00.000Z"
+    },
+    {
+      "id": "dc2d",
+      "order": 10000,
+      "title": "fd",
+      "columnId": 1,
+      "createdAt": "2025-05-12T17:07:56.023Z",
+      "dateBegin": null,
+      "dateEnd": null,
+      "dateMove": null,
+      "dateStatusChanged": null,
+      "hasDescription": false,
+      "hasMessages": false,
+      "importance": 3,
+      "projectId": "6087",
+      "completed": false,
+      "estimatedDate": "2023-09-24T21:00:00.000Z"
+    },
+    {
+      "id": "d940",
+      "order": 10000,
+      "title": "12",
+      "columnId": 1,
+      "createdAt": "2025-05-12T17:08:45.205Z",
       "dateBegin": null,
       "dateEnd": null,
       "dateMove": null,
@@ -135,15 +185,36 @@
       "hasDescription": false,
       "hasMessages": false,
       "importance": null,
-      "projectId": "cab1",
+      "projectId": "6087",
       "completed": false
     },
     {
-      "id": "56f9",
+      "id": "34d0",
       "order": 10000,
-      "title": "11",
+      "title": "23",
       "columnId": 2,
-      "createdAt": "2025-05-05T14:37:39.750Z",
+      "createdAt": "2025-05-12T17:10:00.687Z",
+      "dateBegin": null,
+      "dateEnd": null,
+      "dateMove": null,
+      "dateStatusChanged": null,
+      "hasDescription": false,
+      "hasMessages": false,
+      "importance": 1,
+      "projectId": "6087",
+      "completed": true,
+      "estimatedDate": "2025-05-04T21:00:00.000Z",
+      "estimatedTime": {
+        "hours": "0",
+        "minutes": "5"
+      }
+    },
+    {
+      "id": "8ed1",
+      "order": 10000,
+      "title": "cd",
+      "columnId": 2,
+      "createdAt": "2025-05-15T11:19:19.702Z",
       "dateBegin": null,
       "dateEnd": null,
       "dateMove": null,
@@ -151,15 +222,15 @@
       "hasDescription": false,
       "hasMessages": false,
       "importance": null,
-      "projectId": "cab1",
+      "projectId": "6087",
       "completed": false
     },
     {
-      "id": "49e1",
+      "id": "fac7",
       "order": 10000,
-      "title": "mjj",
+      "title": "12",
       "columnId": 2,
-      "createdAt": "2025-05-06T10:26:42.417Z",
+      "createdAt": "2025-05-15T11:19:21.198Z",
       "dateBegin": null,
       "dateEnd": null,
       "dateMove": null,
@@ -167,313 +238,120 @@
       "hasDescription": false,
       "hasMessages": false,
       "importance": null,
-      "projectId": "cab1",
-      "completed": true
+      "projectId": "6087",
+      "completed": false
+    },
+    {
+      "id": "354e",
+      "order": 10000,
+      "title": "cv",
+      "columnId": 2,
+      "createdAt": "2025-05-15T11:19:23.254Z",
+      "dateBegin": null,
+      "dateEnd": null,
+      "dateMove": null,
+      "dateStatusChanged": null,
+      "hasDescription": false,
+      "hasMessages": false,
+      "importance": null,
+      "projectId": "6087",
+      "completed": false
+    },
+    {
+      "id": "9a50",
+      "order": 10000,
+      "title": "dxsc",
+      "columnId": 2,
+      "createdAt": "2025-05-15T11:19:54.315Z",
+      "dateBegin": null,
+      "dateEnd": null,
+      "dateMove": null,
+      "dateStatusChanged": null,
+      "hasDescription": false,
+      "hasMessages": false,
+      "importance": null,
+      "projectId": "6087",
+      "completed": false,
+      "estimatedDate": "2025-04-29T21:00:00.000Z"
     }
   ],
   "timers": [
     {
-      "id": "4818",
-      "timeBegin": 1746441629324,
+      "id": "458f"
+    },
+    {
+      "id": "b6f9"
+    },
+    {
+      "id": "dc2d"
+    },
+    {
+      "id": "d940"
+    },
+    {
+      "id": "34d0",
+      "timeBegin": 1747069981983,
       "status": "pause",
-      "timeEnd": 1746441631814
+      "timeEnd": 1747073958298
     },
     {
-      "id": "651d",
-      "timeBegin": 1746453623881,
-      "status": "pause",
-      "timeEnd": 1746453644083
+      "id": "8ed1"
     },
     {
-      "id": "56f9"
+      "id": "fac7"
     },
     {
-      "id": "49e1"
+      "id": "354e"
+    },
+    {
+      "id": "9a50"
     }
   ],
   "description": [
     {
-      "id": "4818",
-      "text": "ds"
+      "id": "458f"
     },
     {
-      "id": "651d"
+      "id": "b6f9"
     },
     {
-      "id": "56f9"
+      "id": "dc2d"
     },
     {
-      "id": "49e1"
+      "id": "d940"
+    },
+    {
+      "id": "34d0"
+    },
+    {
+      "id": "8ed1"
+    },
+    {
+      "id": "fac7"
+    },
+    {
+      "id": "354e"
+    },
+    {
+      "id": "9a50"
     }
   ],
   "checklist": [
     {
-      "createdAt": "sds",
-      "id": "sfv",
-      "isChecked": true,
-      "name": "xc",
-      "order": 121,
-      "taskId": "651d",
-      "projectId": "cab1"
-    },
-    {
-      "id": "317e",
-      "name": "111sd",
-      "isChecked": false,
-      "projectId": "cab1",
-      "taskId": "4818",
-      "createdAt": "",
-      "order": 0
-    },
-    {
-      "id": "54a6",
-      "name": "45",
-      "isChecked": false,
-      "projectId": "cab1",
-      "taskId": "4818",
-      "createdAt": "",
-      "order": 0
-    },
-    {
-      "id": "8af0",
-      "name": "45sd",
-      "isChecked": true,
-      "projectId": "cab1",
-      "taskId": "4818",
-      "createdAt": "",
-      "order": 0
-    },
-    {
-      "id": "bdbe",
-      "name": "dasd",
-      "isChecked": false,
-      "projectId": "cab1",
-      "taskId": "56f9",
-      "createdAt": "2025-05-05T15:36:26.659Z"
-    },
-    {
-      "id": "d304",
-      "name": "bbvb",
-      "isChecked": false,
-      "projectId": "cab1",
-      "taskId": "56f9",
-      "createdAt": "2025-05-05T15:36:29.924Z"
-    },
-    {
-      "id": "b9e9",
-      "name": "111",
-      "isChecked": false,
-      "projectId": "cab1",
-      "taskId": "56f9",
-      "createdAt": "2025-05-05T15:36:33.404Z"
-    },
-    {
-      "id": "b6cc",
-      "name": "1212",
-      "isChecked": true,
-      "projectId": "cab1",
-      "taskId": "4818",
-      "createdAt": "2025-05-05T15:40:45.156Z"
-    },
-    {
-      "id": "a197",
-      "name": "12dsdsd",
-      "isChecked": true,
-      "projectId": "cab1",
-      "taskId": "4818",
-      "createdAt": "2025-05-05T15:40:47.028Z"
-    },
-    {
-      "id": "125c",
-      "name": "iojji",
-      "isChecked": true,
-      "projectId": "cab1",
-      "taskId": "4818",
-      "createdAt": "2025-05-05T15:45:58.890Z"
-    },
-    {
-      "id": "4160",
-      "name": "1",
-      "isChecked": false,
-      "projectId": "cab1",
-      "taskId": "651d",
-      "createdAt": "2025-05-05T15:49:15.555Z"
-    },
-    {
-      "id": "e25f",
-      "name": "dsdsssssssssss",
-      "isChecked": false,
-      "projectId": "cab1",
-      "taskId": "4818",
-      "createdAt": "2025-05-08T11:07:23.909Z"
-    },
-    {
-      "id": "8e80",
-      "name": "1212",
-      "isChecked": false,
-      "projectId": "cab1",
-      "taskId": "4818",
-      "createdAt": "2025-05-10T16:52:44.260Z"
-    },
-    {
-      "id": "8ef8",
-      "name": "1221",
-      "isChecked": false,
-      "projectId": "cab1",
-      "taskId": "4818",
-      "createdAt": "2025-05-10T16:54:09.567Z"
-    },
-    {
-      "id": "365e",
-      "name": "sdsd",
-      "isChecked": false,
-      "projectId": "cab1",
-      "taskId": "4818",
-      "createdAt": "2025-05-10T16:54:11.775Z"
-    },
-    {
-      "id": "4a35",
-      "name": "dsd",
-      "isChecked": true,
-      "projectId": "cab1",
-      "taskId": "4818",
-      "createdAt": "2025-05-10T16:54:39.530Z"
-    },
-    {
-      "id": "6757",
-      "name": "1sxz",
-      "isChecked": false,
-      "projectId": "cab1",
-      "taskId": "4818",
-      "createdAt": "2025-05-10T17:01:23.093Z"
-    },
-    {
-      "id": "7cae",
-      "name": "xzx",
-      "isChecked": false,
-      "projectId": "cab1",
-      "taskId": "4818",
-      "createdAt": "2025-05-10T17:01:25.917Z"
-    },
-    {
-      "id": "d949",
-      "name": "1212",
-      "isChecked": false,
-      "projectId": "cab1",
-      "taskId": "4818",
-      "createdAt": "2025-05-10T17:03:10.226Z"
-    },
-    {
-      "id": "7648",
-      "name": "sdsd",
-      "isChecked": false,
-      "projectId": "cab1",
-      "taskId": "4818",
-      "createdAt": "2025-05-10T17:03:12.891Z"
-    },
-    {
-      "id": "41e1",
-      "name": "12",
-      "isChecked": false,
-      "projectId": "cab1",
-      "taskId": "4818",
-      "createdAt": "2025-05-10T17:03:49.359Z"
-    },
-    {
-      "id": "c2d7",
-      "name": "sdsd",
-      "isChecked": false,
-      "projectId": "cab1",
-      "taskId": "4818",
-      "createdAt": "2025-05-10T17:03:52.616Z"
-    },
-    {
-      "id": "bdd3",
-      "name": "sdsd",
-      "isChecked": false,
-      "projectId": "cab1",
-      "taskId": "4818",
-      "createdAt": "2025-05-10T17:03:59.425Z"
-    },
-    {
-      "id": "f831",
+      "id": "bffa",
       "name": "sd",
-      "isChecked": false,
-      "projectId": "cab1",
-      "taskId": "4818",
-      "createdAt": "2025-05-10T17:13:53.763Z"
+      "isChecked": true,
+      "projectId": "6087",
+      "taskId": "34d0",
+      "createdAt": "2025-05-12T18:53:06.142Z"
     },
     {
-      "id": "a431",
-      "name": "121",
+      "id": "9154",
+      "name": "  sd",
       "isChecked": false,
-      "projectId": "cab1",
-      "taskId": "4818",
-      "createdAt": "2025-05-10T17:14:33.880Z"
-    },
-    {
-      "id": "a655",
-      "name": "sd",
-      "isChecked": false,
-      "projectId": "cab1",
-      "taskId": "4818",
-      "createdAt": "2025-05-10T17:14:37.792Z"
-    },
-    {
-      "id": "7cfb",
-      "name": "212",
-      "isChecked": false,
-      "projectId": "cab1",
-      "taskId": "4818",
-      "createdAt": "2025-05-10T17:14:40.345Z"
-    },
-    {
-      "id": "0b26",
-      "name": "ds",
-      "isChecked": false,
-      "projectId": "cab1",
-      "taskId": "4818",
-      "createdAt": "2025-05-10T17:25:19.089Z"
-    },
-    {
-      "id": "1b94",
-      "name": "xcxc",
-      "isChecked": false,
-      "projectId": "cab1",
-      "taskId": "4818",
-      "createdAt": "2025-05-10T17:25:21.530Z"
-    },
-    {
-      "id": "8e73",
-      "name": "1212",
-      "isChecked": false,
-      "projectId": "cab1",
-      "taskId": "4818",
-      "createdAt": "2025-05-10T17:25:24.137Z"
-    },
-    {
-      "id": "e05e",
-      "name": "sds",
-      "isChecked": false,
-      "projectId": "cab1",
-      "taskId": "4818",
-      "createdAt": "2025-05-10T17:32:20.309Z"
-    },
-    {
-      "id": "3d93",
-      "name": "12",
-      "isChecked": false,
-      "projectId": "cab1",
-      "taskId": "4818",
-      "createdAt": "2025-05-10T17:32:22.550Z"
-    },
-    {
-      "id": "2e41",
-      "name": "sdsd",
-      "isChecked": false,
-      "projectId": "cab1",
-      "taskId": "4818",
-      "createdAt": "2025-05-10T17:32:42.288Z"
+      "projectId": "6087",
+      "taskId": "34d0",
+      "createdAt": "2025-05-12T18:53:09.798Z"
     }
   ]
 }

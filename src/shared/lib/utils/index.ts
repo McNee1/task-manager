@@ -7,3 +7,4 @@ export { dateFormat } from './date-format';
 export { secondsToHMS } from './seconds-to-hms';
 export { generateNextValue } from './generate-next-value';
 export * from './query-options';
+export { getDayPluralForm } from './get-day-plural-form';

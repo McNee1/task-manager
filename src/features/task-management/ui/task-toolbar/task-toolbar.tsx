@@ -26,12 +26,13 @@ export const TaskToolbar = ({ children }: TaskToolbarProps) => {
       {activeTask && (
         <>
           <ToolbarHeader
-            createdTime={activeTask.createdAt}
             onClose={handleCloseToolbar}
             className='z-10 px-8 py-3'
+            taskId={activeTask.id}
           />
           <ToolbarActions
             estimatedTime={activeTask.estimatedTime}
+            createdTime={activeTask.createdAt}
             isCompleted={activeTask.completed}
             onChangeTask={handleChangeTask}
             isPending={status.isPending}

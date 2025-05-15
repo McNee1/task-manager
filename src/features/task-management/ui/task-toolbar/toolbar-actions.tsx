@@ -5,12 +5,13 @@ import { Button } from '@/components/ui/button';
 import { H3 } from '@/components/ui/typography';
 import { TaskSchema } from '@/entities';
 import { TimerControl } from '@/features';
-import { cn, EditableText } from '@/shared';
+import { cn, dateFormat, EditableText } from '@/shared';
 
 import { ChangeTask } from '../../model';
 
 interface ToolbarActionsProps extends ChangeTask {
   className?: string;
+  createdTime: TaskSchema['createdAt'];
   estimatedTime: TaskSchema['estimatedTime'];
   isCompleted: TaskSchema['completed'];
   isPending?: boolean;
@@ -26,6 +27,7 @@ export const ToolbarActions = ({
   onChangeTask,
   isPending,
   taskId,
+  createdTime,
 }: ToolbarActionsProps) => {
   useEffect(() => {
     console.log(title);
@@ -47,7 +49,7 @@ export const ToolbarActions = ({
 
   return (
     <div className={cn(className)}>
-      <div className='mb-4 inline-flex gap-3'>
+      <div className='mb-4 flex items-center gap-3'>
         <Button
           className={cn(
             isCompleted
@@ -68,6 +70,10 @@ export const ToolbarActions = ({
           estimatedTime={estimatedTime}
           id={taskId}
         />
+
+        <div className='ml-auto text-xs text-slate-blue'>
+          {dateFormat(createdTime, { dateStyle: 'short', timeStyle: 'short' })}
+        </div>
       </div>
 
       <EditableText
