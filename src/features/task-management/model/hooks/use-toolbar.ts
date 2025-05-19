@@ -13,7 +13,13 @@ export const useToolbar = () => {
   const { isCollapsed, setIsCollapsed, setActiveTaskId, setActiveColumnId } =
     useTaskContext();
 
-  const handleCloseToolbar = (event?: MouseEvent | TouchEvent) => {
+  const handleCloseToolbar = () => {
+    setIsCollapsed?.(true);
+    setActiveTaskId?.(null);
+    setActiveColumnId?.(null);
+  };
+
+  const handleCloseToolbarWithEvent = (event?: MouseEvent | TouchEvent) => {
     const target = event?.target as HTMLElement;
 
     if (
@@ -24,12 +30,10 @@ export const useToolbar = () => {
     ) {
       return;
     }
-    setIsCollapsed?.(true);
-    setActiveTaskId?.(null);
-    setActiveColumnId?.(null);
+    handleCloseToolbar();
   };
 
-  useClickOutside(toolbarRef, handleCloseToolbar);
+  useClickOutside(toolbarRef, handleCloseToolbarWithEvent);
 
   return {
     isCollapsed,

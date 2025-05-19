@@ -1,11 +1,12 @@
 import { useCallback } from 'react';
 import { toast } from 'sonner';
 
-import { Column, PartialTask } from '@/entities';
+import { Column, PartialTask, TaskSchema } from '@/entities';
 import { DEFAULT_ORDER } from '@/shared';
 
 import { useTaskContext } from '../../lib';
 import { useAddTaskMutation } from './use-add-task-mutation';
+import { useDeleteTaskMutation } from './use-delete-task-mutation';
 import { useTaskMutation } from './use-task-mutation';
 
 export const useTaskActions = () => {
@@ -14,6 +15,22 @@ export const useTaskActions = () => {
   const { mutate, isPending, isSuccess } = useTaskMutation();
 
   const { mutate: addTaskMutate } = useAddTaskMutation();
+
+  const { mutate: deleteTaskMutate } = useDeleteTaskMutation();
+
+  const handleDeleteTask = useCallback(
+    (taskId: TaskSchema['id']) => {
+      if (!taskId) {
+        toast.error('Произошла ошибка! Попробуйте позже.', {
+          duration: 5000,
+        });
+        return;
+      }
+
+      deleteTaskMutate(taskId);
+    },
+    [deleteTaskMutate]
+  );
 
   const handleAddTask = useCallback(
     (columnItemId: Column['id'], taskName: string) => {
@@ -50,7 +67,7 @@ export const useTaskActions = () => {
   const handleChangeTask = useCallback(
     (data: PartialTask) => {
       if (!activeTaskId) return;
-
+      console.log(data);
       mutate({ id: activeTaskId, task: data }, {});
     },
     [activeTaskId, mutate]
@@ -59,6 +76,7 @@ export const useTaskActions = () => {
   return {
     handleAddTask,
     handleChangeTask,
+    handleDeleteTask,
     status: {
       isPending,
       isSuccess,

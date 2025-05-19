@@ -12,24 +12,28 @@ import { TaskChecklistPanel } from './task-checklist-panel';
 import { ToolbarChecklistPanel } from './toolbar-checklist-panel';
 
 interface ChecklistManagement {
+  isCompleted?: boolean;
   projectId: string | undefined;
   taskId: string;
   type: 'task' | 'toolbar';
 }
 
 /**
- * ChecklistManagement is a component that manages checklist items for a specific project.
- * It can be rendered in two different modes: 'task' or 'toolbar'. In 'task' mode, it renders
- * a panel with a progress bar and a list of checklist items. In 'toolbar' mode, it renders
- * a toolbar with add, edit, and delete functionality.
+ * A component that manages and displays checklists for tasks or toolbars.
  *
- * @param {{ type: 'task' | 'toolbar', projectId: string | undefined, taskId: string }} props
- * - type: The type of the component. Can be 'task' or 'toolbar'.
- * - projectId: The id of the project to fetch checklist items from.
- * - taskId: The id of the task to filter checklist items for.
- * @returns
+ * @param {Object} props - The properties for the checklist management component.
+ * @param {'task' | 'toolbar'} props.type - The type of checklist to display, either 'task' or 'toolbar'.
+ * @param {string | undefined} props.projectId - The ID of the project the checklist belongs to.
+ * @param {string} props.taskId - The ID of the task the checklist is associated with.
+ * @param {boolean | undefined} props.isCompleted - A flag indicating if the task is completed.
  */
-export const ChecklistManagement = ({ type, projectId, taskId }: ChecklistManagement) => {
+
+export const ChecklistManagement = ({
+  type,
+  projectId,
+  taskId,
+  isCompleted,
+}: ChecklistManagement) => {
   const { data, isPending } = useQueryChecklist(projectId);
 
   const { mutate } = useAddItemMutation();
@@ -81,6 +85,7 @@ export const ChecklistManagement = ({ type, projectId, taskId }: ChecklistManage
       <TaskChecklistPanel
         onUpdateChecklist={handleToggleItem}
         items={checklistByTaskId}
+        isCompleted={isCompleted}
       />
     );
   }

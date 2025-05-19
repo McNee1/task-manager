@@ -21,8 +21,9 @@ export const ProjectPage = () => {
             {(id) => (
               <>
                 <TaskManagement columnId={id}>
-                  {(taskId) => (
+                  {(taskId, isCompleted) => (
                     <ChecklistManagement
+                      isCompleted={isCompleted}
                       projectId={projectId}
                       taskId={taskId}
                       type='task'

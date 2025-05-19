@@ -1,62 +1,58 @@
 import { Circle, CircleCheckBig } from 'lucide-react';
-import { useCallback, useEffect } from 'react';
+import { useCallback } from 'react';
 
 import { Button } from '@/components/ui/button';
-import { H3 } from '@/components/ui/typography';
 import { TaskSchema } from '@/entities';
 import { TimerControl } from '@/features';
-import { cn, dateFormat, EditableText } from '@/shared';
+import { cn } from '@/shared';
 
 import { ChangeTask } from '../../model';
 
 interface ToolbarActionsProps extends ChangeTask {
   className?: string;
-  createdTime: TaskSchema['createdAt'];
   estimatedTime: TaskSchema['estimatedTime'];
   isCompleted: TaskSchema['completed'];
   isPending?: boolean;
   taskId: TaskSchema['id'];
-  title: string;
 }
 
+/**
+ * A component that renders a toolbar with actions for a task.
+ * It contains a button to toggle completion of the task and a timer control.
+ *
+ * @param {ToolbarActionsProps} props The props for this component.
+ * @param {string} [props.className] The class name to add to the root element.
+ * @param {boolean} [props.isCompleted] Whether the task is completed or not.
+ * @param {TaskSchema['estimatedTime']} props.estimatedTime The estimated time of the task.
+ * @param {ChangeTask} props.onChangeTask The function to call when the task data should be changed.
+ * @param {boolean} [props.isPending] Whether the task data is being changed or not.
+ * @param {TaskSchema['id']} props.taskId The id of the task.
+ */
 export const ToolbarActions = ({
-  title,
   className,
   isCompleted = true,
   estimatedTime,
   onChangeTask,
   isPending,
   taskId,
-  createdTime,
 }: ToolbarActionsProps) => {
-  useEffect(() => {
-    console.log(title);
-  }, [title]);
   const handleCompleteTask = useCallback(() => {
     if (isCompleted) {
-      onChangeTask({ completed: false });
+      onChangeTask({ completed: false, dateEnd: null });
+    } else {
+      onChangeTask({ completed: true, dateEnd: new Date().toISOString() });
     }
-
-    onChangeTask({ completed: true });
   }, [isCompleted, onChangeTask]);
 
-  const handleSaveTitle = useCallback(
-    (value: string) => {
-      onChangeTask({ title: value });
-    },
-    [onChangeTask]
-  );
+  const buttonStyle = isCompleted
+    ? 'bg-green-100 text-green-600 hover:bg-green-200/90'
+    : 'bg-slate-100 text-blue-500 hover:bg-slate-200/80';
 
   return (
     <div className={cn(className)}>
-      <div className='mb-4 flex items-center gap-3'>
+      <div className='flex items-center gap-3'>
         <Button
-          className={cn(
-            isCompleted
-              ? 'bg-green-100 text-green-600 hover:bg-green-200/90'
-              : 'bg-slate-100 text-blue-500 hover:bg-slate-200/80',
-            '[&_svg]:size-5'
-          )}
+          className={cn(buttonStyle, '[&_svg]:size-5')}
           onClick={handleCompleteTask}
           disabled={isPending}
           variant='clear'
@@ -70,19 +66,7 @@ export const ToolbarActions = ({
           estimatedTime={estimatedTime}
           id={taskId}
         />
-
-        <div className='ml-auto text-xs text-slate-blue'>
-          {dateFormat(createdTime, { dateStyle: 'short', timeStyle: 'short' })}
-        </div>
       </div>
-
-      <EditableText
-        inputClass='border-none p-0 h-fit bg-transparent focus-visible:ring-0 font-medium text-2xl md:text-2xl'
-        onValueChange={handleSaveTitle}
-        defaultValue={title}
-      >
-        <H3 className='font-medium'>{title}</H3>
-      </EditableText>
     </div>
   );
 };

@@ -42,7 +42,7 @@ const AppPopover = ({
       onOpenChange={onOpenChange}
       open={isOpen}
     >
-      <PopoverTrigger>{trigger}</PopoverTrigger>
+      <PopoverTrigger asChild>{trigger}</PopoverTrigger>
       <PopoverContent
         className={cn('PopoverContent', 'w-min p-2', className)}
         portalContainer={portalContainer}

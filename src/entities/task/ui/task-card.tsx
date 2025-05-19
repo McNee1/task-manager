@@ -12,7 +12,8 @@ import {
 } from '@/components/ui/card';
 import { Badge, cn, dateFormat, getDayPluralForm, useClipboard } from '@/shared';
 
-import { TaskSchema, useTaskCard } from '../model';
+import { TaskSchema } from '../model';
+import { useTaskCard } from '../model/hooks';
 
 export type TaskCardType = Pick<
   TaskSchema,
@@ -25,7 +26,7 @@ export type TaskCardType = Pick<
   | 'createdAt'
   | 'importance'
   | 'estimatedDate'
-  | 'id'
+  | 'completed'
 >;
 
 interface TaskCardProps extends Omit<ComponentProps<'div'>, 'id'> {
@@ -36,15 +37,31 @@ interface TaskCardProps extends Omit<ComponentProps<'div'>, 'id'> {
   task: TaskCardType;
 }
 
+/**
+ * A single task card.
+ *
+ * @prop {TaskCardType} task Task data.
+ * @prop {ReactNode} [children] Children to render inside the card.
+ * @prop {() => void} [onCardClick] Function to call when the card is clicked.
+ * @prop {number} id Task ID.
+ * @prop {string} [className] Additional CSS classes.
+ * @prop {ReactNode} [props] Additional props to pass to the card element.
+ */
+
 export const TaskCard = memo(
   ({ task, children, onCardClick, id, className, ...props }: TaskCardProps) => {
-    const { styles, overdueTaskDayCount, isShowYear } = useTaskCard(task);
+    const { combinedStyles, overdueTaskDayCount, isShowYear } = useTaskCard(task);
 
-    const { handleCopy } = useClipboard(task.id);
+    const { handleCopy } = useClipboard(task.title);
 
     return (
       <Card
-        className={cn(styles, 'transition-shadow hover:shadow', className)}
+        className={cn(
+          combinedStyles,
+
+          'transition-shadow hover:shadow',
+          className
+        )}
         onClick={onCardClick}
         {...props}
       >
@@ -54,15 +71,13 @@ export const TaskCard = memo(
               <Button
                 onClick={(e) => {
                   e.stopPropagation();
-                  void handleCopy().finally(() => {
+                  void handleCopy().then(() => {
                     toast.success('Ссылка скопирована в буфер обмена');
                   });
                 }}
                 className='h-fit bg-slate-100/60 px-2 py-0.5 text-xs font-normal text-slate-400 hover:bg-slate-200/60'
                 variant='clear'
-              >
-                {`#${String(id + 1)}`}
-              </Button>
+              >{`#${String(id + 1)}`}</Button>
 
               {!!overdueTaskDayCount && (
                 <Badge
@@ -74,7 +89,11 @@ export const TaskCard = memo(
               )}
             </div>
           </div>
-          <CardTitle className='text-sm font-normal'>{task.title}</CardTitle>
+          <CardTitle
+            className={cn(task.completed && 'line-through', 'text-sm font-normal')}
+          >
+            {task.title}
+          </CardTitle>
         </CardHeader>
         <CardContent className='p-3 pb-2'>{children}</CardContent>
         <CardFooter className='flex justify-between p-3 pt-0 text-xs text-gray-500'>

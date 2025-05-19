@@ -34,17 +34,21 @@ export const useTaskCard = (task: TaskCardType) => {
 
   const importanceStyles = getImportanceStyles();
 
-  const styles =
-    importanceStyles &&
-    [
-      importanceStyles.backgroundColor,
-      `border ${importanceStyles.borderColor}`,
-      `hover:${importanceStyles.boxShadow}`,
-    ].join(' ');
+  const importanceStyleClasses = importanceStyles
+    ? [
+        importanceStyles.backgroundColor,
+        `border ${importanceStyles.borderColor}`,
+        `hover:${importanceStyles.boxShadow}`,
+      ]
+    : [];
+
+  const combinedStyles = [...importanceStyleClasses, task.completed && 'opacity-50'].join(
+    ' '
+  );
 
   return {
     isShowYear,
-    styles,
+    combinedStyles,
     overdueTaskDayCount,
   };
 };

@@ -3,6 +3,11 @@ import type { TaskSchema } from '@/entities';
 import { apiInstance } from '@/shared';
 import { withErrorRequest } from '@/shared/lib';
 
+export const deleteTask = (taskId: TaskSchema['id']) =>
+  withErrorRequest(() => {
+    return apiInstance.delete(`projectTasks/${taskId}`).json<TaskSchema>();
+  });
+
 export const getTaskById = (id: TaskSchema['projectId']) =>
   withErrorRequest(() => {
     return apiInstance

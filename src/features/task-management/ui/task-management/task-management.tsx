@@ -9,10 +9,19 @@ import { useTask, useTaskActions } from '../../model';
 import { TaskList } from '../task-list';
 
 interface TaskManagementProps {
-  children?: (taskId: TaskSchema['id']) => ReactNode;
+  children?: (taskId: TaskSchema['id'], isCompleted: boolean) => ReactNode;
   columnId: Column['id'];
 }
 
+/**
+ * A component that renders a list of tasks and allows you to add new ones.
+ *
+ * @prop {Column['id']} columnId The ID of the column to display tasks from.
+ * @prop {(taskId: TaskSchema['id'], isCompleted: boolean) => ReactNode} [children]
+ *   A function that renders a child component for each task in the list.
+ *   The function receives two arguments: the ID of the task and a boolean indicating
+ *   whether the task is completed.
+ */
 export const TaskManagement = ({ columnId, children }: TaskManagementProps) => {
   const tasks = useTask(columnId);
 
@@ -30,18 +39,18 @@ export const TaskManagement = ({ columnId, children }: TaskManagementProps) => {
   );
 
   const renderTask = useCallback(
-    (taskId: TaskSchema, id: number) => (
+    (task: TaskSchema, id: number) => (
       <TaskCard
         onClick={() => {
-          handleTaskClick(taskId);
+          handleTaskClick(task);
         }}
         className='cursor-pointer'
         data-task='task'
-        key={taskId.id}
-        task={taskId}
+        key={task.id}
+        task={task}
         id={id}
       >
-        {children?.(taskId.id)}
+        {children?.(task.id, task.completed)}
       </TaskCard>
     ),
     [children, handleTaskClick]

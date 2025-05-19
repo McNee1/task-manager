@@ -14,6 +14,7 @@ export const useTaskMutation = (onSuccess?: (task: TaskSchema) => void) => {
     mutationFn: editTask,
 
     onMutate: async ({ id, task: newTask }) => {
+      console.log(newTask);
       await queryClient.cancelQueries({ queryKey: ['tasks', projectId] });
 
       const previousTasks = queryClient.getQueryData<TaskSchema[]>(['tasks', projectId]);
