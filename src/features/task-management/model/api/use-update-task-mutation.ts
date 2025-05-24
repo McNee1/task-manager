@@ -5,7 +5,7 @@ import { editTask, TaskSchema } from '@/entities';
 
 import { useTaskContext } from '../../lib';
 
-export const useTaskMutation = (onSuccess?: (task: TaskSchema) => void) => {
+export const useUpdateTaskMutation = (onSuccess?: (task: TaskSchema) => void) => {
   const { projectId } = useTaskContext();
 
   const queryClient = useQueryClient();

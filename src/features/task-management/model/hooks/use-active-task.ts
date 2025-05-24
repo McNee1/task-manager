@@ -1,11 +1,11 @@
 import { useMemo } from 'react';
 
-import { useTaskContext } from '../../lib/context/use-task-context';
-import { useQueryTask } from './use-query-task';
+import { useTaskContext } from '../../lib';
+import { useTaskQuery } from '../api';
 
 export const useActiveTask = () => {
   const { projectId, activeTaskId } = useTaskContext();
-  const { data: tasks } = useQueryTask(projectId);
+  const { data: tasks } = useTaskQuery(projectId);
 
   return useMemo(
     () => ({

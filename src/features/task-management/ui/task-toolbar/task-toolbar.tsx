@@ -34,8 +34,8 @@ export const TaskToolbar = ({ children }: TaskToolbarProps) => {
 
   return (
     <ResizableToolbar
-      isCollapsed={isCollapsed}
       className='flex flex-col'
+      isCollapsed={isCollapsed}
       ref={toolbarRef}
     >
       {activeTask && (
@@ -62,7 +62,7 @@ export const TaskToolbar = ({ children }: TaskToolbarProps) => {
 
           <ToolbarTitle
             onChangeTask={handleChangeTask}
-            title={activeTask.title}
+            title={activeTask.title || ''}
             className='mt-5 px-8'
           />
 

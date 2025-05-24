@@ -3,7 +3,7 @@ import { Column, ColumnSchema } from '@/entities';
 import { DeleteWithModal, InputWithModal, ModalWithColorPicker } from '@/features';
 import { ModalType } from '@/shared';
 
-import { useColumnHandlers } from '../../model';
+import { useColumnActions } from '../../model';
 
 interface ActionModalColumnProps {
   columns: Column[];
@@ -16,6 +16,18 @@ interface ActionModalColumnProps {
   selectedColumnId: Column['id'] | null;
 }
 
+/**
+ * A component that renders a modal for column-related actions such as editing, deleting and set limit task.
+ *
+ * @prop {ModalType['type']} modalType The type of modal to render.
+ * @prop {boolean} isOpen Whether the modal is open or not.
+ * @prop {VoidFunction} onToggleModal A callback to toggle the modal.
+ * @prop {string | undefined} projectId The ID of the project to which the columns belong.
+ * @prop {Column[]} columns The columns to render.
+ * @prop {ColumnSchema['id']} mainColumnId The ID of the main column.
+ * @prop {VoidFunction} onSuccess A callback to call when the action is successful.
+ * @prop {Column['id'] | null} selectedColumnId The ID of the column to render the modal for.
+ */
 export const ActionModalColumn = ({
   modalType,
   isOpen,
@@ -26,7 +38,7 @@ export const ActionModalColumn = ({
   onSuccess,
   selectedColumnId,
 }: ActionModalColumnProps) => {
-  const { handleEditColumn, handleDeleteColumn, isPending } = useColumnHandlers(
+  const { handleEditColumn, handleDeleteColumn, isPending } = useColumnActions(
     columns,
     projectId,
     mainColumnId,

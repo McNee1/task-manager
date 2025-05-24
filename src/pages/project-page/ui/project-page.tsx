@@ -7,7 +7,7 @@ import {
   TaskProvider,
   TaskToolbar,
 } from '@/features';
-// TODO  CHECKLIST EDITOR BUG REFACTOR
+
 export const ProjectPage = () => {
   const { projectId } = useParams({ strict: false });
 
@@ -19,18 +19,16 @@ export const ProjectPage = () => {
 
           <ColumnManagement projectId={projectId}>
             {(id) => (
-              <>
-                <TaskManagement columnId={id}>
-                  {(taskId, isCompleted) => (
-                    <ChecklistManagement
-                      isCompleted={isCompleted}
-                      projectId={projectId}
-                      taskId={taskId}
-                      type='task'
-                    />
-                  )}
-                </TaskManagement>
-              </>
+              <TaskManagement columnId={id}>
+                {(taskId, isCompleted) => (
+                  <ChecklistManagement
+                    isCompleted={isCompleted}
+                    projectId={projectId}
+                    taskId={taskId}
+                    type='task'
+                  />
+                )}
+              </TaskManagement>
             )}
           </ColumnManagement>
         </div>

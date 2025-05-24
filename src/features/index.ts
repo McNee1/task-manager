@@ -4,7 +4,7 @@ export { InputWithModal } from './input-with-modal';
 export { SortableList } from './sortable-list';
 export { EditDescription } from './edit-description';
 export { TimerControl } from './timer-control';
-export { ColumnManagement, useColumnMeta } from './column-management';
+export { ColumnManagement, useColumnMetaData } from './column-management';
 export { TaskManagement, TaskProvider, TaskToolbar } from './task-management';
 export { ChecklistManagement } from './checklist-management';
 export { PopoverPriority, PopoverWithCalendar } from './popovers';

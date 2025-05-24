@@ -1,4 +1,4 @@
-import { useRef } from 'react';
+import { useCallback, useEffect, useRef } from 'react';
 
 import { useClickOutside } from '@/shared';
 
@@ -13,11 +13,11 @@ export const useToolbar = () => {
   const { isCollapsed, setIsCollapsed, setActiveTaskId, setActiveColumnId } =
     useTaskContext();
 
-  const handleCloseToolbar = () => {
+  const handleCloseToolbar = useCallback(() => {
     setIsCollapsed?.(true);
     setActiveTaskId?.(null);
     setActiveColumnId?.(null);
-  };
+  }, [setActiveColumnId, setActiveTaskId, setIsCollapsed]);
 
   const handleCloseToolbarWithEvent = (event?: MouseEvent | TouchEvent) => {
     const target = event?.target as HTMLElement;
@@ -32,6 +32,20 @@ export const useToolbar = () => {
     }
     handleCloseToolbar();
   };
+
+  useEffect(() => {
+    const handleKeyDown = (event: KeyboardEvent) => {
+      if (event.key === 'Escape') {
+        event.preventDefault();
+        handleCloseToolbar();
+      }
+    };
+
+    window.addEventListener('keydown', handleKeyDown);
+    return () => {
+      window.removeEventListener('keydown', handleKeyDown);
+    };
+  }, [handleCloseToolbar]);
 
   useClickOutside(toolbarRef, handleCloseToolbarWithEvent);
 

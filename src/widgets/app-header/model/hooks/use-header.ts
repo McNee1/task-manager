@@ -1,7 +1,7 @@
 import { useNavigate, useParams } from '@tanstack/react-router';
 import { useCallback } from 'react';
 
-import { useSpaceMeta } from '@/entities';
+import { useSpaceMetaData } from '@/entities';
 import { useActionModal } from '@/shared';
 
 import { updateLsGroups } from '../../lib';
@@ -11,7 +11,7 @@ export const useHeader = () => {
 
   const navigate = useNavigate({ from: '/space/$spaceId' });
 
-  const spaceMeta = useSpaceMeta(spaceId);
+  const spaceMeta = useSpaceMetaData(spaceId);
 
   const curSpaceName = spaceMeta?.spaceNameById ?? null;
 

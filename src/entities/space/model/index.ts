@@ -1,2 +1,2 @@
 export type { SpaceSchema } from './types';
-export { useSpace, useSpaceMeta } from './hook';
+export { useSpace, useSpaceMetaData } from './hook';

@@ -19,6 +19,7 @@ interface EditableTextProps {
   inputClass?: string;
   onValueChange?: (value: string) => void;
   renderInput?: (props: RenderInputProps) => ReactNode;
+  triggerClass?: string;
 }
 
 export const EditableText = memo(
@@ -29,6 +30,7 @@ export const EditableText = memo(
     renderInput,
     inputClass,
     className,
+    triggerClass,
   }: EditableTextProps) => {
     const [isEditing, setIsEditing] = useState(false);
     const [value, setValue] = useState(defaultValue);
@@ -58,7 +60,7 @@ export const EditableText = memo(
       (e: KeyboardEvent<HTMLInputElement>) => {
         if (e.key === 'Enter') {
           handleEditEnd();
-          onValueChange?.(value);
+          onValueChange?.(value.trim());
         }
       },
       [handleEditEnd, onValueChange, value]
@@ -81,7 +83,12 @@ export const EditableText = memo(
         />
 
         {!isEditing && (
-          <EditableTextTrigger onClick={handleEditStart}>{children}</EditableTextTrigger>
+          <EditableTextTrigger
+            onClick={handleEditStart}
+            className={triggerClass}
+          >
+            {children}
+          </EditableTextTrigger>
         )}
       </EditableTextRoot>
     );

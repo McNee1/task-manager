@@ -5,18 +5,39 @@ import { Column, PartialTask, TaskSchema } from '@/entities';
 import { DEFAULT_ORDER } from '@/shared';
 
 import { useTaskContext } from '../../lib';
-import { useAddTaskMutation } from './use-add-task-mutation';
-import { useDeleteTaskMutation } from './use-delete-task-mutation';
-import { useTaskMutation } from './use-task-mutation';
+import { useAddTaskMutation, useDeleteTaskMutation, useUpdateTaskMutation } from '../api';
+import { useTaskMetaData } from './use-task-meta-data';
+
+const createTaskPayload = (
+  taskName: string,
+  columnId: Column['id'],
+  projectId: string
+) => ({
+  title: taskName,
+  columnId: columnId,
+  projectId: projectId,
+  order: DEFAULT_ORDER,
+  createdAt: new Date().toISOString(),
+  dateBegin: null,
+  dateEnd: null,
+  dateMove: null,
+  dateStatusChanged: null,
+  hasDescription: false,
+  hasMessages: false,
+  importance: null,
+  completed: false,
+});
 
 export const useTaskActions = () => {
   const { activeTaskId, projectId } = useTaskContext();
 
-  const { mutate, isPending, isSuccess } = useTaskMutation();
+  const { mutate, isPending, isSuccess } = useUpdateTaskMutation();
 
   const { mutate: addTaskMutate } = useAddTaskMutation();
 
   const { mutate: deleteTaskMutate } = useDeleteTaskMutation();
+
+  const { columns } = useTaskMetaData();
 
   const handleDeleteTask = useCallback(
     (taskId: TaskSchema['id']) => {
@@ -33,11 +54,15 @@ export const useTaskActions = () => {
   );
 
   const handleAddTask = useCallback(
-    (columnItemId: Column['id'], taskName: string) => {
+    (columnItemId: Column['id'], taskName: string, tasksLength: number) => {
       if (!taskName.trim()) {
-        toast.error('Имя проекта не может быть пустым');
+        toast.error('Имя проекта не может быть пустым', {
+          duration: 5000,
+        });
+
         return;
       }
+
       if (!projectId) {
         toast.error('Произошла ошибка! Попробуйте позже.', {
           duration: 5000,
@@ -45,23 +70,16 @@ export const useTaskActions = () => {
         return;
       }
 
-      addTaskMutate({
-        order: DEFAULT_ORDER,
-        title: taskName,
-        columnId: columnItemId,
-        createdAt: new Date().toISOString(),
-        dateBegin: null,
-        dateEnd: null,
-        dateMove: null,
-        dateStatusChanged: null,
-        hasDescription: false,
-        hasMessages: false,
-        importance: null,
-        projectId: projectId,
-        completed: false,
-      });
+      if (columns?.find((c) => c.id === columnItemId)?.limit ?? Infinity <= tasksLength) {
+        toast.error('Вы достигли лимита задач.', {
+          duration: 5000,
+        });
+        return;
+      }
+
+      addTaskMutate(createTaskPayload(taskName, columnItemId, projectId));
     },
-    [addTaskMutate, projectId]
+    [addTaskMutate, columns, projectId]
   );
 
   const handleChangeTask = useCallback(

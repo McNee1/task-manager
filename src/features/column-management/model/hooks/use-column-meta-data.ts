@@ -4,7 +4,7 @@ import { TaskSchema } from '@/entities';
 
 import { projectQueryOptions } from '../../services';
 
-export const useColumnMeta = (
+export const useColumnMetaData = (
   projectId: string | undefined,
   columnId: TaskSchema['columnId'] | null
 ) => {

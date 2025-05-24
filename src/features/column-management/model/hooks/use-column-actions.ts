@@ -4,15 +4,15 @@ import { toast } from 'sonner';
 import { Column, ColumnSchema } from '@/entities';
 
 import { isValidColumn } from '../../lib';
-import { useColumnMutation } from './use-column-mutation';
+import { useUpdateColumnMutation } from './api';
 
-export const useColumnHandlers = (
+export const useColumnActions = (
   columns: Column[],
   projectId: string | undefined,
   mainColumnId: ColumnSchema['id'],
   onSuccess?: VoidFunction
 ) => {
-  const { mutate, isPending } = useColumnMutation(projectId, onSuccess);
+  const { mutate, isPending } = useUpdateColumnMutation(projectId, onSuccess);
 
   const handleEditColumn = useCallback(
     (columnId: Column['id'] | undefined, option: Partial<Column>) => {

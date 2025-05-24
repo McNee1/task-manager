@@ -26,6 +26,7 @@ export const projectQueryOptions = (
             ?.name,
           projectName: data?.name,
           spaceId: data?.spaceId,
+          columns: data?.projectColumns[0].columns,
         },
       };
     },

@@ -5,7 +5,7 @@ import { Input } from '@/components/ui/input';
 import { Column, ColumnSchema } from '@/entities';
 import { EditableText, RenderInputProps } from '@/shared';
 
-import { useAddColumn } from '../../model';
+import { useAddColumnMutation } from '../../model';
 
 interface AddColumnProps {
   columns: Column[];
@@ -14,7 +14,7 @@ interface AddColumnProps {
 }
 
 export const AddColumn = ({ mainColumnId, projectId, columns }: AddColumnProps) => {
-  const { handleAddColumn } = useAddColumn(mainColumnId, projectId, columns);
+  const { handleAddColumn } = useAddColumnMutation(mainColumnId, projectId, columns);
 
   const renderInput = (props: RenderInputProps) => (
     <Card className='p-3'>

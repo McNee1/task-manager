@@ -3,7 +3,7 @@ import { toast } from 'sonner';
 
 import { postColumnById, ProjectWithColumns } from '@/entities';
 
-export const useColumnMutation = (
+export const useUpdateColumnMutation = (
   projectId: string | undefined,
   onSuccess?: VoidFunction
 ) => {

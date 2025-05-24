@@ -55,6 +55,8 @@ export const Textarea = ({
     }
     if (e.key === 'Enter') {
       e.preventDefault();
+
+      if (!value) return;
       onEnter?.(value);
       setValue('');
     }

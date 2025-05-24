@@ -2,11 +2,10 @@ import { ReactNode, useCallback } from 'react';
 
 import { Muted } from '@/components/ui/typography';
 import { Column, TaskCard, TaskSchema } from '@/entities';
-import { EditableText } from '@/shared';
+import { EditableText, ItemList } from '@/shared';
 
 import { useTaskContext } from '../../lib';
 import { useTask, useTaskActions } from '../../model';
-import { TaskList } from '../task-list';
 
 interface TaskManagementProps {
   children?: (taskId: TaskSchema['id'], isCompleted: boolean) => ReactNode;
@@ -60,7 +59,7 @@ export const TaskManagement = ({ columnId, children }: TaskManagementProps) => {
     <div className='flex h-full flex-col'>
       <EditableText
         onValueChange={(name) => {
-          handleAddTask(columnId, name);
+          handleAddTask(columnId, name, tasks.length);
         }}
         inputClass='py-0.5 focus-visible:ring-0 h-8 bg-white focus:border-sky-300'
         className='my-2.5 w-column rounded-md bg-white'
@@ -69,7 +68,12 @@ export const TaskManagement = ({ columnId, children }: TaskManagementProps) => {
       </EditableText>
 
       <div className='h-[calc(100vh_-_11rem)] w-[276px] overflow-y-auto [&::-webkit-scrollbar-thumb]:rounded-full [&::-webkit-scrollbar-thumb]:bg-gray-300/80 [&::-webkit-scrollbar-track]:bg-gray-200/60 [&::-webkit-scrollbar]:w-[3px]'>
-        <TaskList tasks={tasks}>{renderTask}</TaskList>
+        <ItemList
+          className='flex w-full flex-col gap-y-2 px-0.5'
+          items={tasks}
+        >
+          {renderTask}
+        </ItemList>
       </div>
     </div>
   );

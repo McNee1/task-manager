@@ -5,7 +5,7 @@ import { toast } from 'sonner';
 import { Column, ColumnSchema, ProjectWithColumns } from '@/entities';
 import { DEFAULT_ORDER, postColumnById } from '@/shared';
 
-export const useAddColumn = (
+export const useAddColumnMutation = (
   mainColumnId: ColumnSchema['id'],
   projectId: string | undefined,
   columns: Column[]

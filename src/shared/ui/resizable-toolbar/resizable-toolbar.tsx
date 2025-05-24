@@ -101,7 +101,7 @@ export const ResizableToolbar = forwardRef<HTMLDivElement, ResizableToolbarProps
     return (
       <div
         className={cn(
-          'fixed right-0 top-0 flex h-screen bg-white shadow-2xl transition-transform duration-300 ease-in-out',
+          'fixed right-0 top-0 z-20 flex h-screen bg-white shadow-2xl transition-transform duration-300 ease-in-out',
           isCollapsed ? 'translate-x-full' : 'translate-x-0'
         )}
         style={{ width: `${String(width)}px` }}

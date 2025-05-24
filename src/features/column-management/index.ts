@@ -1,2 +1,2 @@
 export { ColumnManagement } from './ui';
-export { useColumnMeta } from './model';
+export { useColumnMetaData } from './model';
