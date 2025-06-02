@@ -20,7 +20,10 @@ export const ItemListComponent = <T,>({
   items,
   className,
 }: ItemListProps<T>) => {
-  return <div className={className}>{items.map((item, id) => children(item, id))}</div>;
+  if (className) {
+    return <div className={className}>{items.map((item, id) => children(item, id))}</div>;
+  }
+  return <>{items.map((item, id) => children(item, id))}</>;
 };
 
 export const ItemList = memo(ItemListComponent) as typeof ItemListComponent;

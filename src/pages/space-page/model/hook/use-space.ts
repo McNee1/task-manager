@@ -1,7 +1,7 @@
 import { useSuspenseQueries } from '@tanstack/react-query';
 import { useParams } from '@tanstack/react-router';
 
-import { groupsQueryOptions, projectsQueryOptions } from '@/shared';
+import { groupsQueryOptions, projectsQueryOptions } from '@/features';
 
 export const useSpace = () => {
   const { spaceId } = useParams({ strict: false });

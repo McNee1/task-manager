@@ -7,3 +7,4 @@ export {
   PALETTE_COLORS,
 } from './base';
 export { ROUTE_INFO } from './router';
+export { QueryKey } from './query-key';

@@ -5,7 +5,8 @@ import { Column, TaskCard, TaskSchema } from '@/entities';
 import { EditableText, ItemList } from '@/shared';
 
 import { useTaskContext } from '../../lib';
-import { useTask, useTaskActions } from '../../model';
+import { useTask } from '../../model';
+import { useAddTask } from '../../model/hooks';
 
 interface TaskManagementProps {
   children?: (taskId: TaskSchema['id'], isCompleted: boolean) => ReactNode;
@@ -26,7 +27,7 @@ export const TaskManagement = ({ columnId, children }: TaskManagementProps) => {
 
   const { setIsCollapsed, setActiveTaskId, setActiveColumnId } = useTaskContext();
 
-  const { handleAddTask } = useTaskActions();
+  const { handleAddTask } = useAddTask();
 
   const handleTaskClick = useCallback(
     (task: TaskSchema) => {

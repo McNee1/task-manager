@@ -1,6 +1,6 @@
 import { useQuery } from '@tanstack/react-query';
 
-import { getSpaces } from '@/shared';
+import { getSpaces } from '../../api';
 
 export const useQuerySpaces = (spaceId?: string) =>
   useQuery({

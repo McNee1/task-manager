@@ -1,5 +1,10 @@
-export { useColumnActions } from './use-column-actions';
 export { useColumnModal } from './use-column-modal';
-export { useAddColumnMutation, useUpdateColumnMutation } from './api';
+export {
+  useAddColumn,
+  useCreateDefaultColumns,
+  useDeleteColumn,
+  useEditColumn,
+  useUpdateOrderColumn,
+} from './handlers';
 export { useColumnMetaData } from './use-column-meta-data';
 export { useColumns } from './use-columns';

@@ -1,4 +1,4 @@
-import { memo, ReactNode } from 'react';
+import { memo } from 'react';
 
 import {
   SidebarGroup,
@@ -13,7 +13,6 @@ import { SpaceSchema } from '@/entities';
 import { NavSpacesList } from './nav-spaces-list';
 
 interface NavSpacesProps {
-  children: ReactNode;
   error?: Error | null;
   loading: boolean;
   spaces?: SpaceSchema[];
@@ -33,7 +32,7 @@ const LoadingSkeletons = () => (
   </SidebarMenu>
 );
 
-export const NavSpaces = memo(({ spaces, children, loading, error }: NavSpacesProps) => {
+export const NavSpaces = memo(({ spaces, loading, error }: NavSpacesProps) => {
   if (loading) {
     return <LoadingSkeletons />;
   }
@@ -44,8 +43,6 @@ export const NavSpaces = memo(({ spaces, children, loading, error }: NavSpacesPr
   return (
     <SidebarGroup className='group-data-[collapsible=icon]:hidden'>
       <SidebarGroupLabel>Моё пространство</SidebarGroupLabel>
-
-      {children}
 
       {spaces?.length ? (
         <SidebarMenu>

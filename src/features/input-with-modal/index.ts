@@ -1,1 +1,0 @@
-export { InputWithModal } from './ui';

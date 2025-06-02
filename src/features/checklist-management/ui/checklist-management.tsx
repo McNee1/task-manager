@@ -1,13 +1,4 @@
-import { useCallback, useMemo } from 'react';
-
-import { Checklist } from '@/entities';
-
-import {
-  useAddItemMutation,
-  useDeleteItemMutation,
-  useQueryChecklist,
-  useToggleItemMutation,
-} from '../model';
+import { useChecklist, useDeleteItem, usePostNewItem, useToggleItem } from '../model';
 import { TaskChecklistPanel } from './task-checklist-panel';
 import { ToolbarChecklistPanel } from './toolbar-checklist-panel';
 
@@ -34,47 +25,13 @@ export const ChecklistManagement = ({
   taskId,
   isCompleted,
 }: ChecklistManagement) => {
-  const { data, isPending } = useQueryChecklist(projectId);
+  const { checklistByTaskId, isPending } = useChecklist(projectId, taskId);
 
-  const { mutate } = useAddItemMutation();
+  const { handleToggleItem } = useToggleItem();
 
-  const { mutate: toggleItem } = useToggleItemMutation();
+  const { handlePostItem } = usePostNewItem(projectId, taskId);
 
-  const { mutate: deleteItem } = useDeleteItemMutation(projectId);
-
-  const checklistByTaskId = useMemo(
-    () => data?.filter((el) => el.taskId === taskId),
-    [data, taskId]
-  );
-
-  const handleToggleItem = useCallback(
-    (checkItem: Checklist) => {
-      toggleItem({ ...checkItem, isChecked: !checkItem.isChecked });
-    },
-    [toggleItem]
-  );
-
-  const handlePostItem = useCallback(
-    (name: string) => {
-      if (!projectId) return;
-
-      mutate({
-        name,
-        isChecked: false,
-        projectId,
-        taskId,
-        createdAt: new Date().toISOString(),
-      });
-    },
-    [mutate, projectId, taskId]
-  );
-
-  const handleDeleteItem = useCallback(
-    (item: Checklist) => {
-      deleteItem(item.id);
-    },
-    [deleteItem]
-  );
+  const { handleDeleteItem } = useDeleteItem(projectId);
 
   if (isPending) {
     return null;

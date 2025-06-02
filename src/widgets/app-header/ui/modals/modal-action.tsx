@@ -1,5 +1,4 @@
-import { DeleteWithModal, InputWithModal } from '@/features';
-import { ModalType, SpaceId } from '@/shared';
+import { ModalType, ModalWithDelete, ModalWithInput, SpaceId } from '@/shared';
 
 import { useDeleteSpace, useEditSpace } from '../../model';
 
@@ -32,7 +31,7 @@ export const ModalAction = ({
 
   if (actionType.type === 'edit') {
     return (
-      <InputWithModal
+      <ModalWithInput
         onOpenChange={onToggleModal}
         isOpen={actionType.isOpen}
         isPending={isEditPending}
@@ -44,7 +43,7 @@ export const ModalAction = ({
 
   if (actionType.type === 'delete') {
     return (
-      <DeleteWithModal
+      <ModalWithDelete
         onOpenChange={onToggleModal}
         onDelete={handleDeleteSpace}
         isPending={isDeletePending}

@@ -13,3 +13,5 @@ export { TimeDisplay } from './time-display';
 export { CheckListPanel } from './checkList-panel';
 export { Accordion } from './accordion';
 export { ItemList } from './item-list';
+export { ModalWithInput } from './modal-with-input';
+export { ModalWithDelete } from './modal-with-delete';

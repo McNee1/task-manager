@@ -1,4 +1,4 @@
-export { useTaskActions } from './use-task-actions';
+export { useAddTask, useChangeTask, useDeleteTask } from './handlers';
 export { useTask } from './use-task';
 export { useToolbar } from './use-toolbar';
 export { useActiveTask } from './use-active-task';

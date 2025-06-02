@@ -1,7 +1,7 @@
 import { queryOptions } from '@tanstack/react-query';
 
-import { TaskSchema } from '@/entities';
-import { getProjectById } from '@/shared';
+import { getProjectById, TaskSchema } from '@/entities';
+import { QueryKey } from '@/shared';
 
 export const projectQueryOptions = (
   projectId: string | undefined,
@@ -9,7 +9,7 @@ export const projectQueryOptions = (
 ) =>
   queryOptions({
     enabled: !!projectId,
-    queryKey: ['project', projectId],
+    queryKey: [QueryKey.PROJECT, projectId],
     staleTime: Infinity,
     gcTime: Infinity,
     queryFn: async ({ queryKey }) => {

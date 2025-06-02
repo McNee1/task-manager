@@ -1,0 +1,1 @@
+export { ModalWithDelete } from './ui';

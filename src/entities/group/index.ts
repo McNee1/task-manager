@@ -1,2 +1,3 @@
 export { Group } from './ui';
-export * from './model';
+export { type GroupSchema, useActiveTab } from './model';
+export { deleteGroup, editGroup, getGroups, postGroup } from './api';

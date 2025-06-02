@@ -4,7 +4,7 @@ import { TaskSchema } from '@/entities';
 import { EditDescription } from '@/features';
 import { ResizableToolbar } from '@/shared';
 
-import { useTaskActions, useToolbar } from '../../model';
+import { useChangeTask, useToolbar } from '../../model';
 import { ToolbarActions } from './toolbar-actions';
 import { ToolbarDates } from './toolbar-dates';
 import { ToolbarFields } from './toolbar-fields';
@@ -30,7 +30,7 @@ interface TaskToolbarProps {
 export const TaskToolbar = ({ children }: TaskToolbarProps) => {
   const { handleCloseToolbar, isCollapsed, toolbarRef, activeTask } = useToolbar();
 
-  const { handleChangeTask, status } = useTaskActions();
+  const { handleChangeTask, status } = useChangeTask();
 
   return (
     <ResizableToolbar

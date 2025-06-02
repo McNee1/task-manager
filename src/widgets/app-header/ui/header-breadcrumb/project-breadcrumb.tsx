@@ -2,7 +2,8 @@ import { useQuery } from '@tanstack/react-query';
 import { useParams } from '@tanstack/react-router';
 
 import { Skeleton } from '@/components/ui/skeleton';
-import { getRouteIcon, projectQueryOptions } from '@/shared';
+import { projectQueryOptions } from '@/features';
+import { getRouteIcon } from '@/shared';
 
 import { BreadcrumbItem } from './breadcrumb-Item';
 
@@ -31,7 +32,7 @@ export const ProjectBreadcrumb = ({ curSpaceName }: ProjectBreadcrumbProps) => {
         isLink
       />
       <BreadcrumbItem
-        name={data?.name ?? null}
+        name={data?.projects?.name ?? null}
         icon={IconProject}
       />
     </div>

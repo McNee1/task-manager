@@ -4,7 +4,12 @@ import { ReactNode } from 'react';
 import { Column } from '@/entities';
 import { SortableList } from '@/features';
 
-import { useColumnActions, useColumnModal, useColumns } from '../../model';
+import {
+  useColumnModal,
+  useColumns,
+  useEditColumn,
+  useUpdateOrderColumn,
+} from '../../model';
 import { AddColumn } from '../add-column';
 import { ColumnCard } from '../column-card';
 import { ActionModalColumn } from '../modals';
@@ -30,11 +35,8 @@ export const ColumnManagement = ({ children, projectId }: ColumnManagementProps)
   const { columns, mainColumnId, handleCollapseColumn, isCollapsedColumn } =
     useColumns(projectId);
 
-  const { handleEditColumn, handleUpdateOrderColumn } = useColumnActions(
-    columns,
-    projectId,
-    mainColumnId
-  );
+  const { handleUpdateOrderColumn } = useUpdateOrderColumn(projectId, mainColumnId);
+  const { handleEditColumn } = useEditColumn(columns, mainColumnId, projectId);
 
   const { columnFn, columnState } = useColumnModal();
 

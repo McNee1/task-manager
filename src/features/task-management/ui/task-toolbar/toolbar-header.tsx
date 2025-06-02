@@ -6,7 +6,7 @@ import { Button } from '@/components/ui/button';
 import { TaskSchema } from '@/entities';
 import { AppPopover, cn, PopoverItems, useClipboard, usePopover } from '@/shared';
 
-import { useTaskActions } from '../../model';
+import { useDeleteTask } from '../../model';
 
 interface ToolbarHeaderProps {
   className?: string;
@@ -28,7 +28,7 @@ export const ToolbarHeader = ({ onClose, className, taskId }: ToolbarHeaderProps
 
   const { handleTogglePopover, isOpen } = usePopover();
 
-  const { handleDeleteTask } = useTaskActions();
+  const { handleDeleteTask } = useDeleteTask();
 
   const popoverItems: PopoverItems[] = [
     {

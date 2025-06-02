@@ -12,8 +12,8 @@ export const BaseProjectCard = memo(({ color, name }: BaseProjectCardProps) => {
     <div className='inline-flex items-center gap-x-5 px-4'>
       <FolderClosed
         stroke={color ?? DEFAULT_COLOR}
+        className='size-5'
         strokeWidth={0.9}
-        size={23}
       />
       <div>{name}</div>
     </div>

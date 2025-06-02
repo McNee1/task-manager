@@ -1,7 +1,9 @@
 export {
   useActiveTask,
+  useAddTask,
+  useChangeTask,
+  useDeleteTask,
   useTask,
-  useTaskActions,
   useTaskMetaData,
   useToolbar,
 } from './hooks';

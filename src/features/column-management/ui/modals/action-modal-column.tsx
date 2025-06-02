@@ -1,9 +1,9 @@
 import { Button } from '@/components/ui/button';
 import { Column, ColumnSchema } from '@/entities';
-import { DeleteWithModal, InputWithModal, ModalWithColorPicker } from '@/features';
-import { ModalType } from '@/shared';
+import { ModalWithColorPicker } from '@/features';
+import { ModalType, ModalWithDelete, ModalWithInput } from '@/shared';
 
-import { useColumnActions } from '../../model';
+import { useDeleteColumn, useEditColumn } from '../../model';
 
 interface ActionModalColumnProps {
   columns: Column[];
@@ -38,7 +38,14 @@ export const ActionModalColumn = ({
   onSuccess,
   selectedColumnId,
 }: ActionModalColumnProps) => {
-  const { handleEditColumn, handleDeleteColumn, isPending } = useColumnActions(
+  const { handleEditColumn, isPending: isEditPending } = useEditColumn(
+    columns,
+    mainColumnId,
+    projectId,
+    onSuccess
+  );
+
+  const { handleDeleteColumn, isPending: isDeletePending } = useDeleteColumn(
     columns,
     projectId,
     mainColumnId,
@@ -62,27 +69,27 @@ export const ActionModalColumn = ({
           initColor={columnItem?.color}
           onOpenChange={onToggleModal}
           initName={columnItem?.name}
+          isPending={isEditPending}
           label='Название колонки'
-          isPending={isPending}
           isOpen={isOpen}
         />
       );
 
     case 'delete':
       return (
-        <DeleteWithModal
+        <ModalWithDelete
           onDelete={() => {
             handleDeleteColumn(selectedColumnId);
           }}
           subTitle={`Вы уверенны что хотите удалить колонку: "${columnItem?.name ?? ''}" ?`}
           onOpenChange={onToggleModal}
-          isPending={isPending}
+          isPending={isDeletePending}
           isOpen={isOpen}
         />
       );
     case 'custom':
       return (
-        <InputWithModal
+        <ModalWithInput
           renderButtons={(limit) => (
             <div className='mt-2 space-y-2'>
               <Button
@@ -116,8 +123,8 @@ export const ActionModalColumn = ({
           inputLabel='Введите новый лимит задач'
           title='Установить лимит задач'
           onOpenChange={onToggleModal}
+          isPending={isEditPending}
           inputPlaceholder='Лимит'
-          isPending={isPending}
           inputType='number'
           isOpen={isOpen}
         />

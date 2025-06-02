@@ -1,1 +1,1 @@
-export * from './hook';
+export { useSpace } from './hook';

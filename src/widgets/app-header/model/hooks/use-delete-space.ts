@@ -2,7 +2,8 @@ import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { useCallback } from 'react';
 import { toast } from 'sonner';
 
-import { deleteSpace, SpaceId } from '@/shared';
+import { deleteSpace } from '@/entities';
+import { SpaceId } from '@/shared';
 
 export const useDeleteSpace = (spaceId: SpaceId, onSuccess: VoidFunction) => {
   const queryClient = useQueryClient();
@@ -23,12 +24,12 @@ export const useDeleteSpace = (spaceId: SpaceId, onSuccess: VoidFunction) => {
 
     mutate(spaceId, {
       onSuccess: (data) => {
-        onSuccess();
-
         toast.success('Пространство успешно удаленно!', {
           description: `Имя пространство: ${data.spaceName}`,
           duration: 5000,
         });
+
+        onSuccess();
       },
       onError: (error) => {
         toast.error('Произошла ошибка! Попробуйте позже.', {

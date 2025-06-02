@@ -2,6 +2,7 @@ import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { toast } from 'sonner';
 
 import { DescriptionSchema, updateDescription } from '@/entities';
+import { QueryKey } from '@/shared';
 
 export const useMutationDescription = (id: string) => {
   const queryClient = useQueryClient();
@@ -9,15 +10,15 @@ export const useMutationDescription = (id: string) => {
     mutationFn: updateDescription,
 
     onMutate: async (newData) => {
-      await queryClient.cancelQueries({ queryKey: ['description', id] });
+      await queryClient.cancelQueries({ queryKey: [QueryKey.DESCRIPTION, id] });
 
       const previousDescription = queryClient.getQueryData<DescriptionSchema[]>([
         'description',
         id,
       ]);
 
-      queryClient.setQueryData<DescriptionSchema[]>(['description', id], (old) => {
-        if (!old) return;
+      queryClient.setQueryData<DescriptionSchema[]>([QueryKey.DESCRIPTION, id], (old) => {
+        if (!old) return [];
 
         return [{ ...newData }];
       });
@@ -26,7 +27,7 @@ export const useMutationDescription = (id: string) => {
     },
 
     onError: (error, _, context) => {
-      queryClient.setQueryData(['description', id], context?.previousDescription);
+      queryClient.setQueryData([QueryKey.DESCRIPTION, id], context?.previousDescription);
 
       toast.error('Произошла ошибка, попробуйте позже.', {
         description: error.message,
@@ -36,7 +37,7 @@ export const useMutationDescription = (id: string) => {
 
     onSettled: async () => {
       await queryClient.invalidateQueries({
-        queryKey: ['description', id],
+        queryKey: [QueryKey.DESCRIPTION, id],
       });
     },
   });

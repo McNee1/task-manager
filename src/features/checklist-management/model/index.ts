@@ -1,6 +1,2 @@
-export {
-  useAddItemMutation,
-  useDeleteItemMutation,
-  useQueryChecklist,
-  useToggleItemMutation,
-} from './hooks';
+export { useChecklist, useDeleteItem, usePostNewItem, useToggleItem } from './hooks';
+export { useQueryChecklist } from './api';

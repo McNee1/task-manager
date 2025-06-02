@@ -1,2 +1,3 @@
 export { ColumnManagement } from './ui';
-export { useColumnMetaData } from './model';
+export { useColumnMetaData, useCreateDefaultColumns } from './model';
+export { projectQueryOptions } from './services';

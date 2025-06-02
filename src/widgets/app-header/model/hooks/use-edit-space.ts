@@ -2,7 +2,8 @@ import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { useCallback } from 'react';
 import { toast } from 'sonner';
 
-import { editSpace, SpaceId } from '@/shared';
+import { editSpace } from '@/entities';
+import { SpaceId } from '@/shared';
 
 export const useEditSpace = (spaceId: SpaceId, onSuccess: VoidFunction) => {
   const queryClient = useQueryClient();

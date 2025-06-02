@@ -2,10 +2,11 @@ import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { toast } from 'sonner';
 
 import { editTask, TaskSchema } from '@/entities';
+import { QueryKey } from '@/shared';
 
 import { useTaskContext } from '../../lib';
 
-export const useUpdateTaskMutation = (onSuccess?: (task: TaskSchema) => void) => {
+export const useUpdateTaskMutation = () => {
   const { projectId } = useTaskContext();
 
   const queryClient = useQueryClient();
@@ -15,12 +16,15 @@ export const useUpdateTaskMutation = (onSuccess?: (task: TaskSchema) => void) =>
 
     onMutate: async ({ id, task: newTask }) => {
       console.log(newTask);
-      await queryClient.cancelQueries({ queryKey: ['tasks', projectId] });
+      await queryClient.cancelQueries({ queryKey: [QueryKey.TASKS, projectId] });
 
-      const previousTasks = queryClient.getQueryData<TaskSchema[]>(['tasks', projectId]);
+      const previousTasks = queryClient.getQueryData<TaskSchema[]>([
+        QueryKey.TASKS,
+        projectId,
+      ]);
 
-      queryClient.setQueryData<TaskSchema[]>(['tasks', projectId], (oldTasks) => {
-        if (!oldTasks) return;
+      queryClient.setQueryData<TaskSchema[]>([QueryKey.TASKS, projectId], (oldTasks) => {
+        if (!oldTasks) return [];
 
         return oldTasks.map((task) => (task.id === id ? { ...task, ...newTask } : task));
       });
@@ -29,7 +33,7 @@ export const useUpdateTaskMutation = (onSuccess?: (task: TaskSchema) => void) =>
     },
 
     onError: (error, __, context) => {
-      queryClient.setQueryData(['tasks', projectId], context?.previousTasks);
+      queryClient.setQueryData([QueryKey.TASKS, projectId], context?.previousTasks);
       toast.error('Произошла ошибка, попробуйте позже.', {
         description: error.message,
         duration: 5000,
@@ -38,12 +42,8 @@ export const useUpdateTaskMutation = (onSuccess?: (task: TaskSchema) => void) =>
 
     onSettled: async () => {
       await queryClient.invalidateQueries({
-        queryKey: ['tasks', projectId],
+        queryKey: [QueryKey.TASKS, projectId],
       });
-    },
-
-    onSuccess: (data) => {
-      onSuccess?.(data);
     },
   });
 };
