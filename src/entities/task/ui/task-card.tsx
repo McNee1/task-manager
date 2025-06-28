@@ -56,12 +56,7 @@ export const TaskCard = memo(
 
     return (
       <Card
-        className={cn(
-          combinedStyles,
-
-          'transition-shadow hover:shadow',
-          className
-        )}
+        className={cn(combinedStyles, 'transition-shadow hover:shadow', className)}
         onClick={onCardClick}
         {...props}
       >

@@ -4,7 +4,7 @@ import { TaskSchema } from '@/entities';
 import { EditDescription } from '@/features';
 import { ResizableToolbar } from '@/shared';
 
-import { useChangeTask, useToolbar } from '../../model';
+import { useToolbar, useUpdateTask } from '../../model';
 import { ToolbarActions } from './toolbar-actions';
 import { ToolbarDates } from './toolbar-dates';
 import { ToolbarFields } from './toolbar-fields';
@@ -30,7 +30,7 @@ interface TaskToolbarProps {
 export const TaskToolbar = ({ children }: TaskToolbarProps) => {
   const { handleCloseToolbar, isCollapsed, toolbarRef, activeTask } = useToolbar();
 
-  const { handleChangeTask, status } = useChangeTask();
+  const { handleUpdateTask, status } = useUpdateTask();
 
   return (
     <ResizableToolbar
@@ -48,7 +48,7 @@ export const TaskToolbar = ({ children }: TaskToolbarProps) => {
           <ToolbarActions
             estimatedTime={activeTask.estimatedTime}
             isCompleted={activeTask.completed}
-            onChangeTask={handleChangeTask}
+            onChangeTask={handleUpdateTask}
             isPending={status.isPending}
             taskId={activeTask.id}
             className='mt-6 px-8'
@@ -61,7 +61,7 @@ export const TaskToolbar = ({ children }: TaskToolbarProps) => {
           />
 
           <ToolbarTitle
-            onChangeTask={handleChangeTask}
+            onChangeTask={handleUpdateTask}
             title={activeTask.title || ''}
             className='mt-5 px-8'
           />
@@ -71,7 +71,7 @@ export const TaskToolbar = ({ children }: TaskToolbarProps) => {
             initEstimatedTime={activeTask.estimatedTime}
             activeColumnId={activeTask.columnId}
             importance={activeTask.importance}
-            onChangeTask={handleChangeTask}
+            onChangeTask={handleUpdateTask}
             className='mt-6 px-5'
             status={status}
           />

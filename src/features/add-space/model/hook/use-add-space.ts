@@ -8,6 +8,8 @@ export const useAddSpace = (onSuccess: VoidFunction) => {
 
   const handleAddSpace = useCallback(
     (spaceName: string) => {
+      if (isPending) return;
+
       if (!spaceName.length) {
         toast.error('Имя пространства не может быть пустым');
         return;
@@ -27,7 +29,7 @@ export const useAddSpace = (onSuccess: VoidFunction) => {
         },
       });
     },
-    [mutate, onSuccess]
+    [isPending, mutate, onSuccess]
   );
 
   return {

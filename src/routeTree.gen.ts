@@ -15,7 +15,7 @@ import { createFileRoute } from '@tanstack/react-router';
 import { Route as rootRoute } from './app/router/routes/__root';
 import { Route as HomeImport } from './app/router/routes/home';
 import { Route as SpaceSpaceIdImport } from './app/router/routes/space.$spaceId';
-import { Route as SpaceSpaceIdProjectProjectIdImport } from './app/router/routes/space.$spaceId_.project.$projectId';
+import { Route as SpaceSpaceIdProjectWorkspaceProjectIdImport } from './app/router/routes/space.$spaceId_.project-workspace.$projectId';
 
 // Create Virtual Routes
 
@@ -50,11 +50,12 @@ const SpaceSpaceIdRoute = SpaceSpaceIdImport.update({
   getParentRoute: () => rootRoute,
 } as any);
 
-const SpaceSpaceIdProjectProjectIdRoute = SpaceSpaceIdProjectProjectIdImport.update({
-  id: '/space/$spaceId_/project/$projectId',
-  path: '/space/$spaceId/project/$projectId',
-  getParentRoute: () => rootRoute,
-} as any);
+const SpaceSpaceIdProjectWorkspaceProjectIdRoute =
+  SpaceSpaceIdProjectWorkspaceProjectIdImport.update({
+    id: '/space/$spaceId_/project-workspace/$projectId',
+    path: '/space/$spaceId/project-workspace/$projectId',
+    getParentRoute: () => rootRoute,
+  } as any);
 
 // Populate the FileRoutesByPath interface
 
@@ -88,11 +89,11 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof SpaceSpaceIdImport;
       parentRoute: typeof rootRoute;
     };
-    '/space/$spaceId_/project/$projectId': {
-      id: '/space/$spaceId_/project/$projectId';
-      path: '/space/$spaceId/project/$projectId';
-      fullPath: '/space/$spaceId/project/$projectId';
-      preLoaderRoute: typeof SpaceSpaceIdProjectProjectIdImport;
+    '/space/$spaceId_/project-workspace/$projectId': {
+      id: '/space/$spaceId_/project-workspace/$projectId';
+      path: '/space/$spaceId/project-workspace/$projectId';
+      fullPath: '/space/$spaceId/project-workspace/$projectId';
+      preLoaderRoute: typeof SpaceSpaceIdProjectWorkspaceProjectIdImport;
       parentRoute: typeof rootRoute;
     };
   }
@@ -105,7 +106,7 @@ export interface FileRoutesByFullPath {
   '/about': typeof AboutLazyRoute;
   '/notification': typeof NotificationLazyRoute;
   '/space/$spaceId': typeof SpaceSpaceIdRoute;
-  '/space/$spaceId/project/$projectId': typeof SpaceSpaceIdProjectProjectIdRoute;
+  '/space/$spaceId/project-workspace/$projectId': typeof SpaceSpaceIdProjectWorkspaceProjectIdRoute;
 }
 
 export interface FileRoutesByTo {
@@ -113,7 +114,7 @@ export interface FileRoutesByTo {
   '/about': typeof AboutLazyRoute;
   '/notification': typeof NotificationLazyRoute;
   '/space/$spaceId': typeof SpaceSpaceIdRoute;
-  '/space/$spaceId/project/$projectId': typeof SpaceSpaceIdProjectProjectIdRoute;
+  '/space/$spaceId/project-workspace/$projectId': typeof SpaceSpaceIdProjectWorkspaceProjectIdRoute;
 }
 
 export interface FileRoutesById {
@@ -122,7 +123,7 @@ export interface FileRoutesById {
   '/about': typeof AboutLazyRoute;
   '/notification': typeof NotificationLazyRoute;
   '/space/$spaceId': typeof SpaceSpaceIdRoute;
-  '/space/$spaceId_/project/$projectId': typeof SpaceSpaceIdProjectProjectIdRoute;
+  '/space/$spaceId_/project-workspace/$projectId': typeof SpaceSpaceIdProjectWorkspaceProjectIdRoute;
 }
 
 export interface FileRouteTypes {
@@ -132,21 +133,21 @@ export interface FileRouteTypes {
     | '/about'
     | '/notification'
     | '/space/$spaceId'
-    | '/space/$spaceId/project/$projectId';
+    | '/space/$spaceId/project-workspace/$projectId';
   fileRoutesByTo: FileRoutesByTo;
   to:
     | '/home'
     | '/about'
     | '/notification'
     | '/space/$spaceId'
-    | '/space/$spaceId/project/$projectId';
+    | '/space/$spaceId/project-workspace/$projectId';
   id:
     | '__root__'
     | '/home'
     | '/about'
     | '/notification'
     | '/space/$spaceId'
-    | '/space/$spaceId_/project/$projectId';
+    | '/space/$spaceId_/project-workspace/$projectId';
   fileRoutesById: FileRoutesById;
 }
 
@@ -155,7 +156,7 @@ export interface RootRouteChildren {
   AboutLazyRoute: typeof AboutLazyRoute;
   NotificationLazyRoute: typeof NotificationLazyRoute;
   SpaceSpaceIdRoute: typeof SpaceSpaceIdRoute;
-  SpaceSpaceIdProjectProjectIdRoute: typeof SpaceSpaceIdProjectProjectIdRoute;
+  SpaceSpaceIdProjectWorkspaceProjectIdRoute: typeof SpaceSpaceIdProjectWorkspaceProjectIdRoute;
 }
 
 const rootRouteChildren: RootRouteChildren = {
@@ -163,7 +164,7 @@ const rootRouteChildren: RootRouteChildren = {
   AboutLazyRoute: AboutLazyRoute,
   NotificationLazyRoute: NotificationLazyRoute,
   SpaceSpaceIdRoute: SpaceSpaceIdRoute,
-  SpaceSpaceIdProjectProjectIdRoute: SpaceSpaceIdProjectProjectIdRoute,
+  SpaceSpaceIdProjectWorkspaceProjectIdRoute: SpaceSpaceIdProjectWorkspaceProjectIdRoute,
 };
 
 export const routeTree = rootRoute
@@ -180,7 +181,7 @@ export const routeTree = rootRoute
         "/about",
         "/notification",
         "/space/$spaceId",
-        "/space/$spaceId_/project/$projectId"
+        "/space/$spaceId_/project-workspace/$projectId"
       ]
     },
     "/home": {
@@ -195,8 +196,8 @@ export const routeTree = rootRoute
     "/space/$spaceId": {
       "filePath": "space.$spaceId.tsx"
     },
-    "/space/$spaceId_/project/$projectId": {
-      "filePath": "space.$spaceId_.project.$projectId.tsx"
+    "/space/$spaceId_/project-workspace/$projectId": {
+      "filePath": "space.$spaceId_.project-workspace.$projectId.tsx"
     }
   }
 }

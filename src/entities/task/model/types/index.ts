@@ -1,9 +1,10 @@
+import { Column } from '@/entities';
 import { EstimatedTime, KeyImportance } from '@/shared';
 
 export interface TaskSchema {
   attentionMessage?: string;
   color?: { hex: string; name: string } | null;
-  columnId: number;
+  columnId: Column['id'];
   completed: boolean;
   createdAt: string;
   dateBegin: string | null;
@@ -21,5 +22,5 @@ export interface TaskSchema {
   title: string;
 }
 
-export type TasksRecord = Record<number, TaskSchema[] | undefined>;
+export type TasksRecord = Record<Column['id'], TaskSchema[]>;
 export type PartialTask = Partial<TaskSchema>;

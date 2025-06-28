@@ -1,4 +1,4 @@
-import { ChangeEvent, useCallback, useState } from 'react';
+import { ChangeEvent, useCallback, useEffect, useState } from 'react';
 
 export const useInputForm = (initValue = '') => {
   const [value, setValue] = useState(initValue);
@@ -6,6 +6,10 @@ export const useInputForm = (initValue = '') => {
   const handleChange = useCallback((e: ChangeEvent<HTMLInputElement>) => {
     setValue(e.target.value);
   }, []);
+
+  useEffect(() => {
+    setValue(initValue);
+  }, [initValue]);
 
   return {
     value,

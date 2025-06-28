@@ -46,7 +46,9 @@ export const useAddTask = () => {
         return;
       }
 
-      if (columns?.find((c) => c.id === columnItemId)?.limit ?? Infinity <= tasksLength) {
+      const limit = columns?.find((c) => c.id === columnItemId)?.limit;
+
+      if (limit && limit <= tasksLength) {
         toast.error('Вы достигли лимита задач.', { duration: 5000 });
         return;
       }

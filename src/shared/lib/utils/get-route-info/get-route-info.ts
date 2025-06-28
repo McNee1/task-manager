@@ -7,7 +7,7 @@ const getDynamicRoute = (route: ValidRoutes) => {
     return ROUTE_INFO['/space/$spaceId'];
   }
   if (CheckLocation.isProject(route)) {
-    return ROUTE_INFO['/space/$spaceId/project/$projectId'];
+    return ROUTE_INFO['/space/$spaceId/project-workspace/$projectId'];
   }
 };
 

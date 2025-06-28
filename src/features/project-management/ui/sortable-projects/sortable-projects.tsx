@@ -2,7 +2,7 @@ import { ReactNode } from 'react';
 
 import { P } from '@/components/ui/typography';
 import { ProjectSchema } from '@/entities';
-import { SortableList } from '@/features';
+import { DndSortableList } from '@/features';
 
 interface SortableProjectsProps {
   children: (project: ProjectSchema) => ReactNode;
@@ -17,7 +17,7 @@ export const SortableProjects = ({
 }: SortableProjectsProps) => {
   return (
     <>
-      <SortableList
+      <DndSortableList
         fallbackContent={
           <P className='text-sm text-muted-foreground'>
             У вас еще нету ни одного проекта.
@@ -28,6 +28,7 @@ export const SortableProjects = ({
         }}
         renderSortItem={(item) => children(item)}
         sortableItems={projects}
+        modifier='vertical'
       />
     </>
   );

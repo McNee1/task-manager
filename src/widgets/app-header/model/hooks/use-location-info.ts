@@ -1,8 +1,8 @@
 import { useLocation } from '@tanstack/react-router';
 
 import { CheckLocation, ValidRoutes } from '@/shared';
-// TODO NAME FILE
-export const useHeaderLocation = () => {
+
+export const useLocationInfo = () => {
   const pathname = useLocation({
     select: (location) => location.pathname as ValidRoutes,
   });

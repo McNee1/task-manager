@@ -15,10 +15,10 @@ interface ColumnCardHeaderProps {
   className?: string;
   column: Column;
   isCollapsed: boolean;
-  onActionPopoverModal: (modalType: ModalType['type']) => void;
-  onCollapseColumn: (colId: Column['id']) => void;
-  onEditColName: (colName: string) => void;
-  onSortTasks: (colId: Column['id']) => void;
+  onActionPopoverModal?: (modalType: ModalType['type']) => void;
+  onCollapseColumn?: (colId: Column['id']) => void;
+  onEditColName?: (colName: string) => void;
+  onSortTasks?: (colId: Column['id']) => void;
 }
 
 /**
@@ -44,7 +44,7 @@ export const ColumnCardHeader = ({
   const { handleTogglePopover, isOpen } = usePopover();
 
   const handleCollapsePopover = () => {
-    onCollapseColumn(column.id);
+    onCollapseColumn?.(column.id);
     handleTogglePopover();
   };
 
@@ -52,21 +52,21 @@ export const ColumnCardHeader = ({
     {
       label: 'Сортировать задачи',
       onClick: () => {
-        onSortTasks(column.id);
+        onSortTasks?.(column.id);
       },
       type: 'success-ghost',
     },
     {
       label: 'Установить лимит задач',
       onClick: () => {
-        onActionPopoverModal('custom');
+        onActionPopoverModal?.('custom');
       },
       type: 'success-ghost',
     },
     {
       label: 'Редактировать',
       onClick: () => {
-        onActionPopoverModal('edit');
+        onActionPopoverModal?.('edit');
       },
       type: 'success-ghost',
     },
@@ -80,7 +80,7 @@ export const ColumnCardHeader = ({
     {
       label: 'Удалить',
       onClick: () => {
-        onActionPopoverModal('delete');
+        onActionPopoverModal?.('delete');
       },
       type: 'danger-ghost',
     },

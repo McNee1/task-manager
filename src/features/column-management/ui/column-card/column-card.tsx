@@ -1,6 +1,5 @@
 import { ReactNode } from 'react';
 
-import { Card } from '@/components/ui/card';
 import { Column } from '@/entities';
 import { cn, ModalType } from '@/shared';
 
@@ -11,20 +10,32 @@ interface ColumnCardProps {
   className?: string;
   column: Column;
   isCollapsed: boolean;
-  onActionPopoverModal: (modalType: ModalType['type']) => void;
-  onCollapseColumn: (colId: Column['id']) => void;
-  onEditColName: (colName: string) => void;
-  onSortTasks: (colId: Column['id']) => void;
+  onActionPopoverModal?: (modalType: ModalType['type']) => void;
+  onCollapseColumn?: (colId: Column['id']) => void;
+  onEditColName?: (colName: string) => void;
+  onSortTasks?: (colId: Column['id']) => void;
 }
 
-export const ColumnCard = ({ className, children, ...props }: ColumnCardProps) => {
+export const ColumnCard = ({
+  className,
+  children,
+  isCollapsed,
+  ...props
+}: ColumnCardProps) => {
   return (
-    <Card className={cn('flex h-full flex-col bg-transparent', className)}>
+    <div
+      className={cn(
+        'flex flex-1 flex-col',
+        isCollapsed ? 'h-fit w-14 origin-[40%] rotate-90' : '',
+        className
+      )}
+    >
       <ColumnCardHeader
         {...props}
+        isCollapsed={isCollapsed}
         className='w-column'
       />
       <>{children}</>
-    </Card>
+    </div>
   );
 };

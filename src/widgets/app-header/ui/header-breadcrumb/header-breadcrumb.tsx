@@ -3,7 +3,7 @@ import { Pencil, Trash2 } from 'lucide-react';
 import { Skeleton } from '@/components/ui/skeleton';
 import { getRouteIcon, getRouteName, ModalType, PopoverItems } from '@/shared';
 
-import { useHeaderLocation } from '../../model';
+import { useLocationInfo } from '../../model';
 import { MenuPopover } from '../menu-popover';
 import { BreadcrumbItem } from './breadcrumb-Item';
 import { ProjectBreadcrumb } from './project-breadcrumb';
@@ -14,7 +14,7 @@ interface BreadcrumbProps {
 }
 
 export const HeaderBreadcrumb = ({ onToggleModal, curSpaceName }: BreadcrumbProps) => {
-  const { isSpaceLocation, pathname, isProjectLocation } = useHeaderLocation();
+  const { isSpaceLocation, pathname, isProjectLocation } = useLocationInfo();
 
   const IconPath = getRouteIcon(pathname);
 

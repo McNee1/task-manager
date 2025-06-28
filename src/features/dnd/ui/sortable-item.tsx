@@ -2,26 +2,40 @@ import type { UniqueIdentifier } from '@dnd-kit/core';
 
 import { useSortable } from '@dnd-kit/sortable';
 import { CSS } from '@dnd-kit/utilities';
-import { ReactNode } from 'react';
+import { CSSProperties, ReactNode } from 'react';
 
 import { cn } from '@/shared';
 
-interface SortableItemProps {
+interface SortableItemProps<C = string, T = string> {
   children: ReactNode;
   className?: string;
+  containerId?: C;
   dragHandle?: ReactNode;
   id: UniqueIdentifier;
+  type?: T;
 }
 
-export function SortableItem({ children, id, dragHandle, className }: SortableItemProps) {
+export function SortableItem<C = string, T = string>({
+  children,
+  id,
+  dragHandle,
+  className,
+  type,
+  containerId,
+}: SortableItemProps<C, T>) {
   const { attributes, listeners, setNodeRef, transform, transition, isDragging } =
     useSortable({
       id: id,
+      data: {
+        containerId,
+        type,
+      },
     });
 
-  const style = {
-    opacity: isDragging ? 0.4 : undefined,
-    transform: CSS.Transform.toString(transform),
+  const style: CSSProperties = {
+    opacity: isDragging ? 0.5 : undefined,
+    transform: transform ? CSS.Translate.toString(transform) : undefined,
+    zIndex: isDragging ? 999 : undefined,
     transition,
   };
 

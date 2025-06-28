@@ -1,2 +1,2 @@
 export { SpacePage } from './space-page';
-export { ProjectPage } from './project-page';
+export { ProjectWorkspacePage } from './project-workspace-page';

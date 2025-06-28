@@ -17,6 +17,8 @@ export const useAddProject = (
     color: ColorField,
     orderLastItem: ProjectSchema['order'] | undefined
   ) => {
+    if (isPending) return;
+
     if (!groupId || !spaceId) {
       toast.error('Произошла ошибка', {
         description: 'Отсутствует id группы или пространства',

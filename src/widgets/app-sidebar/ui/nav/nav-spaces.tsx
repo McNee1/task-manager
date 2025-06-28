@@ -1,5 +1,3 @@
-import { memo } from 'react';
-
 import {
   SidebarGroup,
   SidebarGroupLabel,
@@ -32,7 +30,7 @@ const LoadingSkeletons = () => (
   </SidebarMenu>
 );
 
-export const NavSpaces = memo(({ spaces, loading, error }: NavSpacesProps) => {
+export const NavSpaces = ({ spaces, loading, error }: NavSpacesProps) => {
   if (loading) {
     return <LoadingSkeletons />;
   }
@@ -57,6 +55,4 @@ export const NavSpaces = memo(({ spaces, loading, error }: NavSpacesProps) => {
       )}
     </SidebarGroup>
   );
-});
-
-NavSpaces.displayName = 'NavSpaces';
+};

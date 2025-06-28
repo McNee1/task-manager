@@ -3,7 +3,8 @@ import type { Active, DragOverEvent, DragStartEvent } from '@dnd-kit/core';
 import { arrayMove } from '@dnd-kit/sortable';
 import { useCallback, useEffect, useMemo, useState } from 'react';
 
-import { updateOrder } from '../../lib';
+import { reorderItemWithinList } from '@/features';
+
 import { SortableItem, UpdateOrderFn } from '../types';
 
 export const useSortableData = <K extends SortableItem>(initialData: K[] | undefined) => {
@@ -35,7 +36,7 @@ export const useSortableData = <K extends SortableItem>(initialData: K[] | undef
 
       const movedArray = arrayMove(sortableItems, activeIndex, overIndex);
 
-      const reorderedArray = updateOrder(movedArray, activeIndex, overIndex);
+      const reorderedArray = reorderItemWithinList(movedArray, overIndex);
 
       setSortableItems(reorderedArray);
 

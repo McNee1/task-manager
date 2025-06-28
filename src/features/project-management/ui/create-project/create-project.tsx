@@ -28,14 +28,12 @@ export const CreateProject = ({ groupId, spaceId, projects }: CreateProjectProps
 
   const { orderLastItem } = useProjectData(projects, groupId, spaceId);
 
-  const handleProjectSuccess = useCallback(() => {
-    fnProject.setProjectModal({ isOpen: false });
-  }, [fnProject]);
-
   const { handleAddProject, isPending: isAddPending } = useAddProject(
     spaceId,
     stateProject.selectedProject?.id,
-    handleProjectSuccess
+    () => {
+      fnProject.setProjectModal({ isOpen: false });
+    }
   );
 
   const handleAdd = useCallback(

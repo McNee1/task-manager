@@ -9,10 +9,10 @@ export const useActiveTask = () => {
 
   return useMemo(
     () => ({
-      activeTask: Object.values(tasks ?? [])
+      activeTask: Object.values(tasks)
         .flat()
-        .find((task) => task?.id === activeTaskId),
-      tasks,
+        .find((task) => task.id === activeTaskId),
+      tasks: tasks,
     }),
     [tasks, activeTaskId]
   );

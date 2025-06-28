@@ -28,7 +28,7 @@ export const useUpdateOrderMutation = () => {
       await queryClient.invalidateQueries({ queryKey: [QueryKey.PROJECTS] });
     },
     onSettled: async () => {
-      // await queryClient.invalidateQueries({ queryKey: ['projects'] });
+      await queryClient.invalidateQueries({ queryKey: ['projects'] });
     },
     onSuccess() {
       toast.success('Очередь успешно изменена', {

@@ -1,8 +1,7 @@
 import { DEFAULT_ORDER } from '@/shared';
 
-export const updateOrder = <T extends { order: number }>(
+export const reorderItemWithinList = <T extends { order: number }>(
   items: T[],
-  activeIndex: number,
   overIndex: number
 ) => {
   // Создаем новый массив, чтобы не мутировать оригинальный

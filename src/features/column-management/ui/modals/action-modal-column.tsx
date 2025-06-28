@@ -99,6 +99,7 @@ export const ActionModalColumn = ({
                     name: columnItem?.name,
                   });
                 }}
+                disabled={isEditPending}
                 className='mt-1 w-full'
                 variant='success'
                 type='button'
@@ -112,6 +113,7 @@ export const ActionModalColumn = ({
                     name: columnItem?.name,
                   });
                 }}
+                disabled={isEditPending}
                 className='mt-1 w-full'
                 variant='primary'
                 type='button'
@@ -120,6 +122,12 @@ export const ActionModalColumn = ({
               </Button>
             </div>
           )}
+          onSave={(limit) => {
+            handleEditColumn(columnItem?.id, {
+              limit: +limit,
+              name: columnItem?.name,
+            });
+          }}
           inputLabel='Введите новый лимит задач'
           title='Установить лимит задач'
           onOpenChange={onToggleModal}

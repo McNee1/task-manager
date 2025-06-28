@@ -1,5 +1,4 @@
 import { Link } from '@tanstack/react-router';
-import { memo } from 'react';
 
 import {
   SidebarGroup,
@@ -15,7 +14,7 @@ interface NavMainProps {
   items: MenuItem[];
 }
 
-export const NavMain = memo(({ items }: NavMainProps) => {
+export const NavMain = ({ items }: NavMainProps) => {
   return (
     <SidebarGroup>
       <SidebarGroupContent>
@@ -37,6 +36,4 @@ export const NavMain = memo(({ items }: NavMainProps) => {
       </SidebarGroupContent>
     </SidebarGroup>
   );
-});
-
-NavMain.displayName = 'NavMain';
+};

@@ -86,7 +86,7 @@ export const ProjectCard = memo(({ project, onProjectAction }: ProjectCardProps)
   return (
     <Link
       params={{ projectId: project.id, spaceId: project.spaceId }}
-      to='/space/$spaceId/project/$projectId'
+      to='/space/$spaceId/project-workspace/$projectId'
     >
       <div
         className={cn(

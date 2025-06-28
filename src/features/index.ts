@@ -1,5 +1,5 @@
 export * from './modal-with-color-picker';
-export * from './sortable-list';
+export * from './dnd-sortable-list';
 export * from './edit-description';
 export * from './timer-control';
 export * from './column-management';
@@ -9,3 +9,4 @@ export * from './popovers';
 export * from './add-space';
 export * from './group-management';
 export * from './project-management';
+export * from './dnd';

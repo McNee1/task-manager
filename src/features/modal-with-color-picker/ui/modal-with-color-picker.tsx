@@ -1,5 +1,5 @@
 import { Palette } from 'lucide-react';
-import { useRef } from 'react';
+import { useEffect, useRef } from 'react';
 
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
@@ -53,7 +53,14 @@ export const ModalWithColorPicker = ({
     if (isOpen) {
       handleAddProject();
     }
-  }, []);
+  }, [isOpen]);
+
+  useEffect(() => {
+    if (!isOpen) {
+      fn.setProjectName('');
+      fn.handleChangeColor(null);
+    }
+  }, [fn, isOpen]);
 
   const colorTrigger = (
     <div
@@ -98,6 +105,7 @@ export const ModalWithColorPicker = ({
           onChange={fn.handleNameChange}
           placeholder='введите текст'
           value={state.projectName}
+          disabled={isPending}
           id='projectName'
           className='mb-1'
         />

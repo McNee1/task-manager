@@ -20,10 +20,7 @@ export const postInitColumns = (columns: Omit<ColumnSchema, 'id'>) => {
   });
 };
 
-export const postColumnById = (params: {
-  id: ColumnSchema['projectId'];
-  data: Column[];
-}) => {
+export const postColumnById = (params: { id: ColumnSchema['id']; data: Column[] }) => {
   return withErrorRequest(() => {
     return apiInstance
       .patch(`projectColumns/${params.id}`, {

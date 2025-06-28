@@ -37,12 +37,17 @@ export const ModalWithInput = ({
   const { handleChange, value, setValue } = useInputForm(initValue ?? '');
 
   useEffect(() => {
-    if (initValue) setValue(initValue);
-  }, [initValue, setValue]);
+    if (initValue) {
+      setValue(initValue);
+    }
+    if (!isOpen) {
+      setValue('');
+    }
+  }, [initValue, isOpen, setValue]);
 
   const handleEdit = useCallback(() => {
     onSave?.(value.trim());
-  }, [value, onSave]);
+  }, [onSave, value]);
 
   useEnterDown(handleEdit, [isOpen]);
 
@@ -63,6 +68,7 @@ export const ModalWithInput = ({
         <Input
           placeholder={inputPlaceholder}
           onChange={handleChange}
+          disabled={isPending}
           type={inputType}
           value={value}
         />

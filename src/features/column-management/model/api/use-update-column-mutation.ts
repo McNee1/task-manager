@@ -11,15 +11,15 @@ export const useUpdateColumnMutation = (projectId: string | undefined) => {
     mutationFn: postColumnById,
 
     onMutate: async ({ data }) => {
-      await queryClient.cancelQueries({ queryKey: [QueryKey.PROJECTS, projectId] });
+      await queryClient.cancelQueries({ queryKey: [QueryKey.PROJECT, projectId] });
 
       const previousProject = queryClient.getQueryData<ProjectWithColumns>([
-        QueryKey.PROJECTS,
+        QueryKey.PROJECT,
         projectId,
       ]);
 
       queryClient.setQueryData<ProjectWithColumns>(
-        [QueryKey.PROJECTS, projectId],
+        [QueryKey.PROJECT, projectId],
 
         (oldProject) => {
           if (!oldProject) return;
@@ -37,7 +37,7 @@ export const useUpdateColumnMutation = (projectId: string | undefined) => {
     },
 
     onError: (error, __, context) => {
-      queryClient.setQueryData([QueryKey.PROJECTS, projectId], context?.previousProject);
+      queryClient.setQueryData([QueryKey.PROJECT, projectId], context?.previousProject);
 
       toast.error('Произошла ошибка, попробуйте позже.', {
         description: error.message,
@@ -47,7 +47,7 @@ export const useUpdateColumnMutation = (projectId: string | undefined) => {
 
     onSettled: async () => {
       await queryClient.invalidateQueries({
-        queryKey: [QueryKey.PROJECTS, projectId],
+        queryKey: [QueryKey.PROJECT, projectId],
       });
     },
   });

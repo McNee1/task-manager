@@ -6,6 +6,7 @@ import { Checklist } from '@/entities';
 import { Accordion, CheckListPanel, cn, Textarea } from '@/shared';
 
 interface ToolbarChecklistPanelPanel {
+  isPending?: boolean;
   items: Checklist[] | undefined;
   onAddChecklistItem?: (name: string) => void;
   onDeleteItem?: (item: Checklist) => void;
@@ -29,6 +30,7 @@ export const ToolbarChecklistPanel = ({
   onUpdateChecklist,
   onAddChecklistItem,
   onDeleteItem,
+  isPending,
 }: ToolbarChecklistPanelPanel) => {
   const [isCollapsed, setIsCollapsed] = useState(true);
 
@@ -68,6 +70,7 @@ export const ToolbarChecklistPanel = ({
               onEnter={onAddChecklistItem}
               className='my-2 px-5 py-1.5'
               placeholder='Новая задача'
+              disabled={isPending}
               enterHint
               isBorder
               isHover

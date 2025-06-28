@@ -3,7 +3,7 @@ import { ColorField } from '@/shared';
 
 export interface Column {
   color?: ColorField;
-  id: number;
+  id: string;
   limit?: number | null;
   name: string;
   order: number;

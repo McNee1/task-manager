@@ -18,8 +18,6 @@ export const useUpdateProjectOrder = () => {
 
       const movedProject = projects[overIndex];
 
-      console.log(projects);
-
       queryClient.setQueryData<ProjectSchema[]>([QueryKey.PROJECTS], projects);
 
       mutate({

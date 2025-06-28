@@ -1,3 +1,4 @@
+import { nanoid } from 'nanoid';
 import { useCallback } from 'react';
 import { toast } from 'sonner';
 
@@ -30,9 +31,8 @@ export const useAddColumn = (
 
   const createNewColumn = (columns: Column[], columnName: string) => {
     const newOrder = (columns.at(-1)?.order ?? 0) + DEFAULT_ORDER;
-    const newId = (columns.at(-1)?.id ?? 0) + 1;
 
-    return [...columns, { id: newId, name: columnName, order: newOrder }];
+    return [...columns, { id: nanoid(4), name: columnName, order: newOrder }];
   };
 
   const handleAddColumn = useCallback(

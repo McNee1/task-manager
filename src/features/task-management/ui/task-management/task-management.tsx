@@ -1,30 +1,33 @@
+import { SortableContext } from '@dnd-kit/sortable';
 import { ReactNode, useCallback } from 'react';
 
 import { Muted } from '@/components/ui/typography';
 import { Column, TaskCard, TaskSchema } from '@/entities';
+import { Droppable, SortableItem } from '@/features';
 import { EditableText, ItemList } from '@/shared';
 
 import { useTaskContext } from '../../lib';
-import { useTask } from '../../model';
 import { useAddTask } from '../../model/hooks';
 
 interface TaskManagementProps {
   children?: (taskId: TaskSchema['id'], isCompleted: boolean) => ReactNode;
   columnId: Column['id'];
+  tasks: TaskSchema[];
 }
 
 /**
- * A component that renders a list of tasks and allows you to add new ones.
+ * A component for managing and displaying tasks within a column. It allows users to add new tasks,
+ * and interact with existing tasks by clicking to activate them. Tasks are rendered as sortable
+ * items, enabling drag-and-drop functionality within the column.
  *
- * @prop {Column['id']} columnId The ID of the column to display tasks from.
- * @prop {(taskId: TaskSchema['id'], isCompleted: boolean) => ReactNode} [children]
- *   A function that renders a child component for each task in the list.
- *   The function receives two arguments: the ID of the task and a boolean indicating
- *   whether the task is completed.
+ * @param {TaskManagementProps} props - The properties for the TaskManagement component.
+ * @param {(taskId: TaskSchema['id'], isCompleted: boolean) => ReactNode} [props.children] - A
+ * function that renders child elements for each task, receiving the task ID and completion status.
+ * @param {Column['id']} props.columnId - The ID of the column containing the tasks.
+ * @param {TaskSchema[]} props.tasks - The list of tasks to display within the column.
  */
-export const TaskManagement = ({ columnId, children }: TaskManagementProps) => {
-  const tasks = useTask(columnId);
 
+export const TaskManagement = ({ columnId, children, tasks }: TaskManagementProps) => {
   const { setIsCollapsed, setActiveTaskId, setActiveColumnId } = useTaskContext();
 
   const { handleAddTask } = useAddTask();
@@ -40,22 +43,28 @@ export const TaskManagement = ({ columnId, children }: TaskManagementProps) => {
 
   const renderTask = useCallback(
     (task: TaskSchema, id: number) => (
-      <TaskCard
-        onClick={() => {
-          handleTaskClick(task);
-        }}
-        className='cursor-pointer'
-        data-task='task'
+      <SortableItem
+        containerId={task.columnId}
         key={task.id}
-        task={task}
-        id={id}
+        id={task.id}
+        type='task'
       >
-        {children?.(task.id, task.completed)}
-      </TaskCard>
+        <TaskCard
+          onClick={() => {
+            handleTaskClick(task);
+          }}
+          className='cursor-pointer'
+          data-task='task'
+          key={task.id}
+          task={task}
+          id={id}
+        >
+          {children?.(task.id, task.completed)}
+        </TaskCard>
+      </SortableItem>
     ),
     [children, handleTaskClick]
   );
-
   return (
     <div className='flex h-full flex-col'>
       <EditableText
@@ -68,13 +77,17 @@ export const TaskManagement = ({ columnId, children }: TaskManagementProps) => {
         <Muted className='h-8 px-3 py-2 text-xs'>Добавить задачу</Muted>
       </EditableText>
 
-      <div className='h-[calc(100vh_-_11rem)] w-[276px] overflow-y-auto [&::-webkit-scrollbar-thumb]:rounded-full [&::-webkit-scrollbar-thumb]:bg-gray-300/80 [&::-webkit-scrollbar-track]:bg-gray-200/60 [&::-webkit-scrollbar]:w-[3px]'>
-        <ItemList
-          className='flex w-full flex-col gap-y-2 px-0.5'
-          items={tasks}
-        >
-          {renderTask}
-        </ItemList>
+      <div className='h-[calc(100vh_-_11rem)] w-[276px] overflow-x-auto [&::-webkit-scrollbar-thumb]:rounded-full [&::-webkit-scrollbar-thumb]:bg-gray-300/80 [&::-webkit-scrollbar-track]:bg-gray-200/60 [&::-webkit-scrollbar]:w-[3px]'>
+        <SortableContext items={tasks}>
+          <Droppable id={columnId}>
+            <ItemList
+              className='flex w-full flex-col gap-y-2 px-0.5'
+              items={tasks}
+            >
+              {renderTask}
+            </ItemList>
+          </Droppable>
+        </SortableContext>
       </div>
     </div>
   );

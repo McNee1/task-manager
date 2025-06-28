@@ -37,6 +37,7 @@ export const Textarea = ({
   className,
   shiftEnterNewline = false,
   inputClass,
+  disabled,
   ...props
 }: TextareaProps) => {
   const [focus, setFocus] = useState(false);
@@ -89,6 +90,7 @@ export const Textarea = ({
         'flex flex-col gap-2 rounded-md border border-transparent p-1',
         isHover && !focus && 'hover:bg-slate-100',
         isBorder && focus && 'border-slate-400',
+        disabled && 'cursor-not-allowed opacity-50',
         className
       )}
     >
@@ -96,9 +98,11 @@ export const Textarea = ({
         {icon && <CircleFadingPlus className='size-4' />}
 
         <textarea
+          disabled={disabled}
           {...props}
           className={cn(
             'w-full resize-none border-none bg-inherit text-sm outline-none placeholder:text-slate-blue',
+
             inputClass
           )}
           style={{

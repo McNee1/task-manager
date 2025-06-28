@@ -3,10 +3,10 @@ import { createFileRoute } from '@tanstack/react-router';
 import { Skeleton } from '@/components/ui/skeleton';
 import { ErrorText } from '@/components/ui/typography';
 import { projectQueryOptions, tasksQueryOptions } from '@/features';
-import { ProjectPage } from '@/pages';
+import { ProjectWorkspacePage } from '@/pages';
 
-export const Route = createFileRoute('/space/$spaceId_/project/$projectId')({
-  component: ProjectPage,
+export const Route = createFileRoute('/space/$spaceId_/project-workspace/$projectId')({
+  component: ProjectWorkspacePage,
 
   loader: async ({ context: { queryClient }, params: { projectId } }) => {
     const tasksQuery = queryClient.ensureQueryData(tasksQueryOptions(projectId));

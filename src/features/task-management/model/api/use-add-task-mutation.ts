@@ -1,4 +1,5 @@
 import { useMutation, useQueryClient } from '@tanstack/react-query';
+import { nanoid } from 'nanoid';
 import { toast } from 'sonner';
 
 import { postDescription, postTask, postTimer, TaskSchema } from '@/entities';
@@ -6,10 +7,10 @@ import { QueryKey } from '@/shared';
 
 import { useTaskContext } from '../../lib';
 
-const TEMP_ID = '1';
-
 export const useAddTaskMutation = () => {
   const { projectId } = useTaskContext();
+
+  const tempId = nanoid(4);
 
   const queryClient = useQueryClient();
 
@@ -25,7 +26,7 @@ export const useAddTaskMutation = () => {
       ]);
 
       queryClient.setQueryData<TaskSchema[]>([QueryKey.TASKS, projectId], (oldTasks) => {
-        return [...(oldTasks ?? []), { ...data, id: TEMP_ID }];
+        return [...(oldTasks ?? []), { ...data, id: tempId }];
       });
 
       return { previousTasks };

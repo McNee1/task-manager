@@ -42,7 +42,7 @@ export const useTaskCard = (task: TaskCardType) => {
       ]
     : [];
 
-  const combinedStyles = [...importanceStyleClasses, task.completed && 'opacity-50'].join(
+  const combinedStyles = [...importanceStyleClasses, task.completed && 'opacity-40'].join(
     ' '
   );
 

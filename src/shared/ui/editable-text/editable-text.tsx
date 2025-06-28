@@ -8,6 +8,8 @@ import {
   useState,
 } from 'react';
 
+import { cn } from '@/shared/lib';
+
 import { EditableTextInput, RenderInputProps } from './editable-text-input';
 import { EditableTextRoot } from './editable-text-root';
 import { EditableTextTrigger } from './editable-text-trigger';
@@ -16,6 +18,7 @@ interface EditableTextProps {
   children?: ReactNode;
   className?: string;
   defaultValue?: string;
+  disabled?: boolean;
   inputClass?: string;
   onValueChange?: (value: string) => void;
   renderInput?: (props: RenderInputProps) => ReactNode;
@@ -31,6 +34,7 @@ export const EditableText = memo(
     inputClass,
     className,
     triggerClass,
+    disabled,
   }: EditableTextProps) => {
     const [isEditing, setIsEditing] = useState(false);
     const [value, setValue] = useState(defaultValue);
@@ -67,8 +71,9 @@ export const EditableText = memo(
     );
 
     const handleEditStart = useCallback(() => {
+      if (disabled) return;
       setIsEditing(true);
-    }, []);
+    }, [disabled]);
 
     return (
       <EditableTextRoot className={className}>
@@ -84,8 +89,8 @@ export const EditableText = memo(
 
         {!isEditing && (
           <EditableTextTrigger
+            className={cn(disabled && 'cursor-default opacity-50', triggerClass)}
             onClick={handleEditStart}
-            className={triggerClass}
           >
             {children}
           </EditableTextTrigger>

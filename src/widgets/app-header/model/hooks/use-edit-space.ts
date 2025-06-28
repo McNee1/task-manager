@@ -3,7 +3,7 @@ import { useCallback } from 'react';
 import { toast } from 'sonner';
 
 import { editSpace } from '@/entities';
-import { SpaceId } from '@/shared';
+import { QueryKey, SpaceId } from '@/shared';
 
 export const useEditSpace = (spaceId: SpaceId, onSuccess: VoidFunction) => {
   const queryClient = useQueryClient();
@@ -12,7 +12,7 @@ export const useEditSpace = (spaceId: SpaceId, onSuccess: VoidFunction) => {
     mutationFn: editSpace,
 
     onSettled: () => {
-      void queryClient.invalidateQueries({ queryKey: ['spaces'] });
+      void queryClient.invalidateQueries({ queryKey: [QueryKey.SPACES] });
     },
   });
 

@@ -29,7 +29,7 @@ export const ChecklistManagement = ({
 
   const { handleToggleItem } = useToggleItem();
 
-  const { handlePostItem } = usePostNewItem(projectId, taskId);
+  const { handlePostItem, isPending: isPendingPost } = usePostNewItem(projectId, taskId);
 
   const { handleDeleteItem } = useDeleteItem(projectId);
 
@@ -53,6 +53,7 @@ export const ChecklistManagement = ({
       onAddChecklistItem={handlePostItem}
       onDeleteItem={handleDeleteItem}
       items={checklistByTaskId}
+      isPending={isPendingPost}
     />
   );
 };

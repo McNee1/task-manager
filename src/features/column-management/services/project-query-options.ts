@@ -17,8 +17,7 @@ export const projectQueryOptions = (
 
       return null;
     },
-
-    select(data) {
+    select: (data) => {
       return {
         projects: data,
         projectMeta: {
