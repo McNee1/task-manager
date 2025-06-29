@@ -8,18 +8,18 @@ import { cva, VariantProps } from 'class-variance-authority';
 import { PanelLeft } from 'lucide-react';
 import * as React from 'react';
 
-import { Button } from '@/components/ui/button';
-import { Input } from '@/components/ui/input';
-import { Separator } from '@/components/ui/separator';
-import { Sheet, SheetContent } from '@/components/ui/sheet';
-import { Skeleton } from '@/components/ui/skeleton';
+import { cn, useIsMobile } from '@/shared/lib';
+import { Button } from '@/shared/shadcn/ui/button';
+import { Input } from '@/shared/shadcn/ui/input';
+import { Separator } from '@/shared/shadcn/ui/separator';
+import { Sheet, SheetContent } from '@/shared/shadcn/ui/sheet';
+import { Skeleton } from '@/shared/shadcn/ui/skeleton';
 import {
   Tooltip,
   TooltipContent,
   TooltipProvider,
   TooltipTrigger,
-} from '@/components/ui/tooltip';
-import { cn, useIsMobile } from '@/shared/lib';
+} from '@/shared/shadcn/ui/tooltip';
 
 const SIDEBAR_COOKIE_NAME = 'sidebar:state';
 const SIDEBAR_COOKIE_MAX_AGE = 60 * 60 * 24 * 7;

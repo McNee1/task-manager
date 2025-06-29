@@ -1,8 +1,8 @@
 import { Link } from '@tanstack/react-router';
 import { SquareChartGantt } from 'lucide-react';
 
-import { SidebarMenuButton, SidebarMenuItem } from '@/components/ui/sidebar';
 import { SpaceSchema } from '@/entities';
+import { SidebarMenuButton, SidebarMenuItem } from '@/shared';
 
 export const NavSpacesList = ({ spaces }: { spaces: SpaceSchema[] }) => {
   return (

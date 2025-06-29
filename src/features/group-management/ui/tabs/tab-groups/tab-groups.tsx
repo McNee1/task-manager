@@ -1,7 +1,7 @@
 import { memo, useMemo } from 'react';
 
-import { TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { GroupSchema } from '@/entities';
+import { TabsList, TabsTrigger } from '@/shared';
 
 interface TabGroupsProps {
   groups: GroupSchema[];

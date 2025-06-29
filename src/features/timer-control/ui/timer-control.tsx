@@ -6,10 +6,16 @@ import { EstimatedTime } from '@/shared';
 import { useQueryTimer, useTimerMutation } from '../model';
 
 interface TimerControlProps {
+  /** Estimated time for the task */
   estimatedTime?: EstimatedTime | null;
+  /** Timer identifier */
   id: string;
 }
 
+/**
+ * Timer control component that manages timer state and interactions.
+ * Handles start/pause functionality and displays elapsed time with estimated time.
+ */
 export const TimerControl = ({ estimatedTime, id }: TimerControlProps) => {
   const { data: timer, isPending } = useQueryTimer(id);
 

@@ -1,12 +1,20 @@
 import { Plus } from 'lucide-react';
 import { useCallback } from 'react';
 
-import { Button } from '@/components/ui/button';
-import { ModalWithInput, useActionModal } from '@/shared';
+import { Button, ModalWithInput, useActionModal } from '@/shared';
 
 import { useAddSpace } from '../model';
 
-export const AddSpace = ({ className }: { className?: string }) => {
+interface AddSpaceProps {
+  /** CSS classes for styling */
+  className?: string;
+}
+
+/**
+ * Component for adding new workspaces with modal input dialog.
+ * Displays a button that opens a modal for workspace creation.
+ */
+export const AddSpace = ({ className }: AddSpaceProps) => {
   const { handleToggleModal, modal, setModal } = useActionModal();
 
   const onSuccess = useCallback(() => {

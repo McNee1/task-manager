@@ -1,5 +1,6 @@
-import { Button } from '@/components/ui/button';
 import { PopoverItems } from '@/shared';
+
+import { Button } from '../../shadcn';
 
 interface PopoverContentListProps {
   items: PopoverItems[];

@@ -2,33 +2,24 @@ import { Link } from '@tanstack/react-router';
 import { Pencil, Settings2, Trash2 } from 'lucide-react';
 import { memo, useMemo } from 'react';
 
-import { Button } from '@/components/ui/button';
 import { BaseProjectCard, ProjectSchema } from '@/entities';
 import { AppPopover, cn, type ModalType, type PopoverItems, usePopover } from '@/shared';
+import { Button } from '@/shared';
 
 import { getCompletionPercentage } from '../../lib';
 
 export interface ProjectCardProps {
+  /** Callback for project actions */
   onProjectAction?: (type: ModalType['type'], project: ProjectSchema) => void;
+  /** Project data to display */
   project: ProjectSchema;
 }
 
 const DEFAULT_COLOR = '#1A1A3D';
 
 /**
- * ProjectCard is a UI component that renders a single project card inside a
- * Projects component. It contains the project name, an edit button, and a
- * button to add a project to the group. The component also contains a
- * Popover with two items: "Edit" and "Delete". The "Edit" item triggers the
- * onProjectAction callback with the "edit" type and the project object. The
- * "Delete" item triggers the onProjectAction callback with the "delete" type
- * and the project object.
- *
- * @param {ProjectCardProps} props
- * @param {ProjectSchema} props.project - The project object
- * @param {(type: ModalType['type'], project: ProjectSchema) => void} props.onProjectAction
- *   - A callback that is triggered when the "Edit" or "Delete" button is
- *   clicked
+ * Project card component with completion progress and action menu.
+ * Displays project information with edit/delete actions and navigation link.
  */
 export const ProjectCard = memo(({ project, onProjectAction }: ProjectCardProps) => {
   const { handleTogglePopover, isOpen } = usePopover();

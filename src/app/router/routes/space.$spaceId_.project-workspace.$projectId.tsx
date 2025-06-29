@@ -1,9 +1,8 @@
 import { createFileRoute } from '@tanstack/react-router';
 
-import { Skeleton } from '@/components/ui/skeleton';
-import { ErrorText } from '@/components/ui/typography';
 import { projectQueryOptions, tasksQueryOptions } from '@/features';
 import { ProjectWorkspacePage } from '@/pages';
+import { ErrorText, Skeleton } from '@/shared';
 
 export const Route = createFileRoute('/space/$spaceId_/project-workspace/$projectId')({
   component: ProjectWorkspacePage,

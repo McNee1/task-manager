@@ -31,12 +31,12 @@ interface ApiMethods {
 const api = ky.create({
   prefixUrl: url,
   hooks: {
-    beforeRequest: [
-      async () => {
-        await new Promise((resolve) => setTimeout(resolve, 1000));
-        console.log('delay in ky');
-      },
-    ],
+    // beforeRequest: [
+    //   async () => {
+    //     await new Promise((resolve) => setTimeout(resolve, 1000));
+    //     console.log('delay in ky');
+    //   },
+    // ],
   },
 });
 

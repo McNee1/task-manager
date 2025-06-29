@@ -1,17 +1,24 @@
 import { lazy, Suspense, useCallback, useEffect, useState } from 'react';
 
-import { Button } from '@/components/ui/button';
-import { AppPopover, dateFormat, usePopover } from '@/shared';
+import { AppPopover, Button, dateFormat, usePopover } from '@/shared';
 
 interface PopoverWithCalendarProps {
+  /** Initial date value */
   initDate: Date | undefined;
+  /** Callback to reset date selection */
   onResetDate?: VoidFunction;
+  /** Callback when date is saved */
   onSaveDate?: (date: Date | undefined) => void;
+  /** Whether to use portal for popover */
   portal?: boolean | undefined;
 }
 
-const Calendar = lazy(() => import('@/components/ui/calendar'));
+const Calendar = lazy(() => import('@/shared/shadcn/ui/calendar'));
 
+/**
+ * Date selection popover with calendar interface.
+ * Displays selected date and provides calendar picker with reset/save actions.
+ */
 export const PopoverWithCalendar = ({
   initDate,
   onResetDate,

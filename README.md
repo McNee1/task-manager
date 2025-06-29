@@ -1,50 +1,50 @@
-# React + TypeScript + Vite
+# Task Manager
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+---
 
-Currently, two official plugins are available:
+## ✨ Overview
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+**Task Manager** is a modern, feature-rich task management application designed to help individuals and teams organize projects, tasks, checklists, and timers efficiently. The app is built with a modular architecture using React and TypeScript, and leverages a fast development environment with Vite and TailwindCSS. It supports drag-and-drop for intuitive task organization, flexible grouping, project and column management, checklists, descriptions, and a built-in timer for tracking work sessions. Data can be persisted locally and via a mock API for easy prototyping and testing.
 
-## Expanding the ESLint configuration
+---
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+## 🖥️ Demo
 
-- Configure the top-level `parserOptions` property like this:
+> _Demo coming soon!_
 
-```js
-export default tseslint.config({
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
+---
+
+## 🛠️ Tech Stack
+
+- **React 18**
+- **TypeScript**
+- **Vite**
+- **TailwindCSS**
+- **json-server**
+- **dnd-kit**
+- **TanStack React Query**
+- **TanStack React Router**
+- **shadcn UI**
+- **ESLint**
+- **Prettier**
+
+---
+
+## 📁 Project Structure
+
+This project follows the **Feature-Sliced Design (FSD)** architecture for scalable and maintainable code organization.
+
 ```
-
-- Replace `tseslint.configs.recommended` to `tseslint.configs.recommendedTypeChecked` or `tseslint.configs.strictTypeChecked`
-- Optionally add `...tseslint.configs.stylisticTypeChecked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and update the config:
-
-```js
-// eslint.config.js
-import react from 'eslint-plugin-react'
-
-export default tseslint.config({
-  // Set the react version
-  settings: { react: { version: '18.3' } },
-  plugins: {
-    // Add the react plugin
-    react,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended rules
-    ...react.configs.recommended.rules,
-    ...react.configs['jsx-runtime'].rules,
-  },
-})
+├── src/
+│   ├── app/           # Entry point, routing, layout
+│   ├── assets/        # Static assets
+│   ├── components/    # Reusable UI components
+│   ├── entities/      # Business entities (task, group, project, etc.)
+│   ├── features/      # Isolated features (drag-n-drop, management, modals, etc.)
+│   ├── pages/         # Application pages
+│   ├── shared/        # Shared utilities, types, services, UI
+│   └── widgets/       # Large widgets (header, sidebar)
+├── json-server/db.json # Mock data for API
+├── public/            # Public files
+├── package.json       # Scripts and dependencies
 ```

@@ -1,14 +1,14 @@
 import { PanelRightCloseIcon } from 'lucide-react';
 
-import { Button } from '@/components/ui/button';
-import { useSidebar } from '@/components/ui/sidebar';
 import { cn } from '@/shared';
 
-interface SidebarTriggerProps {
+import { Button, useSidebar } from '../../shadcn';
+
+interface AppSidebarTriggerProps {
   className?: string;
 }
 
-export const SidebarTrigger = ({ className }: SidebarTriggerProps) => {
+export const AppSidebarTrigger = ({ className }: AppSidebarTriggerProps) => {
   const { toggleSidebar, open } = useSidebar();
   return (
     <Button

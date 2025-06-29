@@ -1,8 +1,7 @@
 import { memo, ReactNode, useCallback } from 'react';
 
-import { Tabs } from '@/components/ui/tabs';
 import { GroupSchema } from '@/entities';
-import { SpaceId } from '@/shared';
+import { ErrorText, SpaceId, Tabs } from '@/shared';
 
 import { useGroup, useGroupModel } from '../model';
 import { CreateGroup } from './create-group';
@@ -10,31 +9,20 @@ import { ActionModalGroup } from './modal';
 import { TabCard, TabGroups, TabGroupsContent } from './tabs';
 
 export interface GroupManagementProps {
+  /** Render function for tab content */
   children: (activeTab: string) => ReactNode;
+  /** Array of groups to manage */
   data: GroupSchema[];
+  /** Optional function to render custom buttons in group cards */
   renderButton?: (groupId: GroupSchema['id']) => ReactNode;
+  /** Space identifier */
   spaceId: SpaceId;
 }
 
 /**
- * GroupManagement component
- *
- * @param {GroupManagementProps} props - The properties for the component.
- * @param {SpaceId} props.spaceId - The ID of the space to which the groups belong.
- * @param {GroupSchema[]} props.data - The list of groups to be managed.
- * @param {(groupId: GroupSchema['id']) => ReactNode} [props.renderButton] - A function that returns the renderButton for the card footer
- * @param {(activeTab: string) => ReactNode} props.children - A function that returns the content for the active tab.
- *
- * @description
- * This component is responsible for managing and displaying groups within a specific space.
- * It provides functionality to filter groups based on the given spaceId and manage the active tab state.
- * This component also facilitates creating new groups, editing existing ones, and deleting groups through
- * a modal interface. It renders a list of group tabs and a button to add new groups. Each group tab can
- * be interacted with to perform actions such as editing and deleting. When a group is selected, a card
- * is rendered displaying the group's details, with options to edit or delete the group. The component
- * integrates with the group's modal for handling these actions, also renders a button for the card footer
+ * Manages groups within a workspace with tabbed interface and CRUD operations.
+ * Displays groups as tabs, handles group creation, editing, and deletion.
  */
-
 export const GroupManagement = memo((props: GroupManagementProps) => {
   const { spaceId, data, children, renderButton } = props;
 
@@ -56,6 +44,10 @@ export const GroupManagement = memo((props: GroupManagementProps) => {
     ),
     [children, fnGroup.handleGroupAction, renderButton, state.activeTab]
   );
+
+  if (!state.groupInSpace.length) {
+    return <ErrorText>Данные проекта не найдены.</ErrorText>;
+  }
 
   return (
     <>

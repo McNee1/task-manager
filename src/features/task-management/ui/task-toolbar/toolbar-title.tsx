@@ -1,7 +1,6 @@
 import { useCallback } from 'react';
 
-import { H3 } from '@/components/ui/typography';
-import { EditableText } from '@/shared';
+import { EditableText, H3 } from '@/shared';
 
 import { ChangeTask } from '../../model';
 

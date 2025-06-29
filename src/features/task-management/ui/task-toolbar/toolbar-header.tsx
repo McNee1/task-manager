@@ -2,9 +2,8 @@ import { Copy, EllipsisVertical, Trash2, X } from 'lucide-react';
 import { useMemo } from 'react';
 import { toast } from 'sonner';
 
-import { Button } from '@/components/ui/button';
 import { TaskSchema } from '@/entities';
-import { AppPopover, cn, PopoverItems, useClipboard, usePopover } from '@/shared';
+import { AppPopover, Button, cn, PopoverItems, useClipboard, usePopover } from '@/shared';
 
 import { useDeleteTask } from '../../model';
 

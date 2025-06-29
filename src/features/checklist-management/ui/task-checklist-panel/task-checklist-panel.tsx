@@ -2,22 +2,17 @@ import { type Checklist } from '@/entities';
 import { Accordion, CheckListPanel, cn, Progress } from '@/shared';
 
 interface TaskChecklistPanel {
+  /** Whether the task is completed */
   isCompleted?: boolean;
+  /** Checklist items to display */
   items: Checklist[] | undefined;
+  /** Callback when checklist items are updated */
   onUpdateChecklist?: (item: Checklist, updated: Checklist[]) => void;
 }
 
 /**
- * A component that renders a checklist panel with a progress bar and a header.
- * The progress bar displays the number of checked items and the total number of items.
- * The header displays a progress bar and the total number of items.
- * The panel is collapsible and can be expanded or collapsed by clicking on the header.
- * The component also renders a button to delete an item when clicked on a checklist item.
- *
- * @param {Object} props - The properties for the checklist panel.
- * @param {Checklist[]} [props.items] - The items to be displayed in the checklist.
- * @param {Function} [props.onUpdateCheckList] - The callback function to be called when the checklist is updated.
- * @param {boolean | undefined} [props.isCompleted] - Whether the task is completed. If true, the panel is disabled.
+ * Collapsible checklist panel with progress indicator for task view.
+ * Shows completion progress and allows item checking when task is not completed.
  */
 export const TaskChecklistPanel = ({
   items,

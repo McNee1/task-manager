@@ -1,1 +1,1 @@
-export { ModalWithDelete } from './ui';
+export { ModalWithDelete } from './modal-with-delete';

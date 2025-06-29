@@ -1,16 +1,20 @@
 import { AlignEndVertical, Pencil, Trash2 } from 'lucide-react';
 import { memo, ReactNode, useMemo } from 'react';
 
-import { Button } from '@/components/ui/button';
+import { GroupSchema } from '@/entities';
 import {
+  AppPopover,
+  Button,
   Card,
   CardContent,
   CardFooter,
   CardHeader,
   CardTitle,
-} from '@/components/ui/card';
-import { GroupSchema } from '@/entities';
-import { AppPopover, cn, ModalType, PopoverItems, usePopover } from '@/shared';
+  cn,
+  ModalType,
+  PopoverItems,
+  usePopover,
+} from '@/shared';
 
 interface TabCardProps {
   activeTab: string;

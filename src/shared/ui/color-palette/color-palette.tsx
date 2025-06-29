@@ -1,8 +1,7 @@
 import { X } from 'lucide-react';
 import { useCallback, useState } from 'react';
 
-import { Button } from '@/components/ui/button';
-
+import { Button } from '../../shadcn';
 import { ColorList } from './color-list';
 
 export interface ColorPaletteProps {

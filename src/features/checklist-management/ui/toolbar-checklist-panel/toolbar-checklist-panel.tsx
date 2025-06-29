@@ -1,29 +1,25 @@
 import { ChevronRight } from 'lucide-react';
 import { useState } from 'react';
 
-import { Button } from '@/components/ui/button';
 import { Checklist } from '@/entities';
-import { Accordion, CheckListPanel, cn, Textarea } from '@/shared';
+import { Accordion, Button, CheckListPanel, cn, Textarea } from '@/shared';
 
 interface ToolbarChecklistPanelPanel {
+  /** Whether the form is submitting */
   isPending?: boolean;
+  /** Checklist items to display */
   items: Checklist[] | undefined;
+  /** Callback when new item is added */
   onAddChecklistItem?: (name: string) => void;
+  /** Callback when item is deleted */
   onDeleteItem?: (item: Checklist) => void;
+  /** Callback when checklist items are updated */
   onUpdateChecklist?: (item: Checklist, updated: Checklist[]) => void;
 }
 
 /**
- * A component that renders a checklist panel with a collapsible panel.
- * The checklist panel displays all the items in the checklist and a button to add a new item.
- * The panel is collapsible and can be expanded or collapsed by clicking on the button.
- * The component also renders a button to delete an item when clicked on a checklist item.
- *
- * @param {ToolbarChecklistPanelPanel} - The properties for the checklist panel.
- * @param {Checklist[]} [props.items] - The items to be displayed in the checklist.
- * @param {Function} [props.onUpdateChecklist] - The callback function to be called when the checklist is updated.
- * @param {Function} [props.onAddChecklistItem] - The callback function to be called when a new item is added to the checklist.
- * @param {Function} [props.onDeleteItem] - The callback function to be called when an item is deleted from the checklist.
+ * Collapsible checklist panel for toolbar with add/delete functionality.
+ * Provides checklist management interface with inline item creation.
  */
 export const ToolbarChecklistPanel = ({
   items,

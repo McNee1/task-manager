@@ -1,24 +1,31 @@
 import { AlignEndVertical, Pencil, Plus, Trash2 } from 'lucide-react';
 import { ReactNode } from 'react';
 
-import { Button } from '@/components/ui/button';
+import { GroupSchema } from '@/entities';
+import { AppPopover, Button, cn, ModalType, PopoverItems, usePopover } from '@/shared';
 import {
   Card,
   CardContent,
   CardFooter,
   CardHeader,
   CardTitle,
-} from '@/components/ui/card';
-import { GroupSchema } from '@/entities';
-import { AppPopover, cn, ModalType, PopoverItems, usePopover } from '@/shared';
+} from '@/shared/shadcn/ui/card';
 
 export interface TabGroupCardProps {
+  /** Active tab identifier */
   activeTab: string;
+  /** Render function for card content */
   children: (activeTab: string) => ReactNode;
+  /** Group data to display */
   group: GroupSchema;
+  /** Callback for group actions */
   onGroupAction: (type: ModalType['type'], group: GroupSchema) => void;
 }
 
+/**
+ * Group card component displaying group information with action buttons.
+ * Provides edit, delete, and add project functionality through popover menu.
+ */
 export const CardGroup = ({
   group,
   onGroupAction,

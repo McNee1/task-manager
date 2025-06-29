@@ -1,9 +1,9 @@
 import { HTMLInputTypeAttribute, ReactNode, useCallback, useEffect } from 'react';
 
-import { Button } from '@/components/ui/button';
-import { Input } from '@/components/ui/input';
-import { Label } from '@/components/ui/label';
-import { AppModal, useEnterDown, useInputForm } from '@/shared';
+import { useEnterDown, useInputForm } from '@/shared';
+
+import { Button, Input, Label } from '../../shadcn';
+import { AppModal } from '../app-modal';
 
 interface ModalWithInputProps {
   buttonText?: string;

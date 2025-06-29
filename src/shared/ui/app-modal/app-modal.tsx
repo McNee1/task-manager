@@ -1,13 +1,14 @@
 import { ReactNode } from 'react';
 
+import { cn } from '@/shared/lib';
+
 import {
   Dialog,
   DialogContent,
   DialogDescription,
   DialogHeader,
   DialogTitle,
-} from '@/components/ui/dialog';
-import { cn } from '@/shared/lib';
+} from '../../shadcn';
 
 export interface AppModalProps {
   children: ReactNode;

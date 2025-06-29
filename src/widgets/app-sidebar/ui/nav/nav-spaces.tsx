@@ -1,12 +1,13 @@
+import { SpaceSchema } from '@/entities';
 import {
+  ErrorText,
+  Muted,
   SidebarGroup,
   SidebarGroupLabel,
   SidebarMenu,
   SidebarMenuItem,
   SidebarMenuSkeleton,
-} from '@/components/ui/sidebar';
-import { ErrorText, Muted } from '@/components/ui/typography';
-import { SpaceSchema } from '@/entities';
+} from '@/shared';
 
 import { NavSpacesList } from './nav-spaces-list';
 

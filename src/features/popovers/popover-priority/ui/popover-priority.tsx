@@ -1,8 +1,8 @@
 import { useState } from 'react';
 
 import {
+  AppBadge,
   AppPopover,
-  Badge,
   badgeVariantsMap,
   IMPORTANCE_LIST,
   KeyImportance,
@@ -12,10 +12,16 @@ import {
 type Importance = KeyImportance | null | undefined;
 
 interface PopoverPriorityProps {
+  /** Current priority value */
   importance: Importance;
+  /** Callback when priority changes */
   onChangePriority: ({ importance }: { importance: KeyImportance | null }) => void;
 }
 
+/**
+ * Priority selection popover with visual badges and reset option.
+ * Displays current priority and allows selection from predefined importance levels.
+ */
 export const PopoverPriority = ({
   importance,
   onChangePriority,
@@ -30,9 +36,9 @@ export const PopoverPriority = ({
       className='text-sm'
     >
       {priority || priority === 0 ? (
-        <Badge variant={badgeVariantsMap[priority]}>
+        <AppBadge variant={badgeVariantsMap[priority]}>
           {IMPORTANCE_LIST[priority].ruName}
-        </Badge>
+        </AppBadge>
       ) : (
         <div className='text-slate-400/60'>Выбрать...</div>
       )}
@@ -66,7 +72,9 @@ export const PopoverPriority = ({
               className='cursor-pointer rounded px-2 py-1 transition-colors hover:bg-accent'
               key={item.importance}
             >
-              <Badge variant={badgeVariantsMap[item.importance]}>{item.ruName}</Badge>
+              <AppBadge variant={badgeVariantsMap[item.importance]}>
+                {item.ruName}
+              </AppBadge>
             </div>
           ))}
         </div>

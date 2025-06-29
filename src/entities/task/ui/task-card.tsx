@@ -2,15 +2,21 @@ import { Calendar } from 'lucide-react';
 import { ComponentProps, memo, ReactNode } from 'react';
 import { toast } from 'sonner';
 
-import { Button } from '@/components/ui/button';
+import {
+  AppBadge,
+  Button,
+  cn,
+  dateFormat,
+  getDayPluralForm,
+  useClipboard,
+} from '@/shared';
 import {
   Card,
   CardContent,
   CardFooter,
   CardHeader,
   CardTitle,
-} from '@/components/ui/card';
-import { Badge, cn, dateFormat, getDayPluralForm, useClipboard } from '@/shared';
+} from '@/shared/shadcn/ui/card';
 
 import { TaskSchema } from '../model';
 import { useTaskCard } from '../model/hooks';
@@ -30,24 +36,22 @@ export type TaskCardType = Pick<
 >;
 
 interface TaskCardProps extends Omit<ComponentProps<'div'>, 'id'> {
+  /** Additional content to render inside the card */
   children?: ReactNode;
+  /** CSS classes for styling */
   className?: string;
+  /** Unique task identifier */
   id: number;
+  /** Callback when card is clicked */
   onCardClick?: () => void;
+  /** Task data to display */
   task: TaskCardType;
 }
 
 /**
- * A single task card.
- *
- * @prop {TaskCardType} task Task data.
- * @prop {ReactNode} [children] Children to render inside the card.
- * @prop {() => void} [onCardClick] Function to call when the card is clicked.
- * @prop {number} id Task ID.
- * @prop {string} [className] Additional CSS classes.
- * @prop {ReactNode} [props] Additional props to pass to the card element.
+ * Displays task information in a card format with completion status, due dates, and interactive elements.
+ * Shows overdue indicators and allows copying task references.
  */
-
 export const TaskCard = memo(
   ({ task, children, onCardClick, id, className, ...props }: TaskCardProps) => {
     const { combinedStyles, overdueTaskDayCount, isShowYear } = useTaskCard(task);
@@ -75,12 +79,12 @@ export const TaskCard = memo(
               >{`#${String(id + 1)}`}</Button>
 
               {!!overdueTaskDayCount && (
-                <Badge
+                <AppBadge
                   className='text-xs'
                   variant='danger'
                 >
                   {overdueTaskDayCount} {getDayPluralForm(overdueTaskDayCount)}
-                </Badge>
+                </AppBadge>
               )}
             </div>
           </div>

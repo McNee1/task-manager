@@ -17,28 +17,21 @@ import { ReactNode } from 'react';
 import { DefaultDragData, TypedDndEvent } from '../model';
 
 interface DndProps<K> {
+  /** Content to enable drag and drop for */
   children: ReactNode;
+  /** Restrict drag movement to specific axis */
   modifier?: 'vertical' | 'horizontal';
+  /** Callback when drag operation ends */
   onDragEnd?: (event: TypedDndEvent<DragEndEvent, K>) => void;
+  /** Callback when dragging over drop targets */
   onDragOver?: (event: TypedDndEvent<DragOverEvent, K>) => void;
+  /** Callback when drag operation starts */
   onDragStart?: (event: TypedDndEvent<DragStartEvent, K>) => void;
 }
 
 /**
- * @description
- * A wrapper component that provides DnD functionality using the dnd-kit library.
- * The component is a HOC that wraps the dnd-kit's DndContext and provides a
- * set of sensors (PointerSensor, KeyboardSensor, TouchSensor) to enable drag and
- * drop functionality for the children components.
- *
- * @param {ReactNode} children The children components that will be wrapped with
- * the DndContext component.
- * @param {(event: TypedDndEvent<DragEndEvent, K>) => void} [onDragEnd] A callback
- * that will be called when the drag has ended.
- * @param {(event: TypedDndEvent<DragOverEvent, K>) => void} [onDragOver] A
- * callback that will be called when the drag is over a valid drop target.
- * @param {(event: TypedDndEvent<DragStartEvent, K>) => void} [onDragStart] A
- * callback that will be called when the drag has started.
+ * Drag and drop context wrapper using dnd-kit library.
+ * Provides sensors for pointer, keyboard, and touch interactions.
  */
 export const Dnd = <K = DefaultDragData,>({
   children,

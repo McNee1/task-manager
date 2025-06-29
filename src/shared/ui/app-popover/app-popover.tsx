@@ -1,13 +1,8 @@
 import { ReactNode } from 'react';
 
-import {
-  Popover,
-  PopoverArrow,
-  PopoverContent,
-  PopoverTrigger,
-} from '@/components/ui/popover';
 import { cn, PopoverItems } from '@/shared';
 
+import { Popover, PopoverArrow, PopoverContent, PopoverTrigger } from '../../shadcn';
 import { PopoverContentList } from './app-popover-content-list';
 
 export interface AppPopoverProps {

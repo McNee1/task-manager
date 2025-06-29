@@ -1,8 +1,8 @@
 import { ReactNode } from 'react';
 
-import { P } from '@/components/ui/typography';
 import { ProjectSchema } from '@/entities';
 import { DndSortableList } from '@/features';
+import { P } from '@/shared';
 
 interface SortableProjectsProps {
   children: (project: ProjectSchema) => ReactNode;

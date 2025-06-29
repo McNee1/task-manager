@@ -1,6 +1,6 @@
-import { Sidebar, SidebarContent, SidebarGroup } from '@/components/ui/sidebar';
 import { useSpace } from '@/entities';
 import { AddSpace } from '@/features';
+import { Sidebar, SidebarContent, SidebarGroup } from '@/shared';
 
 import { menuItems } from '../model';
 import { NavHeader, NavMain, NavSpaces } from './nav';

@@ -1,10 +1,10 @@
 import { Circle, CircleCheckBig } from 'lucide-react';
 import { useCallback } from 'react';
 
-import { Button } from '@/components/ui/button';
 import { TaskSchema } from '@/entities';
 import { TimerControl } from '@/features';
 import { cn } from '@/shared';
+import { Button } from '@/shared/shadcn/ui/button';
 
 import { ChangeTask } from '../../model';
 

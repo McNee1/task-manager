@@ -1,18 +1,23 @@
 import { Plus } from 'lucide-react';
 
-import { Card } from '@/components/ui/card';
-import { Input } from '@/components/ui/input';
 import { Column, ColumnSchema } from '@/entities';
-import { EditableText, RenderInputProps } from '@/shared';
+import { Card, EditableText, Input, RenderInputProps } from '@/shared';
 
 import { useAddColumn } from '../../model';
 
 interface AddColumnProps {
+  /** Array of existing columns */
   columns: Column[];
+  /** Main column identifier */
   mainColumnId: ColumnSchema['id'];
+  /** Project identifier */
   projectId: string | undefined;
 }
 
+/**
+ * Component for adding new columns to a kanban board.
+ * Provides inline editing interface with Enter to save functionality.
+ */
 export const AddColumn = ({ mainColumnId, projectId, columns }: AddColumnProps) => {
   const { handleAddColumn } = useAddColumn(mainColumnId, projectId, columns);
 

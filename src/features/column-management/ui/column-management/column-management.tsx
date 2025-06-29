@@ -12,32 +12,23 @@ import { ColumnCard } from '../column-card';
 import { ActionModalColumn } from '../modals';
 
 interface ColumnManagementProps {
+  /** Render function for column content */
   children?: (id: Column['id']) => ReactNode;
+  /** Array of collapsed column IDs */
   collapsedColumns: Column['id'][];
+  /** Array of columns to display */
   columns: Column[];
+  /** Callback when column is collapsed/expanded */
   onCollapseColumn: (id: Column['id']) => void;
+  /** Project identifier */
   projectId: string | undefined;
 }
 
 /**
- * A component for managing columns in the kanban board. It displays a list of
- * columns as sortable items, enabling drag-and-drop functionality. Each column is
- * rendered as a ColumnCard, which can be collapsed or activated by clicking on
- * it. The component also includes an AddColumn component for creating new
- * columns. Finally, it displays an ActionModalColumn for editing or deleting
- * columns.
- *
- * @param {ColumnManagementProps} props - The properties for the
- * ColumnManagement component.
- * @param {(id: Column['id']) => ReactNode} [props.children] - A function that
- * renders child elements for each column, receiving the column ID.
- * @param {Column[]} props.columns - The list of columns to display.
- * @param {string} props.projectId - The ID of the project.
- * @param {(id: Column['id']) => void} props.onCollapseColumn - A function that
- * is called when a column is collapsed.
- * @param {Column['id'][]} props.collapsedColumns - The list of collapsed
- * columns.
- */ export const ColumnManagement = ({
+ * Manages kanban board columns with drag-and-drop sorting and collapse functionality.
+ * Renders sortable column cards with tasks and handles column CRUD operations.
+ */
+export const ColumnManagement = ({
   children,
   columns,
   projectId,

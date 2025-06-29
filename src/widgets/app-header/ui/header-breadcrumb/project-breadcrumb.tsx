@@ -1,9 +1,8 @@
 import { useQuery } from '@tanstack/react-query';
 import { useParams } from '@tanstack/react-router';
 
-import { Skeleton } from '@/components/ui/skeleton';
 import { projectQueryOptions } from '@/features';
-import { getRouteIcon } from '@/shared';
+import { getRouteIcon, Skeleton } from '@/shared';
 
 import { BreadcrumbItem } from './breadcrumb-Item';
 
@@ -16,7 +15,7 @@ export const ProjectBreadcrumb = ({ curSpaceName }: ProjectBreadcrumbProps) => {
   const { data, isPending } = useQuery(projectQueryOptions(projectId));
 
   const IconSpace = getRouteIcon('/space/$spaceId');
-  const IconProject = getRouteIcon('/space/$spaceId/project/$projectId');
+  const IconProject = getRouteIcon('/space/$spaceId/project-workspace/$projectId');
 
   if (isPending) {
     return <Skeleton className='h-5 w-20' />;

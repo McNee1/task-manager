@@ -1,19 +1,29 @@
 import { Pause, Play } from 'lucide-react';
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 
-import { EstimatedTime, TimeDisplay } from '@/shared';
-import { cn } from '@/shared/lib';
+import { cn, EstimatedTime, TimeDisplay } from '@/shared';
 
 interface TimerProps {
+  /** CSS classes for styling */
   className?: string;
+  /** Whether the timer is disabled */
   disabled?: boolean;
+  /** End timestamp in milliseconds */
   end: number | undefined;
+  /** Callback when timer is clicked */
   onClick?: (time: number) => void;
+  /** Start timestamp in milliseconds */
   start: number | undefined;
+  /** Current timer status */
   status: 'running' | 'pause' | undefined;
+  /** Total estimated time for the task */
   totalTime?: EstimatedTime | null;
 }
 
+/**
+ * Interactive timer component that displays elapsed time and controls timer state.
+ * Shows play/pause icons and estimated time when paused.
+ */
 export const Timer = ({
   end,
   start,

@@ -1,1 +1,1 @@
-export { ModalWithInput } from './ui';
+export { ModalWithInput } from './modal-with-input';

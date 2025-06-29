@@ -1,7 +1,6 @@
 import { lazy, Suspense } from 'react';
 
-import { Lead } from '@/components/ui/typography';
-
+import { Lead } from '../../shadcn';
 import { ColorPaletteProps } from './color-palette';
 
 const LazyColorPalette = lazy(() => import('./color-palette'));

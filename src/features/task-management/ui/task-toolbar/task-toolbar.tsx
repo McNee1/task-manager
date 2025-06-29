@@ -12,20 +12,13 @@ import { ToolbarHeader } from './toolbar-header';
 import { ToolbarTitle } from './toolbar-title';
 
 interface TaskToolbarProps {
+  /** Render function for additional toolbar content */
   children?: (id: TaskSchema['id']) => ReactNode;
 }
+
 /**
- * A component that renders a toolbar with actions for a task.
- * It contains a header with a button to close the toolbar and a button to delete the task,
- * a section with buttons to toggle completion of the task and a timer control,
- * a section with estimated date and time of the task,
- * a section with title of the task,
- * a section with additional fields for the task,
- * a section with description of the task,
- * and a section with additional content provided by the parent component.
- *
- * @param {TaskToolbarProps} props The props for this component.
- * @param {ReactNode} [props.children] The content to render in the additional section.
+ * Resizable task toolbar with comprehensive task management interface.
+ * Displays task details, actions, dates, and description editing capabilities.
  */
 export const TaskToolbar = ({ children }: TaskToolbarProps) => {
   const { handleCloseToolbar, isCollapsed, toolbarRef, activeTask } = useToolbar();

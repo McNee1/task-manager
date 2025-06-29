@@ -1,8 +1,7 @@
 import { memo, ReactNode, useCallback, useMemo } from 'react';
 
-import { TabsContent } from '@/components/ui/tabs';
 import { GroupSchema } from '@/entities';
-import { ItemList } from '@/shared';
+import { ItemList, TabsContent } from '@/shared';
 
 interface TabGroupsContentProps {
   children: (group: GroupSchema) => ReactNode;

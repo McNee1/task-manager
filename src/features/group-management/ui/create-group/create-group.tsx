@@ -1,20 +1,22 @@
 import { Plus } from 'lucide-react';
 import { useMemo } from 'react';
 
-import { Button } from '@/components/ui/button';
-import { Input } from '@/components/ui/input';
-import { Label } from '@/components/ui/label';
-import { AppPopover, SpaceId, usePopover } from '@/shared';
+import { AppPopover, Button, Input, Label, SpaceId, usePopover } from '@/shared';
 
 import { useAddGroup } from '../../model';
 
-export const CreateGroup = ({
-  spaceId,
-  onSuccess,
-}: {
-  spaceId: SpaceId;
+interface CreateGroupProps {
+  /** Callback when group is successfully created */
   onSuccess: (responseGroupId: string) => void;
-}) => {
+  /** Space identifier */
+  spaceId: SpaceId;
+}
+
+/**
+ * Component for creating new groups with inline input popover.
+ * Displays add button that opens input field for group name entry.
+ */
+export const CreateGroup = ({ onSuccess, spaceId }: CreateGroupProps) => {
   const { isOpen, handleTogglePopover, setIsOpen } = usePopover();
 
   const { handleAddGroup, isPending, setGroupName, groupName } = useAddGroup(

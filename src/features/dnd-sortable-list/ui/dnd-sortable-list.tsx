@@ -14,15 +14,6 @@ import {
  * Props for DndSortableList component.
  *
  * @template T - Type of element that must implement SortableItemType interface
- *
- * @example
- * ```tsx
- * <DndSortableList<Task>
- *   sortableItems={tasks}
- *   renderSortItem={(task) => <TaskCard task={task} />}
- *   onUpdateOrder={(newOrder) => setTasks(newOrder)}
- * />
- * ```
  */
 export interface DndSortableItemsProps<T extends SortableItemType> {
   /** CSS class for styling list items */
@@ -36,7 +27,9 @@ export interface DndSortableItemsProps<T extends SortableItemType> {
 
   /**
    * Callback when element order changes
-   * @param newOrder - Array of elements in new order
+   * @param updatedData - Array of elements in new order
+   * @param activeIndex - Index of the dragged item before reordering
+   * @param overIndex - Index of the target position
    */
   onUpdateOrder: UpdateOrderFn<T>;
 
@@ -53,6 +46,23 @@ export interface DndSortableItemsProps<T extends SortableItemType> {
   sortableItems: T[] | undefined;
 }
 
+/**
+ * Drag-and-drop sortable list component for reordering items.
+ * Provides visual feedback during dragging and handles order updates.
+ *
+ * @template T - Type of element that must implement SortableItemType interface
+ *
+ * @example
+ * ```tsx
+ * <DndSortableList<Task>
+ *   sortableItems={tasks}
+ *   renderSortItem={(task) => <TaskCard task={task} />}
+ *   onUpdateOrder={(newOrder) => setTasks(newOrder)}
+ *   renderHandle={(task) => <GripVertical className="cursor-grab" />}
+ *   modifier="vertical"
+ * />
+ * ```
+ */
 export const DndSortableList = <T extends SortableItemType>({
   sortableItems,
   renderSortItem,

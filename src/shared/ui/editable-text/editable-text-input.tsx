@@ -1,6 +1,6 @@
 import { ChangeEvent, KeyboardEvent, memo, ReactNode, useCallback } from 'react';
 
-import { Input } from '@/components/ui/input';
+import { Input } from '../../shadcn';
 
 export interface RenderInputProps {
   inputClass?: string;

@@ -1,32 +1,26 @@
 import { SortableContext } from '@dnd-kit/sortable';
 import { ReactNode, useCallback } from 'react';
 
-import { Muted } from '@/components/ui/typography';
 import { Column, TaskCard, TaskSchema } from '@/entities';
 import { Droppable, SortableItem } from '@/features';
-import { EditableText, ItemList } from '@/shared';
+import { EditableText, ItemList, Muted } from '@/shared';
 
 import { useTaskContext } from '../../lib';
 import { useAddTask } from '../../model/hooks';
 
 interface TaskManagementProps {
+  /** Render function for task content */
   children?: (taskId: TaskSchema['id'], isCompleted: boolean) => ReactNode;
+  /** Column identifier */
   columnId: Column['id'];
+  /** Array of tasks to display */
   tasks: TaskSchema[];
 }
 
 /**
- * A component for managing and displaying tasks within a column. It allows users to add new tasks,
- * and interact with existing tasks by clicking to activate them. Tasks are rendered as sortable
- * items, enabling drag-and-drop functionality within the column.
- *
- * @param {TaskManagementProps} props - The properties for the TaskManagement component.
- * @param {(taskId: TaskSchema['id'], isCompleted: boolean) => ReactNode} [props.children] - A
- * function that renders child elements for each task, receiving the task ID and completion status.
- * @param {Column['id']} props.columnId - The ID of the column containing the tasks.
- * @param {TaskSchema[]} props.tasks - The list of tasks to display within the column.
+ * Manages tasks within a column with drag-and-drop functionality and task creation.
+ * Displays sortable task cards and provides inline task creation interface.
  */
-
 export const TaskManagement = ({ columnId, children, tasks }: TaskManagementProps) => {
   const { setIsCollapsed, setActiveTaskId, setActiveColumnId } = useTaskContext();
 

@@ -1,7 +1,6 @@
-import { Button } from '@/components/ui/button';
 import { Column, ColumnSchema } from '@/entities';
 import { ModalWithColorPicker } from '@/features';
-import { ModalType, ModalWithDelete, ModalWithInput } from '@/shared';
+import { Button, ModalType, ModalWithDelete, ModalWithInput } from '@/shared';
 
 import { useDeleteColumn, useEditColumn } from '../../model';
 

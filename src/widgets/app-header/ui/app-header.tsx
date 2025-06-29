@@ -1,4 +1,4 @@
-import { SidebarTrigger } from '@/shared';
+import { AppSidebarTrigger } from '@/shared';
 
 import { useHeader } from '../model';
 import { HeaderBreadcrumb } from './header-breadcrumb';
@@ -9,7 +9,7 @@ export const AppHeader = () => {
 
   return (
     <header className='flex h-16 items-center gap-5'>
-      <SidebarTrigger />
+      <AppSidebarTrigger />
 
       <HeaderBreadcrumb
         onToggleModal={fn.handleToggleModal}

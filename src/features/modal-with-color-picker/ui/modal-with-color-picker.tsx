@@ -1,15 +1,15 @@
 import { Palette } from 'lucide-react';
 import { useEffect, useRef } from 'react';
 
-import { Button } from '@/components/ui/button';
-import { Input } from '@/components/ui/input';
-import { Label } from '@/components/ui/label';
-import { Muted } from '@/components/ui/typography';
 import {
   AppModal,
   AppPopover,
+  Button,
   ColorField,
   ColorPalette,
+  Input,
+  Label,
+  Muted,
   useEnterDown,
   usePopover,
 } from '@/shared';
@@ -17,17 +17,30 @@ import {
 import { useModalWithColorPicker } from '../hook';
 
 interface AddProjectModalProps {
+  /** Text for the action button */
   actionName?: string;
+  /** Initial color selection */
   initColor?: ColorField;
+  /** Initial name value */
   initName?: string;
+  /** Whether modal is open */
   isOpen: boolean;
+  /** Whether form is submitting */
   isPending?: boolean;
+  /** Label for the name input field */
   label?: string;
+  /** Callback when modal open state changes */
   onOpenChange: VoidFunction;
+  /** Callback when form is submitted */
   onSave: (name: string, color: ColorField) => void;
+  /** Modal title */
   title: string;
 }
 
+/**
+ * Modal dialog for creating or editing items with name and color selection.
+ * Includes a color picker popover and form validation.
+ */
 export const ModalWithColorPicker = ({
   isOpen,
   onOpenChange,

@@ -11,25 +11,18 @@ import { ProjectCard } from './project-card';
 import { SortableProjects } from './sortable-projects';
 
 interface ProjectManagementProps {
+  /** Active tab identifier */
   activeTab: string | undefined;
+  /** Array of projects to display */
   projects: ProjectRecord[];
+  /** Space identifier */
   spaceId: SpaceId;
 }
 
 /**
- * A component that renders a list of projects for a space
- *
- * @prop {ProjectRecord[]} projects A list of projects to be rendered
- * @prop {string | undefined} activeTab The ID of the active tab
- * @prop {SpaceId} spaceId The ID of the space to which the projects belong
- *
- * @description
- * The `ProjectManagement` component is responsible for managing the list of projects in a space.
- * It renders a list of `ProjectCard`s and an `ActionModalProject` for project-related actions such as editing and deleting.
- * It utilizes the `useProjectData` hook to filter and sort the projects based on the active tab.
- * The component also includes a `SortableProjects` component for sorting functionality.
+ * Manages project display, sorting, and actions within a workspace.
+ * Renders sortable project cards and handles project CRUD operations.
  */
-
 export const ProjectManagement = ({
   projects,
   activeTab,
@@ -44,6 +37,10 @@ export const ProjectManagement = ({
   const handleProjectSuccess = useCallback(() => {
     fnProject.setProjectModal({ isOpen: false });
   }, [fnProject]);
+
+  if (!data.length) {
+    return null;
+  }
 
   return (
     <>

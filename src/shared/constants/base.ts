@@ -1,7 +1,7 @@
 import { ComponentProps } from 'react';
 
 import { KeyImportance } from '../types';
-import { Badge } from '../ui';
+import { AppBadge } from '../ui';
 
 export const MINUTE = 1000 * 60;
 export const DEFAULT_ORDER = 10000;
@@ -46,7 +46,7 @@ export const IMPORTANCE_LIST = [
 
 export const badgeVariantsMap: Record<
   KeyImportance,
-  ComponentProps<typeof Badge>['variant']
+  ComponentProps<typeof AppBadge>['variant']
 > = {
   0: 'primary',
   1: 'success',

@@ -1,14 +1,19 @@
-import { ErrorText, Lead } from '@/components/ui/typography';
 import { DescriptionSchema } from '@/entities';
-import { Textarea } from '@/shared';
+import { ErrorText, Lead, Textarea } from '@/shared';
 
 import { useMutationDescription, useQueryDescription } from '../model';
 
 interface EditDescriptionProps {
+  /** CSS classes for styling */
   className?: string;
+  /** Description identifier */
   id: DescriptionSchema['id'];
 }
 
+/**
+ * Editable description component with auto-save functionality.
+ * Loads existing description and allows inline editing with Enter to save.
+ */
 export const EditDescription = ({ className, id }: EditDescriptionProps) => {
   const { data: description, isPending, error } = useQueryDescription(id);
 

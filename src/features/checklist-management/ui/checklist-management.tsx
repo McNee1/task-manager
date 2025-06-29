@@ -3,20 +3,19 @@ import { TaskChecklistPanel } from './task-checklist-panel';
 import { ToolbarChecklistPanel } from './toolbar-checklist-panel';
 
 interface ChecklistManagement {
+  /** Whether the task is completed */
   isCompleted?: boolean;
+  /** Project identifier */
   projectId: string | undefined;
+  /** Task identifier */
   taskId: string;
+  /** Type of checklist to display */
   type: 'task' | 'toolbar';
 }
 
 /**
- * A component that manages and displays checklists for tasks or toolbars.
- *
- * @param {Object} props - The properties for the checklist management component.
- * @param {'task' | 'toolbar'} props.type - The type of checklist to display, either 'task' or 'toolbar'.
- * @param {string | undefined} props.projectId - The ID of the project the checklist belongs to.
- * @param {string} props.taskId - The ID of the task the checklist is associated with.
- * @param {boolean | undefined} props.isCompleted - A flag indicating if the task is completed.
+ * Manages checklist display and interactions for tasks or toolbars.
+ * Renders different panels based on type and handles CRUD operations.
  */
 
 export const ChecklistManagement = ({

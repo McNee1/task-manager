@@ -12,25 +12,25 @@ import {
 } from '@/shared';
 
 interface ColumnCardHeaderProps {
+  /** CSS classes for styling */
   className?: string;
+  /** Column data to display */
   column: Column;
+  /** Whether the column is collapsed */
   isCollapsed: boolean;
+  /** Callback for column actions */
   onActionPopoverModal?: (modalType: ModalType['type']) => void;
+  /** Callback when column is collapsed/expanded */
   onCollapseColumn?: (colId: Column['id']) => void;
+  /** Callback when column name is edited */
   onEditColName?: (colName: string) => void;
+  /** Callback for task sorting */
   onSortTasks?: (colId: Column['id']) => void;
 }
 
 /**
- * A component that renders a column header with a title, a button to edit the title, and a popover with actions to sort tasks, set a task limit, edit the column, collapse the column, and delete the column.
- *
- * @prop {Column} column The column to render.
- * @prop {(modalType: ModalType['type']) => void} onActionPopoverModal A callback to open the popover modal.
- * @prop {(colName: string) => void} onEditColName A callback to edit the column name.
- * @prop {(colId: Column['id']) => void} onSortTasks A callback to sort tasks in the column.
- * @prop {(colId: Column['id']) => void} onCollapseColumn A callback to collapse the column.
- * @prop {boolean} isCollapsed Whether the column is collapsed or not.
- * @prop {string} [className] The class name to add to the component.
+ * Column header component with editable title and action popover.
+ * Displays column name with inline editing and provides actions for sorting, editing, and collapsing.
  */
 export const ColumnCardHeader = ({
   column,

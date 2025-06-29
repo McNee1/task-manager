@@ -1,5 +1,5 @@
-import { Button } from '@/components/ui/button';
-import { AppModal } from '@/shared';
+import { Button } from '../../shadcn';
+import { AppModal } from '../app-modal';
 
 interface ModalWithDeleteProps {
   isOpen: boolean;
